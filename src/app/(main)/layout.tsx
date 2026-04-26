@@ -1,3 +1,5 @@
+import Footer from "@/shared/layout/footer/footer";
+import Header from "@/shared/layout/header/header";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -6,14 +8,12 @@ export const metadata: Metadata = {
 	description: "فروشگاه اینترنتی ساعت مچی - رویکس گالری",
 };
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" className={` h-full antialiased`}>
-			<body className="min-h-full flex flex-col">{children}</body>
-		</html>
+		<div>
+			<Header />
+			{children}
+			<Footer />
+		</div>
 	);
 }
