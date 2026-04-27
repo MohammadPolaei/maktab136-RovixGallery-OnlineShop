@@ -1,4 +1,4 @@
-import Header from "@/shared/layout/header/header";
+import AdminAside from "@/components/dashboard/components/aside/admin-aside";
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div>
-			<Header />
+			<AdminAside />
 			{children}
 		</div>
 	);
