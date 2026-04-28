@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	/* Primary Colors */
+	--color-primary: #0f3b2e;
+	--color-accent: #1e5142;
+
+	/* Gold Palette */
+	--color-gold: #c9a667;
+	--color-gold-dark: #9c804c;
+
+	/* Neutral Colors */
+	--color-bg: #f4f4f4;
+	--color-heading: #1a1a1a;
+	--color-subheading: #5f5f5f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Background */
+.rovix-bg-primary {
+	background-color: var(--color-primary);
+}
+.rovix-bg-accent {
+	background-color: var(--color-accent);
+}
+.rovix-bg-gold {
+	background-color: var(--color-gold);
+}
+.rovix-bg-gold-dark {
+	background-color: var(--color-gold-dark);
+}
+.rovix-bg-base {
+	background-color: var(--color-bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Text */
+.rovix-text-primary {
+	color: var(--color-primary);
+}
+.rovix-text-accent {
+	color: var(--color-accent);
+}
+.rovix-text-gold {
+	color: var(--color-gold);
+}
+.rovix-text-heading {
+	color: var(--color-heading);
+}
+.rovix-text-subheading {
+	color: var(--color-subheading);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Border */
+.rovix-border-gold {
+	border-color: var(--color-gold);
+}
+.rovix-border-accent {
+	border-color: var(--color-accent);
 }
