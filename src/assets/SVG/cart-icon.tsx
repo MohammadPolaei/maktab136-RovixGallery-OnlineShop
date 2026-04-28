@@ -6,9 +6,9 @@ export default function CartIcon() {
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke="#D8C27A"
-			stroke-width="1.6"
-			stroke-linecap="round"
-			stroke-linejoin="round"
+			strokeWidth="1.6"
+			strokeLinecap="round"
+			strokeLinejoin="round"
 		>
 			<circle cx="9" cy="21" r="1" />
 			<circle cx="18" cy="21" r="1" />

@@ -2,6 +2,8 @@
 
 :root {
 	/* Primary Colors */
+	--color-darkest: #0c1b14;
+	--color-super-dark-green: #12291e;
 	--color-dark-green: #0f3b2e;
 	--color-accent-green: #1e5142;
 
@@ -16,6 +18,12 @@
 }
 
 /* Background */
+.rovix-bg-darkest {
+	background-color: var(--color-darkest);
+}
+.rovix-bg-super-dark-green {
+	background-color: var(--color-super-dark-green);
+}
 .rovix-bg-dark-green {
 	background-color: var(--color-dark-green);
 }
@@ -39,6 +47,9 @@
 .rovix-text-accent-green {
 	color: var(--color-accent-green);
 }
+.rovix-text-light {
+	color: var(--color-bg);
+}
 .rovix-text-gold {
 	color: var(--color-gold);
 }
@@ -55,4 +66,13 @@
 }
 .rovix-border-accent-green {
 	border-color: var(--color-accent-green);
+}
+
+/* Link */
+
+.rovix-link {
+	color: var(--color-bg);
+}
+.rovix-link:hover {
+	color: var(--color-gold);
 }

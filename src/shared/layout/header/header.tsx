@@ -3,7 +3,7 @@ import HeaderTop from "./components/top-header";
 
 export default function Header() {
 	return (
-		<div>
+		<div className="sticky top-0">
 			<HeaderTop />
 			<Navbar />
 		</div>
