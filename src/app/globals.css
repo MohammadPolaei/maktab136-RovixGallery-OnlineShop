@@ -2,8 +2,8 @@
 
 :root {
 	/* Primary Colors */
-	--color-primary: #0f3b2e;
-	--color-accent: #1e5142;
+	--color-dark-green: #0f3b2e;
+	--color-accent-green: #1e5142;
 
 	/* Gold Palette */
 	--color-gold: #c9a667;
@@ -16,11 +16,11 @@
 }
 
 /* Background */
-.rovix-bg-primary {
-	background-color: var(--color-primary);
+.rovix-bg-dark-green {
+	background-color: var(--color-dark-green);
 }
-.rovix-bg-accent {
-	background-color: var(--color-accent);
+.rovix-bg-accent-green {
+	background-color: var(--color-accent-green);
 }
 .rovix-bg-gold {
 	background-color: var(--color-gold);
@@ -33,11 +33,11 @@
 }
 
 /* Text */
-.rovix-text-primary {
-	color: var(--color-primary);
+.rovix-text-dark-green {
+	color: var(--color-dark-green);
 }
-.rovix-text-accent {
-	color: var(--color-accent);
+.rovix-text-accent-green {
+	color: var(--color-accent-green);
 }
 .rovix-text-gold {
 	color: var(--color-gold);
@@ -53,6 +53,6 @@
 .rovix-border-gold {
 	border-color: var(--color-gold);
 }
-.rovix-border-accent {
-	border-color: var(--color-accent);
+.rovix-border-accent-green {
+	border-color: var(--color-accent-green);
 }
