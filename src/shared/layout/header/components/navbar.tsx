@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Navbar() {
 	return (
 		<nav className="w-full rovix-bg-darkest border-t border-[#D8C27A]/30">
-			<div className="max-w-7xl mx-auto flex items-center justify-center gap-10 py-3 rovix-text-light text-sm transition-all ease-in-out duration-500">
+			<div className="max-w-7xl mx-auto items-center justify-center py-3 rovix-text-light text-sm transition-all ease-in-out duration-500 hidden lg:flex lg:gap-10">
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
