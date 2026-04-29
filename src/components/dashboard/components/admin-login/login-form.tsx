@@ -1,6 +1,6 @@
 export default function LoginForm() {
 	return (
-		<div className="bg-white w-150 rounded-xl p-10 shadow-2xl fixed top-[25%] flex items-center justify-center">
+		<div className="bg-white w-70 rounded-xl p-10 shadow-2xl fixed top-[25%] flex items-center justify-center sm:w-150">
 			<form className="w-full flex flex-col justify-evenly items-center gap-3">
 				<h1 className="text-md text-(--color-dark-green) font-semibold">
 					ورود به پنل ادمین
