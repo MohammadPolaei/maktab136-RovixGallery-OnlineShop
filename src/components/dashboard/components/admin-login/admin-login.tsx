@@ -8,7 +8,7 @@ export default function AdminLogin() {
 				className="h-screen flex flex-col justify-center items-center bg-(--color-darkest) blur-3xl lg:blur-xl xl:blur-sm"
 				style={{
 					backgroundImage: `url(${backgroundImage.src})`,
-					backgroundSize: "1980px 1000px",
+					backgroundSize: "100% 100%",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
 				}}

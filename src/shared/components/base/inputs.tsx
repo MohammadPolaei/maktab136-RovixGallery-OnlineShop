@@ -30,6 +30,7 @@ export function PasswordInput(userInput: InputType) {
 				type="password"
 				alt="password"
 				placeholder={userInput.placeholder || undefined}
+				required
 			/>
 		</div>
 	);
