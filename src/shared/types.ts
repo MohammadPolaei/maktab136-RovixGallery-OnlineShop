@@ -3,4 +3,5 @@ export interface InputType {
 	name: string;
 	id?: string;
 	placeholder?: string;
+	register?: any;
 }

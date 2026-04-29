@@ -10,6 +10,7 @@ export function TextInput(userInput: InputType) {
 				className="px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)"
 				type="text"
 				name={userInput.name}
+				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
 				placeholder={userInput.placeholder || undefined}
 				required
@@ -26,6 +27,7 @@ export function PasswordInput(userInput: InputType) {
 			<input
 				className="px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)"
 				name={userInput.name}
+				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
 				type="password"
 				alt="password"
