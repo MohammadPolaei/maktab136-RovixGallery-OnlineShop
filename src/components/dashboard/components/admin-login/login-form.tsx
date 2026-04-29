@@ -1,13 +1,14 @@
 "use client";
-import SubmitButton from "@/shared/components/base/buttons";
+import InputValidationError from "@/shared/components/base/input-validation-error";
 import { PasswordInput, TextInput } from "@/shared/components/base/inputs";
-import FormContainer from "@/shared/components/form-container";
+import ValidatedForm from "@/shared/components/validated-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AdminLoginFormData, adminLoginSchema } from "../../utils";
 
 export default function LoginForm() {
+	// custom hook needed
 	const [loading, setLoading] = useState(false);
 	const {
 		register,
@@ -21,17 +22,14 @@ export default function LoginForm() {
 		setLoading(true);
 	};
 	return (
-		<FormContainer>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className="w-full flex flex-col justify-evenly items-center gap-3"
-			>
-				<h1 className="text-xl text-(--color-dark-green) font-bold">
-					ورود به پنل ادمین
-				</h1>
-				<p className="text-sm text-(--color-subheading) hidden sm:inline">
-					خوش آمدید . لطفا برای ادامه وارد شوید
-				</p>
+		<ValidatedForm
+			formDescription="خوش آمدید . لطفا برای ادامه وارد شوید"
+			formTitle="ورود به پنل ادمین"
+			handleSubmit={handleSubmit}
+			loading={loading}
+			onSubmit={onSubmit}
+		>
+			<div className="w-full relative">
 				<TextInput
 					label="ایمیل"
 					name="username"
@@ -39,8 +37,10 @@ export default function LoginForm() {
 					placeholder="ایمیل خود را وارد کنید"
 				/>
 				{errors.email && (
-					<p className="text-red-500 text-sm">{errors.email.message}</p>
+					<InputValidationError>{errors.email.message}</InputValidationError>
 				)}
+			</div>
+			<div className="w-full relative">
 				<PasswordInput
 					label="کلمه عبور"
 					name="password"
@@ -48,12 +48,9 @@ export default function LoginForm() {
 					placeholder="کلمه عبور را وارد کنید"
 				/>
 				{errors.password && (
-					<p className="text-red-500 text-sm">{errors.password.message}</p>
+					<InputValidationError>{errors.password.message}</InputValidationError>
 				)}
-				<SubmitButton disabaled={loading}>
-					{loading ? "در حال بررسی . . ." : "ورود به حساب کاربری"}
-				</SubmitButton>
-			</form>
-		</FormContainer>
+			</div>
+		</ValidatedForm>
 	);
 }
