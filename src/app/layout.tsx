@@ -1,5 +1,3 @@
-import Footer from "@/shared/layout/footer/footer";
-import Header from "@/shared/layout/header/header";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -15,11 +13,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" dir="rtl" className={` h-full antialiased`}>
-			<body className="min-h-full flex flex-col">
-				<Header />
-				{children}
-				<Footer />
-			</body>
+			<body className="min-h-full flex flex-col">{children}</body>
 		</html>
 	);
 }
