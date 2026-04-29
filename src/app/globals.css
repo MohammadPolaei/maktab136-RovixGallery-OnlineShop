@@ -76,3 +76,12 @@
 .rovix-link:hover {
 	color: var(--color-gold);
 }
+
+/* Logo */
+.logo {
+	width: 150px;
+	height: 50px;
+	background-image: url(@/assets/img/rovix-1.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}

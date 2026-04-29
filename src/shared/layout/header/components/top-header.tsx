@@ -27,8 +27,8 @@ export default function HeaderTop() {
 				</div>
 				{/* Logo */}
 				<div className="flex-col items-center text-[#D8C27A] hidden sm:flex">
-					<h1 className="text-xl mt-1 font-semibold">ROVIXGALLERY</h1>
-					<p className="text-xs tracking-widest">LUXURY WATCHES</p>
+					<div className="logo"></div>
+					{/* <Image alt="rovix" src={RovixLogo} width={200} height={200} /> */}
 				</div>
 				{/* Search */}
 				<div className="relative w-20 h-10 md:w-35 lg:w-80">

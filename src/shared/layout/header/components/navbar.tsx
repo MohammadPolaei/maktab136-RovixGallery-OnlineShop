@@ -3,68 +3,71 @@ import Link from "next/link";
 export default function Navbar() {
 	return (
 		<nav className="w-full rovix-bg-darkest border-t border-[#D8C27A]/30">
-			<div className="max-w-7xl mx-auto items-center justify-center py-3 rovix-text-light text-sm transition-all ease-in-out duration-500 hidden lg:flex lg:gap-10">
+			<div className="max-w-7xl mx-auto items-center justify-center py-3 rovix-text-light text-sm hidden lg:flex lg:gap-10">
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					صفحه اصلی
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						صفحه اصلی
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					ساعت مردانه
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						محصولات
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					ساعت زنانه
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						دسته بندی ها
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					برندها
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						ساعت مردانه
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					کالکشن‌ها
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						ساعت زنانه
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					لایسوری
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						برندها
+					</div>
+				</Link>
+
+				<Link
+					href={"/"}
+					className="rovix-link transition-all ease-in-out duration-500"
+				>
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						درباره ما
+					</div>
 				</Link>
 				<Link
 					href={"/"}
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
-					{" "}
-					اکسسوری
-				</Link>
-				<Link
-					href={"/"}
-					className="rovix-link transition-all ease-in-out duration-500"
-				>
-					{" "}
-					درباره ما{" "}
-				</Link>
-				<Link
-					href={"/"}
-					className="rovix-link transition-all ease-in-out duration-500"
-				>
-					{" "}
-					تماس با ما
+					<div className="px-3 py-2 rounded-2xl text-center hover:bg-[#0f3b2e] transition-all ease-in-out duration-1000">
+						تماس با ما
+					</div>
 				</Link>
 			</div>
 		</nav>
