@@ -8,6 +8,7 @@ export default function NavbarSingleItem({
 }: NavbarSingleItemsType) {
 	return (
 		<Link
+			title={title}
 			href={href}
 			className="rovix-link transition-all ease-in-out duration-500"
 		>
