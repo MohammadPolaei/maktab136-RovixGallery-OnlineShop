@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div>
 			<Header />
-			<div className="pt-15 sm:pt-25 lg:pt-35">{children}</div>
+			<div className="pt-15 md:pt-35">{children}</div>
 			<Footer />
 		</div>
 	);
