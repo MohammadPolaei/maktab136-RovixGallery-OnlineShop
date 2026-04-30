@@ -7,6 +7,13 @@ export type NavbarSingleItemsType = {
 	title: string;
 	icon: JSX.Element | string;
 };
+export type MobileMenuSingleItemType = {
+	setActive: Function;
+	active: string;
+	href: string;
+	title: string;
+	icon: JSX.Element | string;
+};
 
 // Inputs
 
