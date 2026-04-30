@@ -1,4 +1,14 @@
-import React from "react";
+import React, { JSX } from "react";
+
+// Navbar
+
+export type NavbarSingleItemsType = {
+	href: string;
+	title: string;
+	icon: JSX.Element | string;
+};
+
+// Inputs
 
 export interface InputType {
 	label: string;
