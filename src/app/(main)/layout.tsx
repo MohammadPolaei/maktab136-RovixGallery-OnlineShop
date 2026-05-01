@@ -1,5 +1,5 @@
-import Footer from "@/shared/layout/footer/footer";
-import Header from "@/shared/layout/header/header";
+import Footer from "@/layout/footer/footer";
+import Header from "@/layout/header/header";
 import type { Metadata } from "next";
 import "./globals.css";
 

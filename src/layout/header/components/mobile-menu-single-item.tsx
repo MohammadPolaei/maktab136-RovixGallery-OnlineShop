@@ -1,6 +1,6 @@
 "use client";
 
-import { MobileMenuSingleItemType } from "@/shared/types";
+import { MobileMenuSingleItemType } from "@/types/types";
 import Link from "next/link";
 
 export default function MobileMenuSingleItem({

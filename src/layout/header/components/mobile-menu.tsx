@@ -16,6 +16,8 @@ export default function MobileMenu() {
 		{ id: 4, title: "دسته بندی ها", href: "/", icon: <CategoriesIconMobile /> },
 		{ id: 5, title: "پروفایل", href: "/", icon: <UserProfileMobile /> },
 	];
+	// اتوماتیک روی لینکی که در url فعلی هست ، باید آیتم همان لینک فعال باشد
+
 	const [activeTitle, setActive] = useState("صفحه اصلی");
 	return (
 		<div className="w-full h-15 flex flex-row justify-between items-center px-6 backdrop-blur-[5px] bg-radial from-(--color-super-dark-green)/90 to-(--color-darkest) rovix-text-gold rounded-t-lg">

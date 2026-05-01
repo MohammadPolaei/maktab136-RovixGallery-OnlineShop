@@ -1,5 +1,5 @@
-import { ValidatedFormType } from "../types";
-import SubmitButton from "./base/buttons";
+import { ValidatedFormType } from "../../types/types";
+import SubmitButton from "../base/buttons";
 import FormContainer from "./form-container";
 
 export default function ValidatedForm({

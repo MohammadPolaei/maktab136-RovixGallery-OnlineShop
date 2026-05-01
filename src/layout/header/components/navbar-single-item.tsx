@@ -1,4 +1,4 @@
-import { NavbarSingleItemsType } from "@/shared/types";
+import { NavbarSingleItemsType } from "@/types/types";
 import Link from "next/link";
 
 export default function NavbarSingleItem({

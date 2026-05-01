@@ -1,7 +1,7 @@
 "use client";
-import InputValidationError from "@/shared/components/base/input-validation-error";
-import { PasswordInput, TextInput } from "@/shared/components/base/inputs";
-import ValidatedForm from "@/shared/components/validated-form";
+import InputValidationError from "@/components/base/input-validation-error";
+import { PasswordInput, TextInput } from "@/components/base/inputs";
+import ValidatedForm from "@/components/shared/validated-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
