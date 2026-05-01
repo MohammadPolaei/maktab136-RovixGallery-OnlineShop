@@ -87,3 +87,9 @@
 	width: 300px;
 	height: 80px;
 }
+
+/* scroll bar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+	display: none;
+}
