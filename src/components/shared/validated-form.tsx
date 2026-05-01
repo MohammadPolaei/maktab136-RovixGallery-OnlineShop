@@ -1,4 +1,4 @@
-import { ValidatedFormType } from "../../types/types";
+import { ValidatedFormType } from "@/types/inputs-type";
 import SubmitButton from "../base/buttons";
 import FormContainer from "./form-container";
 

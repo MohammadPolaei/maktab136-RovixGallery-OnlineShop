@@ -1,4 +1,4 @@
-import { InputType } from "@/types/types";
+import { InputType } from "@/types/inputs-type";
 
 export function TextInput(userInput: InputType) {
 	return (
