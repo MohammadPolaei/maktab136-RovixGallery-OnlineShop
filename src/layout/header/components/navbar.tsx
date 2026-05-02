@@ -41,8 +41,8 @@ export default function Navbar() {
 	const pathname = usePathname();
 
 	return (
-		<nav className="w-full rovix-bg-darkest backdrop-blur-sm border-t border-[#D8C27A]/30">
-			<div className="max-w-7xl mx-auto flex flex-row items-center justify-center py-1 rovix-text-light text-[10px] lg:gap-10">
+		<div className="w-full rovix-bg-darkest backdrop-blur-sm border-t border-[#D8C27A]/30">
+			<nav className="max-w-7xl mx-auto flex flex-row items-center justify-center py-1 rovix-text-light text-[10px] lg:gap-10">
 				{navbarLinkItems.map((item) => {
 					const isActive =
 						item.href === "/"
@@ -60,7 +60,7 @@ export default function Navbar() {
 						/>
 					);
 				})}
-			</div>
-		</nav>
+			</nav>
+		</div>
 	);
 }

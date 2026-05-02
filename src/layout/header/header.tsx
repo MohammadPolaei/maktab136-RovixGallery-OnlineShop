@@ -5,7 +5,7 @@ import HeaderTop from "./components/top-header";
 
 export default function Header() {
 	return (
-		<div className="fixed top-0 w-full">
+		<header className="fixed top-0 w-full">
 			<HeaderTop />
 			<div className="hidden md:block">
 				<Navbar />
@@ -14,6 +14,6 @@ export default function Header() {
 				<MobileMenu />
 			</div>
 			<ScrollInit />
-		</div>
+		</header>
 	);
 }
