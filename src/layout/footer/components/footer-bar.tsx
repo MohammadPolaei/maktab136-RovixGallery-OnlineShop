@@ -1,5 +1,9 @@
 "use client";
 
+import BackToTopIcon from "@/assets/SVG/footer-icons/back-to-top-icon";
+import InstagramIconFooter from "@/assets/SVG/footer-icons/instagram-icon-footer";
+import TelegramIconFooter from "@/assets/SVG/footer-icons/telegram-icon-footer";
+import YoutubeIconFooter from "@/assets/SVG/footer-icons/youtube-icon-footer";
 import { useEffect, useState } from "react";
 
 export default function FooterBar() {
@@ -27,17 +31,31 @@ export default function FooterBar() {
 
 	return (
 		<div
-			className={`fixed bottom-0 left-0 w-full 
-      transition-all duration-300
+			className={`fixed bottom-0 left-0 w-full text-[12px]
+      transition-all ease-in-out duration-500
       ${
 				expanded
 					? "h-24 rovix-bg-dark-green rovix-text-gold"
 					: "h-12 rovix-bg-darkest text-(--color-bg)"
 			}`}
 		>
-			<div className="max-w-6xl mx-auto flex items-center justify-between h-full px-6">
-				<span>Footer Bar</span>
-				<button className="text-sm">برگشت به بالای صفحه</button>
+			<div className="max-w-300 mx-auto flex items-center justify-between h-full px-6">
+				<span className="w-fit flex flex-row items-center justify-center gap-3 rovix-text-light">
+					از جدیدترین محصولات و تخفیف های ما مطلع شوید
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+						<InstagramIconFooter />
+					</div>
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+						<TelegramIconFooter />
+					</div>
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+						<YoutubeIconFooter />
+					</div>
+				</span>
+				<button className="flex flex-row items-center justify-center gap-2 text-sm rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out">
+					<BackToTopIcon />
+					برگشت به بالا
+				</button>
 			</div>
 		</div>
 	);

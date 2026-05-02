@@ -2,64 +2,82 @@ import AboutUsIconFooter from "@/assets/SVG/footer-icons/about-us-icon-footer";
 import BoxIcon from "@/assets/SVG/footer-icons/box-icon";
 import ContactUsIconFooter from "@/assets/SVG/footer-icons/contact-us-icon-footer";
 import DeliveryIcon from "@/assets/SVG/footer-icons/delivery-icon";
+import EmailIconFooter from "@/assets/SVG/footer-icons/email-icon-footer";
+import LocationIconFooter from "@/assets/SVG/footer-icons/location-icon-footer";
 import MotorCycleIcon from "@/assets/SVG/footer-icons/motor-cycle-icon";
+import PhoneIconFooter from "@/assets/SVG/footer-icons/phone-icon-footer";
 import TruckIcon from "@/assets/SVG/footer-icons/truck-icon";
-import Image from "next/image";
+import {
+	FooterMainSinglePart,
+	FooterMainSinglePartDescription,
+	FooterMainSinglePartDescriptionContainer,
+	FooterMainSinglePartHeader,
+} from "./footer-main-single-part";
 
 export default function FooterMain() {
 	return (
-		<footer className="rovix-bg-darkest text-(--color-bg) py-16 pb-30 mt-10">
-			<div className="max-w-6xl mx-auto px-6 flex flex-row justify-evenly items-start">
+		<section className="w-full bg-linear-0 from-(--color-dark-green) to-(--color-darkest) text-(--color-bg) py-5 pb-25 mt-10">
+			<div className="max-w-300 mx-auto px-6 flex flex-col lg:flex-row justify-evenly items-start gap-5">
 				{/* delivery */}
-				<div className="flex flex-col justify-center items-start p-5 rounded-2xl hover:bg-(--color-dark-green) transition-all duration-800 ease-in-out">
-					<h2 className="text-md mb-4 flex flex-row gap-1">
+				<FooterMainSinglePart>
+					<FooterMainSinglePartHeader>
 						<DeliveryIcon />
 						ارسال سریع و مطمئن
-					</h2>
-					<div className="flex justify-center items-center gap-1">
-						<TruckIcon />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-					<div className="flex justify-center items-center gap-1">
-						<MotorCycleIcon />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-					<div className="flex justify-center items-center gap-1">
-						<BoxIcon />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-				</div>
+					</FooterMainSinglePartHeader>
+					<FooterMainSinglePartDescriptionContainer>
+						<FooterMainSinglePartDescription>
+							<TruckIcon />
+							ارسال رایگان به سراسر ایران
+						</FooterMainSinglePartDescription>
+
+						<FooterMainSinglePartDescription>
+							<MotorCycleIcon />
+							ارسال سریع (در 1 الی 2 روز کاری)
+						</FooterMainSinglePartDescription>
+
+						<FooterMainSinglePartDescription>
+							<BoxIcon />
+							بسته بندی ویژه و امن
+						</FooterMainSinglePartDescription>
+					</FooterMainSinglePartDescriptionContainer>
+				</FooterMainSinglePart>
 				{/* contact-us */}
-				<div className="flex flex-col justify-center items-start p-5 rounded-2xl hover:bg-(--color-dark-green) transition-all duration-800 ease-in-out">
-					<h2 className="text-md mb-4 flex flex-row gap-1">
+				<FooterMainSinglePart>
+					<FooterMainSinglePartHeader>
 						<ContactUsIconFooter />
 						تماس با ما
-					</h2>
-					<div className="flex justify-center items-center gap-1">
-						<Image alt="" src={""} width={10} height={10} />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-					<div className="flex justify-center items-center gap-1">
-						<Image alt="" src={""} width={10} height={10} />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-				</div>
+					</FooterMainSinglePartHeader>
+					<FooterMainSinglePartDescriptionContainer>
+						<FooterMainSinglePartDescription>
+							<PhoneIconFooter />
+							021-1231231212
+						</FooterMainSinglePartDescription>
+						<FooterMainSinglePartDescription>
+							<EmailIconFooter />
+							info@rovixgallery.com
+						</FooterMainSinglePartDescription>
+						<FooterMainSinglePartDescription>
+							<LocationIconFooter />
+							تهران ، خیابان ولیعصر
+						</FooterMainSinglePartDescription>
+					</FooterMainSinglePartDescriptionContainer>
+				</FooterMainSinglePart>
 				{/* about-us */}
-				<div className="flex flex-col justify-center items-start p-5 rounded-2xl hover:bg-(--color-dark-green) transition-all duration-800 ease-in-out">
-					<h2 className="text-md mb-4 flex flex-row gap-1">
+				<FooterMainSinglePart>
+					<FooterMainSinglePartHeader>
 						<AboutUsIconFooter />
 						درباره ما
-					</h2>
-					<div className="flex justify-center items-center gap-1">
-						<Image alt="" src={""} width={10} height={10} />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-					<div className="flex justify-center items-center gap-1">
-						<Image alt="" src={""} width={10} height={10} />
-						<p className="text-gray-400">این بخش آخرین محتوای صفحه است.</p>
-					</div>
-				</div>
+					</FooterMainSinglePartHeader>
+					<FooterMainSinglePartDescriptionContainer>
+						<FooterMainSinglePartDescription>
+							<p className="text-[12px] text-gray-400">
+								رویکس گالری، مرجع تخصصی فروش ساعت‌های لوکس و اصل از برندهای
+								معتبر جهان ما اصالت، کیفیت و رضایت شما را تضمین می‌کنیم.
+							</p>
+						</FooterMainSinglePartDescription>
+					</FooterMainSinglePartDescriptionContainer>
+				</FooterMainSinglePart>
 			</div>
-		</footer>
+		</section>
 	);
 }

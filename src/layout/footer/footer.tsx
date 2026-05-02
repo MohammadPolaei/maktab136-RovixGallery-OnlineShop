@@ -6,9 +6,13 @@ export default function Footer() {
 	return (
 		<footer className="w-full">
 			<div className="w-full rovix-bg-darkest rovix-text-light">
-				<FooterBar />
+				<div className="hidden md:block">
+					<FooterBar />
+				</div>
 				<FooterMain />
-				<FooterSentinel />
+				<div className="hidden md:block">
+					<FooterSentinel />
+				</div>
 			</div>
 		</footer>
 	);
