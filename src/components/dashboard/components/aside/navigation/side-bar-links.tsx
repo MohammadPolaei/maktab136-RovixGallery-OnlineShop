@@ -3,23 +3,52 @@
 import DashboardIcon from "@/assets/SVG/dashboard-icons/dashboard-icon";
 import DiscountIcon from "@/assets/SVG/dashboard-icons/discount-icon";
 import OrdersIcon from "@/assets/SVG/dashboard-icons/orders-icon";
+import ProductPriceIcon from "@/assets/SVG/dashboard-icons/product-price-icon";
 import ProductsIcon from "@/assets/SVG/dashboard-icons/products-icon";
 import ReportsIcon from "@/assets/SVG/dashboard-icons/reports-icon";
 import SettingsIcon from "@/assets/SVG/dashboard-icons/settings-icon";
 import UsersIcon from "@/assets/SVG/dashboard-icons/users-icon";
-import WarehouseIcon from "@/assets/SVG/dashboard-icons/ware-house-icon";
+import { DASHBOARD_BASE_URL } from "@/components/dashboard/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-	{ href: "/", label: "داشبورد", icon: <DashboardIcon /> },
-	{ href: "/products", label: "محصولات", icon: <ProductsIcon /> },
-	{ href: "/orders", label: "سفارش‌ها", icon: <OrdersIcon /> },
-	{ href: "/users", label: "کاربران", icon: <UsersIcon /> },
-	{ href: "/discounts", label: "تخفیف‌ها", icon: <DiscountIcon /> },
-	{ href: "/warehouse", label: "انبار", icon: <WarehouseIcon /> },
-	{ href: "/reports", label: "گزارش‌ها", icon: <ReportsIcon /> },
-	{ href: "/settings", label: "تنظیمات", icon: <SettingsIcon /> },
+	{ href: `${DASHBOARD_BASE_URL}`, label: "داشبورد", icon: <DashboardIcon /> },
+	{
+		href: `${DASHBOARD_BASE_URL}/products`,
+		label: "محصولات",
+		icon: <ProductsIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/quantity`,
+		label: "قیمت و موجودی",
+		icon: <ProductPriceIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/orders`,
+		label: "سفارش‌ها",
+		icon: <OrdersIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/users`,
+		label: "کاربران",
+		icon: <UsersIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/discounts`,
+		label: "تخفیف‌ها",
+		icon: <DiscountIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/reports`,
+		label: "گزارش‌ها",
+		icon: <ReportsIcon />,
+	},
+	{
+		href: `${DASHBOARD_BASE_URL}/settings`,
+		label: "تنظیمات",
+		icon: <SettingsIcon />,
+	},
 ];
 
 export function SidebarLinks() {
@@ -28,10 +57,11 @@ export function SidebarLinks() {
 	return (
 		<nav className="flex flex-col gap-2 px-3 mt-6">
 			{links.map((item) => {
-				const Icon = item.icon;
-
 				const active =
-					item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+					item.href === `${DASHBOARD_BASE_URL}`
+						? pathname === `${DASHBOARD_BASE_URL}`
+						: pathname.startsWith(item.href);
+				console.log(pathname);
 
 				return (
 					<Link
@@ -39,7 +69,7 @@ export function SidebarLinks() {
 						href={item.href}
 						className={`
               flex items-center gap-3
-              px-3 py-2.5
+              px-3 py-3
               rounded-xl
               text-[12px]
               transition-all

@@ -9,8 +9,10 @@ export const metadata: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="flex min-h-screen bg-bg">
-			<AdminAside />
+		<div id="dashboard-container" className="flex min-h-screen bg-bg">
+			<div className="overflow-y-auto">
+				<AdminAside />
+			</div>
 			<main className="flex-1 p-8">{children}</main>
 		</div>
 	);
