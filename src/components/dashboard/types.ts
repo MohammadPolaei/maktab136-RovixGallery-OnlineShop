@@ -7,3 +7,10 @@ export type StatusCardDataType = {
 	increaseText: string;
 	icon: JSX.Element;
 };
+export interface StatCardProps {
+	icon: React.ReactNode;
+	title: string;
+	value: string | number;
+	increasePercent: number;
+	increaseText: string;
+}

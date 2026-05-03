@@ -15,9 +15,10 @@ const stats: StatusCardDataType[] = [
 				fill="none"
 				stroke="currentColor"
 				strokeWidth="2"
+				viewBox="0 0 24 24"
 			>
 				<path d="M3 3v18h18" />
-				<path d="M3 9l7 7 7-14 4 4" />
+				<path d="M7 14l4-4 3 3 6-8" />
 			</svg>
 		),
 	},
@@ -27,9 +28,16 @@ const stats: StatusCardDataType[] = [
 		increasePercent: 8.2,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (
-			<svg className="w-5 h-5" fill="none" stroke="currentColor">
-				<path d="M3 3h18v18H3z" />
-				<path d="M16 5v14M9 9l3-3 3 3" />
+			<svg
+				className="w-5 h-5"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				viewBox="0 0 24 24"
+			>
+				<path d="M3 7l9-4 9 4v10l-9 4-9-4V7z" />
+				<path d="M3 7l9 4 9-4" />
+				<path d="M12 11v10" />
 			</svg>
 		),
 	},
@@ -39,9 +47,15 @@ const stats: StatusCardDataType[] = [
 		increasePercent: 5.3,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (
-			<svg className="w-5 h-5" fill="none" stroke="currentColor">
-				<circle cx="12" cy="12" r="10" />
-				<path d="M12 6v6l4 2" />
+			<svg
+				className="w-5 h-5"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				viewBox="0 0 24 24"
+			>
+				<circle cx="12" cy="12" r="9" />
+				<path d="M9 12l2 2 4-4" />
 			</svg>
 		),
 	},
@@ -51,9 +65,17 @@ const stats: StatusCardDataType[] = [
 		increasePercent: 9.2,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (
-			<svg className="w-5 h-5" fill="none" stroke="currentColor">
-				<circle cx="12" cy="7" r="4" />
-				<path d="M5.5 21h13a4 4 0 00-13 0z" />
+			<svg
+				className="w-5 h-5"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				viewBox="0 0 24 24"
+			>
+				<circle cx="9" cy="7" r="4" />
+				<circle cx="17" cy="13" r="4" />
+				<path d="M3 21c1-4 4-6 6-6" />
+				<path d="M13 21c1-4 4-6 6-6" />
 			</svg>
 		),
 	},

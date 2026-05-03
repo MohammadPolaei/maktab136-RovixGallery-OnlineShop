@@ -1,12 +1,4 @@
-import React from "react";
-
-interface StatCardProps {
-	icon: React.ReactNode;
-	title: string;
-	value: string | number;
-	increasePercent: number;
-	increaseText: string;
-}
+import { StatCardProps } from "@/components/dashboard/types";
 
 export default function StatCard({
 	icon,
@@ -16,10 +8,12 @@ export default function StatCard({
 	increaseText,
 }: StatCardProps) {
 	return (
-		<div className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 hover:shadow-lg transition">
+		<div className="bg-white rounded-xl shadow p-6 flex flex-col gap-3 hover:shadow-lg hover:bg-(--color-accent-green)/20 transition-all duration-500 ease-in-out">
 			<div className="flex items-center gap-3">
-				<div className="bg-green-900 p-3 rounded-full text-gold">{icon}</div>
-				<span className="font-medium text-gray-800">{title}</span>
+				<div className="bg-(--color-accent-green) p-3 rounded-full text-white">
+					{icon}
+				</div>
+				<span className="font-medium text-[12px] text-gray-800">{title}</span>
 			</div>
 
 			<p className="text-2xl font-extrabold text-gray-900">{value}</p>

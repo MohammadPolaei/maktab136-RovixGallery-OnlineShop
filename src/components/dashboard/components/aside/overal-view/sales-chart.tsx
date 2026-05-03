@@ -11,24 +11,24 @@ import {
 	YAxis,
 } from "recharts";
 
-export default function SalesChart({ className = "" }: { className?: string }) {
+export default function SalesChart() {
 	return (
-		<div className={`${className} bg-white rounded-xl shadow p-6`}>
+		<div className="bg-white rounded-xl shadow p-6">
 			<div className="flex justify-between mb-4">
 				<h3 className="font-bold text-gray-900">تحلیل فروش</h3>
 
-				<select className="border rounded px-2 py-1 text-sm">
+				<select className="shadow outline-0 rounded px-2 py-1 text-sm">
 					<option>۳۰ روز گذشته</option>
 					<option>۷ روز گذشته</option>
 				</select>
 			</div>
 
-			<ResponsiveContainer width="100%" height={250}>
+			<ResponsiveContainer className="text-[12px]" width="100%" height={250}>
 				<AreaChart data={sales}>
 					<defs>
 						<linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
 							<stop offset="10%" stopColor="#7A933F" stopOpacity={0.4} />
-							<stop offset="100%" stopColor="#7A933F" stopOpacity={0} />
+							<stop offset="100%" stopColor="#7A933F" stopOpacity={0.1} />
 						</linearGradient>
 					</defs>
 
