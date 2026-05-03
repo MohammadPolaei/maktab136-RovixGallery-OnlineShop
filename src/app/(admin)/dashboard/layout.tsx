@@ -1,4 +1,4 @@
-import AdminAside from "@/components/dashboard/components/aside/admin-aside";
+import { AdminAside } from "@/components/dashboard/components/aside/admin-aside";
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div>
+		<div className="flex min-h-screen bg-bg">
 			<AdminAside />
-			{children}
+			<main className="flex-1 p-8">{children}</main>
 		</div>
 	);
 }
