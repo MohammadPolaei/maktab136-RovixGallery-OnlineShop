@@ -6,6 +6,7 @@ export function AdminAside() {
 	return (
 		<aside
 			className="
+			relative
       w-50
       h-screen
       flex
@@ -25,11 +26,14 @@ export function AdminAside() {
 			</div>
 
 			{/* Links */}
-			<div className="overflow-y-auto">
+			<div className="w-full overflow-y-auto z-10">
 				<SidebarLinks />
-
-				<Image className="w-full" alt="watch" src={backgroundImage} />
 			</div>
+			<Image
+				className="w-full absolute bottom-0"
+				alt="watch"
+				src={backgroundImage}
+			/>
 		</aside>
 	);
 }
