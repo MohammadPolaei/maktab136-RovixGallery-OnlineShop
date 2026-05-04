@@ -61,7 +61,6 @@ export function SidebarLinks() {
 					item.href === `${DASHBOARD_BASE_URL}`
 						? pathname === `${DASHBOARD_BASE_URL}`
 						: pathname.startsWith(item.href);
-				console.log(pathname);
 
 				return (
 					<Link

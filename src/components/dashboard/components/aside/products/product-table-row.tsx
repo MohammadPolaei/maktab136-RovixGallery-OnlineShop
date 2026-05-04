@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ProductsTableRow({ product }: { product: Product }) {
 	return (
-		<tr className="border-b border-(--color-accent-green) hover:bg-(--color-accent-green)/10">
+		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
 			<td className="p-3">
 				<Image
 					src={product.images[0]}

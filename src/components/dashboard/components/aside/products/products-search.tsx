@@ -10,8 +10,8 @@ export default function ProductsSearch() {
 			placeholder="جستجوی محصول..."
 			value={query}
 			onChange={(e) => setQuery(e.target.value)}
-			className="w-full md:w-1/3 px-4 py-2 rounded-md border text-sm outline-none
-                 border-(--color-gold-dark) focus:border-(--color-gold)"
+			className="w-full md:max-w-1/3 px-4 py-2 rounded-md border text-sm outline-none
+                 border-black/10 focus:border-(--color-gold)"
 		/>
 	);
 }
