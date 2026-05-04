@@ -14,3 +14,7 @@ export interface StatCardProps {
 	increasePercent: number;
 	increaseText: string;
 }
+export type CategorySales = {
+	name: string;
+	value: number;
+};

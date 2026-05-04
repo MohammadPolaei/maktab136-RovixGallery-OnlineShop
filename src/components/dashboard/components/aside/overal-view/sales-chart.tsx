@@ -13,7 +13,7 @@ import {
 
 export default function SalesChart() {
 	return (
-		<div className="bg-white rounded-xl shadow p-6">
+		<div className="bg-white rounded-xl shadow p-6 flex-1">
 			<div className="flex justify-between mb-4">
 				<h3 className="font-bold text-gray-900">تحلیل فروش</h3>
 

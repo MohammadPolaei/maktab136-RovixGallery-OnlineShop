@@ -33,6 +33,7 @@ export function AdminAside() {
 				className="w-full absolute bottom-0"
 				alt="watch"
 				src={backgroundImage}
+				loading="eager"
 			/>
 		</aside>
 	);
