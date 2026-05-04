@@ -18,7 +18,7 @@ const COLORS = ["#1e5142", "#3f6244", "#607346", "#817248", "#9c804c"];
 
 export default function CategorySalesChart({ data }: Props) {
 	return (
-		<div className="flex-1 w-full h-75 text-[12px]">
+		<div className="flex-1 w-full h-84 rounded-xl md:shadow md:bg-white text-[12px]">
 			<ResponsiveContainer>
 				<PieChart>
 					<Pie

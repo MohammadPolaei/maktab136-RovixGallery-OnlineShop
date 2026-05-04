@@ -13,7 +13,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<div className="overflow-y-auto">
 				<AdminAside />
 			</div>
-			<main className="flex-1 p-8 h-screen overflow-y-auto">{children}</main>
+			<main className="flex-1 p-8 h-screen overflow-y-auto bg-(--color-bg)">
+				{children}
+			</main>
 		</div>
 	);
 }
