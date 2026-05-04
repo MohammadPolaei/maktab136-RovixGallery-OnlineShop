@@ -1,3 +1,3 @@
-export default function Store() {
-	return <div>Store</div>;
+export default function WareHouse() {
+	return <div>WareHouse</div>;
 }
