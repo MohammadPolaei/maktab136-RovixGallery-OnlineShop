@@ -1,3 +1,5 @@
+import Orders from "@/components/dashboard/components/aside/orders/orders";
+
 export default function Page() {
-	return <div>Page</div>;
+	return <Orders />;
 }
