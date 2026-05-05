@@ -1,5 +1,5 @@
 import { Product } from "@/types/product-data-type";
-import { CategorySales } from "./types";
+import { CategorySales, OrderType } from "./types";
 
 export const DASHBOARD_BASE_URL = "/dashboard";
 
@@ -38,5 +38,29 @@ export const productsMockData: Product[] = [
 		category: "watch",
 		images: ["/images/products/watch-placeholder.jpg"],
 		isActive: true,
+	},
+];
+
+export const ordersMock: OrderType[] = [
+	{
+		_id: "ORD-10321",
+		userName: "علی رضایی",
+		createdAt: "1404/02/15",
+		totalPrice: 12800000,
+		isDelivered: true,
+	},
+	{
+		_id: "ORD-10322",
+		userName: "مهدی کریمی",
+		createdAt: "1404/02/16",
+		totalPrice: 8700000,
+		isDelivered: false,
+	},
+	{
+		_id: "ORD-10323",
+		userName: "سارا احمدی",
+		createdAt: "1404/02/18",
+		totalPrice: 24500000,
+		isDelivered: true,
 	},
 ];

@@ -18,3 +18,10 @@ export type CategorySales = {
 	name: string;
 	value: number;
 };
+export interface OrderType {
+	_id: string;
+	userName: string;
+	createdAt: string;
+	totalPrice: number;
+	isDelivered: boolean;
+}
