@@ -1,8 +1,9 @@
 import { OrderType } from "@/components/dashboard/types";
+import OrdersChangeState from "./orders-change-state";
 
 export default function OrdersTableRow({ order }: { order: OrderType }) {
 	return (
-		<tr className="border-b hover:bg-gray-50 transition">
+		<tr className="border-b border-black/10 hover:bg-gray-50 transition">
 			<td className="p-3 font-medium">{order._id}</td>
 
 			<td className="p-3">{order.userName}</td>
@@ -10,20 +11,11 @@ export default function OrdersTableRow({ order }: { order: OrderType }) {
 			<td className="p-3">{order.createdAt}</td>
 
 			<td className="p-3 text-(--color-accent-green) font-bold">
-				{order.totalPrice.toLocaleString()} تومان
+				{order.totalPrice.toLocaleString()} ریال
 			</td>
 
-			<td className="p-3">
-				<span
-					className={`px-3 py-1 rounded text-xs font-medium
-          ${
-						order.isDelivered
-							? "bg-green-200 text-green-800"
-							: "bg-red-200 text-red-800"
-					}`}
-				>
-					{order.isDelivered ? "تحویل داده شده" : "تحویل داده نشده"}
-				</span>
+			<td className="p-3 w-50">
+				<OrdersChangeState order={order} />
 			</td>
 		</tr>
 	);
