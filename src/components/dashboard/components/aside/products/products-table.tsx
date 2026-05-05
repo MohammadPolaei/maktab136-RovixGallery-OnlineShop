@@ -3,7 +3,11 @@
 import { productsMockData } from "@/components/dashboard/constants";
 import ProductsTableRow from "./product-table-row";
 
-export default function ProductsTable() {
+export default function ProductsTable({
+	tableEditable,
+}: {
+	tableEditable: boolean;
+}) {
 	return (
 		<div className="bg-white rounded-lg overflow-x-auto">
 			<table className="w-full text-[12px] text-center min-w-300">
@@ -16,13 +20,23 @@ export default function ProductsTable() {
 						<th className="p-3 border-l border-(--color-gold)/20">موجودی</th>
 						<th className="p-3 border-l border-(--color-gold)/20">دسته‌بندی</th>
 						<th className="p-3 border-l border-(--color-gold)/20">محبوبیت</th>
-						<th className="p-3 border-l border-(--color-gold)/20">عملیات</th>
+						<th
+							className={`${
+								tableEditable ? "" : "hidden"
+							} p-3 border-l border-(--color-gold)/20`}
+						>
+							عملیات
+						</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					{productsMockData.map((item) => (
-						<ProductsTableRow key={item._id} product={item} />
+						<ProductsTableRow
+							key={item._id}
+							product={item}
+							editable={tableEditable}
+						/>
 					))}
 				</tbody>
 			</table>

@@ -3,7 +3,13 @@ import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
 import { Product } from "@/types/product-data-type";
 import Image from "next/image";
 
-export default function ProductsTableRow({ product }: { product: Product }) {
+export default function ProductsTableRow({
+	product,
+	editable,
+}: {
+	product: Product;
+	editable: boolean;
+}) {
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
 			<td className="p-3">
@@ -30,7 +36,7 @@ export default function ProductsTableRow({ product }: { product: Product }) {
 
 			<td className="p-3">{product.popularity}</td>
 
-			<td className="p-3">
+			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
 					<EditIcon />
 					<DeleteIcon />

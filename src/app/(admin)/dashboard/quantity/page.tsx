@@ -1,3 +1,5 @@
+import Quantity from "@/components/dashboard/components/aside/quantity/quantity";
+
 export default function Page() {
-	return <div>Page</div>;
+	return <Quantity />;
 }

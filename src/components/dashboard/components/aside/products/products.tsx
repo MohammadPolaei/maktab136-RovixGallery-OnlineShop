@@ -17,7 +17,7 @@ export default function Products() {
 					<ProductsFilters />
 					<ProductAdd />
 				</div>
-				<ProductsTable />
+				<ProductsTable tableEditable />
 			</div>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
 				<ProductPagination currentPage={1} totalPages={10} />
