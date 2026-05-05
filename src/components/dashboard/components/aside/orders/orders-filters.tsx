@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
-export default function OrdersFilters() {
-	const [filter, setFilter] = useState("all");
-
+type Props = {
+	filter: "all" | "delivered" | "notDelivered";
+	setFilter: (filter: "all" | "delivered" | "notDelivered") => void;
+};
+export default function OrdersFilters({ filter, setFilter }: Props) {
 	return (
 		<div className="flex gap-3">
 			<button
