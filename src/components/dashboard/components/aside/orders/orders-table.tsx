@@ -3,8 +3,8 @@
 import { ordersMock } from "@/components/dashboard/constants";
 import OrdersTableRow from "./orders-table-row";
 type Props = {
-	filter: "all" | "delivered" | "notDelivered";
-	setFilter: (filter: "all" | "delivered" | "notDelivered") => void;
+	filter?: "all" | "delivered" | "notDelivered";
+	setFilter?: (filter: "all" | "delivered" | "notDelivered") => void;
 };
 export default function OrdersTable({ filter, setFilter }: Props) {
 	return (
@@ -21,19 +21,23 @@ export default function OrdersTable({ filter, setFilter }: Props) {
 				</thead>
 
 				<tbody>
-					{filter === "all"
-						? ordersMock.map((order) => (
-								<OrdersTableRow key={order._id} order={order} />
-						  ))
-						: ordersMock
-								.filter((order) =>
-									filter === "delivered"
-										? order.isDelivered == true
-										: order.isDelivered == false
-								)
-								.map((order) => (
+					{filter
+						? filter === "all"
+							? ordersMock.map((order) => (
 									<OrdersTableRow key={order._id} order={order} />
-								))}
+							  ))
+							: ordersMock
+									.filter((order) =>
+										filter === "delivered"
+											? order.isDelivered == true
+											: order.isDelivered == false
+									)
+									.map((order) => (
+										<OrdersTableRow key={order._id} order={order} />
+									))
+						: ordersMock.map((order) => (
+								<OrdersTableRow key={order._id} order={order} />
+						  ))}
 				</tbody>
 			</table>
 		</div>

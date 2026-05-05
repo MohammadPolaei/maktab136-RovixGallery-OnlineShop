@@ -1,6 +1,6 @@
 import { categorySales } from "@/components/dashboard/constants";
+import OrdersTable from "../orders/orders-table";
 import CategorySalesChart from "./category-sales-charts";
-import OrdersTable from "./orders-table";
 import SalesChart from "./sales-chart";
 import StatsGrid from "./status-grid";
 
