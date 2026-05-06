@@ -1,13 +1,22 @@
 "use client";
 
-import { productsMockData } from "@/components/dashboard/constants";
+import { Product } from "@/types/product-data-type";
+import { useEffect, useState } from "react";
 import ProductsTableRow from "../dashboard/components/aside/products/product-table-row";
+import getProducts from "../dashboard/services/get-products";
 
 export default function ProductsTable({
 	tableEditable,
 }: {
 	tableEditable: boolean;
 }) {
+	const [prodData, setProdData] = useState<Product[]>([]);
+	const productData = getProducts();
+
+	useEffect(() => {
+		productData.then((result) => setProdData(result.data.data));
+	}, []);
+
 	return (
 		<div className="bg-white rounded-lg overflow-x-auto">
 			<table className="w-full text-[12px] text-center min-w-300">
@@ -31,13 +40,21 @@ export default function ProductsTable({
 				</thead>
 
 				<tbody>
-					{productsMockData.map((item) => (
+					{prodData.map((item) => (
 						<ProductsTableRow
 							key={item._id}
 							product={item}
 							editable={tableEditable}
 						/>
 					))}
+
+					{/* {productsMockData.map((item) => (
+						<ProductsTableRow
+							key={item._id}
+							product={item}
+							editable={tableEditable}
+						/>
+					))} */}
 				</tbody>
 			</table>
 		</div>
