@@ -9,6 +9,11 @@ export function AdminAside() {
 	const [openSidebar, setOpenSidebar] = useState(true);
 	return (
 		<div>
+			<div
+				className={`w-screen inset-0 bg-black/30 backdrop-blur-[3px] fixed z-10 md:w-0 ${
+					openSidebar ? "" : "h-0"
+				}`}
+			></div>
 			<HamburgerButton onclick={() => setOpenSidebar(!openSidebar)} />
 			<div
 				className={`${
@@ -16,20 +21,20 @@ export function AdminAside() {
 						? "opacity-100 w-50 fixed md:relative"
 						: "opacity-0 w-0 fixed md:relative"
 				}
-			z-10
-			transition-all
-			duration-500
-			ease-in-out`}
+					z-10
+					transition-all
+					duration-500
+					ease-in-out`}
 			>
 				<aside
 					className="w-full
-				relative
-				h-screen
-				flex
-				flex-col
-				text-(--color-bg)
-				shadow-xl
-				bg-(--color-super-dark-green)
+					relative
+					h-screen
+					flex
+					flex-col
+					text-(--color-bg)
+					shadow-xl
+					bg-(--color-super-dark-green)
 				transition-all
 				duration-500
 				ease-in-out
@@ -46,7 +51,10 @@ export function AdminAside() {
 
 					{/* Links */}
 					<div className="w-full overflow-y-auto z-10">
-						<SidebarLinks />
+						<SidebarLinks
+							openSidebar={openSidebar}
+							setOpenSidebar={setOpenSidebar}
+						/>
 					</div>
 					<Image
 						className="w-full absolute bottom-0"

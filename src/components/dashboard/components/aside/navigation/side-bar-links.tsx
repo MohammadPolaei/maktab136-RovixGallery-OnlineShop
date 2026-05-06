@@ -51,7 +51,13 @@ const links = [
 	},
 ];
 
-export function SidebarLinks() {
+export function SidebarLinks({
+	openSidebar,
+	setOpenSidebar,
+}: {
+	openSidebar: boolean;
+	setOpenSidebar: (bool: boolean) => void;
+}) {
 	const pathname = usePathname();
 
 	return (
@@ -64,6 +70,7 @@ export function SidebarLinks() {
 
 				return (
 					<Link
+						// onClick={() => setOpenSidebar(false)}
 						key={item.href}
 						href={item.href}
 						className={`
