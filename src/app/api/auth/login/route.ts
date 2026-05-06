@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+const isProd = process.env.NODE_ENV === "production";
 
 export async function POST(req: Request) {
 	const body = await req.json();
@@ -11,6 +12,8 @@ export async function POST(req: Request) {
 	});
 
 	if (!res.ok) {
+		console.log(res);
+
 		return NextResponse.json(
 			{ message: "اطلاعات ورود اشتباه است" },
 			{ status: 401 }
@@ -24,7 +27,7 @@ export async function POST(req: Request) {
 
 	cookieStore.set("access_token", token, {
 		httpOnly: true,
-		secure: true,
+		secure: isProd,
 		path: "/",
 	});
 
