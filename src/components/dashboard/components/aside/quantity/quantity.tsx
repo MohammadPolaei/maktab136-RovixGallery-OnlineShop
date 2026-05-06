@@ -1,6 +1,6 @@
 import ProductPagination from "@/components/shared/product-pagination";
-import ProductsSearch from "../products/products-search";
-import ProductsTable from "../products/products-table";
+import ProductsSearch from "../../../../shared/products-search";
+import ProductsTable from "../../../../shared/products-table";
 import ProductsFiltersQuantity from "./products-filter-quantity";
 
 export default function Quantity() {

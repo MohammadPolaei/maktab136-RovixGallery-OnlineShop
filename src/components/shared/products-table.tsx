@@ -1,7 +1,7 @@
 "use client";
 
 import { productsMockData } from "@/components/dashboard/constants";
-import ProductsTableRow from "./product-table-row";
+import ProductsTableRow from "../dashboard/components/aside/products/product-table-row";
 
 export default function ProductsTable({
 	tableEditable,
