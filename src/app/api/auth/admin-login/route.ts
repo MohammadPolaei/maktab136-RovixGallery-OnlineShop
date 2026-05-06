@@ -4,6 +4,12 @@ const isProd = process.env.NODE_ENV === "production";
 
 export async function POST(req: Request) {
 	const body = await req.json();
+	if (body.email !== "admin@test.com") {
+		return NextResponse.json(
+			{ message: "اطلاعات ورود اشتباه است" },
+			{ status: 401 }
+		);
+	}
 
 	const res = await fetch(`${process.env.BACKEND_URL}/api/auth/login`, {
 		method: "POST",

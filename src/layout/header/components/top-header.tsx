@@ -1,6 +1,7 @@
 import CartIcon from "@/assets/SVG/cart-icon";
 import SearchIcon from "@/assets/SVG/search-icon";
 import UserProfile from "@/assets/SVG/user-profile";
+import LogoutButton from "@/components/shared/logut-button";
 
 export default function HeaderTop() {
 	return (
@@ -30,6 +31,11 @@ export default function HeaderTop() {
 						<UserProfile />
 						<span className="rovix-link transition-all ease-in-out duration-500 hidden md:inline">
 							حساب کاربری
+						</span>
+					</div>
+					<div className="items-center gap-2 cursor-pointer hidden md:flex">
+						<span className="rovix-link transition-all ease-in-out duration-500 hidden md:inline">
+							<LogoutButton />
 						</span>
 					</div>
 

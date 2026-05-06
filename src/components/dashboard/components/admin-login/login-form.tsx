@@ -29,19 +29,13 @@ export default function LoginForm() {
 		console.log(data);
 
 		try {
-			const res = await axios.post(
-				"/api/auth/login", // مسیر API Route خودت
-				data,
-				{
-					withCredentials: true, // برای احتیاط وقتی کوکی ها ست می شوند
-				}
-			);
+			const res = await axios.post("/api/auth/admin-login", data, {
+				withCredentials: true,
+			});
 
 			if (res.data?.success) {
-				// بعد از لاگین موفق
-				// اگر لاگین یک‌طرفه است (کاربر نباید به فرم برگردد):
-				router.replace("/"); // یا "/" بسته به نیازت
-				router.refresh(); // برای sync شدن سرور/کلاینت با کوکی‌های جدید
+				router.replace("/");
+				router.refresh();
 			}
 		} catch (err) {
 			const error = err as AxiosError<{ message?: string }>;
@@ -68,7 +62,7 @@ export default function LoginForm() {
 			<div className="w-full relative">
 				<TextInput
 					label="ایمیل"
-					name="email" // مهم: با فیلد فرم هماهنگ باشد
+					name="email"
 					register={{ ...register("email") }}
 					placeholder="ایمیل خود را وارد کنید"
 				/>
