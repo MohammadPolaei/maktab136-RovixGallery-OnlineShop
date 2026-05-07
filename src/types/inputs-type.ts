@@ -10,6 +10,7 @@ export interface InputType {
 	extraClasses?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 export type ValidatedFormType = {
 	children: React.ReactNode;
 	handleSubmit: Function;

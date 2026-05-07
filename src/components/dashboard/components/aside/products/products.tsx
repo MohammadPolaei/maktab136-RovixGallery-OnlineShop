@@ -1,8 +1,8 @@
 "use client";
+import SearchInput from "@/components/base/search-input";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
-import ProductsSearch from "../../../../shared/products-search";
 import ProductsTable from "../../../../shared/products-table";
 import ProductAdd from "./product-add";
 
@@ -61,7 +61,11 @@ export default function Products() {
 					/>
 				</div>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
-					<ProductsSearch />
+					<SearchInput
+						extraClasses="rounded-md"
+						name="search"
+						onChange={(e) => setSearch(e.target.value)}
+					/>
 					<ProductAdd />
 				</div>
 				{loading ? (
