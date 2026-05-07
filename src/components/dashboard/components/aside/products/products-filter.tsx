@@ -30,13 +30,13 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			</select>
 
 			<select
-				value={filters.priceOrder}
-				onChange={(e) => filters.setPriceOrder(e.target.value)}
+				value={filters.sort}
+				onChange={(e) => filters.setSort(e.target.value)}
 				className="border px-3 py-2 rounded-md text-sm border-black/10 outline-0"
 			>
 				<option value="">قیمت</option>
-				<option value="asc">ارزان‌ترین</option>
-				<option value="desc">گران‌ترین</option>
+				<option value="cheap">ارزان‌ترین</option>
+				<option value="expensive">گران‌ترین</option>
 			</select>
 		</div>
 	);

@@ -13,13 +13,16 @@ export default function Products() {
 	// filters
 	const [brand, setBrand] = useState("");
 	const [gender, setGender] = useState<string>("");
-	const [priceOrder, setPriceOrder] = useState<string>("");
+	const [sort, setSort] = useState<string>("");
 	const [stock, setStock] = useState("");
 	const [page, setPage] = useState(1);
 	const [search, setSearch] = useState("");
 
 	useEffect(() => {
+		console.log(sort);
+
 		const productData = getProducts({
+			sort: sort,
 			brand: brand,
 			gender: gender,
 			page: page,
@@ -27,7 +30,7 @@ export default function Products() {
 			search: search,
 		});
 		productData.then((result) => setProdData(result.data.data));
-	}, [brand, gender, stock, page, search]);
+	}, [brand, gender, stock, page, search, sort]);
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6">
@@ -41,11 +44,11 @@ export default function Products() {
 					<ProductsFilters
 						setBrand={setBrand}
 						setGender={setGender}
-						setPriceOrder={setPriceOrder}
+						setSort={setSort}
 						setStock={setStock}
 						brand={brand}
 						gender={gender}
-						priceOrder={priceOrder}
+						sort={sort}
 					/>
 					<ProductAdd />
 				</div>

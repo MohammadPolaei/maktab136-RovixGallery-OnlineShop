@@ -35,7 +35,7 @@ export interface ProductFilters {
 	search?: string;
 	brand?: string;
 	gender?: string;
-	priceOrder?: string;
+	sort?: string;
 
 	page?: number;
 	limit?: number;
@@ -44,6 +44,6 @@ export interface ProductFilters {
 export interface ProductFiltersSet extends ProductFilters {
 	setBrand: (input: string) => void;
 	setGender: (input: string) => void;
-	setPriceOrder: (input: string) => void;
+	setSort: (input: string) => void;
 	setStock: (input: string) => void;
 }
