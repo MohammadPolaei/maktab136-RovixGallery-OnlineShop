@@ -1,42 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { ProductFiltersSet } from "@/components/dashboard/types";
 
-export default function ProductsFilters() {
-	const [category, setCategory] = useState("");
-	const [priceOrder, setPriceOrder] = useState("");
-	const [sortBy, setSortBy] = useState("");
-
+export default function ProductsFilters(filters: ProductFiltersSet) {
 	return (
 		<div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
 			<select
-				value={category}
-				onChange={(e) => setCategory(e.target.value)}
+				value={filters.brand}
+				onChange={(e) => filters.setBrand(e.target.value)}
 				className="border px-3 py-2 rounded-md text-sm border-black/10 outline-0"
 			>
-				<option value="">همه دسته‌ها</option>
-				<option value="watch">ساعت</option>
-				<option value="bag">کیف</option>
+				<option value="">برندها</option>
+				<option value="Citizen">Citizen</option>
+				<option value="Omega">Omega</option>
+				<option value="Orient">Orient</option>
+				<option value="Casio">Casio</option>
+				<option value="Seiko">Seiko</option>
+				<option value="Tag Heuer">Tag Heuer</option>
 			</select>
 
 			<select
-				value={priceOrder}
-				onChange={(e) => setPriceOrder(e.target.value)}
+				value={filters.gender}
+				onChange={(e) => filters.setGender(e.target.value)}
+				className="border px-3 py-2 rounded-md text-sm border-black/10 outline-0"
+			>
+				<option value="">جنسیت</option>
+				<option value="men">مردانه</option>
+				<option value="women">زنانه</option>
+			</select>
+
+			<select
+				value={filters.priceOrder}
+				onChange={(e) => filters.setPriceOrder(e.target.value)}
 				className="border px-3 py-2 rounded-md text-sm border-black/10 outline-0"
 			>
 				<option value="">قیمت</option>
-				<option value="asc">کم به زیاد</option>
-				<option value="desc">زیاد به کم</option>
-			</select>
-
-			<select
-				value={sortBy}
-				onChange={(e) => setSortBy(e.target.value)}
-				className="border px-3 py-2 rounded-md text-sm border-black/10 outline-0"
-			>
-				<option value="">مرتب‌سازی</option>
-				<option value="new">جدیدترین</option>
-				<option value="old">قدیمی‌ترین</option>
+				<option value="asc">ارزان‌ترین</option>
+				<option value="desc">گران‌ترین</option>
 			</select>
 		</div>
 	);

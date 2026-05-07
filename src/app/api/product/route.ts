@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
 	try {
 		const backendUrl = process.env.BACKEND_URL;
 
@@ -12,7 +12,15 @@ export async function GET() {
 			);
 		}
 
-		const res = await fetch(`${backendUrl}/api/products`, {
+		// Extract filters
+		const { searchParams } = new URL(req.url);
+
+		const queryString = searchParams.toString();
+		const url = `${backendUrl}/api/products${
+			queryString ? `?${queryString}` : ""
+		}`;
+
+		const res = await fetch(url, {
 			method: "GET",
 			headers: { "Content-Type": "application/json" },
 			cache: "no-cache",

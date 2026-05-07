@@ -1,13 +1,35 @@
-export default async function getProducts() {
+import { ProductFilters } from "../types";
+
+export async function getProducts(filters: ProductFilters = {}) {
 	try {
-		const res = await fetch("/api/product");
-		const data = await res.json();
+		const params = new URLSearchParams();
+
+		Object.entries(filters).forEach(([key, value]) => {
+			if (filters.priceOrder === "asc") {
+				params.append("sort", "cheap");
+			}
+
+			if (filters.priceOrder === "desc") {
+				params.append("sort", "expensive");
+			}
+			if (value !== undefined && value !== null && value !== "") {
+				params.append(key, String(value));
+			}
+		});
+
+		const url = `/api/product${
+			params.toString() ? `?${params.toString()}` : ""
+		}`;
+
+		const res = await fetch(url, { method: "GET" });
+
 		if (!res.ok) {
-			console.log("error");
+			throw new Error(`Failed to fetch products: ${res.status}`);
 		}
 
-		return data;
-	} catch (e) {
-		throw e;
+		return await res.json();
+	} catch (error) {
+		console.error("❌ GET PRODUCTS ERROR:", error);
+		throw error;
 	}
 }

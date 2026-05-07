@@ -1,22 +1,12 @@
 "use client";
 
-import { Product } from "@/types/product-data-type";
-import { useEffect, useState } from "react";
 import ProductsTableRow from "../dashboard/components/aside/products/product-table-row";
-import getProducts from "../dashboard/services/get-products";
+import { ProductDataTable } from "../dashboard/types";
 
 export default function ProductsTable({
-	tableEditable,
-}: {
-	tableEditable: boolean;
-}) {
-	const [prodData, setProdData] = useState<Product[]>([]);
-	const productData = getProducts();
-
-	useEffect(() => {
-		productData.then((result) => setProdData(result.data.data));
-	}, []);
-
+	productData,
+	editable,
+}: ProductDataTable) {
 	return (
 		<div className="bg-white rounded-lg overflow-x-auto">
 			<table className="w-full text-[12px] text-center min-w-300">
@@ -27,11 +17,11 @@ export default function ProductsTable({
 						<th className="p-3 border-l border-(--color-gold)/20">برند</th>
 						<th className="p-3 border-l border-(--color-gold)/20">قیمت</th>
 						<th className="p-3 border-l border-(--color-gold)/20">موجودی</th>
-						<th className="p-3 border-l border-(--color-gold)/20">دسته‌بندی</th>
+						<th className="p-3 border-l border-(--color-gold)/20">جنسیت</th>
 						<th className="p-3 border-l border-(--color-gold)/20">محبوبیت</th>
 						<th
 							className={`${
-								tableEditable ? "" : "hidden"
+								editable ? "" : "hidden"
 							} p-3 border-l border-(--color-gold)/20`}
 						>
 							عملیات
@@ -40,11 +30,11 @@ export default function ProductsTable({
 				</thead>
 
 				<tbody>
-					{prodData.map((item) => (
+					{productData.map((item) => (
 						<ProductsTableRow
 							key={item._id}
 							product={item}
-							editable={tableEditable}
+							editable={editable}
 						/>
 					))}
 

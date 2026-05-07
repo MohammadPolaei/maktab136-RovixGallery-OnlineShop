@@ -32,7 +32,7 @@ export default function ProductsTableRow({
 
 			<td className="p-3">{product.stock}</td>
 
-			<td className="p-3">{product.category}</td>
+			<td className="p-3">{product.gender}</td>
 
 			<td className="p-3">{product.popularity}</td>
 

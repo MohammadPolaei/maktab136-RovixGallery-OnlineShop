@@ -1,10 +1,34 @@
+"use client";
+import { getProducts } from "@/components/dashboard/services/get-products";
 import ProductPagination from "@/components/shared/product-pagination";
+import { Product } from "@/types/product-data-type";
+import { useEffect, useState } from "react";
 import ProductsSearch from "../../../../shared/products-search";
 import ProductsTable from "../../../../shared/products-table";
 import ProductAdd from "./product-add";
 import ProductsFilters from "./products-filter";
 
 export default function Products() {
+	const [prodData, setProdData] = useState<Product[]>([]);
+	// filters
+	const [brand, setBrand] = useState("");
+	const [gender, setGender] = useState<string>("");
+	const [priceOrder, setPriceOrder] = useState<string>("");
+	const [stock, setStock] = useState("");
+	const [page, setPage] = useState(1);
+	const [search, setSearch] = useState("");
+
+	useEffect(() => {
+		const productData = getProducts({
+			brand: brand,
+			gender: gender,
+			page: page,
+			limit: 10,
+			search: search,
+		});
+		productData.then((result) => setProdData(result.data.data));
+	}, [brand, gender, stock, page, search]);
+
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6">
 			<h1 className="text-2xl font-bold text-(--color-heading)">
@@ -14,10 +38,18 @@ export default function Products() {
 			<div className="space-y-3 rounded-xl bg-white shadow-md">
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
 					<ProductsSearch />
-					<ProductsFilters />
+					<ProductsFilters
+						setBrand={setBrand}
+						setGender={setGender}
+						setPriceOrder={setPriceOrder}
+						setStock={setStock}
+						brand={brand}
+						gender={gender}
+						priceOrder={priceOrder}
+					/>
 					<ProductAdd />
 				</div>
-				<ProductsTable tableEditable />
+				<ProductsTable productData={prodData} editable />
 			</div>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
 				<ProductPagination currentPage={1} totalPages={10} />
