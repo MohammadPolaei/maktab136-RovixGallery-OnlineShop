@@ -10,6 +10,7 @@ export interface ProductFilters {
 	sort?: string;
 
 	page?: number;
+	totalPages?: number;
 	limit?: number;
 }
 

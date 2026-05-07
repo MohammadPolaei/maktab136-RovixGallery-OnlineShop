@@ -1,23 +1,24 @@
 "use client";
+
+import { TextInput } from "../base/inputs";
+
 type PaginationProps = {
 	currentPage: number;
-	totalPages: number;
+	totalPages: number | 1;
+	setPage: (page: number) => void;
 };
-
-function onPageChange(page: number) {
-	console.log(page);
-}
 
 export default function ProductPagination({
 	currentPage = 1,
 	totalPages,
+	setPage,
 }: PaginationProps) {
 	const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
 	return (
-		<div className="w-full flex flex-wrap justify-center items-center gap-0 md:gap-2  text-[10px] md:text-sm">
+		<div className="w-full flex flex-row justify-center items-center gap-0 md:gap-2  text-[10px] md:text-sm">
 			<button
-				onClick={() => onPageChange(1)}
+				onClick={() => setPage(1)}
 				disabled={currentPage === 1}
 				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
 			>
@@ -25,27 +26,22 @@ export default function ProductPagination({
 			</button>
 
 			<button
-				onClick={() => onPageChange(currentPage - 1)}
+				onClick={() => setPage(currentPage - 1)}
 				disabled={currentPage === 1}
 				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
 			>
 				قبلی
 			</button>
 
-			{pages.map((page) => (
-				<button
-					key={page}
-					onClick={() => onPageChange(page)}
-					className={`px-3 h-9 rounded-md cursor-pointer ${
-						currentPage === page ? "bg-(--color-dark-green) text-white" : ""
-					}`}
-				>
-					{page}
-				</button>
-			))}
+			<TextInput
+				extraClasses="w-8 text-center"
+				name="page"
+				value={currentPage}
+				onChange={(e) => setPage(Number(e.target.value))}
+			/>
 
 			<button
-				onClick={() => onPageChange(currentPage + 1)}
+				onClick={() => setPage(currentPage + 1)}
 				disabled={currentPage === totalPages}
 				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
 			>
@@ -53,7 +49,7 @@ export default function ProductPagination({
 			</button>
 
 			<button
-				onClick={() => onPageChange(totalPages)}
+				onClick={() => setPage(totalPages)}
 				disabled={currentPage === totalPages}
 				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
 			>

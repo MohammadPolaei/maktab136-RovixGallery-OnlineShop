@@ -11,13 +11,13 @@ export default function Products() {
 		brandCountry,
 		color,
 		dialColor,
-		limit,
 		material,
 		brand,
 		gender,
 		sort,
 		available,
 		page,
+		totalPages,
 		products,
 		search,
 		loading,
@@ -26,7 +26,6 @@ export default function Products() {
 		setBrandCountry,
 		setColor,
 		setDialColor,
-		setLimit,
 		setMaterial,
 		setGender,
 		setPage,
@@ -65,10 +64,20 @@ export default function Products() {
 					<ProductsSearch />
 					<ProductAdd />
 				</div>
-				<ProductsTable productData={products} editable />
+				{loading ? (
+					<div>درحال بارگذاری اطلاعات . . .</div>
+				) : error ? (
+					<div>خطا در بارگذاری</div>
+				) : (
+					<ProductsTable productData={products} editable />
+				)}
 			</div>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
-				<ProductPagination currentPage={1} totalPages={10} />
+				<ProductPagination
+					currentPage={page}
+					totalPages={totalPages}
+					setPage={setPage}
+				/>
 			</div>
 		</section>
 	);

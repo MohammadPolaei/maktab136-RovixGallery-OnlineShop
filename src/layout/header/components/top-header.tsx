@@ -1,7 +1,7 @@
 import CartIcon from "@/assets/SVG/cart-icon";
 import SearchIcon from "@/assets/SVG/search-icon";
 import UserProfile from "@/assets/SVG/user-profile";
-import LogoutButton from "@/components/shared/logut-button";
+import LogoutButton from "@/components/base/logut-button";
 
 export default function HeaderTop() {
 	return (

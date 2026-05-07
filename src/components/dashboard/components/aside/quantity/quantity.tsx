@@ -10,13 +10,13 @@ export default function Quantity() {
 		brandCountry,
 		color,
 		dialColor,
-		limit,
 		material,
 		brand,
 		gender,
 		sort,
 		available,
 		page,
+		totalPages,
 		products,
 		search,
 		loading,
@@ -25,7 +25,6 @@ export default function Quantity() {
 		setBrandCountry,
 		setColor,
 		setDialColor,
-		setLimit,
 		setMaterial,
 		setGender,
 		setPage,
@@ -63,10 +62,20 @@ export default function Quantity() {
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
 					<ProductsSearch />
 				</div>
-				<ProductsTable productData={products} editable={false} />
+				{loading ? (
+					<div>درحال بارگذاری اطلاعات . . .</div>
+				) : error ? (
+					<div>خطا در بارگذاری</div>
+				) : (
+					<ProductsTable productData={products} editable={false} />
+				)}
 			</div>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
-				<ProductPagination currentPage={1} totalPages={10} />
+				<ProductPagination
+					currentPage={page}
+					totalPages={totalPages}
+					setPage={setPage}
+				/>
 			</div>
 		</section>
 	);

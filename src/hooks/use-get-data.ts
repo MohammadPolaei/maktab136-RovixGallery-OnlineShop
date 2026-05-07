@@ -19,6 +19,7 @@ export function useGetProducts() {
 	const [dialColor, setDialColor] = useState("");
 	const [material, setMaterial] = useState("");
 	const [brandCountry, setBrandCountry] = useState("");
+	const [totalPages, setTotalPages] = useState<number>(1);
 
 	useEffect(() => {
 		let isMounted = true;
@@ -41,6 +42,7 @@ export function useGetProducts() {
 					limit: 10,
 					search,
 				});
+				setTotalPages(res.data.pages);
 
 				if (isMounted) {
 					setProducts(res.data.data);
@@ -91,6 +93,8 @@ export function useGetProducts() {
 		setAvailable,
 		page,
 		setPage,
+		totalPages,
+		setTotalPages,
 		search,
 		setSearch,
 		limit,

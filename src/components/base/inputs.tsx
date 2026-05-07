@@ -2,16 +2,22 @@ import { InputType } from "@/types/inputs-type";
 
 export function TextInput(userInput: InputType) {
 	return (
-		<div className="w-full flex flex-col gap-1">
+		<div
+			className={`${
+				userInput.extraClasses !== "" ? `${userInput.extraClasses}` : "w-full"
+			}  flex flex-col gap-1`}
+		>
 			<label className="text-sm text-(--color-dark-green) font-semibold">
 				{userInput.label}
 			</label>
 			<input
-				className="px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)"
+				className={` px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)`}
 				type="text"
 				name={userInput.name}
 				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
+				value={userInput.value}
+				onChange={userInput.onChange}
 				placeholder={userInput.placeholder || undefined}
 				required
 			/>
