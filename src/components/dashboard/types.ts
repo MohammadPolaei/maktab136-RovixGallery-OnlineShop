@@ -1,5 +1,4 @@
 import { JSX } from "react";
-import { Product } from "./../../types/product-data-type";
 
 export type StatusCardDataType = {
 	title: string;
@@ -11,7 +10,7 @@ export type StatusCardDataType = {
 export interface StatCardProps {
 	icon: React.ReactNode;
 	title: string;
-	value: string | number;
+	value: string | number | undefined;
 	increasePercent: number;
 	increaseText: string;
 }

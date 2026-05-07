@@ -1,5 +1,6 @@
 "use client";
 import backgroundImage from "@/assets/img/dashboard-photos/dashboard-side-background.webp";
+import LogoutButton from "@/components/base/logut-button";
 import Image from "next/image";
 import { useState } from "react";
 import HamburgerButton from "./hamburger-button";
@@ -55,6 +56,7 @@ export function AdminAside() {
 							openSidebar={openSidebar}
 							setOpenSidebar={setOpenSidebar}
 						/>
+						<LogoutButton />
 					</div>
 					<Image
 						className="w-full absolute bottom-0"

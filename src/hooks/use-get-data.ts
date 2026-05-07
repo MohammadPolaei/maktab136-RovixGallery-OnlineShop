@@ -20,6 +20,7 @@ export function useGetProducts() {
 	const [material, setMaterial] = useState("");
 	const [brandCountry, setBrandCountry] = useState("");
 	const [totalPages, setTotalPages] = useState<number>(1);
+	const [totalProductsCount, setTotalProductsCount] = useState<number>();
 
 	useEffect(() => {
 		let isMounted = true;
@@ -43,6 +44,9 @@ export function useGetProducts() {
 					search,
 				});
 				setTotalPages(res.data.pages);
+				setTotalProductsCount(res.data.total);
+
+				// setTotalProductsCount(res.data.total);
 
 				if (isMounted) {
 					setProducts(res.data.data);
@@ -81,6 +85,9 @@ export function useGetProducts() {
 		products,
 		loading,
 		error,
+		// products data
+		totalProductsCount,
+		setTotalProductsCount,
 
 		// filters
 		brand,

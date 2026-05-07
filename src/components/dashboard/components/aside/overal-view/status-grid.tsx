@@ -1,6 +1,7 @@
 "use client";
 
 import { StatusCardDataType } from "@/components/dashboard/types";
+import { useGetProducts } from "@/hooks/use-get-data";
 import StatCard from "./status-card";
 
 const stats: StatusCardDataType[] = [
@@ -82,11 +83,16 @@ const stats: StatusCardDataType[] = [
 ];
 
 export default function StatsGrid() {
+	const { totalProductsCount } = useGetProducts();
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-			{stats.map((item) => (
-				<StatCard key={item.title} {...item} />
-			))}
+			{stats.map((item) =>
+				item.title === "محصولات فعال" ? (
+					<StatCard key={item.title} {...item} value={totalProductsCount} />
+				) : (
+					<StatCard key={item.title} {...item} />
+				)
+			)}
 		</div>
 	);
 }

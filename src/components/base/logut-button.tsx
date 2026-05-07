@@ -1,5 +1,6 @@
 "use client";
 
+import LogoutIcon from "@/assets/SVG/logout-icon";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -21,8 +22,9 @@ export default function LogoutButton() {
 	return (
 		<button
 			onClick={handleLogout}
-			className="px-3 py-2 rounded-2xl flex items-center justify-between gap-2 text-center hover:bg-[#3b0f0f] active:text-white origin-center transition-all ease-in-out duration-500"
+			className="w-4/5 px-3 py-2 rounded-2xl flex items-center justify-center gap-2 text-[10px] text-center cursor-pointer m-2 bg-[#3b0f0f]  hover:bg-red-600/40 active:text-white origin-center transition-all ease-in-out duration-500"
 		>
+			<LogoutIcon />
 			خروج از حساب
 		</button>
 	);
