@@ -1,37 +1,39 @@
 "use client";
 import ProductPagination from "@/components/shared/product-pagination";
-import { getProducts } from "@/services/get-products";
-import { Product } from "@/types/product-data-type";
-import { useEffect, useState } from "react";
-import ProductsFilters from "../../../../shared/products-filter";
+import ProductsFilters from "@/components/shared/products-filter";
+import { useGetProducts } from "@/hooks/use-get-data";
 import ProductsSearch from "../../../../shared/products-search";
 import ProductsTable from "../../../../shared/products-table";
 import ProductAdd from "./product-add";
 
 export default function Products() {
-	const [prodData, setProdData] = useState<Product[]>([]);
-	// filters
-	const [brand, setBrand] = useState("");
-	const [gender, setGender] = useState<string>("");
-	const [sort, setSort] = useState<string>("");
-	const [stock, setStock] = useState("");
-	const [page, setPage] = useState(1);
-	const [search, setSearch] = useState("");
-
-	useEffect(() => {
-		console.log(sort);
-
-		const productData = getProducts({
-			sort: sort,
-			brand: brand,
-			gender: gender,
-			page: page,
-			limit: 10,
-			search: search,
-		});
-		productData.then((result) => setProdData(result.data.data));
-	}, [brand, gender, stock, page, search, sort]);
-
+	const {
+		brandCountry,
+		color,
+		dialColor,
+		limit,
+		material,
+		brand,
+		gender,
+		sort,
+		available,
+		page,
+		products,
+		search,
+		loading,
+		error,
+		setBrand,
+		setBrandCountry,
+		setColor,
+		setDialColor,
+		setLimit,
+		setMaterial,
+		setGender,
+		setPage,
+		setSearch,
+		setSort,
+		setAvailable,
+	} = useGetProducts();
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6">
 			<h1 className="text-2xl font-bold text-(--color-heading)">
@@ -39,20 +41,31 @@ export default function Products() {
 			</h1>
 
 			<div className="space-y-3 rounded-xl bg-white shadow-md">
-				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
-					<ProductsSearch />
+				<div className="w-full flex flex-col md:flex-row justify-between items-center gap-2 p-3">
 					<ProductsFilters
+						setBrandCountry={setBrandCountry}
+						setColor={setColor}
+						setDialColor={setDialColor}
+						setMaterial={setMaterial}
 						setBrand={setBrand}
 						setGender={setGender}
 						setSort={setSort}
-						setStock={setStock}
+						setAvailable={setAvailable}
+						brandCountry={brandCountry}
+						color={color}
+						dialColor={dialColor}
+						material={material}
 						brand={brand}
 						gender={gender}
 						sort={sort}
+						available={available}
 					/>
+				</div>
+				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
+					<ProductsSearch />
 					<ProductAdd />
 				</div>
-				<ProductsTable productData={prodData} editable />
+				<ProductsTable productData={products} editable />
 			</div>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
 				<ProductPagination currentPage={1} totalPages={10} />

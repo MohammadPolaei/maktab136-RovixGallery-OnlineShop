@@ -25,17 +25,16 @@ export default function ProductsTableRow({
 			<td className="p-3 font-medium">{product.name}</td>
 
 			<td className="p-3">{product.brand}</td>
-
+			<td className="p-3">{product.brandCountry}</td>
+			<td className="p-3">{product.material}</td>
+			<td className="p-3">{product.color}</td>
+			<td className="p-3">{product.dialColor}</td>
 			<td className="p-3 text-(--color-accent-green) font-bold">
 				{product.price.toLocaleString()} ریال
 			</td>
-
 			<td className="p-3">{product.stock}</td>
-
 			<td className="p-3">{product.gender}</td>
-
 			<td className="p-3">{product.popularity}</td>
-
 			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
 					<EditIcon />

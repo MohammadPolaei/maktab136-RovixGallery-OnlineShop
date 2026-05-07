@@ -41,7 +41,6 @@ export default function Quantity() {
 
 			<div className="space-y-3 rounded-xl bg-white shadow-md">
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
-					<ProductsSearch />
 					<ProductsFilters
 						setBrandCountry={setBrandCountry}
 						setColor={setColor}
@@ -60,6 +59,9 @@ export default function Quantity() {
 						sort={sort}
 						available={available}
 					/>
+				</div>
+				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
+					<ProductsSearch />
 				</div>
 				<ProductsTable productData={products} editable={false} />
 			</div>

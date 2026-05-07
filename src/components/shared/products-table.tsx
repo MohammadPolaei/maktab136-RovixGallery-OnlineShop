@@ -15,6 +15,10 @@ export default function ProductsTable({
 						<th className="p-3 border-l border-(--color-gold)/20">تصویر</th>
 						<th className="p-3 border-l border-(--color-gold)/20">نام محصول</th>
 						<th className="p-3 border-l border-(--color-gold)/20">برند</th>
+						<th className="p-3 border-l border-(--color-gold)/20">کشور</th>
+						<th className="p-3 border-l border-(--color-gold)/20">جنس بدنه</th>
+						<th className="p-3 border-l border-(--color-gold)/20">رنگ</th>
+						<th className="p-3 border-l border-(--color-gold)/20">رنگ صفحه</th>
 						<th className="p-3 border-l border-(--color-gold)/20">قیمت</th>
 						<th className="p-3 border-l border-(--color-gold)/20">موجودی</th>
 						<th className="p-3 border-l border-(--color-gold)/20">جنسیت</th>
@@ -37,14 +41,6 @@ export default function ProductsTable({
 							editable={editable}
 						/>
 					))}
-
-					{/* {productsMockData.map((item) => (
-						<ProductsTableRow
-							key={item._id}
-							product={item}
-							editable={tableEditable}
-						/>
-					))} */}
 				</tbody>
 			</table>
 		</div>
