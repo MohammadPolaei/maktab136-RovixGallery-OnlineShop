@@ -1,4 +1,4 @@
-import { ProductFilters } from "../types";
+import { ProductFilters } from "@/types/filters-type";
 
 export async function getProducts(filters: ProductFilters = {}) {
 	try {

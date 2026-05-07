@@ -18,3 +18,7 @@ export interface Product {
 	images: string[];
 	isActive: boolean;
 }
+export interface ProductDataTable {
+	productData: Product[];
+	editable: boolean;
+}

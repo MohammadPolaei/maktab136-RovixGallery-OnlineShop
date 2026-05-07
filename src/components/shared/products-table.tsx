@@ -1,7 +1,7 @@
 "use client";
 
+import { ProductDataTable } from "@/types/product-data-type";
 import ProductsTableRow from "../dashboard/components/aside/products/product-table-row";
-import { ProductDataTable } from "../dashboard/types";
 
 export default function ProductsTable({
 	productData,

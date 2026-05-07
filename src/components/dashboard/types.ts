@@ -26,24 +26,3 @@ export interface OrderType {
 	totalPrice: number;
 	isDelivered: boolean;
 }
-
-export interface ProductDataTable {
-	productData: Product[];
-	editable: boolean;
-}
-export interface ProductFilters {
-	search?: string;
-	brand?: string;
-	gender?: string;
-	sort?: string;
-
-	page?: number;
-	limit?: number;
-}
-
-export interface ProductFiltersSet extends ProductFilters {
-	setBrand: (input: string) => void;
-	setGender: (input: string) => void;
-	setSort: (input: string) => void;
-	setStock: (input: string) => void;
-}

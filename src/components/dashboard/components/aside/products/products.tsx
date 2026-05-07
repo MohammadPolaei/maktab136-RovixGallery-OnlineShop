@@ -1,12 +1,12 @@
 "use client";
-import { getProducts } from "@/components/dashboard/services/get-products";
 import ProductPagination from "@/components/shared/product-pagination";
+import { getProducts } from "@/services/get-products";
 import { Product } from "@/types/product-data-type";
 import { useEffect, useState } from "react";
+import ProductsFilters from "../../../../shared/products-filter";
 import ProductsSearch from "../../../../shared/products-search";
 import ProductsTable from "../../../../shared/products-table";
 import ProductAdd from "./product-add";
-import ProductsFilters from "./products-filter";
 
 export default function Products() {
 	const [prodData, setProdData] = useState<Product[]>([]);
