@@ -5,12 +5,15 @@ export default function AdminLogin() {
 	return (
 		<div>
 			<div
-				className="h-screen flex flex-col justify-center items-center bg-(--color-darkest) blur-3xl lg:blur-xl xl:blur-sm"
+				className="h-screen flex flex-col justify-center items-center blur-3xl lg:blur-xl"
 				style={{
-					backgroundImage: `url(${backgroundImage.src})`,
-					backgroundSize: "100% 100%",
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
+					backgroundImage: `url(${backgroundImage.src}),
+				radial-gradient(circle at center,#fff,#f8fcfa)
+				`,
+					backgroundSize: "cover , cover",
+					backgroundPosition: "center , center",
+					backgroundRepeat: "no-repeat , no-repeat",
+					backgroundBlendMode: "unset",
 				}}
 			></div>
 			<div className="flex flex-col justify-center items-center">

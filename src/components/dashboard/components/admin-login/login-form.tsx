@@ -62,7 +62,7 @@ export default function LoginForm() {
 			onSubmit={onSubmit}
 		>
 			<div className="w-full relative">
-				<EmailIcon className="absolute top-9 right-1 text-black/50" />
+				<EmailIcon className="absolute top-9 right-1 text-black/80" />
 				<TextInput
 					label="ایمیل"
 					name="email"
@@ -75,7 +75,7 @@ export default function LoginForm() {
 			</div>
 
 			<div className="w-full relative">
-				<PasswordIcon className="absolute top-9 right-1 text-black/50" />
+				<PasswordIcon className="absolute top-9 right-1 text-black" />
 				<PasswordInput
 					label="کلمه عبور"
 					name="password"

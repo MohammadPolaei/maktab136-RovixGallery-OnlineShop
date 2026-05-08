@@ -25,7 +25,7 @@ export default function ValidatedForm({
 				<h1 className="text-xl text-(--color-dark-green) font-bold">
 					{formTitle}
 				</h1>
-				<p className="text-sm text-(--color-subheading) hidden sm:inline">
+				<p className="text-sm text-(--color-accent-green)/80 hidden sm:inline">
 					{formDescription}
 				</p>
 

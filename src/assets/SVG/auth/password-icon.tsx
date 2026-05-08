@@ -1,5 +1,5 @@
 export default function PasswordIcon({
-	size = 24,
+	size = 25,
 	className = "",
 }: {
 	size?: number;

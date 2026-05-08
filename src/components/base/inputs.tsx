@@ -18,8 +18,8 @@ export function TextInput(userInput: InputType) {
 				className={`${
 					userInput.extraClasses
 						? "text-center bg-(--color-accent-green)/10 h-10"
-						: "pr-8 h-12"
-				}  px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] sm:text-sm text-(--color-subheading) bg-(--color-accent-green)/20 `}
+						: "pr-8 h-12 bg-(--color-accent-green)/60"
+				}  px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] sm:text-sm text-(--color-bg) `}
 				type="text"
 				name={userInput.name}
 				{...(userInput.register || undefined)}
@@ -46,7 +46,7 @@ export function PasswordInput(userInput: InputType) {
 				</div>
 			</div>
 			<input
-				className="pr-8 px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] h-12 sm:text-sm text-(--color-subheading) bg-(--color-accent-green)/20 "
+				className="pr-8 px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] h-12 sm:text-sm text-(--color-bg) bg-(--color-accent-green)/60 "
 				name={userInput.name}
 				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
