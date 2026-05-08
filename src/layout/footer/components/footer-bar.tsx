@@ -3,7 +3,7 @@
 import BackToTopIcon from "@/assets/SVG/footer-icons/back-to-top-icon";
 import InstagramIconFooter from "@/assets/SVG/footer-icons/instagram-icon-footer";
 import TelegramIconFooter from "@/assets/SVG/footer-icons/telegram-icon-footer";
-import YoutubeIconFooter from "@/assets/SVG/footer-icons/youtube-icon-footer";
+import WhatsappIconFooter from "@/assets/SVG/footer-icons/whatsapp-icon-footer";
 import { useEffect, useState } from "react";
 
 export default function FooterBar() {
@@ -49,7 +49,7 @@ export default function FooterBar() {
 						<TelegramIconFooter />
 					</div>
 					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
-						<YoutubeIconFooter />
+						<WhatsappIconFooter />
 					</div>
 				</span>
 				<button className="flex flex-row items-center justify-center gap-2 text-sm rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out">
