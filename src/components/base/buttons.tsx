@@ -8,7 +8,7 @@ export default function SubmitButton({
 	return (
 		<button
 			type="submit"
-			className="w-full bg-(--color-dark-green) rounded-md py-3 text-sm text-(--color-gold) font-semibold cursor-pointer"
+			className="w-full bg-(--color-dark-green) rounded-md py-3 my-3 text-sm text-(--color-gold) font-semibold cursor-pointer disabled:bg-(--color-dark-green)/20 disabled:text-black/80"
 			disabled={disabaled || false}
 		>
 			{children}

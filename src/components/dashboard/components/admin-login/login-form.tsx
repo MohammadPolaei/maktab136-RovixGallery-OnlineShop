@@ -1,5 +1,7 @@
 "use client";
 
+import EmailIcon from "@/assets/SVG/auth/email-icon";
+import PasswordIcon from "@/assets/SVG/auth/password-icon";
 import InputValidationError from "@/components/base/input-validation-error";
 import { PasswordInput, TextInput } from "@/components/base/inputs";
 import ValidatedForm from "@/components/shared/validated-form";
@@ -34,7 +36,7 @@ export default function LoginForm() {
 			});
 
 			if (res.data?.success) {
-				router.replace("/");
+				router.replace("/dashboard");
 				router.refresh();
 			}
 		} catch (err) {
@@ -60,6 +62,7 @@ export default function LoginForm() {
 			onSubmit={onSubmit}
 		>
 			<div className="w-full relative">
+				<EmailIcon className="absolute top-9 right-1 text-black/50" />
 				<TextInput
 					label="ایمیل"
 					name="email"
@@ -72,6 +75,7 @@ export default function LoginForm() {
 			</div>
 
 			<div className="w-full relative">
+				<PasswordIcon className="absolute top-9 right-1 text-black/50" />
 				<PasswordInput
 					label="کلمه عبور"
 					name="password"

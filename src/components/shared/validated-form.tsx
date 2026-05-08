@@ -1,6 +1,8 @@
+import { CrownLogin } from "@/assets/SVG/crown-login";
 import { ValidatedFormType } from "@/types/inputs-type";
 import SubmitButton from "../base/buttons";
 import FormContainer from "./form-container";
+import ShowDate from "./show-date";
 
 export default function ValidatedForm({
 	children,
@@ -16,6 +18,10 @@ export default function ValidatedForm({
 				onSubmit={handleSubmit(onSubmit)}
 				className="w-full flex flex-col justify-evenly items-center gap-3"
 			>
+				<div>
+					<CrownLogin />
+				</div>
+				<ShowDate extraClasses="text-black/60" />
 				<h1 className="text-xl text-(--color-dark-green) font-bold">
 					{formTitle}
 				</h1>

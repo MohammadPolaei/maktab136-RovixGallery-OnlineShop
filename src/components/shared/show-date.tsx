@@ -1,6 +1,6 @@
 "use client";
 
-export default function ShowDate() {
+export default function ShowDate({ extraClasses }: { extraClasses?: string }) {
 	const date = new Date();
 
 	// جداگانه گرفتن هر بخش
@@ -23,7 +23,12 @@ export default function ShowDate() {
 	const finalDate = `${weekday} ${day} ${month} ${year}`;
 
 	return (
-		<span dir="rtl" className="text-[8px] md:text-[10px] text-(--color-bg)/80">
+		<span
+			dir="rtl"
+			className={`${
+				extraClasses ? "" : "text-(--color-bg)/80"
+			} text-[8px] md:text-[10px]`}
+		>
 			{finalDate}
 		</span>
 	);
