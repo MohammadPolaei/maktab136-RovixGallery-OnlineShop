@@ -17,6 +17,10 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				<option value="Casio">Casio</option>
 				<option value="Seiko">Seiko</option>
 				<option value="Tag Heuer">Tag Heuer</option>
+				<option value="Rolex">Rolex</option>
+				<option value="Rolex">Hamilton</option>
+				<option value="Longines">Longines</option>
+				<option value="Tissot">Tissot</option>
 			</select>
 
 			<select

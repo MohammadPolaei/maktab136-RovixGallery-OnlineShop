@@ -43,13 +43,19 @@ export function useGetProducts() {
 					limit: 10,
 					search,
 				});
+				const productDataRewright = res.data.data.map((prod: Product) => ({
+					...prod,
+					images: [`${process.env.NEXT_PUBLIC_BACKEND_URL}${prod.images[0]}`],
+				}));
+				console.log(productDataRewright);
+
 				setTotalPages(res.data.pages);
 				setTotalProductsCount(res.data.total);
 
 				// setTotalProductsCount(res.data.total);
 
 				if (isMounted) {
-					setProducts(res.data.data);
+					setProducts(productDataRewright);
 				}
 			} catch (err) {
 				if (isMounted) {
