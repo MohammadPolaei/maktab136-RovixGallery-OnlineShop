@@ -6,7 +6,7 @@ type Props = {
 };
 export default function OrdersFilters({ filter, setFilter }: Props) {
 	return (
-		<div className="flex gap-3">
+		<div className="flex gap-3 px-3">
 			<button
 				onClick={() => setFilter("all")}
 				className={`px-4 py-2 rounded-md text-sm cursor-pointer  

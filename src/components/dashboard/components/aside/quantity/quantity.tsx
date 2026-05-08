@@ -1,6 +1,8 @@
 "use client";
 import loaderGif from "@/assets/gif/watch_loader.gif";
 import SearchInput from "@/components/base/search-input";
+import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
+import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
@@ -35,12 +37,12 @@ export default function Quantity() {
 		setAvailable,
 	} = useGetProducts();
 	return (
-		<section dir="rtl" className="px-4 py-8 space-y-6">
-			<h1 className="text-2xl font-bold text-(--color-heading)">
+		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
+			<DashboardHeadingContainer>
 				موجودی و قیمت کالاها
-			</h1>
+			</DashboardHeadingContainer>
 
-			<div className="space-y-3 rounded-xl bg-white shadow-md">
+			<DashboardSectionsContainer>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
 					<ProductsFilters
 						setBrandCountry={setBrandCountry}
@@ -78,7 +80,7 @@ export default function Quantity() {
 				) : (
 					<ProductsTable productData={products} editable={false} />
 				)}
-			</div>
+			</DashboardSectionsContainer>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
 				<ProductPagination
 					currentPage={page}

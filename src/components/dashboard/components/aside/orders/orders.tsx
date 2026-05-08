@@ -1,4 +1,6 @@
 "use client";
+import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
+import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import ProductPagination from "@/components/shared/product-pagination";
 import { useState } from "react";
 import OrdersFilters from "./orders-filters";
@@ -10,16 +12,13 @@ export default function Orders() {
 	);
 
 	return (
-		<section dir="rtl" className="px-6 py-8 space-y-6">
-			<h1 className="text-2xl font-bold text-(--color-heading)">
-				مدیریت سفارشات
-			</h1>
-
-			<OrdersFilters filter={filter} setFilter={setFilter} />
-
-			<OrdersTable filter={filter} setFilter={setFilter} />
-
-			<ProductPagination currentPage={1} totalPages={5} />
+		<section dir="rtl" className="px-4 py-8 space-y-6">
+			<DashboardHeadingContainer>مدیریت سفارشات</DashboardHeadingContainer>
+			<DashboardSectionsContainer extraClasses="pt-3">
+				<OrdersFilters filter={filter} setFilter={setFilter} />
+				<OrdersTable filter={filter} setFilter={setFilter} />
+			</DashboardSectionsContainer>
+			<ProductPagination currentPage={1} totalPages={1} setPage={() => {}} />
 		</section>
 	);
 }
