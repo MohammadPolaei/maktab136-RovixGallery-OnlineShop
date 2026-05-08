@@ -7,11 +7,17 @@ export function TextInput(userInput: InputType) {
 				userInput.extraClasses !== "" ? `${userInput.extraClasses}` : "w-full"
 			}  flex flex-col gap-1`}
 		>
-			<label className="text-sm text-(--color-dark-green) font-semibold">
-				{userInput.label}
-			</label>
+			{userInput.label && (
+				<label className="text-sm text-(--color-dark-green) font-semibold">
+					{userInput.label}
+				</label>
+			)}
 			<input
-				className={` px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)`}
+				className={`${
+					userInput.extraClasses
+						? "text-center bg-(--color-accent-green)/10"
+						: ""
+				} px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-sm text-(--color-subheading)`}
 				type="text"
 				name={userInput.name}
 				{...(userInput.register || undefined)}

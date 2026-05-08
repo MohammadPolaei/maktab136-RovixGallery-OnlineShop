@@ -1,8 +1,10 @@
 "use client";
+import loaderGif from "@/assets/gif/watch_loader.gif";
 import SearchInput from "@/components/base/search-input";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
+import Image from "next/image";
 import ProductsTable from "../../../../shared/products-table";
 
 export default function Quantity() {
@@ -67,9 +69,12 @@ export default function Quantity() {
 					/>
 				</div>
 				{loading ? (
-					<div>درحال بارگذاری اطلاعات . . .</div>
+					<div className="w-full text-[10px] flex flex-col justify-center items-center p-3">
+						<Image src={loaderGif} alt="loading" width={80} height={80} />
+						درحال بارگذاری محصولات . . .
+					</div>
 				) : error ? (
-					<div>خطا در بارگذاری</div>
+					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
 					<ProductsTable productData={products} editable={false} />
 				)}

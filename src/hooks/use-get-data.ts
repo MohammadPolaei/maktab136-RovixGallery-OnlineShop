@@ -47,7 +47,6 @@ export function useGetProducts() {
 					...prod,
 					images: [`${process.env.NEXT_PUBLIC_BACKEND_URL}${prod.images[0]}`],
 				}));
-				console.log(productDataRewright);
 
 				setTotalPages(res.data.pages);
 				setTotalProductsCount(res.data.total);

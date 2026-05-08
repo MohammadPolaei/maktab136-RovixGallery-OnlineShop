@@ -20,7 +20,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => setPage(1)}
 				disabled={currentPage === 1}
-				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
+				className="w-8 h-9 mx-1 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-accent-green) hover:bg-(--color-dark-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				اول
 			</button>
@@ -28,7 +28,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => setPage(currentPage - 1)}
 				disabled={currentPage === 1}
-				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
+				className="w-8 h-9 mx-1 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-accent-green) hover:bg-(--color-dark-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				قبلی
 			</button>
@@ -43,7 +43,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => setPage(currentPage + 1)}
 				disabled={currentPage === totalPages}
-				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
+				className="w-8 h-9 mx-1 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-accent-green) hover:bg-(--color-dark-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				بعدی
 			</button>
@@ -51,7 +51,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => setPage(totalPages)}
 				disabled={currentPage === totalPages}
-				className="px-3 h-9 rounded-md cursor-pointer disabled:opacity-50"
+				className="w-8 h-9 mx-1 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-accent-green) hover:bg-(--color-dark-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				آخر
 			</button>
