@@ -36,7 +36,7 @@ export default function LoginForm() {
 			});
 
 			if (res.data?.success) {
-				router.replace("/dashboard");
+				router.push("/dashboard");
 				router.refresh();
 			}
 		} catch (err) {

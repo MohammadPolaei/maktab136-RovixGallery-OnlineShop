@@ -21,7 +21,6 @@ export default function ValidatedForm({
 				<div>
 					<CrownLogin />
 				</div>
-				<ShowDate extraClasses="text-black/60" />
 				<h1 className="text-xl text-(--color-dark-green) font-bold">
 					{formTitle}
 				</h1>
@@ -33,6 +32,7 @@ export default function ValidatedForm({
 				<SubmitButton disabaled={loading}>
 					{loading ? "در حال بررسی . . ." : "ورود به حساب کاربری"}
 				</SubmitButton>
+				<ShowDate extraClasses="text-black/60" />
 			</form>
 		</FormContainer>
 	);

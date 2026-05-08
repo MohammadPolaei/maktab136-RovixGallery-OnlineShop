@@ -71,7 +71,7 @@ export default function Products() {
 				</details>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 py-3">
 					<SearchInput
-						extraClasses="md:rounded-l-md"
+						extraClasses="rounded-md"
 						name="search"
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
