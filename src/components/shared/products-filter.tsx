@@ -29,8 +29,8 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
 			>
 				<option value="">جنسیت</option>
-				<option value="men">مردانه</option>
-				<option value="women">زنانه</option>
+				<option value="مردانه">مردانه</option>
+				<option value="زنانه">زنانه</option>
 			</select>
 
 			<select
@@ -48,8 +48,8 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
 			>
 				<option value="">کشور</option>
-				<option value="Japan">ژاپن</option>
-				<option value="Switzerland">سوئیس</option>
+				<option value="ژاپن">ژاپن</option>
+				<option value="سوئیس">سوئیس</option>
 			</select>
 			<select
 				value={filters.color}
@@ -57,10 +57,10 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
 			>
 				<option value="">رنگ</option>
-				<option value="Black">مشکی</option>
-				<option value="Blue">آبی</option>
-				<option value="Silver">نقره ای</option>
-				<option value="Brown">قهوه ای</option>
+				<option value="مشکی">مشکی</option>
+				<option value="آبی">آبی</option>
+				<option value="نقره ای">نقره ای</option>
+				<option value="قهوه ای">قهوه ای</option>
 			</select>
 			<select
 				value={filters.dialColor}
@@ -68,10 +68,10 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
 			>
 				<option value="">رنگ صفحه</option>
-				<option value="Black">مشکی</option>
-				<option value="Green">سبز</option>
-				<option value="Blue">آبی</option>
-				<option value="White">سفید</option>
+				<option value="مشکی">مشکی</option>
+				<option value="سبز">سبز</option>
+				<option value="آبی">آبی</option>
+				<option value="سفید">سفید</option>
 			</select>
 			<select
 				value={filters.material}
@@ -79,10 +79,10 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
 			>
 				<option value="">جنس بدنه</option>
-				<option value="Leather">چرم</option>
-				<option value="Rubber">لاستیک</option>
-				<option value="Titanium">تیتانیوم</option>
-				<option value="Stainless Steel">استیل ضد زنگ</option>
+				<option value="چرم">چرم</option>
+				<option value="لاستیک">لاستیک</option>
+				<option value="تیتانیوم">تیتانیوم</option>
+				<option value="استیل ضد زنگ">استیل ضد زنگ</option>
 			</select>
 			<select
 				value={filters.available}

@@ -64,7 +64,7 @@ export default function Quantity() {
 				</div>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
 					<SearchInput
-						extraClasses="rounded-md"
+						extraClasses="rounded-md w-8"
 						name="search"
 						onChange={(e) => setSearch(e.target.value)}
 					/>

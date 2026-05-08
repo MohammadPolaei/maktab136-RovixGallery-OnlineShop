@@ -17,9 +17,9 @@ export function TextInput(userInput: InputType) {
 			<input
 				className={`${
 					userInput.extraClasses
-						? "text-center bg-(--color-accent-green)/10"
-						: ""
-				} pr-8 px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] h-12 sm:text-sm text-(--color-subheading) bg-(--color-accent-green)/20 `}
+						? "text-center bg-(--color-accent-green)/10 h-10"
+						: "pr-8 h-12"
+				}  px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] sm:text-sm text-(--color-subheading) bg-(--color-accent-green)/20 `}
 				type="text"
 				name={userInput.name}
 				{...(userInput.register || undefined)}
