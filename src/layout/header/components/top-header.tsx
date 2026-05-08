@@ -9,15 +9,12 @@ export default function HeaderTop() {
 				{/* Search */}
 				<SearchInput name="search" />
 				{/* Logo */}
-				<div
-					id="main-header"
-					className="flex-col h-20 justify-center items-center transition-all duration-300 ease-in-out hidden md:flex"
-				>
+				<div className="flex-col h-10 justify-center items-center transition-all duration-300 ease-in-out hidden md:flex">
 					<div className="logo"></div>
 				</div>
 
 				{/* Right Section */}
-				<div className="text-[12px] flex items-center justify-evenly gap-6 md:w-80">
+				<div className="text-[10px] flex items-center justify-evenly gap-6 md:w-80">
 					<div className="items-center gap-2 cursor-pointer hidden md:flex">
 						<UserProfile />
 						<span className="rovix-link transition-all ease-in-out duration-500 hidden md:inline">

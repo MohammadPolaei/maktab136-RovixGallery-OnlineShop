@@ -4,11 +4,11 @@ export function initHeaderScroll(headerId: string, offset: number = 50) {
 
 	const onScroll = () => {
 		if (window.scrollY > offset) {
-			header.classList.remove("h-20");
-			header.classList.add("h-10");
+			header.classList.remove("rovix-bg-darkest", "h-12");
+			header.classList.add("bg-[#1e5142]/40", "h-9");
 		} else {
-			header.classList.remove("h-10");
-			header.classList.add("h-20");
+			header.classList.remove("bg-[#1e5142]/40", "h-9");
+			header.classList.add("rovix-bg-darkest", "h-12");
 		}
 	};
 

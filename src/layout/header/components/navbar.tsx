@@ -41,7 +41,10 @@ export default function Navbar() {
 	const pathname = usePathname();
 
 	return (
-		<div className="w-full rovix-bg-darkest backdrop-blur-sm border-t border-[#D8C27A]/30">
+		<div
+			id="main-header"
+			className="w-full h-12 flex flex-col justify-center items-center rovix-bg-darkest backdrop-blur-sm border-t border-[#D8C27A]/30 transition-all duration-400 ease-in-out"
+		>
 			<nav className="max-w-7xl mx-auto flex flex-row items-center justify-center py-1 rovix-text-light text-[10px] lg:gap-10">
 				{navbarLinkItems.map((item) => {
 					const isActive =
