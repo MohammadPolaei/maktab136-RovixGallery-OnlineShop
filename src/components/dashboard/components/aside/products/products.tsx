@@ -22,7 +22,6 @@ export default function Products() {
 		page,
 		totalPages,
 		products,
-		search,
 		loading,
 		error,
 		setBrand,
@@ -32,16 +31,17 @@ export default function Products() {
 		setMaterial,
 		setGender,
 		setPage,
-		setSearch,
+		setSearchData,
 		setSort,
 		setAvailable,
 	} = useGetProducts();
+
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
 			<DashboardHeadingContainer>مدیریت محصولات</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
-				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-(--color-gold)/10 shadow-sm">
+				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-white shadow-sm">
 					<summary className="cursor-pointer font-medium text-(--color-dark-green) flex items-center justify-between transition-all ease-in-out duration-300">
 						<span>اعمال فیلترها</span>
 						<span className="transition-transform group-open:rotate-180">
@@ -73,7 +73,7 @@ export default function Products() {
 					<SearchInput
 						extraClasses="md:rounded-l-md"
 						name="search"
-						onChange={(e) => setSearch(e.target.value)}
+						onChange={(e) => setSearchData(e.target.value)}
 					/>
 					<ProductAdd />
 				</div>

@@ -3,16 +3,6 @@ import { InputType } from "@/types/inputs-type";
 
 export default function SearchInput(userInput: InputType) {
 	return (
-		// <div
-		// 	className={`${
-		// 		userInput.extraClasses !== "" ? `${userInput.extraClasses}` : "w-full"
-		// 	}  flex flex-col gap-1`}
-		// >
-		// 	<label className="text-sm text-(--color-dark-green) font-semibold">
-		// 		{userInput.label}
-		// 	</label>
-
-		// </div>
 		<div className="relative w-full flex flex-row items-center h-10 md:w-80">
 			<input
 				className={`${

@@ -22,6 +22,19 @@ export function useGetProducts() {
 	const [totalPages, setTotalPages] = useState<number>(1);
 	const [totalProductsCount, setTotalProductsCount] = useState<number>();
 
+	const [searchData, setSearchData] = useState("");
+	// search handler
+	useEffect(() => {
+		setLoading(true);
+		const timer = setTimeout(() => {
+			setSearch(searchData);
+		}, 2500);
+		return () => {
+			clearTimeout(timer);
+			setLoading(false);
+		};
+	}, [searchData]);
+	// get params
 	useEffect(() => {
 		let isMounted = true;
 
@@ -109,6 +122,8 @@ export function useGetProducts() {
 		setTotalPages,
 		search,
 		setSearch,
+		searchData,
+		setSearchData,
 		limit,
 		setLimit,
 		color,

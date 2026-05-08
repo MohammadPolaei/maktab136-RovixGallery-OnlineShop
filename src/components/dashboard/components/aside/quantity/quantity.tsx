@@ -21,7 +21,6 @@ export default function Quantity() {
 		page,
 		totalPages,
 		products,
-		search,
 		loading,
 		error,
 		setBrand,
@@ -31,7 +30,7 @@ export default function Quantity() {
 		setMaterial,
 		setGender,
 		setPage,
-		setSearch,
+		setSearchData,
 		setSort,
 		setAvailable,
 	} = useGetProducts();
@@ -42,7 +41,7 @@ export default function Quantity() {
 			</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
-				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-(--color-gold)/10 shadow-sm">
+				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-white shadow-sm">
 					<summary className="cursor-pointer font-medium text-(--color-dark-green) flex items-center justify-between transition-all ease-in-out duration-300">
 						<span>اعمال فیلترها</span>
 						<span className="transition-transform group-open:rotate-180">
@@ -74,7 +73,7 @@ export default function Quantity() {
 					<SearchInput
 						extraClasses="rounded-l-md w-8"
 						name="search"
-						onChange={(e) => setSearch(e.target.value)}
+						onChange={(e) => setSearchData(e.target.value)}
 					/>
 				</div>
 				{loading ? (
