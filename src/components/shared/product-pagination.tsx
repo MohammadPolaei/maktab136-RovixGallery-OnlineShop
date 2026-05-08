@@ -9,7 +9,7 @@ type PaginationProps = {
 };
 
 export default function ProductPagination({
-	currentPage = 1,
+	currentPage = 0,
 	totalPages,
 	setPage,
 }: PaginationProps) {
@@ -19,7 +19,7 @@ export default function ProductPagination({
 		<div className="w-full flex flex-row justify-center items-center gap-2 text-[10px] md:text-sm">
 			<button
 				onClick={() => setPage(1)}
-				disabled={currentPage === 1}
+				disabled={currentPage <= 1}
 				className="w-10 h-9 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				اول
@@ -27,7 +27,7 @@ export default function ProductPagination({
 
 			<button
 				onClick={() => setPage(currentPage - 1)}
-				disabled={currentPage === 1}
+				disabled={currentPage <= 1 || currentPage > totalPages}
 				className="w-12 h-9 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				{"<<	قبلی "}
@@ -42,7 +42,7 @@ export default function ProductPagination({
 
 			<button
 				onClick={() => setPage(currentPage + 1)}
-				disabled={currentPage === totalPages}
+				disabled={currentPage >= totalPages || currentPage > totalPages}
 				className="w-12 h-9 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				{"بعدی >>"}
@@ -50,7 +50,7 @@ export default function ProductPagination({
 
 			<button
 				onClick={() => setPage(totalPages)}
-				disabled={currentPage === totalPages}
+				disabled={currentPage >= totalPages}
 				className="w-10 h-9 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				آخر
