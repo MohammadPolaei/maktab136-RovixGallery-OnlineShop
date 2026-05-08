@@ -34,7 +34,7 @@ export default function ProductPagination({
 			</button>
 
 			<TextInput
-				extraClasses="w-10 text-center"
+				extraClasses="w-10 text-center text-(--color-dark-green)"
 				name="page"
 				value={currentPage}
 				onChange={(e) => setPage(Number(e.target.value))}

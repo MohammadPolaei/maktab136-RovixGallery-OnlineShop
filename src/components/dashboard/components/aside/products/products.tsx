@@ -41,29 +41,37 @@ export default function Products() {
 			<DashboardHeadingContainer>مدیریت محصولات</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
-				<div className="w-full flex flex-col md:flex-row justify-between items-center gap-2 p-3">
-					<ProductsFilters
-						setBrandCountry={setBrandCountry}
-						setColor={setColor}
-						setDialColor={setDialColor}
-						setMaterial={setMaterial}
-						setBrand={setBrand}
-						setGender={setGender}
-						setSort={setSort}
-						setAvailable={setAvailable}
-						brandCountry={brandCountry}
-						color={color}
-						dialColor={dialColor}
-						material={material}
-						brand={brand}
-						gender={gender}
-						sort={sort}
-						available={available}
-					/>
-				</div>
-				<div className="flex flex-col md:flex-row justify-between items-center gap-2 p-3">
+				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-(--color-gold)/10 shadow-sm">
+					<summary className="cursor-pointer font-medium text-(--color-dark-green) flex items-center justify-between transition-all ease-in-out duration-300">
+						<span>اعمال فیلترها</span>
+						<span className="transition-transform group-open:rotate-180">
+							⌃
+						</span>
+					</summary>
+					<div className="w-full flex flex-col md:flex-row justify-between items-center gap-2 p-3">
+						<ProductsFilters
+							setBrandCountry={setBrandCountry}
+							setColor={setColor}
+							setDialColor={setDialColor}
+							setMaterial={setMaterial}
+							setBrand={setBrand}
+							setGender={setGender}
+							setSort={setSort}
+							setAvailable={setAvailable}
+							brandCountry={brandCountry}
+							color={color}
+							dialColor={dialColor}
+							material={material}
+							brand={brand}
+							gender={gender}
+							sort={sort}
+							available={available}
+						/>
+					</div>
+				</details>
+				<div className="flex flex-col md:flex-row justify-between items-center gap-2 py-3">
 					<SearchInput
-						extraClasses="rounded-md"
+						extraClasses="md:rounded-l-md"
 						name="search"
 						onChange={(e) => setSearch(e.target.value)}
 					/>
