@@ -3,8 +3,8 @@ import DashboardHeadingContainer from "@/components/shared/dashboard-heading-con
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import ProductPagination from "@/components/shared/product-pagination";
 import { useState } from "react";
+import OrdersTable from "../../../../shared/orders-table";
 import OrdersFilters from "./orders-filters";
-import OrdersTable from "./orders-table";
 
 export default function Orders() {
 	const [filter, setFilter] = useState<"all" | "delivered" | "notDelivered">(
