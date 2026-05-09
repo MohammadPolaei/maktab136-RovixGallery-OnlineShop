@@ -10,6 +10,8 @@ export default function ProductsTableRow({
 	product: Product;
 	editable: boolean;
 }) {
+	const faNumber = (num: string | number) =>
+		new Intl.NumberFormat("fa-IR").format(Number(num));
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
 			<td className="p-3">
@@ -30,11 +32,11 @@ export default function ProductsTableRow({
 			<td className="p-3">{product.color}</td>
 			<td className="p-3">{product.dialColor}</td>
 			<td className="p-3 text-(--color-accent-green) font-bold">
-				{product.price.toLocaleString()} ریال
+				{faNumber(product.price).toLocaleString()} ریال
 			</td>
-			<td className="p-3">{product.stock}</td>
+			<td className="p-3">{faNumber(product.stock)}</td>
 			<td className="p-3">{product.gender}</td>
-			<td className="p-3">{product.popularity}</td>
+			<td className="p-3">{faNumber(product.popularity)}</td>
 			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
 					<EditIcon />
