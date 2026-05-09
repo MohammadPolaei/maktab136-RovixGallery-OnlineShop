@@ -1,6 +1,8 @@
 import CartIcon from "@/assets/SVG/cart-icon";
 import UserProfile from "@/assets/SVG/user-profile";
 import SearchInput from "@/components/base/search-input";
+import ShowDate from "@/components/shared/show-date";
+import Link from "next/link";
 
 export default function HeaderTop() {
 	return (
@@ -14,23 +16,30 @@ export default function HeaderTop() {
 				</div>
 
 				{/* Right Section */}
-				<div className="text-[10px] flex items-center justify-evenly gap-6 md:w-80">
+				<div className="text-[10px] flex items-center justify-between gap-6 md:w-80">
 					<div className="items-center gap-2 cursor-pointer hidden md:flex">
 						<UserProfile />
-						<span className="rovix-link transition-all ease-in-out duration-500 hidden md:inline">
+						<Link
+							href={"/user-profile"}
+							className="rovix-link transition-all ease-in-out duration-500 hidden md:inline"
+						>
 							حساب کاربری
-						</span>
+						</Link>
 					</div>
 
 					<div className="flex items-center gap-2 cursor-pointer relative">
 						<CartIcon />
-						<span className="rovix-link transition-all ease-in-out duration-500 hidden md:inline">
+						<Link
+							href={"/cart"}
+							className="rovix-link transition-all ease-in-out duration-500 hidden md:inline"
+						>
 							سبد خرید
-						</span>
+						</Link>
 						<span className="absolute -top-1 right-0 rovix-bg-gold text-black text-xs px-1 rounded-full">
 							0
 						</span>
 					</div>
+					<ShowDate extraClasses="text-(--color-gold)" />
 				</div>
 			</div>
 		</div>
