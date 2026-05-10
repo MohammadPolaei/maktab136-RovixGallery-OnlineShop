@@ -8,8 +8,9 @@ import {
 	ProductAddSchemaType,
 } from "@/components/dashboard/utils/product-add-schema";
 
+import { useProductMutations } from "@/components/dashboard/hooks/useProductMutation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AddProductInputContainer from "./add-product-input-container";
 
@@ -18,8 +19,10 @@ export default function AddProductForm({
 }: {
 	setOpen: (val: boolean) => void;
 }) {
-	const [loading, setLoading] = useState(false);
 	const [previews, setPreviews] = useState<string[]>([]);
+	// add product
+
+	const { addProduct, isAdding, errorAdding } = useProductMutations();
 
 	const {
 		register,
@@ -36,15 +39,16 @@ export default function AddProductForm({
 		},
 	});
 
-	const onSubmit = async (data: ProductAddSchemaType) => {
-		try {
-			setLoading(true);
-
-			console.log(data);
-			setOpen(false);
-		} finally {
-			setLoading(false);
-		}
+	const onSubmit = (data: ProductAddSchemaType) => {
+		addProduct(
+			{ data },
+			{
+				onSuccess: () => {
+					setPreviews([]);
+					setOpen(false);
+				},
+			}
+		);
 	};
 
 	const handleImageChange = (files: FileList | null) => {
@@ -59,6 +63,11 @@ export default function AddProductForm({
 		const urls = fileArray.map((file) => URL.createObjectURL(file));
 		setPreviews(urls);
 	};
+	useEffect(() => {
+		return () => {
+			previews.forEach((url) => URL.revokeObjectURL(url));
+		};
+	}, [previews]);
 
 	return (
 		<div className="w-full max-w-5xl mx-auto p-6">
@@ -118,7 +127,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("category")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">انتخاب دسته بندی</option>
 								<option value="watch">ساعت</option>
@@ -157,7 +166,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("brand")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">برند</option>
 								<option value="Citizen">Citizen</option>
@@ -181,7 +190,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("brandCountry")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">کشور سازنده</option>
 								<option value="ژاپن">ژاپن</option>
@@ -197,7 +206,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("gender")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">انتخاب جنسیت</option>
 								<option value="مردانه">مردانه</option>
@@ -215,7 +224,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("material")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">جنس بدنه</option>
 								<option value="چرم">چرم</option>
@@ -233,7 +242,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("color")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">رنگ</option>
 								<option value="مشکی">مشکی</option>
@@ -252,7 +261,7 @@ export default function AddProductForm({
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
 								{...register("dialColor")}
-								className="absolute bottom-0 w-full text-[12px] md:[text-16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">رنگ صفحه</option>
 								<option value="مشکی">مشکی</option>
@@ -349,8 +358,8 @@ export default function AddProductForm({
 
 				<div className="flex justify-center pt-4">
 					<div className="w-full md:w-72">
-						<SubmitButton disabaled={loading}>
-							{loading ? "در حال ثبت..." : "ثبت محصول"}
+						<SubmitButton disabaled={isAdding}>
+							{isAdding ? "در حال ثبت..." : "ثبت محصول"}
 						</SubmitButton>
 					</div>
 				</div>

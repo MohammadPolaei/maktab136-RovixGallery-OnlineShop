@@ -1,14 +1,36 @@
 // src/services/product.service.ts
 
-import { AddProductType } from "../types";
+import { ProductAddSchemaType } from "../utils/product-add-schema";
 
-export const addProduct = async (data: AddProductType) => {
-	const res = await fetch(`/api/product`, {
-		method: "PUT",
-		body: JSON.stringify(data),
+export const addProduct = async (data: ProductAddSchemaType) => {
+	const formData = new FormData();
+
+	formData.append("name", data.name);
+	formData.append("description", data.description);
+	formData.append("price", String(data.price));
+	formData.append("stock", String(data.stock));
+	formData.append("popularity", String(data.popularity));
+	formData.append("brand", data.brand);
+	formData.append("category", data.category);
+	formData.append("brandCountry", data.brandCountry);
+	formData.append("gender", data.gender);
+	formData.append("material", data.material);
+	formData.append("color", data.color);
+	formData.append("dialColor", data.dialColor);
+	formData.append("isAuthentic", String(data.isAuthentic));
+	formData.append("isActive", String(data.isActive));
+
+	data.images.forEach((file) => {
+		formData.append("images", file);
 	});
-	if (!res.ok) throw new Error("خطا در اضافه کردن محصول");
-	return res.json();
+
+	const res = await fetch("/api/product", {
+		method: "POST",
+		body: formData,
+	});
+
+	if (!res.ok) throw new Error("خطا در افزودن محصول");
+	return await res.json();
 };
 
 export const updateProduct = async (id: string, data: any) => {

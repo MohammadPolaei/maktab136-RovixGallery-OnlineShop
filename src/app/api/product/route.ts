@@ -3,20 +3,31 @@ const getAdminToken = (req: NextRequest) =>
 	req.cookies.get("access_token")?.value;
 
 // ADD
-
 export async function POST(req: NextRequest) {
-	const token = getAdminToken(req);
-	const body = await req.json();
+	try {
+		const token = getAdminToken(req);
 
-	const res = await fetch(`${process.env.BACKEND_URL}/api/products`, {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-		body: JSON.stringify(body),
-	});
-	const data = await res.json();
-	return NextResponse.json(data, { status: res.status });
+		const formData = await req.formData();
+
+		const res = await fetch(`${process.env.BACKEND_URL}/api/products`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			body: formData,
+		});
+
+		const text = await res.text();
+		console.log("BACKEND RESPONSE:", text);
+
+		return NextResponse.json(JSON.parse(text), { status: res.status });
+	} catch (error) {
+		console.error("POST /api/product error:", error);
+		return NextResponse.json(
+			{ message: "Internal Server Error" },
+			{ status: 500 }
+		);
+	}
 }
 
 export async function GET(req: Request) {

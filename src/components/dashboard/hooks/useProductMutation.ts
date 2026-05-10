@@ -6,19 +6,19 @@ import {
 	deleteProduct,
 	updateProduct,
 } from "../services/product-CRUD";
-import { AddProductType } from "../types";
+import { ProductAddSchemaType } from "../utils/product-add-schema";
 
 export const useProductMutations = () => {
 	const queryClient = useQueryClient();
 
 	const addMutation = useMutation({
-		mutationFn: ({ data }: { data: AddProductType }) => addProduct(data),
+		mutationFn: ({ data }: { data: ProductAddSchemaType }) => addProduct(data),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["products"] });
 		},
 	});
 	const updateMutation = useMutation({
-		mutationFn: ({ id, data }: { id: string; data: AddProductType }) =>
+		mutationFn: ({ id, data }: { id: string; data: ProductAddSchemaType }) =>
 			updateProduct(id, data),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["products"] });

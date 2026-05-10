@@ -11,7 +11,7 @@ export async function DELETE(
 	const token = getAdminToken(req);
 
 	const res = await fetch(
-		`${process.env.BACKEND_URL}/api/products/${params.id}`,
+		`${process.env.BACKEND_URL}/api/product/${params.id}`,
 		{
 			method: "DELETE",
 			headers: {
@@ -33,7 +33,7 @@ export async function PUT(
 	const body = await req.json();
 
 	const res = await fetch(
-		`${process.env.BACKEND_URL}/api/products/${params.id}`,
+		`${process.env.BACKEND_URL}/api/product/${params.id}`,
 		{
 			method: "PUT",
 			headers: {
