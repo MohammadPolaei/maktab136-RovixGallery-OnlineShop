@@ -1,6 +1,7 @@
 "use client";
 import LoadingIcon from "@/assets/SVG/loading-icon";
 import SearchInput from "@/components/base/search-input";
+import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import Modal from "@/components/shared/modal";
@@ -42,6 +43,10 @@ export default function Products() {
 		setSort,
 		setAvailable,
 	} = useGetProducts();
+
+	// CRUD
+
+	const { deleteProduct, errorDeleting, isDeleting } = useProductMutations();
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
@@ -92,7 +97,13 @@ export default function Products() {
 				) : error ? (
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
-					<ProductsTable productData={products} editable />
+					<ProductsTable
+						productData={products}
+						editable
+						deleteProduct={deleteProduct}
+						errorDeleting={errorDeleting}
+						isDeleting={isDeleting}
+					/>
 				)}
 			</DashboardSectionsContainer>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">

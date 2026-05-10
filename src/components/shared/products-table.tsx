@@ -6,6 +6,9 @@ import ProductsTableRow from "./product-table-row";
 export default function ProductsTable({
 	productData,
 	editable,
+	deleteProduct,
+	errorDeleting,
+	isDeleting,
 }: ProductDataTable) {
 	return (
 		<div className="bg-white rounded-lg overflow-x-auto">
@@ -36,6 +39,9 @@ export default function ProductsTable({
 				<tbody>
 					{productData.map((item) => (
 						<ProductsTableRow
+							deleteProduct={deleteProduct}
+							errorDeleting={errorDeleting}
+							isDeleting={isDeleting}
 							key={item._id}
 							product={item}
 							editable={editable}

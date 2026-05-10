@@ -5,23 +5,18 @@ const getAdminToken = (req: NextRequest) =>
 // DELETE
 
 export async function DELETE(
-	req: NextRequest,
-	{ params }: { params: { id: string } }
+	req: Request,
+	{ params }: { params: Promise<{ id: string }> }
 ) {
-	const token = getAdminToken(req);
+	const { id } = await params;
 
-	const res = await fetch(
-		`${process.env.BACKEND_URL}/api/product/${params.id}`,
-		{
-			method: "DELETE",
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		}
-	);
+	const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
+		method: "DELETE",
+	});
 
 	const data = await res.json();
-	return NextResponse.json(data, { status: res.status });
+
+	return NextResponse.json(data);
 }
 
 // UPDATE
@@ -33,7 +28,7 @@ export async function PUT(
 	const body = await req.json();
 
 	const res = await fetch(
-		`${process.env.BACKEND_URL}/api/product/${params.id}`,
+		`${process.env.BACKEND_URL}/api/products/${params.id}`,
 		{
 			method: "PUT",
 			headers: {

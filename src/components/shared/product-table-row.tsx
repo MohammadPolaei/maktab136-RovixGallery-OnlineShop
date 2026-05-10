@@ -1,15 +1,15 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
-import { Product } from "@/types/product-data-type";
+import { TableRowPropsType } from "@/types/product-data-type";
 import Image from "next/image";
 
 export default function ProductsTableRow({
 	product,
+	deleteProduct,
 	editable,
-}: {
-	product: Product;
-	editable: boolean;
-}) {
+	errorDeleting,
+	isDeleting,
+}: TableRowPropsType) {
 	const faNumber = (num: string | number) =>
 		new Intl.NumberFormat("fa-IR").format(Number(num));
 	return (
@@ -40,7 +40,9 @@ export default function ProductsTableRow({
 			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
 					<EditIcon />
-					<DeleteIcon />
+					<button onClick={() => deleteProduct(product._id)}>
+						<DeleteIcon />
+					</button>
 				</div>
 			</td>
 		</tr>
