@@ -7,8 +7,8 @@ export default function BackToTopIcon() {
 			strokeWidth="1.5"
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			width={30}
-			height={30}
+			width={24}
+			height={24}
 		>
 			<circle cx="12" cy="12" r="10" />
 			<polyline points="8 14 12 10 16 14" />

@@ -7,8 +7,8 @@ export default function WhatsAppIconFooter() {
 			strokeWidth="1.4"
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			width={30}
-			height={30}
+			width={24}
+			height={24}
 		>
 			{/* دایره اصلی */}
 			<circle cx="12" cy="12" r="9" />

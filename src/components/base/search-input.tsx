@@ -3,7 +3,7 @@ import { InputType } from "@/types/inputs-type";
 
 export default function SearchInput(userInput: InputType) {
 	return (
-		<div className="relative w-full flex flex-row items-center h-10 md:w-80">
+		<div className="relative w-full flex flex-row items-center h-10 md:w-100">
 			<input
 				className={`${
 					userInput.extraClasses ? userInput.extraClasses : "ml-10 rounded-full"

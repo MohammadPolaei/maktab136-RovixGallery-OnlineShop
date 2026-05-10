@@ -40,19 +40,19 @@ export default function FooterBar() {
 			}`}
 		>
 			<div className="max-w-300 mx-auto flex items-center justify-between h-full px-6">
-				<span className="w-fit flex flex-row items-center justify-center gap-3 rovix-text-light">
+				<span className="w-fit flex flex-row items-center justify-center gap-3 text-[10px] rovix-text-light">
 					از جدیدترین محصولات و تخفیف های ما مطلع شوید
-					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-4 hover:pb-6 hover:rounded-b-[50%] hover:scale-120 hover:bg-(--color-accent-green)/50 hover:backdrop-blur-sm hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
 						<InstagramIconFooter />
 					</div>
-					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-4 hover:pb-6 hover:rounded-b-[50%] hover:scale-120 hover:bg-(--color-accent-green)/50 hover:backdrop-blur-sm hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
 						<TelegramIconFooter />
 					</div>
-					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-5 hover:scale-110 hover:bg-(--color-accent-green) hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
+					<div className="p-1 rounded-lg cursor-pointer origin-center hover:mb-4 hover:pb-6 hover:rounded-b-[50%] hover:scale-120 hover:bg-(--color-accent-green)/50 hover:backdrop-blur-sm hover:text-[#e4e4e4] transition-all ease-in-out duration-500">
 						<WhatsappIconFooter />
 					</div>
 				</span>
-				<button className="flex flex-row items-center justify-center gap-2 text-sm rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out">
+				<button className="flex flex-row items-center justify-center gap-2 text-[12px] rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out">
 					<BackToTopIcon />
 					برگشت به بالا
 				</button>
