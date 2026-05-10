@@ -21,7 +21,7 @@ export default function Quantity() {
 		page,
 		totalPages,
 		products,
-		loading,
+		isLoading,
 		error,
 		setBrand,
 		setBrandCountry,
@@ -76,7 +76,7 @@ export default function Quantity() {
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
 				</div>
-				{loading ? (
+				{isLoading ? (
 					<div className="w-full text-[10px] flex flex-col justify-center items-center p-3">
 						<LoadingIcon />
 						درحال بارگذاری محصولات . . .

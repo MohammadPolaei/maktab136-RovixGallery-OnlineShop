@@ -8,7 +8,7 @@ import {
 	ProductAddSchemaType,
 } from "@/components/dashboard/utils/product-add-schema";
 
-import { useProductMutations } from "@/components/dashboard/hooks/useProductMutation";
+import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";

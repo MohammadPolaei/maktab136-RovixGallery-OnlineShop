@@ -29,7 +29,7 @@ export default function Products() {
 		page,
 		totalPages,
 		products,
-		loading,
+		isLoading,
 		error,
 		setBrand,
 		setBrandCountry,
@@ -84,7 +84,7 @@ export default function Products() {
 					/>
 					<ProductAdd setOpen={() => setOpen(!open)} />
 				</div>
-				{loading ? (
+				{isLoading ? (
 					<div className="w-full text-[10px] flex flex-col justify-center items-center p-3">
 						<LoadingIcon />
 						درحال بارگذاری محصولات . . .

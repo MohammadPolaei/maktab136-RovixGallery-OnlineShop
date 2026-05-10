@@ -1,12 +1,9 @@
 import { getProducts } from "@/services/get-products";
 import { Product } from "@/types/product-data-type";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useMemo, useState } from "react";
 
 export function useGetProducts() {
-	const [products, setProducts] = useState<Product[]>([]);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-
 	// filters
 	const [brand, setBrand] = useState("");
 	const [gender, setGender] = useState("");
@@ -19,119 +16,114 @@ export function useGetProducts() {
 	const [dialColor, setDialColor] = useState("");
 	const [material, setMaterial] = useState("");
 	const [brandCountry, setBrandCountry] = useState("");
-	const [totalPages, setTotalPages] = useState<number>(1);
-	const [totalProductsCount, setTotalProductsCount] = useState<number>();
 	const [searchData, setSearchData] = useState("");
 
-	// search handler
+	// debounce search
 	useEffect(() => {
-		setLoading(true);
 		const timer = setTimeout(() => {
 			setSearch(searchData);
-		}, 2500);
-		return () => {
-			clearTimeout(timer);
-			setLoading(false);
-		};
+		}, 2000);
+
+		return () => clearTimeout(timer);
 	}, [searchData]);
-	// get params
-	useEffect(() => {
-		let isMounted = true;
 
-		const fetchProducts = async () => {
-			setLoading(true);
-			setError(null);
+	// query params
+	const queryParams = useMemo(
+		() => ({
+			dialColor,
+			material,
+			brandCountry,
+			color,
+			brand,
+			gender,
+			sort,
+			available,
+			page,
+			limit,
+			search,
+		}),
+		[
+			dialColor,
+			material,
+			brandCountry,
+			color,
+			brand,
+			gender,
+			sort,
+			available,
+			page,
+			limit,
+			search,
+		]
+	);
 
-			try {
-				const res = await getProducts({
-					dialColor,
-					material,
-					brandCountry,
-					color,
-					brand,
-					gender,
-					sort,
-					available,
-					page,
-					limit: 10,
-					search,
-				});
-				const productDataRewright = res.data.data.map((prod: Product) => ({
-					...prod,
-					images: [`${process.env.NEXT_PUBLIC_BACKEND_URL}${prod.images[0]}`],
-				}));
+	const { data, isLoading, error, isFetching } = useQuery({
+		queryKey: ["products", queryParams],
 
-				setTotalPages(res.data.pages);
-				setTotalProductsCount(res.data.total);
+		queryFn: async () => {
+			const res = await getProducts(queryParams);
 
-				// setTotalProductsCount(res.data.total);
+			const products = res.data.data.map((prod: Product) => ({
+				...prod,
+				images: prod.images.map(
+					(img: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}${img}`
+				),
+			}));
 
-				if (isMounted) {
-					setProducts(productDataRewright);
-				}
-			} catch (err) {
-				if (isMounted) {
-					setError("خطا در دریافت محصولات");
-				}
-			} finally {
-				if (isMounted) {
-					setLoading(false);
-				}
-			}
-		};
+			return {
+				products,
+				totalPages: res.data.pages,
+				totalProductsCount: res.data.total,
+			};
+		},
 
-		fetchProducts();
-
-		return () => {
-			isMounted = false;
-		};
-	}, [
-		brand,
-		gender,
-		sort,
-		available,
-		page,
-		search,
-		limit,
-		dialColor,
-		brandCountry,
-		material,
-		color,
-	]);
+		placeholderData: (previousData) => previousData,
+		staleTime: 1000 * 60 * 2,
+	});
 
 	return {
-		products,
-		loading,
+		products: data?.products ?? [],
+		totalPages: data?.totalPages ?? 1,
+		totalProductsCount: data?.totalProductsCount ?? 0,
+
+		isLoading,
+		isFetching,
 		error,
-		// products data
-		totalProductsCount,
-		setTotalProductsCount,
 
 		// filters
 		brand,
 		setBrand,
+
 		gender,
 		setGender,
+
 		sort,
 		setSort,
+
 		available,
 		setAvailable,
+
 		page,
 		setPage,
-		totalPages,
-		setTotalPages,
+
 		search,
 		setSearch,
+
 		searchData,
 		setSearchData,
+
 		limit,
 		setLimit,
+
 		color,
 		setColor,
+
 		dialColor,
 		setDialColor,
+
 		material,
 		setMaterial,
+
 		brandCountry,
 		setBrandCountry,
 	};
