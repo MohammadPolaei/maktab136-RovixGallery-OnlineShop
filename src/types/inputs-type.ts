@@ -1,5 +1,7 @@
 // Inputs
 
+import { JSX } from "react";
+
 export interface InputType {
 	label?: string;
 	name: string;
@@ -12,6 +14,9 @@ export interface InputType {
 }
 
 export type ValidatedFormType = {
+	titleLogo?: JSX.Element;
+	submitButtonText: string;
+
 	children: React.ReactNode;
 	handleSubmit: Function;
 	onSubmit: (data: any) => void;

@@ -9,6 +9,7 @@ import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
 import { useState } from "react";
 import ProductsTable from "../../../../shared/products-table";
+import AddProductForm from "./add-product-form";
 import ProductAdd from "./product-add";
 
 export default function Products() {
@@ -105,7 +106,7 @@ export default function Products() {
 			{/* modal */}
 
 			<Modal open={open} setOpen={setOpen}>
-				modal content
+				<AddProductForm />
 			</Modal>
 		</section>
 	);

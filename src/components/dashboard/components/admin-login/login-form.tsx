@@ -2,15 +2,19 @@
 
 import EmailIcon from "@/assets/SVG/auth/email-icon";
 import PasswordIcon from "@/assets/SVG/auth/password-icon";
+import { CrownLogin } from "@/assets/SVG/crown-login";
 import InputValidationError from "@/components/base/input-validation-error";
 import { PasswordInput, TextInput } from "@/components/base/inputs";
-import ValidatedForm from "@/components/shared/validated-form";
+import ValidatedForm from "@/components/dashboard/components/admin-login/validated-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { AdminLoginFormData, adminLoginSchema } from "../../utils";
+import {
+	AdminLoginFormData,
+	adminLoginSchema,
+} from "../../utils/admin-login-schema";
 
 export default function LoginForm() {
 	const [loading, setLoading] = useState(false);
@@ -55,6 +59,8 @@ export default function LoginForm() {
 
 	return (
 		<ValidatedForm
+			titleLogo={<CrownLogin />}
+			submitButtonText="ورود به حساب کاربری"
 			formDescription="خوش آمدید . لطفا برای ادامه وارد شوید"
 			formTitle="ورود به پنل ادمین"
 			handleSubmit={handleSubmit}

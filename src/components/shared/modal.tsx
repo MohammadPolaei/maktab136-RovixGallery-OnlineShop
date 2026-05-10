@@ -38,14 +38,19 @@ export default function Modal({ open, setOpen, children }: ModalProps) {
 			onClick={handleBackdropClick}
 			className={`${
 				open
-					? "fixed inset-0 w-full h-full bg-black/30 backdrop-blur-[2px] z-50"
+					? "fixed inset-0 w-full h-full bg-black/50 backdrop-blur-[5px] z-50"
 					: "h-0 bg-black/0"
 			} transition-all duration-300 ease-in-out`}
 		>
 			<div className="">
-				<div className="fixed inset-[10%] z-60 w-3/4 h-3/4 bg-white rounded-md shadow flex flex-col justify-evenly items-center gap-2">
+				<div className="fixed inset-[1%] md:inset-[8%] z-60 bg-white rounded-md shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto">
 					{children}
-					<button onClick={() => setOpen(false)}>بستن</button>
+					<button
+						className="absolute top-2 right-2 text-[12px] bg-gray-400 p-2 rounded-sm text-white cursor-pointer hover:bg-gray-500"
+						onClick={() => setOpen(false)}
+					>
+						بستن
+					</button>
 				</div>
 			</div>
 		</div>
