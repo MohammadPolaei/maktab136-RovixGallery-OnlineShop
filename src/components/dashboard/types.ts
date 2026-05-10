@@ -25,3 +25,21 @@ export interface OrderType {
 	totalPrice: number;
 	isDelivered: boolean;
 }
+
+export type AddProductType = {
+	name: string;
+	description: string;
+	price: number;
+	brand: string;
+	brandCountry: string;
+	gender: string;
+	material: string;
+	color: string;
+	dialColor: string;
+	isAuthentic: boolean;
+	stock: number;
+	popularity: number;
+	category: string;
+	images: string[];
+	isActive: boolean;
+};

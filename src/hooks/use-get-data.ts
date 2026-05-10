@@ -21,8 +21,8 @@ export function useGetProducts() {
 	const [brandCountry, setBrandCountry] = useState("");
 	const [totalPages, setTotalPages] = useState<number>(1);
 	const [totalProductsCount, setTotalProductsCount] = useState<number>();
-
 	const [searchData, setSearchData] = useState("");
+
 	// search handler
 	useEffect(() => {
 		setLoading(true);
