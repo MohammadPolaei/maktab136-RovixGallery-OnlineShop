@@ -3,13 +3,19 @@ import LoadingIcon from "@/assets/SVG/loading-icon";
 import SearchInput from "@/components/base/search-input";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
+import Modal from "@/components/shared/modal";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
+import { useState } from "react";
 import ProductsTable from "../../../../shared/products-table";
 import ProductAdd from "./product-add";
 
 export default function Products() {
+	// add new product
+	const [open, setOpen] = useState(false);
+
+	// Get products
 	const {
 		brandCountry,
 		color,
@@ -75,7 +81,7 @@ export default function Products() {
 						name="search"
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
-					<ProductAdd />
+					<ProductAdd setOpen={() => setOpen(!open)} />
 				</div>
 				{loading ? (
 					<div className="w-full text-[10px] flex flex-col justify-center items-center p-3">
@@ -95,6 +101,12 @@ export default function Products() {
 					setPage={setPage}
 				/>
 			</div>
+
+			{/* modal */}
+
+			<Modal open={open} setOpen={setOpen}>
+				modal content
+			</Modal>
 		</section>
 	);
 }
