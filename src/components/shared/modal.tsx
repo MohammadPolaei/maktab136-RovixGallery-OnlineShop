@@ -43,7 +43,7 @@ export default function Modal({ open, setOpen, children }: ModalProps) {
 			} transition-all duration-300 ease-in-out`}
 		>
 			<div className="">
-				<div className="fixed inset-[1%] md:inset-[8%] z-60 bg-white rounded-md shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto">
+				<div className="fixed inset-[1%] md:inset-[12%] z-60 bg-white rounded-md shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto">
 					{children}
 					<button
 						className="absolute top-2 right-2 text-[12px] bg-gray-400 p-2 rounded-sm text-white cursor-pointer hover:bg-gray-500"

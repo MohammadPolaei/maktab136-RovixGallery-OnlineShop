@@ -106,7 +106,7 @@ export default function Products() {
 			{/* modal */}
 
 			<Modal open={open} setOpen={setOpen}>
-				<AddProductForm />
+				<AddProductForm setOpen={setOpen} />
 			</Modal>
 		</section>
 	);

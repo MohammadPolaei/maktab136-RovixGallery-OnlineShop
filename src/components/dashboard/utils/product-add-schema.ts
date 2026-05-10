@@ -1,48 +1,99 @@
 import { z } from "zod";
 
-export const CategoryEnum = z.enum(["watch", "smartwatch", "accessory"]);
+export const CategoryEnum = z.enum(["watch", "smartwatch", "accessory"], {
+	error: "دسته‌بندی انتخاب‌شده معتبر نیست",
+});
 
-export const GenderEnum = z.enum(["مردانه", "زنانه", "فاقد جنسیت"]);
+export const GenderEnum = z.enum(["مردانه", "زنانه", "فاقد جنسیت"], {
+	error: "جنسیت انتخاب‌شده معتبر نیست",
+});
 
-const ImagesSchema = z
-	.instanceof(File)
-	.refine((file) => file.size <= 5 * 1024 * 1024, "حداکثر حجم تصویر 5MB است")
+const ImageSchema = z
+	.instanceof(File, {
+		error: "فایل تصویر معتبر نیست",
+	})
+	.refine((file) => file.size <= 5 * 1024 * 1024, {
+		message: "حداکثر حجم تصویر باید ۵ مگابایت باشد",
+	})
 	.refine(
 		(file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type),
-		"فرمت تصویر باید jpg, png یا webp باشد"
+		{
+			message: "فرمت تصویر باید jpg، png یا webp باشد",
+		}
 	);
 
 export const ProductAddSchema = z.object({
-	name: z.string().min(3).max(50),
+	name: z
+		.string({ error: "نام محصول الزامی است" })
+		.trim()
+		.min(3, { message: "نام محصول باید حداقل ۳ کاراکتر باشد" })
+		.max(50, { message: "نام محصول نمی‌تواند بیشتر از ۵۰ کاراکتر باشد" }),
 
-	description: z.string().min(10).max(2000),
+	description: z
+		.string({ error: "توضیحات محصول الزامی است" })
+		.trim()
+		.min(10, { message: "توضیحات محصول باید حداقل ۱۰ کاراکتر باشد" })
+		.max(2000, {
+			message: "توضیحات محصول نمی‌تواند بیشتر از ۲۰۰۰ کاراکتر باشد",
+		}),
 
-	price: z.number().int().min(10000),
+	price: z.coerce
+		.number({ error: "قیمت باید عدد باشد" })
+		.int({ message: "قیمت باید عدد صحیح باشد" })
+		.min(10000, { message: "حداقل قیمت محصول ۱۰٬۰۰۰ تومان است" }),
 
-	brand: z.string().min(2).max(50),
+	brand: z
+		.string({ error: "وارد کردن برند الزامی است" })
+		.trim()
+		.min(2, { message: "نام برند باید حداقل ۲ کاراکتر باشد" })
+		.max(50, { message: "نام برند نمی‌تواند بیشتر از ۵۰ کاراکتر باشد" }),
 
-	brandCountry: z.string().min(2).max(20),
+	brandCountry: z
+		.string({ error: "وارد کردن کشور سازنده الزامی است" })
+		.trim()
+		.min(2, { message: "نام کشور باید حداقل ۲ کاراکتر باشد" })
+		.max(20, { message: "نام کشور نمی‌تواند بیشتر از ۲۰ کاراکتر باشد" }),
 
 	gender: GenderEnum,
 
-	material: z.string().min(2).max(20),
+	material: z
+		.string({ error: "وارد کردن جنس محصول الزامی است" })
+		.trim()
+		.min(2, { message: "جنس محصول باید حداقل ۲ کاراکتر باشد" })
+		.max(20, { message: "جنس محصول نمی‌تواند بیشتر از ۲۰ کاراکتر باشد" }),
 
-	color: z.string().min(2).max(20),
+	color: z
+		.string({ error: "وارد کردن رنگ محصول الزامی است" })
+		.trim()
+		.min(2, { message: "رنگ محصول باید حداقل ۲ کاراکتر باشد" })
+		.max(20, { message: "رنگ محصول نمی‌تواند بیشتر از ۲۰ کاراکتر باشد" }),
 
-	dialColor: z.string().min(2).max(30),
+	dialColor: z
+		.string({ error: "وارد کردن رنگ صفحه الزامی است" })
+		.trim()
+		.min(2, { message: "رنگ صفحه باید حداقل ۲ کاراکتر باشد" })
+		.max(30, { message: "رنگ صفحه نمی‌تواند بیشتر از ۳۰ کاراکتر باشد" }),
 
 	isAuthentic: z.boolean(),
 
-	stock: z.number().int().min(0).max(9999),
+	stock: z.coerce
+		.number({ error: "موجودی باید عدد باشد" })
+		.int({ message: "موجودی باید عدد صحیح باشد" })
+		.min(0, { message: "موجودی نمی‌تواند منفی باشد" })
+		.max(9999, { message: "حداکثر موجودی ۹۹۹۹ است" }),
 
-	popularity: z.number().int().min(0).max(100),
+	popularity: z.coerce
+		.number({ error: "محبوبیت باید عدد باشد" })
+		.int({ message: "محبوبیت باید عدد صحیح باشد" })
+		.min(0, { message: "محبوبیت نمی‌تواند کمتر از ۰ باشد" })
+		.max(100, { message: "محبوبیت نمی‌تواند بیشتر از ۱۰۰ باشد" }),
 
 	category: CategoryEnum,
 
 	images: z
-		.array(ImagesSchema)
-		.min(1, "حداقل یک تصویر لازم است")
-		.max(6, "حداکثر 6 تصویر مجاز است"),
+		.array(ImageSchema)
+		.min(1, { message: "حداقل یک تصویر برای محصول لازم است" })
+		.max(6, { message: "حداکثر می‌توانید ۶ تصویر بارگذاری کنید" }),
 
 	isActive: z.boolean().default(true),
 });

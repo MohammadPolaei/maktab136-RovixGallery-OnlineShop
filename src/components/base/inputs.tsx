@@ -10,7 +10,7 @@ export function TextInput(userInput: InputType) {
 			}  flex flex-col gap-1`}
 		>
 			{userInput.label && (
-				<label className="text-sm text-(--color-dark-green) font-semibold">
+				<label className="text-[12px] md:text-[14px] text-(--color-dark-green) font-semibold">
 					{userInput.label}
 				</label>
 			)}
