@@ -18,6 +18,7 @@ export default function ProductsTableRow({
 	updateProduct,
 	errorUpdating,
 	isUpdating,
+	editablePriceAndQuantity,
 }: TableRowPropsType) {
 	const faNumber = (num: string | number) =>
 		new Intl.NumberFormat("fa-IR").format(Number(num));
@@ -54,10 +55,22 @@ export default function ProductsTableRow({
 			<td className="p-3">{product.material}</td>
 			<td className="p-3">{product.color}</td>
 			<td className="p-3">{product.dialColor}</td>
-			<td className="p-3 text-(--color-accent-green) font-bold">
-				{faNumber(product.price).toLocaleString()} ریال
-			</td>
-			<td className="p-3">{faNumber(product.stock)}</td>
+
+			{editablePriceAndQuantity ? (
+				<td className="p-3 text-(--color-accent-green) font-bold">
+					{faNumber(product.price).toLocaleString()} ریال
+				</td>
+			) : (
+				<td className="p-3 text-(--color-accent-green) font-bold">
+					{faNumber(product.price).toLocaleString()} ریال
+				</td>
+			)}
+
+			{editablePriceAndQuantity ? (
+				<td className="p-3">{faNumber(product.stock)}</td>
+			) : (
+				<td className="p-3">{faNumber(product.stock)}</td>
+			)}
 			<td className="p-3">{product.gender}</td>
 			<td className="p-3">{faNumber(product.popularity)}</td>
 			<td className={`${editable ? "" : "hidden"} p-3`}>

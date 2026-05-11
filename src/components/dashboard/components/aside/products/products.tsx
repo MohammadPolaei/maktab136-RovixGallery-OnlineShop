@@ -134,6 +134,7 @@ export default function Products() {
 				open={open}
 				setOpen={setOpen}
 			>
+				{/* title as fixed */}
 				<AddProductForm setOpen={setOpen} setAddSuccess={setAddSuccess} />
 			</Modal>
 			{addSuccess && (

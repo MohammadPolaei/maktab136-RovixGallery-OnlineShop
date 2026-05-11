@@ -33,6 +33,7 @@ export default function ProductEdit({
 			setOpen={setOpen}
 			extraClasses="inset-[1%] md:inset-[12%]"
 		>
+			{/* title as fixed */}
 			<ProductEditForm
 				errorUpdating={errorUpdating}
 				isUpdating={isUpdating}

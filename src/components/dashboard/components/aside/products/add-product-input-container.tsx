@@ -4,7 +4,7 @@ export default function AddProductInputContainer({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="relative p-0 flex items-center justify-between">
+		<div className="w-full relative p-0 flex flex-col items-center justify-between gap-1">
 			{children}
 		</div>
 	);

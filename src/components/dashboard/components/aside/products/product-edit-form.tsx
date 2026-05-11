@@ -156,7 +156,7 @@ export default function ProductEditForm({
 	}, [previews]);
 
 	return (
-		<div className="w-full max-w-5xl mx-auto p-6">
+		<div className="w-full max-w-5xl mx-auto p-6 text-right">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
 				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
@@ -175,7 +175,7 @@ export default function ProductEditForm({
 								register={register("name")}
 							/>
 							{errors.name && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.name.message}
 								</InputValidationError>
 							)}
@@ -191,7 +191,7 @@ export default function ProductEditForm({
 								register={register("price")}
 							/>
 							{errors.price && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.price.message}
 								</InputValidationError>
 							)}
@@ -207,7 +207,7 @@ export default function ProductEditForm({
 								register={register("stock")}
 							/>
 							{errors.stock && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.stock.message}
 								</InputValidationError>
 							)}
@@ -224,7 +224,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.category && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.category.message}
 								</InputValidationError>
 							)}
@@ -240,7 +240,7 @@ export default function ProductEditForm({
 						/>
 
 						{errors.description && (
-							<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+							<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 								{errors.description.message}
 							</InputValidationError>
 						)}
@@ -273,7 +273,7 @@ export default function ProductEditForm({
 								<option value="Tissot">Tissot</option>
 							</select>
 							{errors.brand && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.brand.message}
 								</InputValidationError>
 							)}
@@ -291,7 +291,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.brandCountry && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.brandCountry.message}
 								</InputValidationError>
 							)}
@@ -309,7 +309,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.gender && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.gender.message}
 								</InputValidationError>
 							)}
@@ -329,7 +329,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.material && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.material.message}
 								</InputValidationError>
 							)}
@@ -348,7 +348,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.color && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.color.message}
 								</InputValidationError>
 							)}
@@ -368,7 +368,7 @@ export default function ProductEditForm({
 							</select>
 
 							{errors.dialColor && (
-								<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+								<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 									{errors.dialColor.message}
 								</InputValidationError>
 							)}
@@ -403,7 +403,7 @@ export default function ProductEditForm({
 							register={register("popularity")}
 						/>
 						{errors.popularity && (
-							<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+							<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 								{errors.popularity.message}
 							</InputValidationError>
 						)}
@@ -422,7 +422,7 @@ export default function ProductEditForm({
 						/>
 
 						{errors.images && (
-							<InputValidationError extraClasses="text-[8px] sm:text-[10px] md:text-[12px]">
+							<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 								{errors.images.message as string}
 							</InputValidationError>
 						)}

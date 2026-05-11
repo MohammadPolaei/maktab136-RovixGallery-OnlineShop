@@ -22,9 +22,9 @@ export interface Product {
 	isActive: boolean;
 }
 export interface ProductDataTable {
+	editablePriceAndQuantity?: boolean;
 	setEditSuccess: (val: boolean) => void;
 	productData: Product[];
-	editable: boolean;
 	deleteProduct?: (prodID: string) => void;
 	errorDeleting?: Error | null;
 	isDeleting?: boolean;
@@ -35,9 +35,11 @@ export interface ProductDataTable {
 	>;
 	isUpdating?: boolean;
 	errorUpdating: Error | null;
+	editable: boolean;
 }
 
 export interface TableRowPropsType {
+	editablePriceAndQuantity?: boolean;
 	setEditSuccess: (val: boolean) => void;
 	editable: boolean;
 	product: Product;

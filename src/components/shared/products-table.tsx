@@ -4,6 +4,7 @@ import { ProductDataTable } from "@/types/product-data-type";
 import ProductsTableRow from "./product-table-row";
 
 export default function ProductsTable({
+	editablePriceAndQuantity,
 	setEditSuccess,
 	errorUpdating,
 	updateProduct,
@@ -43,6 +44,7 @@ export default function ProductsTable({
 				<tbody>
 					{productData.map((item) => (
 						<ProductsTableRow
+							editablePriceAndQuantity
 							setEditSuccess={setEditSuccess}
 							errorUpdating={errorUpdating}
 							updateProduct={updateProduct}

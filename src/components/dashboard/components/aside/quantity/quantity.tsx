@@ -1,11 +1,13 @@
 "use client";
 import LoadingIcon from "@/assets/SVG/loading-icon";
 import SearchInput from "@/components/base/search-input";
+import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
+import { useState } from "react";
 import ProductsTable from "../../../../shared/products-table";
 
 export default function Quantity() {
@@ -34,6 +36,12 @@ export default function Quantity() {
 		setSort,
 		setAvailable,
 	} = useGetProducts();
+
+	const { updateProduct, isUpdating, errorUpdating } = useProductMutations();
+	const [editSuccess, setEditSuccess] = useState(false);
+	const [editablePriceAndQuantity, setEditablePriceAndQuantity] =
+		useState(false);
+
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
 			<DashboardHeadingContainer>
@@ -84,7 +92,14 @@ export default function Quantity() {
 				) : error ? (
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
-					<ProductsTable productData={products} editable={false} />
+					<ProductsTable
+						editablePriceAndQuantity
+						errorUpdating={errorUpdating}
+						setEditSuccess={setEditSuccess}
+						updateProduct={updateProduct}
+						productData={products}
+						editable={false}
+					/>
 				)}
 			</DashboardSectionsContainer>
 			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
