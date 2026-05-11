@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import AskModal from "../base/ask-modal";
 import Modal from "../base/modal";
+import ProductEdit from "../dashboard/components/aside/products/product-edit";
 
 export default function ProductsTableRow({
 	product,
@@ -29,6 +30,7 @@ export default function ProductsTableRow({
 
 	// handle edit
 	const [openEdit, setOpenEdit] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
 
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
@@ -94,6 +96,15 @@ export default function ProductsTableRow({
 							</div>
 						)}
 					</Modal>
+				)}
+				{openEdit && (
+					<ProductEdit
+						setEditSuccess={setEditSuccess}
+						product={product}
+						open
+						setOpen={setOpenEdit}
+						key={"edit"}
+					/>
 				)}
 			</td>
 		</tr>
