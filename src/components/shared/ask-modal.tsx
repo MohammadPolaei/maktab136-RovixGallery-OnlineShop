@@ -28,19 +28,19 @@ export default function AskModal({
 			setOpen={setOpenDelete}
 		>
 			<div className="w-full flex flex-col justify-center items-center gap-5">
-				<div className="text-center text-[10px] text-black/70">
+				<div className="text-center text-[12px] text-black/70 pt-10">
 					{theQuestion}
 				</div>
 				<div className="w-full flex justify-center items-center gap-3">
 					<button
 						onClick={handleConfirmNo}
-						className="p-2 text-[10px] rounded-sm bg-gray-400"
+						className="p-2 px-3 text-[10px] rounded-sm bg-gray-400 text-white cursor-pointer"
 					>
 						خیر
 					</button>
 					<button
 						onClick={handleConfirmYes}
-						className="p-2 text-[10px] rounded-sm bg-red-400"
+						className="p-2 px-3 text-[10px] rounded-sm bg-red-400 text-white cursor-pointer"
 					>
 						بله
 					</button>

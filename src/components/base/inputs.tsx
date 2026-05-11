@@ -27,6 +27,7 @@ export function TextInput(userInput: InputType) {
 				value={userInput.value}
 				onChange={userInput.onChange}
 				placeholder={userInput.placeholder || undefined}
+				disabled={userInput.isSubmiting}
 			/>
 		</div>
 	);
@@ -53,6 +54,7 @@ export function PasswordInput(userInput: InputType) {
 				type={toggle ? "text" : "password"}
 				alt="password"
 				placeholder={userInput.placeholder || undefined}
+				disabled={userInput.isSubmiting}
 			/>
 		</div>
 	);

@@ -16,8 +16,10 @@ import AddProductInputContainer from "./add-product-input-container";
 
 export default function AddProductForm({
 	setOpen,
+	setAddSuccess,
 }: {
 	setOpen: (val: boolean) => void;
+	setAddSuccess: (val: boolean) => void;
 }) {
 	const [previews, setPreviews] = useState<string[]>([]);
 	// add product
@@ -46,6 +48,7 @@ export default function AddProductForm({
 				onSuccess: () => {
 					setPreviews([]);
 					setOpen(false);
+					setAddSuccess(true);
 				},
 			}
 		);
@@ -81,7 +84,8 @@ export default function AddProductForm({
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 						<AddProductInputContainer>
 							<TextInput
-								extraClasses="w-full"
+								isSubmiting={isAdding}
+								extraClasses="w-full disabled:opacity-50"
 								name="name"
 								label="نام محصول"
 								placeholder="نام محصول"
@@ -96,7 +100,8 @@ export default function AddProductForm({
 
 						<AddProductInputContainer>
 							<TextInput
-								extraClasses="w-full"
+								isSubmiting={isAdding}
+								extraClasses="w-full disabled:opacity-50"
 								name="price"
 								label="قیمت"
 								placeholder="قیمت به تومان"
@@ -111,7 +116,8 @@ export default function AddProductForm({
 
 						<AddProductInputContainer>
 							<TextInput
-								extraClasses="w-full"
+								isSubmiting={isAdding}
+								extraClasses="w-full disabled:opacity-50"
 								name="stock"
 								label="موجودی"
 								placeholder="تعداد موجودی"
@@ -126,8 +132,9 @@ export default function AddProductForm({
 
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("category")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">انتخاب دسته بندی</option>
 								<option value="watch">ساعت</option>
@@ -141,8 +148,9 @@ export default function AddProductForm({
 						</div>
 					</div>
 
-					<div className="relative p-0 flex items-center justify-between">
+					<div className="disabled:opacity-50 relative p-0 flex items-center justify-between">
 						<textarea
+							disabled={isAdding}
 							{...register("description")}
 							placeholder="توضیحات محصول"
 							className="w-full min-h-32 rounded-md border border-gray-300 p-4 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
@@ -165,8 +173,9 @@ export default function AddProductForm({
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("brand")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">برند</option>
 								<option value="Citizen">Citizen</option>
@@ -189,8 +198,9 @@ export default function AddProductForm({
 
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("brandCountry")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">کشور سازنده</option>
 								<option value="ژاپن">ژاپن</option>
@@ -205,8 +215,9 @@ export default function AddProductForm({
 						</div>
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("gender")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">انتخاب جنسیت</option>
 								<option value="مردانه">مردانه</option>
@@ -223,8 +234,9 @@ export default function AddProductForm({
 
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("material")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">جنس بدنه</option>
 								<option value="چرم">چرم</option>
@@ -241,8 +253,9 @@ export default function AddProductForm({
 						</div>
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("color")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">رنگ</option>
 								<option value="مشکی">مشکی</option>
@@ -260,8 +273,9 @@ export default function AddProductForm({
 
 						<div className="relative p-0 flex items-center justify-between h-16">
 							<select
+								disabled={isAdding}
 								{...register("dialColor")}
-								className="absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+								className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 							>
 								<option value="">رنگ صفحه</option>
 								<option value="مشکی">مشکی</option>
@@ -280,10 +294,11 @@ export default function AddProductForm({
 
 					<div className="flex items-center gap-3">
 						<input
+							disabled={isAdding}
 							type="checkbox"
 							id="isAuthentic"
 							{...register("isAuthentic")}
-							className="size-4"
+							className="disabled:opacity-50 size-4"
 						/>
 						<label htmlFor="isAuthentic">محصول اصل است</label>
 					</div>
@@ -297,7 +312,8 @@ export default function AddProductForm({
 
 					<div className="relative p-0 flex items-center justify-between">
 						<TextInput
-							extraClasses="w-full"
+							isSubmiting={isAdding}
+							extraClasses="w-full disabled:opacity-50"
 							name="popularity"
 							label="محبوبیت"
 							placeholder="عددی بین 0 تا 100"
@@ -314,10 +330,11 @@ export default function AddProductForm({
 						<label className="font-medium text-sm">تصاویر محصول</label>
 
 						<input
+							disabled={isAdding}
 							type="file"
 							multiple
 							accept="image/png,image/jpeg,image/webp"
-							className="w-full rounded-md border border-gray-300 p-3 file:ml-4 file:rounded-md file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white"
+							className="disabled:opacity-50 w-full rounded-md border border-gray-300 p-3 file:ml-4 file:rounded-md file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white"
 							onChange={(e) => handleImageChange(e.target.files)}
 						/>
 
@@ -347,10 +364,11 @@ export default function AddProductForm({
 
 					<div className="flex items-center gap-3">
 						<input
+							disabled={isAdding}
 							type="checkbox"
 							id="isActive"
 							{...register("isActive")}
-							className="size-4"
+							className="size-4 disabled:opacity-50"
 						/>
 						<label htmlFor="isActive">محصول فعال باشد</label>
 					</div>
@@ -358,6 +376,11 @@ export default function AddProductForm({
 
 				<div className="flex justify-center pt-4">
 					<div className="w-full md:w-72">
+						{errorAdding && (
+							<div className="text-red-500 w-full text-center">
+								{"خطا در ثبت محصول"}
+							</div>
+						)}
 						<SubmitButton disabaled={isAdding}>
 							{isAdding ? "در حال ثبت..." : "ثبت محصول"}
 						</SubmitButton>

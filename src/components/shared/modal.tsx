@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 type ModalProps = {
-	open: boolean;
+	open: boolean | Error;
 	setOpen: (open: boolean) => void;
 	children: React.ReactNode;
 	extraClasses: string;

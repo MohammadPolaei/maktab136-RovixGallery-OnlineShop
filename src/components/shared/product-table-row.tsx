@@ -1,5 +1,6 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
+import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { TableRowPropsType } from "@/types/product-data-type";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -56,14 +57,20 @@ export default function ProductsTableRow({
 			<td className="p-3">{faNumber(product.popularity)}</td>
 			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
-					<button onClick={() => setOpenEdit(true)}>
+					<button
+						className="hover:scale-120 origin-center active:scale-50 cursor-pointer transition-all duration-500 ease-in-out"
+						onClick={() => setOpenEdit(true)}
+					>
 						<EditIcon />
 					</button>
-					<button onClick={() => setOpenDelete(true)}>
+					<button
+						className="hover:scale-120 origin-center active:scale-50 cursor-pointer transition-all duration-500 ease-in-out"
+						onClick={() => setOpenDelete(true)}
+					>
 						<DeleteIcon />
 					</button>
 				</div>
-				{errorDeleting ? null : (
+				{openDelete ? (
 					<AskModal
 						confirmQuestion={confirmQuestion}
 						setConfirmQuestion={setConfirmQuestion}
@@ -71,14 +78,21 @@ export default function ProductsTableRow({
 						setOpenDelete={setOpenDelete}
 						theQuestion={`آیا از حذف این محصول ${product.name} اطمینان دارید ؟`}
 					/>
-				)}
-				{errorDeleting && (
+				) : null}
+				{isDeleting && (
 					<Modal
 						extraClasses="inset-[1%] md:inset-[40%]"
 						open
 						setOpen={() => {}}
 					>
-						خطا در حذف محصول
+						{errorDeleting ? (
+							<span className="text-red-500">{"خطا در حذف محصول"}</span>
+						) : (
+							<div className="flex flex-col items-center justify-center gap-2">
+								<span>{"در حال حذف"}</span>
+								<RovixLuxuryLoader />
+							</div>
+						)}
 					</Modal>
 				)}
 			</td>
