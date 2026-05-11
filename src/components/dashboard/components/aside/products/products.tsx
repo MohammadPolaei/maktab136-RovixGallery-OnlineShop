@@ -1,10 +1,10 @@
 "use client";
 import LoadingIcon from "@/assets/SVG/loading-icon";
+import Modal from "@/components/base/modal";
 import SearchInput from "@/components/base/search-input";
 import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
-import Modal from "@/components/shared/modal";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";

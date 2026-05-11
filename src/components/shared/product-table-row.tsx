@@ -4,8 +4,8 @@ import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { TableRowPropsType } from "@/types/product-data-type";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import AskModal from "./ask-modal";
-import Modal from "./modal";
+import AskModal from "../base/ask-modal";
+import Modal from "../base/modal";
 
 export default function ProductsTableRow({
 	product,
