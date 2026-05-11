@@ -12,9 +12,9 @@ import {
 	setPreviews,
 } from "@/components/dashboard/utils/add-product-form-utils";
 import { useEffect } from "react";
-import AddProductFormMainpart from "./add-product-form-mainpart";
-import AddProductFormProperties from "./add-product-form-properties";
-import AddProductFormSetting from "./add-product-form-setting";
+import AddEditProductFormMainpart from "./add-edit-product-form-mainpart";
+import AddProductFormProperties from "./add-edit-product-form-properties";
+import AddEditProductFormSetting from "./add-edit-product-form-setting";
 
 export default function AddProductForm({
 	setOpen,
@@ -53,7 +53,7 @@ export default function AddProductForm({
 						اطلاعات اصلی محصول
 					</h2>
 
-					<AddProductFormMainpart />
+					<AddEditProductFormMainpart editable={false} />
 				</section>
 
 				{/* مشخصات */}
@@ -62,7 +62,7 @@ export default function AddProductForm({
 						مشخصات محصول
 					</h2>
 
-					<AddProductFormProperties />
+					<AddProductFormProperties editable={false} />
 				</section>
 
 				{/* تنظیمات */}
@@ -70,7 +70,7 @@ export default function AddProductForm({
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						تنظیمات
 					</h2>
-					<AddProductFormSetting />
+					<AddEditProductFormSetting editable={false} />
 				</section>
 
 				<div className="flex justify-center pt-4">

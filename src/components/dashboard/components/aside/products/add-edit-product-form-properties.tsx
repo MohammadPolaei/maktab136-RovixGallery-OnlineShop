@@ -4,6 +4,7 @@ import {
 	isAdding,
 	register,
 } from "@/components/dashboard/utils/add-product-form-utils";
+import { isUpdating } from "@/components/dashboard/utils/product-edit-form-utils";
 
 const brandOptions = [
 	{ value: "", text: "برند" },
@@ -53,13 +54,17 @@ const dialColorOptions = [
 	{ value: "سفید", text: "سفید" },
 ];
 
-export default function AddProductFormProperties() {
+export default function AddEditProductFormProperties({
+	editable,
+}: {
+	editable: boolean;
+}) {
 	return (
 		<section>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("brand")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -76,7 +81,7 @@ export default function AddProductFormProperties() {
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("brandCountry")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -93,7 +98,7 @@ export default function AddProductFormProperties() {
 				</div>
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("gender")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -111,7 +116,7 @@ export default function AddProductFormProperties() {
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("material")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -128,7 +133,7 @@ export default function AddProductFormProperties() {
 				</div>
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("color")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -146,7 +151,7 @@ export default function AddProductFormProperties() {
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={isAdding}
+						disabled={editable ? isUpdating : isAdding}
 						{...register("dialColor")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
@@ -165,7 +170,7 @@ export default function AddProductFormProperties() {
 
 			<div className="flex items-center gap-3">
 				<input
-					disabled={isAdding}
+					disabled={editable ? isUpdating : isAdding}
 					type="checkbox"
 					id="isAuthentic"
 					{...register("isAuthentic")}

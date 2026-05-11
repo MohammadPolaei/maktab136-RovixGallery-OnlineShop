@@ -5,6 +5,7 @@ import {
 	isAdding,
 	register,
 } from "@/components/dashboard/utils/add-product-form-utils";
+import { isUpdating } from "@/components/dashboard/utils/product-edit-form-utils";
 import AddProductInputContainer from "./add-product-input-container";
 
 const fields = [
@@ -13,7 +14,11 @@ const fields = [
 	{ name: "stock", label: "موجودی", placeholder: "تعداد موجودی" },
 ];
 
-export default function AddProductFormMainpart() {
+export default function AddEditProductFormMainpart({
+	editable,
+}: {
+	editable: boolean;
+}) {
 	return (
 		<section>
 			{fields.map((item) => {
@@ -21,7 +26,7 @@ export default function AddProductFormMainpart() {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 						<AddProductInputContainer>
 							<TextInput
-								isSubmiting={isAdding}
+								isSubmiting={editable ? isUpdating : isAdding}
 								extraClasses="w-full disabled:opacity-50"
 								name={item.name}
 								label={item.label}
@@ -49,7 +54,7 @@ export default function AddProductFormMainpart() {
 							)}
 							<div className="relative p-0 flex items-center justify-between h-16">
 								<select
-									disabled={isAdding}
+									disabled={editable ? isUpdating : isAdding}
 									{...register("category")}
 									className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 								>
@@ -66,7 +71,7 @@ export default function AddProductFormMainpart() {
 						</AddProductInputContainer>
 						<div className="disabled:opacity-50 relative p-0 flex flex-col items-center justify-between">
 							<textarea
-								disabled={isAdding}
+								disabled={editable ? isUpdating : isAdding}
 								{...register("description")}
 								placeholder="توضیحات محصول"
 								className="w-full min-h-32 rounded-md border border-gray-300 p-4 outline-none focus:ring-2 focus:ring-(--color-accent-green)"

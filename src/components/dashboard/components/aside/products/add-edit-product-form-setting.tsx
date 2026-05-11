@@ -7,13 +7,18 @@ import {
 	previews,
 	register,
 } from "@/components/dashboard/utils/add-product-form-utils";
+import { isUpdating } from "@/components/dashboard/utils/product-edit-form-utils";
 
-export default function AddProductFormSetting() {
+export default function AddEditProductFormSetting({
+	editable,
+}: {
+	editable: boolean;
+}) {
 	return (
 		<div>
 			<div className="relative p-0 flex items-center justify-between">
 				<TextInput
-					isSubmiting={isAdding}
+					isSubmiting={editable ? isUpdating : isAdding}
 					extraClasses="w-full disabled:opacity-50"
 					name="popularity"
 					label="محبوبیت"
@@ -31,7 +36,7 @@ export default function AddProductFormSetting() {
 				<label className="font-medium text-sm">تصاویر محصول</label>
 
 				<input
-					disabled={isAdding}
+					disabled={editable ? isUpdating : isAdding}
 					type="file"
 					multiple
 					accept="image/png,image/jpeg,image/webp"
@@ -65,7 +70,7 @@ export default function AddProductFormSetting() {
 
 			<div className="flex items-center gap-3">
 				<input
-					disabled={isAdding}
+					disabled={editable ? isUpdating : isAdding}
 					type="checkbox"
 					id="isActive"
 					{...register("isActive")}
