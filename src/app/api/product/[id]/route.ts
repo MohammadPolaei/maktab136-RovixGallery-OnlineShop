@@ -5,13 +5,17 @@ const getAdminToken = (req: NextRequest) =>
 // DELETE
 
 export async function DELETE(
-	req: Request,
+	req: NextRequest,
 	{ params }: { params: Promise<{ id: string }> }
 ) {
+	const token = getAdminToken(req);
 	const { id } = await params;
 
 	const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
 		method: "DELETE",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
 	});
 
 	const data = await res.json();

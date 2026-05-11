@@ -116,7 +116,11 @@ export default function Products() {
 
 			{/* modal */}
 
-			<Modal open={open} setOpen={setOpen}>
+			<Modal
+				extraClasses="inset-[1%] md:inset-[12%]"
+				open={open}
+				setOpen={setOpen}
+			>
 				<AddProductForm setOpen={setOpen} />
 			</Modal>
 		</section>

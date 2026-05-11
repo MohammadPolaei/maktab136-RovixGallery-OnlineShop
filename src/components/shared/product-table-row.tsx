@@ -2,6 +2,9 @@ import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
 import { TableRowPropsType } from "@/types/product-data-type";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import AskModal from "./ask-modal";
+import Modal from "./modal";
 
 export default function ProductsTableRow({
 	product,
@@ -12,6 +15,20 @@ export default function ProductsTableRow({
 }: TableRowPropsType) {
 	const faNumber = (num: string | number) =>
 		new Intl.NumberFormat("fa-IR").format(Number(num));
+	// handle delete
+
+	const [confirmQuestion, setConfirmQuestion] = useState(false);
+	const [openDelete, setOpenDelete] = useState(false);
+
+	useEffect(() => {
+		if (confirmQuestion) {
+			deleteProduct ? deleteProduct(product._id) : null;
+		}
+	}, [confirmQuestion]);
+
+	// handle edit
+	const [openEdit, setOpenEdit] = useState(false);
+
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
 			<td className="p-3">
@@ -39,11 +56,31 @@ export default function ProductsTableRow({
 			<td className="p-3">{faNumber(product.popularity)}</td>
 			<td className={`${editable ? "" : "hidden"} p-3`}>
 				<div className="flex justify-evenly items-center">
-					<EditIcon />
-					<button onClick={() => deleteProduct(product._id)}>
+					<button onClick={() => setOpenEdit(true)}>
+						<EditIcon />
+					</button>
+					<button onClick={() => setOpenDelete(true)}>
 						<DeleteIcon />
 					</button>
 				</div>
+				{errorDeleting ? null : (
+					<AskModal
+						confirmQuestion={confirmQuestion}
+						setConfirmQuestion={setConfirmQuestion}
+						openDelete={openDelete}
+						setOpenDelete={setOpenDelete}
+						theQuestion={`آیا از حذف این محصول ${product.name} اطمینان دارید ؟`}
+					/>
+				)}
+				{errorDeleting && (
+					<Modal
+						extraClasses="inset-[1%] md:inset-[40%]"
+						open
+						setOpen={() => {}}
+					>
+						خطا در حذف محصول
+					</Modal>
+				)}
 			</td>
 		</tr>
 	);

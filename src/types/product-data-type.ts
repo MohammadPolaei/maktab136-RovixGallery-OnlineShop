@@ -21,15 +21,15 @@ export interface Product {
 export interface ProductDataTable {
 	productData: Product[];
 	editable: boolean;
-	deleteProduct: (prodID: string) => void;
-	errorDeleting: Error | null;
-	isDeleting: boolean;
+	deleteProduct?: (prodID: string) => void;
+	errorDeleting?: Error | null;
+	isDeleting?: boolean;
 }
 
 export interface TableRowPropsType {
 	editable: boolean;
 	product: Product;
-	deleteProduct: (prodID: string) => void;
-	errorDeleting: Error | null;
-	isDeleting: boolean;
+	deleteProduct?: (prodID: string) => void;
+	errorDeleting?: Error | null;
+	isDeleting?: boolean;
 }
