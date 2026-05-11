@@ -1,33 +1,42 @@
 import InputValidationError from "@/components/base/input-validation-error";
 import { TextInput } from "@/components/base/inputs";
-import {
-	errors,
-	handleImageChange,
-	isAdding,
-	previews,
-	register,
-} from "@/components/dashboard/utils/add-product-form-utils";
-import { isUpdating } from "@/components/dashboard/utils/product-edit-form-utils";
+import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 export default function AddEditProductFormSetting({
+	register,
+	isUpdating,
+	isAdding,
 	editable,
+	errors,
+	handleImageChange,
+	previews,
 }: {
+	register: UseFormRegister<ProductAddSchemaType>;
+	isUpdating: boolean | undefined;
+	isAdding: boolean;
 	editable: boolean;
+	errors: FieldErrors<ProductAddSchemaType>;
+	handleImageChange: (files: FileList | null) => void;
+	previews: string[];
 }) {
+	const isSubmitting = editable ? isUpdating : isAdding;
+
 	return (
 		<div>
 			<div className="relative p-0 flex items-center justify-between">
 				<TextInput
-					isSubmiting={editable ? isUpdating : isAdding}
-					extraClasses="w-full disabled:opacity-50"
+					isSubmiting={isSubmitting}
+					extraClasses="w-1/4 disabled:opacity-50"
 					name="popularity"
 					label="محبوبیت"
 					placeholder="عددی بین 0 تا 100"
 					register={register("popularity")}
 				/>
-				{errors.popularity && (
+
+				{errors.popularity?.message && (
 					<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-						{errors.popularity.message}
+						{errors.popularity.message as string}
 					</InputValidationError>
 				)}
 			</div>
@@ -36,7 +45,7 @@ export default function AddEditProductFormSetting({
 				<label className="font-medium text-sm">تصاویر محصول</label>
 
 				<input
-					disabled={editable ? isUpdating : isAdding}
+					disabled={isSubmitting}
 					type="file"
 					multiple
 					accept="image/png,image/jpeg,image/webp"
@@ -44,7 +53,7 @@ export default function AddEditProductFormSetting({
 					onChange={(e) => handleImageChange(e.target.files)}
 				/>
 
-				{errors.images && (
+				{errors.images?.message && (
 					<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
 						{errors.images.message as string}
 					</InputValidationError>
@@ -68,9 +77,9 @@ export default function AddEditProductFormSetting({
 				)}
 			</div>
 
-			<div className="flex items-center gap-3">
+			<div className="flex items-center gap-3 mt-10">
 				<input
-					disabled={editable ? isUpdating : isAdding}
+					disabled={isSubmitting}
 					type="checkbox"
 					id="isActive"
 					{...register("isActive")}

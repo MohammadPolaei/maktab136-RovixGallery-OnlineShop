@@ -1,17 +1,15 @@
 "use client";
 
 import SubmitButton from "@/components/base/buttons";
-import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
-
 import {
-	addProduct,
-	errorAdding,
-	handleSubmit,
-	isAdding,
-	previews,
-	setPreviews,
-} from "@/components/dashboard/utils/add-product-form-utils";
-import { useEffect } from "react";
+	ProductAddSchema,
+	ProductAddSchemaType,
+} from "@/components/dashboard/utils/product-add-schema";
+
+import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import AddEditProductFormMainpart from "./add-edit-product-form-mainpart";
 import AddProductFormProperties from "./add-edit-product-form-properties";
 import AddEditProductFormSetting from "./add-edit-product-form-setting";
@@ -23,6 +21,39 @@ export default function AddProductForm({
 	setOpen: (val: boolean) => void;
 	setAddSuccess: (val: boolean) => void;
 }) {
+	const [previews, setPreviews] = useState<string[]>([]);
+	// add product
+
+	const { addProduct, isAdding, errorAdding } = useProductMutations();
+
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		formState: { errors },
+	} = useForm<ProductAddSchemaType>({
+		resolver: zodResolver(ProductAddSchema),
+		defaultValues: {
+			isAuthentic: true,
+			isActive: true,
+			popularity: 0,
+			images: [],
+		},
+	});
+
+	const handleImageChange = (files: FileList | null) => {
+		if (!files) return;
+
+		const fileArray = Array.from(files);
+
+		setValue("images", fileArray, {
+			shouldValidate: true,
+		});
+
+		const urls = fileArray.map((file) => URL.createObjectURL(file));
+		setPreviews(urls);
+	};
+
 	// logic
 	const onSubmit = (data: ProductAddSchemaType) => {
 		addProduct(
@@ -53,7 +84,13 @@ export default function AddProductForm({
 						اطلاعات اصلی محصول
 					</h2>
 
-					<AddEditProductFormMainpart editable={false} />
+					<AddEditProductFormMainpart
+						isUpdating={false}
+						register={register}
+						errors={errors}
+						isAdding={isAdding}
+						editable={false}
+					/>
 				</section>
 
 				{/* مشخصات */}
@@ -62,7 +99,13 @@ export default function AddProductForm({
 						مشخصات محصول
 					</h2>
 
-					<AddProductFormProperties editable={false} />
+					<AddProductFormProperties
+						isUpdating={false}
+						register={register}
+						errors={errors}
+						isAdding={isAdding}
+						editable={false}
+					/>
 				</section>
 
 				{/* تنظیمات */}
@@ -70,7 +113,15 @@ export default function AddProductForm({
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						تنظیمات
 					</h2>
-					<AddEditProductFormSetting editable={false} />
+					<AddEditProductFormSetting
+						handleImageChange={handleImageChange}
+						previews={previews}
+						isUpdating={false}
+						register={register}
+						errors={errors}
+						isAdding={isAdding}
+						editable={false}
+					/>
 				</section>
 
 				<div className="flex justify-center pt-4">

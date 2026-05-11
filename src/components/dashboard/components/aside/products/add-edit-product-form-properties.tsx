@@ -1,10 +1,6 @@
 import InputValidationError from "@/components/base/input-validation-error";
-import {
-	errors,
-	isAdding,
-	register,
-} from "@/components/dashboard/utils/add-product-form-utils";
-import { isUpdating } from "@/components/dashboard/utils/product-edit-form-utils";
+import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 const brandOptions = [
 	{ value: "", text: "برند" },
@@ -25,6 +21,7 @@ const brandCountryOptions = [
 	{ value: "ژاپن", text: "ژاپن" },
 	{ value: "سوئیس", text: "سوئیس" },
 ];
+
 const genderOptions = [
 	{ value: "", text: "انتخاب جنسیت" },
 	{ value: "مردانه", text: "مردانه" },
@@ -39,6 +36,7 @@ const materialOptions = [
 	{ value: "تیتانیوم", text: "تیتانیوم" },
 	{ value: "استیل زد زنگ", text: "استیل زد زنگ" },
 ];
+
 const colorOptions = [
 	{ value: "", text: "رنگ" },
 	{ value: "مشکی", text: "مشکی" },
@@ -46,6 +44,7 @@ const colorOptions = [
 	{ value: "نقره ای", text: "نقره ای" },
 	{ value: "قهوه ای", text: "قهوه ای" },
 ];
+
 const dialColorOptions = [
 	{ value: "", text: "رنگ صفحه" },
 	{ value: "مشکی", text: "مشکی" },
@@ -55,122 +54,147 @@ const dialColorOptions = [
 ];
 
 export default function AddEditProductFormProperties({
+	register,
+	isUpdating,
+	isAdding,
 	editable,
+	errors,
 }: {
+	register: UseFormRegister<ProductAddSchemaType>;
+	isUpdating: boolean | undefined;
+	isAdding: boolean;
 	editable: boolean;
+	errors: FieldErrors<ProductAddSchemaType>;
 }) {
+	const isSubmitting = editable ? isUpdating : isAdding;
+
 	return (
 		<section>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("brand")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{brandOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{brandOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
-					{errors.brand && (
+
+					{errors.brand?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.brand.message}
+							{errors.brand.message as string}
 						</InputValidationError>
 					)}
 				</div>
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("brandCountry")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{brandCountryOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{brandCountryOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
 
-					{errors.brandCountry && (
+					{errors.brandCountry?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.brandCountry.message}
+							{errors.brandCountry.message as string}
 						</InputValidationError>
 					)}
 				</div>
+
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("gender")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{genderOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{genderOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
 
-					{errors.gender && (
+					{errors.gender?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.gender.message}
+							{errors.gender.message as string}
 						</InputValidationError>
 					)}
 				</div>
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("material")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{materialOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{materialOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
 
-					{errors.material && (
+					{errors.material?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.material.message}
+							{errors.material.message as string}
 						</InputValidationError>
 					)}
 				</div>
+
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("color")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{colorOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{colorOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
 
-					{errors.color && (
+					{errors.color?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.color.message}
+							{errors.color.message as string}
 						</InputValidationError>
 					)}
 				</div>
 
 				<div className="relative p-0 flex items-center justify-between h-16">
 					<select
-						disabled={editable ? isUpdating : isAdding}
+						disabled={isSubmitting}
 						{...register("dialColor")}
 						className="disabled:opacity-50 absolute bottom-0 w-full text-[12px] md:text-[16px] rounded-sm border border-gray-300 p-2 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
 					>
-						{dialColorOptions.map((item) => {
-							return <option value={item.value}>{item.text}</option>;
-						})}
+						{dialColorOptions.map((item) => (
+							<option key={item.text} value={item.value}>
+								{item.text}
+							</option>
+						))}
 					</select>
 
-					{errors.dialColor && (
+					{errors.dialColor?.message && (
 						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-							{errors.dialColor.message}
+							{errors.dialColor.message as string}
 						</InputValidationError>
 					)}
 				</div>
 			</div>
 
-			<div className="flex items-center gap-3">
+			<div className="flex items-center gap-3 mt-10">
 				<input
-					disabled={editable ? isUpdating : isAdding}
+					disabled={isSubmitting}
 					type="checkbox"
 					id="isAuthentic"
 					{...register("isAuthentic")}

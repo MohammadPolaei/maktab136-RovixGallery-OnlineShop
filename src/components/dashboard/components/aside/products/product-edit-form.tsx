@@ -1,15 +1,16 @@
 "use client";
 
 import SubmitButton from "@/components/base/buttons";
-import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
-
 import {
-	handleSubmit,
-	reset,
-} from "@/components/dashboard/utils/product-edit-form-utils";
+	ProductAddSchema,
+	ProductAddSchemaType,
+} from "@/components/dashboard/utils/product-add-schema";
+
 import { Product } from "@/types/product-data-type";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { UseMutateFunction } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import AddEditProductFormMainpart from "./add-edit-product-form-mainpart";
 import AddEditProductFormProperties from "./add-edit-product-form-properties";
 import AddEditProductFormSetting from "./add-edit-product-form-setting";
@@ -33,6 +34,43 @@ export default function ProductEditForm({
 	isUpdating: boolean | undefined;
 	errorUpdating: Error | null;
 }) {
+	const [previews, setPreviews] = useState<string[]>([]);
+	// edit product
+
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		reset,
+		formState: { errors },
+	} = useForm<ProductAddSchemaType>({
+		resolver: zodResolver(ProductAddSchema),
+		defaultValues: {
+			isAuthentic: true,
+			isActive: true,
+			popularity: 0,
+			images: [],
+		},
+	});
+
+	const handleImageChange = (files: FileList | null) => {
+		if (!files) return;
+
+		const fileArray = Array.from(files);
+
+		setValue("images", fileArray, {
+			shouldValidate: true,
+		});
+
+		const urls = fileArray.map((file) => URL.createObjectURL(file));
+		setPreviews(urls);
+	};
+	useEffect(() => {
+		return () => {
+			previews.forEach((url) => URL.revokeObjectURL(url));
+		};
+	}, [previews]);
+
 	// edit product
 	const id = product._id;
 	const onSubmit = (data: ProductAddSchemaType) => {
@@ -122,7 +160,17 @@ export default function ProductEditForm({
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
 				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
-					<AddEditProductFormMainpart editable />
+					<h2 className="text-lg font-bold text-(--color-accent-green)">
+						اطلاعات اصلی محصول
+					</h2>
+
+					<AddEditProductFormMainpart
+						isUpdating={isUpdating}
+						register={register}
+						errors={errors}
+						isAdding={false}
+						editable={false}
+					/>
 				</section>
 
 				{/* مشخصات */}
@@ -130,16 +178,31 @@ export default function ProductEditForm({
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						مشخصات محصول
 					</h2>
-					<AddEditProductFormProperties editable />
+
+					<AddEditProductFormProperties
+						isUpdating={isUpdating}
+						register={register}
+						errors={errors}
+						isAdding={false}
+						editable={false}
+					/>
 				</section>
+
 				{/* تنظیمات */}
 				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						تنظیمات
 					</h2>
-					<AddEditProductFormSetting editable />
+					<AddEditProductFormSetting
+						handleImageChange={handleImageChange}
+						previews={previews}
+						isUpdating={isUpdating}
+						register={register}
+						errors={errors}
+						isAdding={false}
+						editable={false}
+					/>
 				</section>
-
 				<div className="flex justify-center pt-4">
 					<div className="w-full md:w-72">
 						{errorUpdating && (
