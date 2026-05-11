@@ -1,3 +1,6 @@
+import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
+import { UseMutateFunction } from "@tanstack/react-query";
+
 export interface Product {
 	rating: number;
 	numReviews: number;
@@ -19,17 +22,33 @@ export interface Product {
 	isActive: boolean;
 }
 export interface ProductDataTable {
+	setEditSuccess: (val: boolean) => void;
 	productData: Product[];
 	editable: boolean;
 	deleteProduct?: (prodID: string) => void;
 	errorDeleting?: Error | null;
 	isDeleting?: boolean;
+	updateProduct: UseMutateFunction<
+		Product,
+		Error,
+		{ id: string; data: ProductAddSchemaType }
+	>;
+	isUpdating?: boolean;
+	errorUpdating: Error | null;
 }
 
 export interface TableRowPropsType {
+	setEditSuccess: (val: boolean) => void;
 	editable: boolean;
 	product: Product;
 	deleteProduct?: (prodID: string) => void;
 	errorDeleting?: Error | null;
 	isDeleting?: boolean;
+	updateProduct: UseMutateFunction<
+		Product,
+		Error,
+		{ id: string; data: ProductAddSchemaType }
+	>;
+	isUpdating?: boolean;
+	errorUpdating: Error | null;
 }

@@ -9,11 +9,15 @@ import Modal from "../base/modal";
 import ProductEdit from "../dashboard/components/aside/products/product-edit";
 
 export default function ProductsTableRow({
+	setEditSuccess,
 	product,
 	deleteProduct,
 	editable,
 	errorDeleting,
 	isDeleting,
+	updateProduct,
+	errorUpdating,
+	isUpdating,
 }: TableRowPropsType) {
 	const faNumber = (num: string | number) =>
 		new Intl.NumberFormat("fa-IR").format(Number(num));
@@ -23,14 +27,13 @@ export default function ProductsTableRow({
 	const [openDelete, setOpenDelete] = useState(false);
 
 	useEffect(() => {
-		if (confirmQuestion) {
-			deleteProduct ? deleteProduct(product._id) : null;
+		if (confirmQuestion && deleteProduct) {
+			deleteProduct(product._id);
 		}
-	}, [confirmQuestion]);
+	}, [confirmQuestion, deleteProduct, product._id]);
 
 	// handle edit
 	const [openEdit, setOpenEdit] = useState(false);
-	const [editSuccess, setEditSuccess] = useState(false);
 
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10">
@@ -99,12 +102,31 @@ export default function ProductsTableRow({
 				)}
 				{openEdit && (
 					<ProductEdit
+						errorUpdating={errorUpdating}
+						isUpdating={isUpdating}
+						updateProduct={updateProduct}
 						setEditSuccess={setEditSuccess}
 						product={product}
 						open
 						setOpen={setOpenEdit}
 						key={"edit"}
 					/>
+				)}
+				{isUpdating && (
+					<Modal
+						extraClasses="inset-[1%] md:inset-[40%]"
+						open
+						setOpen={() => {}}
+					>
+						{errorDeleting ? (
+							<span className="text-red-500">{"خطا در بروزرسانی محصول"}</span>
+						) : (
+							<div className="flex flex-col items-center justify-center gap-2">
+								<span>{"در حال بروزرسانی"}</span>
+								<RovixLuxuryLoader />
+							</div>
+						)}
+					</Modal>
 				)}
 			</td>
 		</tr>

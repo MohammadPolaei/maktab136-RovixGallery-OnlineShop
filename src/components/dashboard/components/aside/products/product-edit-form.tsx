@@ -8,9 +8,9 @@ import {
 	ProductAddSchemaType,
 } from "@/components/dashboard/utils/product-add-schema";
 
-import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import { Product } from "@/types/product-data-type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { UseMutateFunction } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AddProductInputContainer from "./add-product-input-container";
@@ -19,15 +19,24 @@ export default function ProductEditForm({
 	product,
 	setOpen,
 	setEditSuccess,
+	updateProduct,
+	errorUpdating,
+	isUpdating,
 }: {
 	product: Product;
 	setOpen: (val: boolean) => void;
 	setEditSuccess: (val: boolean) => void;
+	updateProduct: UseMutateFunction<
+		Product,
+		Error,
+		{ id: string; data: ProductAddSchemaType }
+	>;
+	isUpdating: boolean | undefined;
+	errorUpdating: Error | null;
 }) {
 	const [previews, setPreviews] = useState<string[]>([]);
 	// edit product
 	const id = product._id;
-	const { updateProduct, isUpdating, errorUpdating } = useProductMutations();
 
 	const {
 		register,
@@ -120,9 +129,9 @@ export default function ProductEditForm({
 			{ id, data },
 			{
 				onSuccess: () => {
-					setPreviews([]);
 					setOpen(false);
 					setEditSuccess(true);
+					reset();
 				},
 			}
 		);
@@ -452,7 +461,7 @@ export default function ProductEditForm({
 					<div className="w-full md:w-72">
 						{errorUpdating && (
 							<div className="text-red-500 w-full text-center">
-								{"خطا در ثبت محصول"}
+								{"خطا در بروزرسانی محصول"}
 							</div>
 						)}
 						<SubmitButton disabaled={isUpdating}>

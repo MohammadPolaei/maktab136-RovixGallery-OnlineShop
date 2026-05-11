@@ -17,6 +17,7 @@ export default function Products() {
 	// add new product
 	const [open, setOpen] = useState(false);
 	const [addSuccess, setAddSuccess] = useState(false);
+	const [editSuccess, setEditSuccess] = useState(false);
 
 	// Get products
 	const {
@@ -47,7 +48,14 @@ export default function Products() {
 
 	// CRUD
 
-	const { deleteProduct, errorDeleting, isDeleting } = useProductMutations();
+	const {
+		updateProduct,
+		deleteProduct,
+		errorDeleting,
+		isDeleting,
+		isUpdating,
+		errorUpdating,
+	} = useProductMutations();
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
@@ -99,6 +107,10 @@ export default function Products() {
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
 					<ProductsTable
+						setEditSuccess={setEditSuccess}
+						updateProduct={updateProduct}
+						errorUpdating={errorUpdating}
+						isUpdating={isUpdating}
 						productData={products}
 						editable
 						deleteProduct={deleteProduct}
@@ -131,6 +143,14 @@ export default function Products() {
 					open={addSuccess}
 					setOpen={setAddSuccess}
 				>{`محصول با موفقیت ثبت شد ✔`}</Modal>
+			)}
+			{editSuccess && (
+				<Modal
+					key={"succes"}
+					extraClasses="inset-[1%] md:inset-[40%] text-green-700"
+					open={editSuccess}
+					setOpen={setEditSuccess}
+				>{`بروزرسانی محصول با موفقیت انجام شد ✔`}</Modal>
 			)}
 		</section>
 	);

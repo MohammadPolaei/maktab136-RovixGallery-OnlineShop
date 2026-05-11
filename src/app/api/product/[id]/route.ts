@@ -26,22 +26,20 @@ export async function DELETE(
 // UPDATE
 export async function PUT(
 	req: NextRequest,
-	{ params }: { params: { id: string } }
+	context: { params: Promise<{ id: string }> }
 ) {
-	const token = getAdminToken(req);
-	const body = await req.json();
+	const { id } = await context.params;
 
-	const res = await fetch(
-		`${process.env.BACKEND_URL}/api/products/${params.id}`,
-		{
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
-			body: JSON.stringify(body),
-		}
-	);
+	const token = getAdminToken(req);
+	const formData = await req.formData();
+
+	const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
+		method: "PUT",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+		body: formData,
+	});
 
 	const data = await res.json();
 	return NextResponse.json(data, { status: res.status });

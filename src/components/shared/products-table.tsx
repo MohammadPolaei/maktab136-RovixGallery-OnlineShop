@@ -4,6 +4,10 @@ import { ProductDataTable } from "@/types/product-data-type";
 import ProductsTableRow from "./product-table-row";
 
 export default function ProductsTable({
+	setEditSuccess,
+	errorUpdating,
+	updateProduct,
+	isUpdating,
 	productData,
 	editable,
 	deleteProduct,
@@ -39,6 +43,10 @@ export default function ProductsTable({
 				<tbody>
 					{productData.map((item) => (
 						<ProductsTableRow
+							setEditSuccess={setEditSuccess}
+							errorUpdating={errorUpdating}
+							updateProduct={updateProduct}
+							isUpdating={isUpdating}
 							deleteProduct={deleteProduct}
 							errorDeleting={errorDeleting}
 							isDeleting={isDeleting}
