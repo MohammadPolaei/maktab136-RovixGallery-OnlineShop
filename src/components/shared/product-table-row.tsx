@@ -1,11 +1,9 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
-import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { TableRowPropsType } from "@/types/product-data-type";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import AskModal from "../base/ask-modal";
-import Modal from "../base/modal";
 import ProductEdit from "../dashboard/components/aside/products/product-edit";
 
 export default function ProductsTableRow({
@@ -97,22 +95,7 @@ export default function ProductsTableRow({
 						theQuestion={`آیا از حذف این محصول ${product.name} اطمینان دارید ؟`}
 					/>
 				) : null}
-				{isDeleting && (
-					<Modal
-						extraClasses="inset-[1%] md:inset-[40%]"
-						open
-						setOpen={() => {}}
-					>
-						{errorDeleting ? (
-							<span className="text-red-500">{"خطا در حذف محصول"}</span>
-						) : (
-							<div className="flex flex-col items-center justify-center gap-2">
-								<span>{"در حال حذف"}</span>
-								<RovixLuxuryLoader />
-							</div>
-						)}
-					</Modal>
-				)}
+
 				{openEdit && (
 					<ProductEdit
 						errorUpdating={errorUpdating}
@@ -124,22 +107,6 @@ export default function ProductsTableRow({
 						setOpen={setOpenEdit}
 						key={"edit"}
 					/>
-				)}
-				{isUpdating && (
-					<Modal
-						extraClasses="inset-[1%] md:inset-[40%]"
-						open
-						setOpen={() => {}}
-					>
-						{errorDeleting ? (
-							<span className="text-red-500">{"خطا در بروزرسانی محصول"}</span>
-						) : (
-							<div className="flex flex-col items-center justify-center gap-2">
-								<span>{"در حال بروزرسانی"}</span>
-								<RovixLuxuryLoader />
-							</div>
-						)}
-					</Modal>
 				)}
 			</td>
 		</tr>

@@ -1,5 +1,6 @@
 import Modal from "@/components/base/modal";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
+import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import { Product } from "@/types/product-data-type";
 import { UseMutateFunction } from "@tanstack/react-query";
 import ProductEditForm from "./product-edit-form";
@@ -31,9 +32,11 @@ export default function ProductEdit({
 		<Modal
 			open={open}
 			setOpen={setOpen}
-			extraClasses="inset-[1%] md:inset-[12%]"
+			extraClasses="inset-[1%] md:inset-[15%]"
 		>
-			{/* title as fixed */}
+			<DashboardHeadingContainer extraClasses="w-4/5" flexClass="flex-col">
+				{`ویرایش محصول - ${product.name}`}
+			</DashboardHeadingContainer>
 			<ProductEditForm
 				errorUpdating={errorUpdating}
 				isUpdating={isUpdating}

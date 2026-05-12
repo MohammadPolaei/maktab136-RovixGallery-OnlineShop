@@ -1,10 +1,13 @@
 "use client";
 
+import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { ProductDataTable } from "@/types/product-data-type";
+import Modal from "../base/modal";
 import ProductsTableRow from "./product-table-row";
 
 export default function ProductsTable({
 	editablePriceAndQuantity,
+	editSuccess,
 	setEditSuccess,
 	errorUpdating,
 	updateProduct,
@@ -59,6 +62,46 @@ export default function ProductsTable({
 					))}
 				</tbody>
 			</table>
+			{isUpdating && (
+				<Modal
+					extraClasses="inset-[1%] md:inset-[40%] text-[10px]"
+					open
+					setOpen={() => {}}
+				>
+					{errorDeleting ? (
+						<span className="text-red-500">{"خطا در بروزرسانی محصول"}</span>
+					) : (
+						<div className="flex flex-col items-center justify-center">
+							<span>{"در حال بروزرسانی"}</span>
+							<RovixLuxuryLoader />
+						</div>
+					)}
+				</Modal>
+			)}
+			{isDeleting && (
+				<Modal
+					extraClasses="inset-[1%] md:inset-[40%] text-[10px]"
+					open
+					setOpen={() => {}}
+				>
+					{errorDeleting ? (
+						<span className="text-red-500">{"خطا در حذف محصول"}</span>
+					) : (
+						<div className="flex flex-col items-center justify-center gap-2">
+							<span>{"در حال حذف"}</span>
+							<RovixLuxuryLoader />
+						</div>
+					)}
+				</Modal>
+			)}
+			{editSuccess && (
+				<Modal
+					key={"succes"}
+					extraClasses="inset-[1%] md:inset-[40%] text-green-700 text-[10px]"
+					open={editSuccess}
+					setOpen={setEditSuccess}
+				>{`بروزرسانی محصول با موفقیت انجام شد ✔`}</Modal>
+			)}
 		</div>
 	);
 }

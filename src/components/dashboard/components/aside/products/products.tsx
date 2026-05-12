@@ -59,7 +59,9 @@ export default function Products() {
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
-			<DashboardHeadingContainer>مدیریت محصولات</DashboardHeadingContainer>
+			<DashboardHeadingContainer flexClass="flex-row">
+				مدیریت محصولات
+			</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
 				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-white shadow-sm">
@@ -107,6 +109,7 @@ export default function Products() {
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
 					<ProductsTable
+						editSuccess={editSuccess}
 						setEditSuccess={setEditSuccess}
 						updateProduct={updateProduct}
 						errorUpdating={errorUpdating}
@@ -130,28 +133,22 @@ export default function Products() {
 			{/* modal */}
 
 			<Modal
-				extraClasses="inset-[1%] md:inset-[12%]"
+				extraClasses="inset-[1%] md:inset-[15%]"
 				open={open}
 				setOpen={setOpen}
 			>
-				{/* title as fixed */}
+				<DashboardHeadingContainer extraClasses="w-4/5" flexClass="flex-col">
+					{"افزودن محصول"}
+				</DashboardHeadingContainer>
 				<AddProductForm setOpen={setOpen} setAddSuccess={setAddSuccess} />
 			</Modal>
 			{addSuccess && (
 				<Modal
 					key={"succes"}
-					extraClasses="inset-[1%] md:inset-[40%] text-green-700"
+					extraClasses="inset-[1%] md:inset-[40%] text-green-700 text-[10px]"
 					open={addSuccess}
 					setOpen={setAddSuccess}
 				>{`محصول با موفقیت ثبت شد ✔`}</Modal>
-			)}
-			{editSuccess && (
-				<Modal
-					key={"succes"}
-					extraClasses="inset-[1%] md:inset-[40%] text-green-700"
-					open={editSuccess}
-					setOpen={setEditSuccess}
-				>{`بروزرسانی محصول با موفقیت انجام شد ✔`}</Modal>
 			)}
 		</section>
 	);

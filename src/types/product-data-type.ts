@@ -22,6 +22,7 @@ export interface Product {
 	isActive: boolean;
 }
 export interface ProductDataTable {
+	editSuccess: boolean;
 	editablePriceAndQuantity?: boolean;
 	setEditSuccess: (val: boolean) => void;
 	productData: Product[];

@@ -4,11 +4,11 @@ import InputValidationError from "@/components/base/input-validation-error";
 import { TextInput } from "@/components/base/inputs";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import AddProductInputContainer from "./add-product-input-container";
+import AddProductInputContainer from "../dashboard/components/aside/products/add-product-input-container";
 
 type Props = {
 	register: UseFormRegister<ProductAddSchemaType>;
-	isUpdating: boolean;
+	isUpdating: boolean | undefined;
 	isAdding: boolean;
 	editable: boolean;
 	errors: FieldErrors<ProductAddSchemaType>;

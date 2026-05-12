@@ -44,7 +44,7 @@ export default function Quantity() {
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
-			<DashboardHeadingContainer>
+			<DashboardHeadingContainer flexClass="flex-row">
 				موجودی و قیمت کالاها
 			</DashboardHeadingContainer>
 
@@ -93,6 +93,7 @@ export default function Quantity() {
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
 					<ProductsTable
+						editSuccess={editSuccess}
 						editablePriceAndQuantity
 						errorUpdating={errorUpdating}
 						setEditSuccess={setEditSuccess}

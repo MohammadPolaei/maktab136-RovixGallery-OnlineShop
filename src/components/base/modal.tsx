@@ -50,7 +50,7 @@ export default function Modal({
 		>
 			<div className="">
 				<div
-					className={`fixed ${extraClasses} z-60 bg-white rounded-md shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto`}
+					className={`fixed ${extraClasses} z-60 bg-gray-100 rounded-2xl shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto p-5`}
 				>
 					{children}
 					<button

@@ -11,9 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UseMutateFunction } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import AddEditProductFormMainpart from "./add-edit-product-form-mainpart";
-import AddEditProductFormProperties from "./add-edit-product-form-properties";
-import AddEditProductFormSetting from "./add-edit-product-form-setting";
+import AddEditProductFormMainpart from "../../../../shared/add-edit-product-form-mainpart";
+import AddEditProductFormProperties from "../../../../shared/add-edit-product-form-properties";
+import AddEditProductFormSetting from "../../../../shared/add-edit-product-form-setting";
 
 export default function ProductEditForm({
 	product,
@@ -156,7 +156,7 @@ export default function ProductEditForm({
 	}, [product, reset]);
 
 	return (
-		<div className="w-full max-w-5xl mx-auto p-6 text-right">
+		<div className="w-full max-w-5xl mx-auto text-right">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
 				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">

@@ -10,9 +10,9 @@ import { useProductMutations } from "@/components/dashboard/hooks/use-product-mu
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import AddEditProductFormMainpart from "./add-edit-product-form-mainpart";
-import AddProductFormProperties from "./add-edit-product-form-properties";
-import AddEditProductFormSetting from "./add-edit-product-form-setting";
+import AddEditProductFormMainpart from "../../../../shared/add-edit-product-form-mainpart";
+import AddProductFormProperties from "../../../../shared/add-edit-product-form-properties";
+import AddEditProductFormSetting from "../../../../shared/add-edit-product-form-setting";
 
 export default function AddProductForm({
 	setOpen,
@@ -76,7 +76,7 @@ export default function AddProductForm({
 	// UI
 
 	return (
-		<div className="w-full max-w-5xl mx-auto p-6">
+		<div className="w-full max-w-5xl mx-auto">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
 				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
