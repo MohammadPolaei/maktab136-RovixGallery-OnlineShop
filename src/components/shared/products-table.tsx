@@ -6,17 +6,16 @@ import Modal from "../base/modal";
 import ProductsTableRow from "./product-table-row";
 
 export default function ProductsTable({
-	editablePriceAndQuantity,
-	editSuccess,
-	setEditSuccess,
-	errorUpdating,
-	updateProduct,
-	isUpdating,
 	productData,
 	editable,
-	deleteProduct,
+	editSuccess,
+	errorUpdating,
+	isUpdating,
 	errorDeleting,
 	isDeleting,
+	setEditSuccess,
+	updateProduct,
+	deleteProduct,
 }: ProductDataTable) {
 	return (
 		<div className="bg-white rounded-lg overflow-x-auto">
@@ -47,7 +46,6 @@ export default function ProductsTable({
 				<tbody>
 					{productData.map((item) => (
 						<ProductsTableRow
-							editablePriceAndQuantity
 							setEditSuccess={setEditSuccess}
 							errorUpdating={errorUpdating}
 							updateProduct={updateProduct}

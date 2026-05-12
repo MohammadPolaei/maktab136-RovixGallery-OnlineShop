@@ -13,7 +13,9 @@ export default function Orders() {
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6">
-			<DashboardHeadingContainer>مدیریت سفارشات</DashboardHeadingContainer>
+			<DashboardHeadingContainer flexClass="flex-row">
+				مدیریت سفارشات
+			</DashboardHeadingContainer>
 			<DashboardSectionsContainer extraClasses="pt-3">
 				<OrdersFilters filter={filter} setFilter={setFilter} />
 				<OrdersTable filter={filter} setFilter={setFilter} />

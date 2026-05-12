@@ -137,7 +137,10 @@ export default function Products() {
 				open={open}
 				setOpen={setOpen}
 			>
-				<DashboardHeadingContainer extraClasses="w-4/5" flexClass="flex-col">
+				<DashboardHeadingContainer
+					extraClasses="w-4/5"
+					flexClass="flex-col md:flex-row"
+				>
 					{"افزودن محصول"}
 				</DashboardHeadingContainer>
 				<AddProductForm setOpen={setOpen} setAddSuccess={setAddSuccess} />

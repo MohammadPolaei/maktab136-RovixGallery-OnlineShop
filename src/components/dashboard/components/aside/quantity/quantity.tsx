@@ -39,8 +39,6 @@ export default function Quantity() {
 
 	const { updateProduct, isUpdating, errorUpdating } = useProductMutations();
 	const [editSuccess, setEditSuccess] = useState(false);
-	const [editablePriceAndQuantity, setEditablePriceAndQuantity] =
-		useState(false);
 
 	return (
 		<section dir="rtl" className="px-4 py-8 space-y-6 relative">
@@ -83,6 +81,9 @@ export default function Quantity() {
 						name="search"
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
+					<div className="text-[10px] md:text-[12px] text-black/80 bg-(--color-accent-green)/20 p-2 rounded-md">
+						{"جهت ویرایش قیمت و موجودی هر محصول ، رو آن کلیک کنید"}
+					</div>
 				</div>
 				{isLoading ? (
 					<div className="w-full text-[10px] flex flex-col justify-center items-center p-3">
@@ -93,8 +94,8 @@ export default function Quantity() {
 					<div className="text-red-500 text-center w-full">خطا در بارگذاری</div>
 				) : (
 					<ProductsTable
+						isUpdating={isUpdating}
 						editSuccess={editSuccess}
-						editablePriceAndQuantity
 						errorUpdating={errorUpdating}
 						setEditSuccess={setEditSuccess}
 						updateProduct={updateProduct}

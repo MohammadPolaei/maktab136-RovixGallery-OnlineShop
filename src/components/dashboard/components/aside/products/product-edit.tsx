@@ -34,7 +34,10 @@ export default function ProductEdit({
 			setOpen={setOpen}
 			extraClasses="inset-[1%] md:inset-[15%]"
 		>
-			<DashboardHeadingContainer extraClasses="w-4/5" flexClass="flex-col">
+			<DashboardHeadingContainer
+				extraClasses="w-4/5"
+				flexClass="flex-col md:flex-row"
+			>
 				{`ویرایش محصول - ${product.name}`}
 			</DashboardHeadingContainer>
 			<ProductEditForm

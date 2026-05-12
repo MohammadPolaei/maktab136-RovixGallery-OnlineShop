@@ -6,7 +6,7 @@ export default function DashboardHeadingContainer({
 	children,
 	extraClasses,
 }: {
-	flexClass: "flex-row" | "flex-col";
+	flexClass: "flex-row" | "flex-col md:flex-row";
 	children: React.ReactNode;
 	extraClasses?: string;
 }) {
