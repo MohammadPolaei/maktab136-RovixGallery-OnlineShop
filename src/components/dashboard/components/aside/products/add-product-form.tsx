@@ -33,6 +33,8 @@ export default function AddProductForm({
 		formState: { errors },
 	} = useForm<ProductAddSchemaType>({
 		resolver: zodResolver(ProductAddSchema),
+		mode: "onSubmit",
+		reValidateMode: "onChange",
 		defaultValues: {
 			isAuthentic: true,
 			isActive: true,
@@ -128,7 +130,7 @@ export default function AddProductForm({
 					<div className="w-full md:w-72">
 						{errorAdding && (
 							<div className="text-red-500 w-full text-center">
-								{"خطا در ثبت محصول"}
+								{errorAdding.message || "خطا در ثبت محصول"}
 							</div>
 						)}
 						<SubmitButton disabaled={isAdding}>

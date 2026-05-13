@@ -49,7 +49,9 @@ export const DialColorEnum = z.enum(["مشکی", "سبز", "آبی", "سفید"]
 
 const ImageSchema = z
 	.instanceof(File, { message: "فایل تصویر معتبر نیست" })
-	.refine((file) => file.size <= 5 * 1024 * 1024, "حداکثر حجم تصویر ۵MB است");
+	.refine((file) => file.size <= 5 * 1024 * 1024, {
+		message: "حداکثر حجم تصویر ۵MB است",
+	});
 
 /* schema */
 
@@ -59,13 +61,34 @@ export const ProductAddSchema = z.object({
 		.min(3, "نام محصول حداقل ۳ کاراکتر باشد")
 		.max(100, "نام محصول خیلی طولانی است"),
 
-	description: z.string().min(10, "توضیحات حداقل ۱۰ کاراکتر باشد").max(2000),
+	description: z
+		.string()
+		.min(10, "توضیحات حداقل ۱۰ کاراکتر باشد")
+		.max(2000, "توضیحات خیلی طولانی است"),
 
-	price: z.coerce.number().min(1000, "قیمت معتبر نیست"),
+	price: z.coerce
+		.number()
+		.refine((val) => !Number.isNaN(val), {
+			message: "قیمت باید عدد باشد",
+		})
+		.min(1000, "قیمت باید حداقل ۱٬۰۰۰ ریال باشد"),
 
-	stock: z.coerce.number().min(0, "موجودی معتبر نیست"),
+	stock: z.coerce
+		.number()
+		.refine((val) => !Number.isNaN(val), {
+			message: "موجودی باید عدد باشد",
+		})
+		.int("موجودی باید عدد صحیح باشد")
+		.min(0, "موجودی نمی‌تواند منفی باشد"),
 
-	popularity: z.coerce.number().min(0).max(100),
+	popularity: z.coerce
+		.number()
+		.refine((val) => !Number.isNaN(val), {
+			message: "محبوبیت باید عدد باشد",
+		})
+		.int("محبوبیت باید عدد صحیح باشد")
+		.min(0, "حداقل محبوبیت ۰ است")
+		.max(100, "حداکثر محبوبیت ۱۰۰ است"),
 
 	category: CategoryEnum,
 	brand: BrandEnum,

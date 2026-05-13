@@ -63,7 +63,11 @@ export default function Modal({
 							: ""
 					} z-60 bg-gray-100 rounded-2xl shadow py-5 overflow-y-auto`}
 				>
-					<div className="flex flex-col justify-evenly items-center gap-2 pt-20">
+					<div
+						className={`flex flex-col justify-evenly items-center gap-2 ${
+							modalUsecaseType === "form" ? "pt-20" : "py-1"
+						}`}
+					>
 						{children}
 					</div>
 					<div

@@ -3,6 +3,7 @@
 import { JSX } from "react";
 
 export interface InputType {
+	type?: "text" | "number" | "email";
 	isSubmiting?: boolean;
 	label?: string;
 	name: string;

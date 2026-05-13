@@ -67,8 +67,10 @@ export default function ProductsTable({
 					open
 					setOpen={() => {}}
 				>
-					{errorDeleting ? (
-						<span className="text-red-500">{"خطا در بروزرسانی محصول"}</span>
+					{errorUpdating ? (
+						<span className="text-red-500">
+							{errorUpdating.message || "خطا در بروزرسانی محصول"}
+						</span>
 					) : (
 						<div className="flex flex-col items-center justify-center">
 							<span>{"در حال بروزرسانی"}</span>
@@ -85,7 +87,9 @@ export default function ProductsTable({
 					setOpen={() => {}}
 				>
 					{errorDeleting ? (
-						<span className="text-red-500">{"خطا در حذف محصول"}</span>
+						<span className="text-red-500">
+							{errorDeleting.message || "خطا در حذف محصول"}
+						</span>
 					) : (
 						<div className="flex flex-col items-center justify-center gap-2">
 							<span>{"در حال حذف"}</span>

@@ -1,5 +1,3 @@
-// src/services/product.service.ts
-
 import { ProductAddSchemaType } from "../utils/product-add-schema";
 
 export const addProduct = async (data: ProductAddSchemaType) => {
@@ -29,8 +27,10 @@ export const addProduct = async (data: ProductAddSchemaType) => {
 		body: formData,
 	});
 
-	if (!res.ok) throw new Error("خطا در افزودن محصول");
-	return await res.json();
+	if (!res.ok) {
+		const errorData = await res.json();
+		throw new Error(errorData.message || "خطا در افزودن محصول");
+	}
 };
 
 export const updateProduct = async (id: string, data: ProductAddSchemaType) => {
@@ -59,14 +59,18 @@ export const updateProduct = async (id: string, data: ProductAddSchemaType) => {
 		method: "PUT",
 		body: formData,
 	});
-	if (!res.ok) throw new Error("خطا در بروزرسانی اطلاعات محصول");
-	return res.json();
+	if (!res.ok) {
+		const errorData = await res.json();
+		throw new Error(errorData.message || "خطا در بروزرسانی اطلاعات محصول");
+	}
 };
 
 export const deleteProduct = async (id: string) => {
 	const res = await fetch(`/api/product/${id}`, {
 		method: "DELETE",
 	});
-	if (!res.ok) throw new Error("خطا در حذف محصول");
-	return res.json();
+	if (!res.ok) {
+		const errorData = await res.json();
+		throw new Error(errorData.message || "خطا در حذف محصول");
+	}
 };

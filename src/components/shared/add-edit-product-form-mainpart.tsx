@@ -16,12 +16,23 @@ type Props = {
 
 const fields: {
 	name: keyof ProductAddSchemaType;
+	type: "number" | "text" | "email";
 	label: string;
 	placeholder: string;
 }[] = [
-	{ name: "name", label: "نام محصول", placeholder: "نام محصول" },
-	{ name: "price", label: "قیمت", placeholder: "قیمت به تومان" },
-	{ name: "stock", label: "موجودی", placeholder: "تعداد موجودی" },
+	{ name: "name", label: "نام محصول", placeholder: "نام محصول", type: "text" },
+	{
+		name: "price",
+		label: "قیمت",
+		placeholder: "قیمت به تومان",
+		type: "number",
+	},
+	{
+		name: "stock",
+		label: "موجودی",
+		placeholder: "تعداد موجودی - پیش فرض 0",
+		type: "number",
+	},
 ];
 
 export default function AddEditProductFormMainpart({
@@ -41,6 +52,7 @@ export default function AddEditProductFormMainpart({
 					{fields.map((item) => (
 						<div className="relative" key={item.name}>
 							<TextInput
+								type={item.type}
 								isSubmiting={isSubmiting}
 								extraClasses="w-full disabled:opacity-50"
 								name={item.name}

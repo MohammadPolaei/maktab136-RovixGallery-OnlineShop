@@ -34,7 +34,8 @@ export default function ProductEditForm({
 	isUpdating: boolean | undefined;
 	errorUpdating: Error | null;
 }) {
-	const [previews, setPreviews] = useState<string[]>([]);
+	const [previews, setPreviews] = useState<string[]>(product.images || []);
+
 	// edit product
 
 	const {
@@ -45,6 +46,8 @@ export default function ProductEditForm({
 		formState: { errors },
 	} = useForm<ProductAddSchemaType>({
 		resolver: zodResolver(ProductAddSchema),
+		mode: "onChange",
+		reValidateMode: "onChange",
 		defaultValues: {
 			isAuthentic: true,
 			isActive: true,
@@ -207,11 +210,11 @@ export default function ProductEditForm({
 					<div className="w-full md:w-72">
 						{errorUpdating && (
 							<div className="text-red-500 w-full text-center">
-								{"خطا در بروزرسانی محصول"}
+								{errorUpdating.message || "خطا در بروزرسانی محصول"}
 							</div>
 						)}
 						<SubmitButton disabaled={isUpdating}>
-							{isUpdating ? "در حال ثبت..." : "ثبت محصول"}
+							{isUpdating ? "در حال ویرایش..." : "ویرایش محصول"}
 						</SubmitButton>
 					</div>
 				</div>

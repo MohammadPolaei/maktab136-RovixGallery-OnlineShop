@@ -20,7 +20,7 @@ export function TextInput(userInput: InputType) {
 						? "text-center bg-(--color-accent-green)/10 h-10"
 						: "pr-8 h-12 bg-(--color-accent-green)/60 text-(--color-bg)"
 				}  px-1 py-2 outline-0 border border-(--color-gold)/50 rounded-md text-[10px] sm:text-sm `}
-				type="text"
+				type={`${userInput.type ? userInput.type : "text"}`}
 				name={userInput.name}
 				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
@@ -28,6 +28,11 @@ export function TextInput(userInput: InputType) {
 				onChange={userInput.onChange}
 				placeholder={userInput.placeholder || undefined}
 				disabled={userInput.isSubmiting}
+				onWheel={
+					userInput.type === "number"
+						? (e) => (e.currentTarget as HTMLInputElement).blur()
+						: undefined
+				}
 			/>
 		</div>
 	);

@@ -1,3 +1,4 @@
+import ImageIcon from "@/assets/SVG/add-edit-product-forms/image-icon";
 import InputValidationError from "@/components/base/input-validation-error";
 import { TextInput } from "@/components/base/inputs";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
@@ -26,6 +27,7 @@ export default function AddEditProductFormSetting({
 		<div>
 			<div className="relative p-0 flex items-center justify-between">
 				<TextInput
+					type="number"
 					isSubmiting={isSubmitting}
 					extraClasses="w-1/4 disabled:opacity-50"
 					name="popularity"
@@ -41,24 +43,37 @@ export default function AddEditProductFormSetting({
 				)}
 			</div>
 
-			<div className="relative pb-8 space-y-4">
-				<label className="font-medium text-sm">تصاویر محصول</label>
+			<div className="relative py-8 space-y-4">
+				<div className="w-100 flex justify-items-start items-center">
+					<label htmlFor="images" className="cursor-pointer">
+						<div className="w-30 flex justify-evenly items-center font-medium text-[12px] p-2 rounded-md bg-(--color-dark-green) hover:bg-(--color-accent-green) text-white disabled:opacity-50 cursor-pointer">
+							<ImageIcon />
+							انتخاب تصاویر
+						</div>
+					</label>
 
-				<input
-					disabled={isSubmitting}
-					type="file"
-					multiple
-					accept="image/png,image/jpeg,image/webp"
-					className="disabled:opacity-50 w-full rounded-md border border-gray-300 p-3 file:ml-4 file:rounded-md file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white"
-					onChange={(e) => handleImageChange(e.target.files)}
-				/>
+					<span className="mr-3 text-gray-600 text-[12px] w-40 rounded-md p-3 file:ml-4 file:rounded-md file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white">
+						{previews?.length
+							? `${previews.length} فایل انتخاب شد`
+							: "فایلی انتخاب نشده"}
+					</span>
+					{/* hidden but works */}
+					<input
+						id="images"
+						disabled={isSubmitting}
+						type="file"
+						multiple
+						accept="image/png,image/jpeg,image/webp"
+						className="hidden"
+						onChange={(e) => handleImageChange(e.target.files)}
+					/>
 
-				{errors.images?.message && (
-					<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
-						{errors.images.message as string}
-					</InputValidationError>
-				)}
-
+					{errors.images?.message && (
+						<InputValidationError extraClasses="absolute -bottom-5 right-0 text-[8px] sm:text-[10px] md:text-[12px]">
+							{errors.images.message as string}
+						</InputValidationError>
+					)}
+				</div>
 				{previews.length > 0 && (
 					<div className="flex flex-wrap gap-4 pt-4">
 						{previews.map((src, index) => (

@@ -1,6 +1,6 @@
 import InputValidationError from "@/components/base/input-validation-error";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormTrigger } from "react-hook-form";
 
 const brandOptions = [
 	{ value: "", text: "برند" },
