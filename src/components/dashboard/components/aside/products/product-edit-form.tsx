@@ -27,7 +27,7 @@ export default function ProductEditForm({
 	setOpen: (val: boolean) => void;
 	setEditSuccess: (val: boolean) => void;
 	updateProduct: UseMutateFunction<
-		Product,
+		void,
 		Error,
 		{ id: string; data: ProductAddSchemaType }
 	>;

@@ -1,5 +1,5 @@
 import { Product } from "@/types/product-data-type";
-import { CategorySales, OrderType } from "./types";
+import { CategorySales, OrderType } from "./types/dashboard-order-types";
 
 export const DASHBOARD_BASE_URL = "/dashboard";
 

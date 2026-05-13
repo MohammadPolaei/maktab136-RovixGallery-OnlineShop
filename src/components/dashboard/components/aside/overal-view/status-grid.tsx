@@ -1,10 +1,10 @@
 "use client";
 
-import { StatusCardDataType } from "@/components/dashboard/types";
+import { StatusCardDataTypeForGrid } from "@/components/dashboard/types/overal-view-types";
 import { useGetProducts } from "@/hooks/use-get-data";
 import StatCard from "./status-card";
 
-const stats: StatusCardDataType[] = [
+const stats: StatusCardDataTypeForGrid[] = [
 	{
 		title: "فروش کل",
 		value: "12,450,000,000 تومان",

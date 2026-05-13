@@ -10,7 +10,7 @@ type ProductEditType = {
 	open: boolean;
 	setOpen: (val: boolean) => void;
 	updateProduct: UseMutateFunction<
-		Product,
+		void,
 		Error,
 		{ id: string; data: ProductAddSchemaType }
 	>;

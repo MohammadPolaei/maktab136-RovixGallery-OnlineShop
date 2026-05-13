@@ -40,7 +40,7 @@ export interface ProductDataTable {
 	errorDeleting?: Error | null;
 	isDeleting?: boolean;
 	updateProduct: UseMutateFunction<
-		Product,
+		void,
 		Error,
 		{ id: string; data: ProductAddSchemaType }
 	>;
@@ -88,7 +88,7 @@ export interface TableRowPropsType {
 	errorDeleting?: Error | null;
 	isDeleting?: boolean;
 	updateProduct: UseMutateFunction<
-		Product,
+		void,
 		Error,
 		{ id: string; data: ProductAddSchemaType }
 	>;

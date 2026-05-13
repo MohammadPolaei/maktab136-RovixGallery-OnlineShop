@@ -1,4 +1,4 @@
-import { OrderType } from "@/components/dashboard/types";
+import { OrderType } from "@/components/dashboard/types/dashboard-order-types";
 import { useState } from "react";
 
 export default function OrdersChangeState({ order }: { order: OrderType }) {

@@ -1,4 +1,4 @@
-import { StatCardProps } from "@/components/dashboard/types";
+import { StatCardProps } from "@/components/dashboard/types/overal-view-types";
 
 export default function StatCard({
 	icon,

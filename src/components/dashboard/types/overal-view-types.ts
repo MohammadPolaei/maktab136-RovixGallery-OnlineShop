@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export type StatusCardDataType = {
+export type StatusCardDataTypeForGrid = {
 	title: string;
 	value: string;
 	increasePercent: number;
@@ -18,10 +18,3 @@ export type CategorySales = {
 	name: string;
 	value: number;
 };
-export interface OrderType {
-	_id: string;
-	userName: string;
-	createdAt: string;
-	totalPrice: number;
-	isDelivered: boolean;
-}

@@ -1,4 +1,4 @@
-import { OrderType } from "@/components/dashboard/types";
+import { OrderType } from "@/components/dashboard/types/dashboard-order-types";
 import OrdersChangeState from "../dashboard/components/aside/orders/orders-change-state";
 
 export default function OrdersTableRow({ order }: { order: OrderType }) {

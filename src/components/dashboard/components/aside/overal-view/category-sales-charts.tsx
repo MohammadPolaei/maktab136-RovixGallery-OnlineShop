@@ -1,6 +1,6 @@
 "use client";
 
-import { CategorySales } from "@/components/dashboard/types";
+import { CategorySales } from "@/components/dashboard/types/overal-view-types";
 import {
 	Cell,
 	Legend,
