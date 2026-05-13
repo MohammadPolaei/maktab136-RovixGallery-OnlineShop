@@ -12,6 +12,7 @@ export default function AddEditProductFormSetting({
 	errors,
 	handleImageChange,
 	previews,
+	setPreviews,
 }: {
 	register: UseFormRegister<ProductAddSchemaType>;
 	isUpdating: boolean | undefined;
@@ -20,6 +21,7 @@ export default function AddEditProductFormSetting({
 	errors: FieldErrors<ProductAddSchemaType>;
 	handleImageChange: (files: FileList | null) => void;
 	previews: string[];
+	setPreviews: (val: string[]) => void;
 }) {
 	const isSubmitting = editable ? isUpdating : isAdding;
 
@@ -74,6 +76,7 @@ export default function AddEditProductFormSetting({
 						</InputValidationError>
 					)}
 				</div>
+				{/* preview uploaded images */}
 				{previews.length > 0 && (
 					<div className="flex flex-wrap gap-4 pt-4">
 						{previews.map((src, index) => (
@@ -81,11 +84,21 @@ export default function AddEditProductFormSetting({
 								key={index}
 								className="relative overflow-hidden rounded-xl border border-gray-200"
 							>
-								<img
-									src={src}
-									alt="preview"
-									className="h-24 w-24 object-cover"
-								/>
+								<div className="relative">
+									<span
+										onClick={() => {
+											setPreviews(previews.filter((img) => img !== src));
+										}}
+										className="absolute top-1 right-1 py-1 px-2 rounded-md bg-white/40 text-[10px] text-center"
+									>
+										✖
+									</span>
+									<img
+										src={src}
+										alt="preview"
+										className="h-24 w-24 object-cover"
+									/>
+								</div>
 							</div>
 						))}
 					</div>

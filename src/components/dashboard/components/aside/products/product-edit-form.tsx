@@ -35,13 +35,16 @@ export default function ProductEditForm({
 	errorUpdating: Error | null;
 }) {
 	const [previews, setPreviews] = useState<string[]>(product.images || []);
-
+	const [existingImages, setExistingImages] = useState<string[]>([]);
+	const [newImages, setNewImages] = useState<File[]>([]);
+	const [deletedImages, setDeletedImages] = useState<string[]>([]);
 	// edit product
 
 	const {
 		register,
 		handleSubmit,
 		setValue,
+		getValues,
 		reset,
 		formState: { errors },
 	} = useForm<ProductAddSchemaType>({
@@ -67,14 +70,16 @@ export default function ProductEditForm({
 
 		const urls = fileArray.map((file) => URL.createObjectURL(file));
 		setPreviews(urls);
+		console.log(getValues("images"));
 	};
+
 	useEffect(() => {
 		return () => {
 			previews.forEach((url) => URL.revokeObjectURL(url));
 		};
 	}, [previews]);
 
-	// edit product
+	//set edit product
 	const id = product._id;
 	const onSubmit = (data: ProductAddSchemaType) => {
 		updateProduct(
@@ -197,8 +202,9 @@ export default function ProductEditForm({
 						تنظیمات
 					</h2>
 					<AddEditProductFormSetting
-						handleImageChange={handleImageChange}
+						setPreviews={setPreviews}
 						previews={previews}
+						handleImageChange={handleImageChange}
 						isUpdating={isUpdating}
 						register={register}
 						errors={errors}

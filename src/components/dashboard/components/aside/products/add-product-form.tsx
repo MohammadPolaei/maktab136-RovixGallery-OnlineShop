@@ -116,8 +116,9 @@ export default function AddProductForm({
 						تنظیمات
 					</h2>
 					<AddEditProductFormSetting
-						handleImageChange={handleImageChange}
+						setPreviews={setPreviews}
 						previews={previews}
+						handleImageChange={handleImageChange}
 						isUpdating={false}
 						register={register}
 						errors={errors}
