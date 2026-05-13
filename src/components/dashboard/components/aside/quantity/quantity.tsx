@@ -82,7 +82,7 @@ export default function Quantity() {
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
 					<div className="text-[10px] md:text-[12px] text-black/80 bg-(--color-accent-green)/20 p-2 rounded-md">
-						{"جهت ویرایش قیمت و موجودی هر محصول ، رو آن کلیک کنید"}
+						{"جهت ویرایش قیمت و موجودی هر محصول ، روی آن کلیک کنید"}
 					</div>
 				</div>
 				{isLoading ? (

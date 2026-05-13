@@ -62,7 +62,8 @@ export default function ProductsTable({
 			</table>
 			{isUpdating && (
 				<Modal
-					extraClasses="inset-[1%] md:inset-[40%] text-[10px]"
+					modalUsecaseType="message"
+					extraClasses="text-[10px]"
 					open
 					setOpen={() => {}}
 				>
@@ -78,7 +79,8 @@ export default function ProductsTable({
 			)}
 			{isDeleting && (
 				<Modal
-					extraClasses="inset-[1%] md:inset-[40%] text-[10px]"
+					modalUsecaseType="message"
+					extraClasses="text-[10px]"
 					open
 					setOpen={() => {}}
 				>
@@ -94,8 +96,9 @@ export default function ProductsTable({
 			)}
 			{editSuccess && (
 				<Modal
+					modalUsecaseType="message"
 					key={"succes"}
-					extraClasses="inset-[1%] md:inset-[40%] text-green-700 text-[10px]"
+					extraClasses=" text-green-700 text-[10px]"
 					open={editSuccess}
 					setOpen={setEditSuccess}
 				>{`بروزرسانی محصول با موفقیت انجام شد ✔`}</Modal>

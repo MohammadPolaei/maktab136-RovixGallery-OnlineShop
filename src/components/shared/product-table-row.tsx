@@ -192,7 +192,7 @@ export default function ProductsTableRow({
 						setConfirmQuestion={setConfirmQuestion}
 						openDelete={openDelete}
 						setOpenDelete={setOpenDelete}
-						theQuestion={`آیا از حذف این محصول ${product.name} اطمینان دارید ؟`}
+						theQuestion={`آیا از حذف این محصول - ${product.name} - اطمینان دارید ؟`}
 					/>
 				) : null}
 

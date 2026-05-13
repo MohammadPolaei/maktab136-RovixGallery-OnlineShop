@@ -22,11 +22,7 @@ export default function AskModal({
 	};
 
 	return (
-		<Modal
-			extraClasses="inset-[1%] md:inset-[40%]"
-			open={openDelete}
-			setOpen={setOpenDelete}
-		>
+		<Modal modalUsecaseType="message" open={openDelete} setOpen={setOpenDelete}>
 			<div className="w-full flex flex-col justify-center items-center gap-5">
 				<div className="text-center text-[12px] text-black/70 pt-10">
 					{theQuestion}

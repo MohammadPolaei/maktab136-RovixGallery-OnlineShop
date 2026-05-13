@@ -133,22 +133,18 @@ export default function Products() {
 			{/* modal */}
 
 			<Modal
-				extraClasses="inset-[1%] md:inset-[15%]"
+				modalTitle="افزودن محصول"
+				modalUsecaseType="form"
 				open={open}
 				setOpen={setOpen}
 			>
-				<DashboardHeadingContainer
-					extraClasses="w-4/5"
-					flexClass="flex-col md:flex-row"
-				>
-					{"افزودن محصول"}
-				</DashboardHeadingContainer>
 				<AddProductForm setOpen={setOpen} setAddSuccess={setAddSuccess} />
 			</Modal>
 			{addSuccess && (
 				<Modal
+					modalUsecaseType="message"
 					key={"succes"}
-					extraClasses="inset-[1%] md:inset-[40%] text-green-700 text-[10px]"
+					extraClasses="text-green-700 text-[10px]"
 					open={addSuccess}
 					setOpen={setAddSuccess}
 				>{`محصول با موفقیت ثبت شد ✔`}</Modal>

@@ -1,11 +1,16 @@
 import { useEffect, useRef } from "react";
+import DashboardHeadingContainer from "../shared/dashboard-heading-container";
 type ModalProps = {
+	modalUsecaseType: "message" | "form" | "free";
 	open: boolean | Error;
 	setOpen: (open: boolean) => void;
+	modalTitle?: string;
 	children: React.ReactNode;
-	extraClasses: string;
+	extraClasses?: string;
 };
 export default function Modal({
+	modalUsecaseType,
+	modalTitle,
 	extraClasses,
 	open,
 	setOpen,
@@ -50,15 +55,37 @@ export default function Modal({
 		>
 			<div className="">
 				<div
-					className={`fixed ${extraClasses} z-60 bg-gray-100 rounded-2xl shadow flex flex-col justify-evenly items-center gap-2 overflow-y-auto p-5`}
+					className={`fixed ${extraClasses} ${
+						modalUsecaseType == "message"
+							? "top-[40%] button-[40%] left-[15%] right-[15%] md:left-[35%] md:right-[35%]"
+							: modalUsecaseType == "form"
+							? "inset-[1%] md:inset-[15%]"
+							: ""
+					} z-60 bg-gray-100 rounded-2xl shadow py-5 overflow-y-auto`}
 				>
-					{children}
-					<button
-						className="absolute top-2 right-2 text-[12px] bg-gray-400 p-2 rounded-sm text-white cursor-pointer hover:bg-gray-500"
-						onClick={() => setOpen(false)}
+					<div className="flex flex-col justify-evenly items-center gap-2 pt-20">
+						{children}
+					</div>
+					<div
+						className={`${
+							modalUsecaseType !== "message"
+								? "fixed inset-[0%] md:top-[15%] mx-auto h-20 flex flex-col justify-evenly items-center bg-white rounded-b-md md:rounded-md md:w-[70%] shadow"
+								: "hidden"
+						} `}
 					>
-						بستن
-					</button>
+						<DashboardHeadingContainer
+							extraClasses="w-4/5"
+							flexClass="flex-col md:flex-row"
+						>
+							{modalTitle}
+						</DashboardHeadingContainer>
+						<button
+							className="absolute top-1 right-1 z-50 text-[10px] bg-gray-400 p-1 w-5 h-5 rounded-sm text-white cursor-pointer hover:bg-gray-500"
+							onClick={() => setOpen(false)}
+						>
+							✖
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
