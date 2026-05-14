@@ -5,7 +5,7 @@ import HeaderTop from "./components/top-header";
 
 export default function Header() {
 	return (
-		<header className="fixed top-0 w-full">
+		<header className="fixed top-0 w-full z-500">
 			<HeaderTop />
 			<div className="hidden md:block">
 				<Navbar />

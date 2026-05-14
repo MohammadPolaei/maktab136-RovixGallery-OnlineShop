@@ -1,1 +1,100 @@
 @import "tailwindcss";
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+:root {
+	/* Primary Colors */
+	--color-darkest: #0e2219;
+	--color-super-dark-green: #12291e;
+	--color-dark-green: #0f3b2e;
+	--color-accent-green: #1e5142;
+	/* Gold Palette */
+	--color-gold: #d8c27a;
+	--color-gold-dark: #9c804c;
+
+	/* Neutral Colors */
+	--color-bg: #f4f4f4;
+	--color-heading: #1a1a1a;
+	--color-subheading: #5f5f5f;
+}
+
+/* Background */
+
+.rovix-bg-darkest {
+	background-color: var(--color-darkest);
+}
+.rovix-bg-super-dark-green {
+	background-color: var(--color-super-dark-green);
+}
+.rovix-bg-dark-green {
+	background-color: var(--color-dark-green);
+}
+.rovix-bg-accent-green {
+	background-color: var(--color-accent-green);
+}
+.rovix-bg-gold {
+	background-color: var(--color-gold);
+}
+.rovix-bg-gold-dark {
+	background-color: var(--color-gold-dark);
+}
+.rovix-bg-base {
+	background-color: var(--color-bg);
+}
+
+/* Text */
+.rovix-text-dark-green {
+	color: var(--color-dark-green);
+}
+.rovix-text-accent-green {
+	color: var(--color-accent-green);
+}
+.rovix-text-light {
+	color: var(--color-bg);
+}
+.rovix-text-gold {
+	color: var(--color-gold);
+}
+.rovix-text-heading {
+	color: var(--color-heading);
+}
+.rovix-text-subheading {
+	color: var(--color-subheading);
+}
+
+/* Border */
+.rovix-border-gold {
+	border-color: var(--color-gold);
+}
+.rovix-border-accent-green {
+	border-color: var(--color-accent-green);
+}
+
+/* Link */
+
+.rovix-link {
+	color: var(--color-bg);
+}
+.rovix-link:hover {
+	color: var(--color-gold);
+}
+
+/* Logo */
+.logo {
+	background-image: url(@/assets/img/rovix-logo-2.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 50px;
+	height: 80px;
+}
+
+/* scroll bar */
+
+*::-webkit-scrollbar {
+	display: none;
+}

@@ -1,4 +1,5 @@
 import ProductsList from "@/components/main-app/products-list/components/products-list";
+import MainAppHeaderContainer from "@/components/shared/main-app-header-container copy";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilterUsingParams from "@/components/shared/products-filter-using-params";
 import { getProductsSSR } from "@/services/get-products-by-params";
@@ -14,7 +15,7 @@ export default async function ProductsPage({
 
 	const query = buildQuery(resolvedSearchParams);
 
-	const { data, pages, page } = await getProductsSSR(query);
+	const { data, pages, page, total } = await getProductsSSR(query);
 
 	// reSetting products image by currecting URL
 	const products = data.map((prod: Product) => ({
@@ -24,13 +25,28 @@ export default async function ProductsPage({
 		),
 	}));
 
+	const brandsList = data.map((p: Product) => p.brand);
+
 	return (
-		<main className="container mx-auto py-6">
-			<ProductsFilterUsingParams />
-
-			<ProductsList products={products} />
-
-			<ProductPagination totalPages={pages} currentPage={page} />
+		<main className="container px-5">
+			<MainAppHeaderContainer
+				brand=""
+				flexClass="flex-col md:flex-row"
+				extraClasses="mt-10"
+			>
+				محصولات
+			</MainAppHeaderContainer>
+			<div className="flex flex-col md:flex-row justify-center items-start gap-5 relative">
+				<section className="w-full md:flex-1 md:h-300 mt-15">
+					<div className="bg-white p-5 rounded-md shadow w-full h-120 flex flex-col justify-items-start items-center">
+						<ProductsFilterUsingParams />
+					</div>
+				</section>
+				<section className="flex-3">
+					<ProductsList totalProducts={total} products={products} />
+					<ProductPagination totalPages={pages} currentPage={page} />
+				</section>
+			</div>
 		</main>
 	);
 }

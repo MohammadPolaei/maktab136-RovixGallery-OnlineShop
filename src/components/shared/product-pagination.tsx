@@ -29,7 +29,7 @@ export default function ProductPagination({
 	};
 
 	return (
-		<div className="w-full flex flex-row justify-center items-center gap-2 text-[10px] md:text-sm">
+		<div className="w-full flex flex-row justify-center items-center gap-2 text-[10px] md:text-sm py-5">
 			<button
 				onClick={() => (setPage ? setPage(1) : goToPage(1))}
 				disabled={currentPage <= 1}

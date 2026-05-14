@@ -18,6 +18,7 @@ export async function getProductsSSR(query: Record<string, string>) {
 		console.error("Failed to fetch products:", res.status);
 		throw new Error("Failed to fetch products");
 	}
+	console.log(data);
 
 	return data.data;
 }

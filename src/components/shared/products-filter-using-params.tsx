@@ -32,7 +32,7 @@ export default function ProductsFilterUsingParams() {
 	};
 
 	return (
-		<div className="flex flex-col lg:flex-row gap-3 w-full overflow-x-auto">
+		<div className="flex flex-col gap-3 w-full overflow-x-auto">
 			{/* برند */}
 			<select
 				value={params.get("brand") ?? ""}
