@@ -1,9 +1,9 @@
 // FavoriteOutlined.tsx
-export const FavoriteOutlined = () => {
+export const FavoriteOutlined = ({ size }: { size: number }) => {
 	return (
 		<svg
-			width="20"
-			height="20"
+			width={size}
+			height={size}
 			viewBox="0 0 20 20"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +20,11 @@ export const FavoriteOutlined = () => {
 };
 
 // FavoriteFilled.tsx
-export const FavoriteFilled = () => {
+export const FavoriteFilled = ({ size }: { size: number }) => {
 	return (
 		<svg
-			width="20"
-			height="20"
+			width={size}
+			height={size}
 			viewBox="0 0 20 20"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

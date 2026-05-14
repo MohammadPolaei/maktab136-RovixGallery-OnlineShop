@@ -4,6 +4,7 @@ import {
 	prepareProductForUpdate,
 	TableRowPropsType,
 } from "@/types/product-data-type";
+import { faNumber } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import AskModal from "../base/ask-modal";
@@ -18,8 +19,6 @@ export default function ProductsTableRow({
 	deleteProduct,
 	updateProduct,
 }: TableRowPropsType) {
-	const faNumber = (num: string | number) =>
-		new Intl.NumberFormat("fa-IR").format(Number(num));
 	// handle delete
 
 	const [confirmQuestion, setConfirmQuestion] = useState(false);

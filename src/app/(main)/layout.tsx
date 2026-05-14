@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="bg-zinc-50 flex flex-col justify-center items-center">
+		<div className="bg-zinc-50 flex flex-col justify-between items-center ">
 			<Header />
 			<div className="pt-15 md:pt-25">{children}</div>
 			<Footer />

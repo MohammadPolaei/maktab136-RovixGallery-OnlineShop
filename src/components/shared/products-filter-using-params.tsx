@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export interface ProductSearchParams {
 	page?: string;
@@ -15,6 +16,9 @@ export interface ProductSearchParams {
 }
 
 export default function ProductsFilterUsingParams() {
+	// color change
+	const [selected, setSelected] = useState(false);
+
 	const router = useRouter();
 	const params = useSearchParams();
 
@@ -37,7 +41,11 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("brand") ?? ""}
 				onChange={(e) => updateParam("brand", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("brand")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">برندها</option>
 				<option value="Citizen">Citizen</option>
@@ -56,7 +64,11 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("gender") ?? ""}
 				onChange={(e) => updateParam("gender", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("gender")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">جنسیت</option>
 				<option value="مردانه">مردانه</option>
@@ -67,7 +79,9 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("sort") ?? ""}
 				onChange={(e) => updateParam("sort", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("sort") ? "bg-(--color-accent-green)/10 font-semibold" : ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">قیمت</option>
 				<option value="cheap">ارزان‌ترین</option>
@@ -78,7 +92,11 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("brandCountry") ?? ""}
 				onChange={(e) => updateParam("brandCountry", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("brandCountry")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">کشور</option>
 				<option value="ژاپن">ژاپن</option>
@@ -89,9 +107,13 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("color") ?? ""}
 				onChange={(e) => updateParam("color", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("color")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
-				<option value="">رنگ بدنه</option>
+				<option value="">رنگ بند</option>
 				<option value="مشکی">مشکی</option>
 				<option value="آبی">آبی</option>
 				<option value="نقره ای">نقره ای</option>
@@ -102,7 +124,11 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("dialColor") ?? ""}
 				onChange={(e) => updateParam("dialColor", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("dialColor")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">رنگ صفحه</option>
 				<option value="مشکی">مشکی</option>
@@ -115,9 +141,13 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("material") ?? ""}
 				onChange={(e) => updateParam("material", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("material")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
-				<option value="">جنس بدنه</option>
+				<option value="">جنس بند</option>
 				<option value="چرم">چرم</option>
 				<option value="لاستیک">لاستیک</option>
 				<option value="تیتانیوم">تیتانیوم</option>
@@ -128,7 +158,11 @@ export default function ProductsFilterUsingParams() {
 			<select
 				value={params.get("available") ?? ""}
 				onChange={(e) => updateParam("available", e.target.value)}
-				className="border px-3 py-2 rounded-md text-[12px] border-black/10"
+				className={`${
+					params.get("availabe")
+						? "bg-(--color-accent-green)/10 font-semibold"
+						: ""
+				} border px-3 py-2 rounded-md text-[10px] border-black/10 cursor-pointer focus:outline-[#0003]`}
 			>
 				<option value="">موجودی</option>
 				<option value="true">موجود</option>
@@ -138,7 +172,7 @@ export default function ProductsFilterUsingParams() {
 			{/* پاک کردن فیلترها */}
 			<button
 				onClick={clearAll}
-				className="border px-4 py-2 rounded-md text-[12px] bg-red-50 text-red-600 border-red-200"
+				className="border px-4 py-2 rounded-md text-[10px] bg-red-50 text-red-600 border-red-200 cursor-pointer"
 			>
 				پاک کردن فیلترها
 			</button>

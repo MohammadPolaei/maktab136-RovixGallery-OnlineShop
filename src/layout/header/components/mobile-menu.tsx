@@ -35,7 +35,7 @@ export default function MobileMenu() {
 	const pathname = usePathname();
 
 	return (
-		<div className="w-full h-15 flex flex-row justify-between items-center px-6 backdrop-blur-[5px] bg-radial from-(--color-super-dark-green)/90 to-(--color-darkest) rovix-text-gold rounded-t-lg">
+		<div className="w-full h-15 flex flex-row justify-between items-center px-6 backdrop-blur-[5px] bg-radial from-(--color-super-dark-green)/90 to-(--color-darkest) rovix-text-gold rounded-t-lg z-500">
 			{mobileMenuLinkItems.map((item) => {
 				const isActive =
 					item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
