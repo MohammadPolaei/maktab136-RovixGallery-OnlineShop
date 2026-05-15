@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 
 export interface ProductSearchParams {
 	page?: string;
@@ -17,7 +16,6 @@ export interface ProductSearchParams {
 
 export default function ProductsFilterUsingParams() {
 	// color change
-	const [selected, setSelected] = useState(false);
 
 	const router = useRouter();
 	const params = useSearchParams();

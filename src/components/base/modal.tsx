@@ -78,17 +78,12 @@ export default function Modal({
 						} `}
 					>
 						<DashboardHeadingContainer
-							extraClasses="w-4/5"
+							closeFn={() => setOpen(false)}
+							extraClasses="w-[95%]"
 							flexClass="flex-col md:flex-row"
 						>
 							{modalTitle}
 						</DashboardHeadingContainer>
-						<button
-							className="absolute top-1 right-1 z-50 text-[10px] bg-gray-400 p-1 w-5 h-5 rounded-sm text-white cursor-pointer hover:bg-gray-500"
-							onClick={() => setOpen(false)}
-						>
-							✖
-						</button>
 					</div>
 				</div>
 			</div>

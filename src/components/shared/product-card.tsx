@@ -1,5 +1,6 @@
-import CartIconButton from "@/assets/SVG/cart-icon-button";
+import { EyeIcon } from "@/assets/SVG/auth/show-hide-password-icon";
 import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
+import { StarFilledIcon } from "@/assets/SVG/product-card/rating-icon";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
@@ -15,43 +16,52 @@ export default function ProductCard({
 	cardUsageType,
 }: ProductCardProps) {
 	return (
-		<div className="w-full h-85 px-5 pt-8 pb-20 bg-white rounded-2xl hover:rounded-md shadow hover:shadow-2xl text-[8px] border-2 border-white/0 hover:border-gray-200 text-black/80 cursor-pointer flex flex-col justify-between items-center gap-5 relative transition-all ease-in-out duration-500">
+		<div className="w-full px-2 pt-8 pb-1 bg-white rounded-md shadow text-[10px] border-2 border-white/0 text-black/80 cursor-pointer flex flex-col justify-between items-center gap-5 relative transition-all ease-in-out duration-500">
+			<div className="w-full h-full bg-white/50 backdrop-blur-[5px] absolute flex flex-col justify-center items-center gap-1 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out">
+				<EyeIcon />
+				<span>{`مشاهده محصول`}</span>
+				<span>{`${product.name}`}</span>
+			</div>
 			<div className="text-black/50 absolute top-2 left-2">
 				<FavoriteOutlined size={20} />
 			</div>
-			<div className="w-full">
+			<div className="w-full h-55">
 				<Image
 					src={product.images[0]}
 					alt={product.name}
-					width={150}
+					width={300}
 					height={200}
 					className="rounded-md"
 				/>
 			</div>
-			<div className="w-full pt-5 pb-10 flex flex-col justify-between items-center gap-5 absolute bottom-5 bg-white">
-				<div className="w-full flex flex-row justify-between items-center px-5">
-					<div>
-						{`جنس بند : `}
-						{product.material}
-					</div>
-					<div className="flex justify-center items-center gap-1 font-semibold">
-						{product.gender}
-					</div>
+			<div className="w-full flex flex-row justify-between items-center ">
+				<div>
+					{`جنس بند : `}
+					{product.material}
 				</div>
-				<div className="w-full flex flex-row justify-between items-center px-5">
-					<div>{ShowColorOnCard(product.color)}</div>
-					<div className="flex justify-center items-center gap-1">
-						{faNumber(product.popularity)}
-						<FavoriteOutlined size={12} />
-					</div>
+				<div className="flex justify-center items-center gap-1 font-semibold">
+					{product.gender}
 				</div>
-				<span className="font-semibold text-center">{product.name}</span>
+			</div>
+			<div className="w-full flex flex-row justify-between items-center ">
+				<div>{ShowColorOnCard(product.color)}</div>
+				<div className="flex justify-center items-center gap-1">
+					{faNumber(product.popularity)}
+					<FavoriteOutlined size={12} />
+				</div>
+			</div>
+			<span className="w-full font-semibold text-left">{product.name}</span>
+			<div className="w-full flex justify-between items-center">
 				<span>{faNumber(product.price).toLocaleString()} ریال</span>
-				<button className="absolute -bottom-1 bg-(--color-gold) hover:bg-(--color-gold-dark) text-[10px] mx-5 py-2 px-3 flex justify-center items-center gap-2 rounded-md cursor-pointer transition-all ease-in-out duration-500">
+				<span className="flex justify-center items-center">
+					{faNumber(product.popularity / 10)}
+					<StarFilledIcon />
+				</span>
+			</div>
+			{/* <button className="absolute -bottom-1 bg-(--color-gold) hover:bg-(--color-gold-dark) text-[10px] mx-2 py-2  flex justify-center items-center gap-2 rounded-md cursor-pointer transition-all ease-in-out duration-500">
 					<CartIconButton />
 					<span className="text-[8px]">افزودن به سبد خرید</span>
-				</button>
-			</div>
+					</button> */}
 		</div>
 	);
 }
