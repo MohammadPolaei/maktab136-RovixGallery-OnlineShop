@@ -4,7 +4,7 @@ import FooterSentinel from "./components/footer-sentinel";
 
 export default function Footer() {
 	return (
-		<footer className="w-full z-400">
+		<footer className="w-full">
 			<div className="w-full rovix-bg-darkest rovix-text-light">
 				<div className="hidden md:block">
 					<FooterBar />

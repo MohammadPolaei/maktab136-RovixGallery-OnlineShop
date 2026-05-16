@@ -12,6 +12,7 @@ export interface InputType {
 	register?: any;
 	value?: string | number;
 	extraClasses?: string;
+	inputExtraclasses?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

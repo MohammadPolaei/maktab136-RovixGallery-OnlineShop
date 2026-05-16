@@ -1,6 +1,7 @@
 "use client";
 import LoadingIcon from "@/assets/SVG/loading-icon";
 import SearchInput from "@/components/base/search-input";
+import SummaryFilterContainer from "@/components/base/summary-filter-container";
 import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
@@ -47,34 +48,26 @@ export default function Quantity() {
 			</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
-				<details className="group w-full border border-(--color-dark-green)/50 rounded-md p-2 px-2 bg-white shadow-sm">
-					<summary className="cursor-pointer font-medium text-(--color-dark-green) flex items-center justify-between transition-all ease-in-out duration-300">
-						<span>اعمال فیلترها</span>
-						<span className="transition-transform group-open:rotate-180">
-							⌃
-						</span>
-					</summary>
-					<div className="w-full flex flex-col md:flex-row justify-between items-center gap-2 p-3">
-						<ProductsFilters
-							setBrandCountry={setBrandCountry}
-							setColor={setColor}
-							setDialColor={setDialColor}
-							setMaterial={setMaterial}
-							setBrand={setBrand}
-							setGender={setGender}
-							setSort={setSort}
-							setAvailable={setAvailable}
-							brandCountry={brandCountry}
-							color={color}
-							dialColor={dialColor}
-							material={material}
-							brand={brand}
-							gender={gender}
-							sort={sort}
-							available={available}
-						/>
-					</div>
-				</details>
+				<SummaryFilterContainer>
+					<ProductsFilters
+						setBrandCountry={setBrandCountry}
+						setColor={setColor}
+						setDialColor={setDialColor}
+						setMaterial={setMaterial}
+						setBrand={setBrand}
+						setGender={setGender}
+						setSort={setSort}
+						setAvailable={setAvailable}
+						brandCountry={brandCountry}
+						color={color}
+						dialColor={dialColor}
+						material={material}
+						brand={brand}
+						gender={gender}
+						sort={sort}
+						available={available}
+					/>
+				</SummaryFilterContainer>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 py-3">
 					<SearchInput
 						extraClasses="rounded-md w-8"

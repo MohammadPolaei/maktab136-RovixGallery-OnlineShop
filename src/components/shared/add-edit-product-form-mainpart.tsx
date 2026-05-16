@@ -52,6 +52,7 @@ export default function AddEditProductFormMainpart({
 					{fields.map((item) => (
 						<div className="relative" key={item.name}>
 							<TextInput
+								inputExtraclasses="text-center bg-(--color-accent-green)/10 h-10"
 								type={item.type}
 								isSubmiting={isSubmiting}
 								extraClasses="w-full disabled:opacity-50"

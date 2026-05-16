@@ -1,3 +1,4 @@
+import SummaryFilterContainer from "@/components/base/summary-filter-container";
 import ProductsList from "@/components/main-app/products-list/components/products-list";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilterUsingParams from "@/components/shared/products-filter-using-params";
@@ -28,15 +29,26 @@ export default async function ProductsPage({
 
 	return (
 		<main className="container px-5">
-			<div className="flex flex-col md:flex-row justify-center items-start gap-5 relative">
-				<section className="w-full md:flex-1 md:h-100 mt-10">
-					<div className="bg-white p-5 rounded-md shadow w-full h-115 flex flex-col justify-items-start items-center">
-						<ProductsFilterUsingParams />
+			<div className="flex flex-col md:flex-row justify-center items-start gap-5">
+				<section className="w-full md:flex-1 md:min-h-screen mt-7">
+					<div className="rounded-xl w-full hidden md:flex flex-col justify-items-start items-center">
+						{/* Desktop */}
+						<div className="w-full hidden md:block">
+							<ProductsFilterUsingParams mobileResponsive={false} />
+						</div>
+					</div>
+					{/* Mobile */}
+					<div className="w-full fixed top-14 right-0 left-0 z-200 md:hidden">
+						<SummaryFilterContainer>
+							<ProductsFilterUsingParams mobileResponsive />
+						</SummaryFilterContainer>
 					</div>
 				</section>
-				<section className="flex-3 flex flex-col justify-center items-center gap-5">
+				<section className="flex-5 flex flex-col justify-center items-center gap-3">
 					<ProductsList totalProducts={total} products={products} />
-					<ProductPagination totalPages={pages} currentPage={page} />
+					<div className="w-full bg-white py-2 rounded-md">
+						<ProductPagination totalPages={pages} currentPage={page} />
+					</div>
 				</section>
 			</div>
 		</main>

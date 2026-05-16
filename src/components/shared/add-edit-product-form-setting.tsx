@@ -29,6 +29,7 @@ export default function AddEditProductFormSetting({
 		<div>
 			<div className="relative p-0 flex items-center justify-between">
 				<TextInput
+					inputExtraclasses="text-center bg-(--color-accent-green)/10"
 					type="number"
 					isSubmiting={isSubmitting}
 					extraClasses="w-1/4 disabled:opacity-50"

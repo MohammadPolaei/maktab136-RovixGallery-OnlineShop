@@ -1,4 +1,4 @@
-export default function SummeryFilter({
+export default function SummaryFilter({
 	title,
 	children,
 }: {
@@ -7,7 +7,7 @@ export default function SummeryFilter({
 }) {
 	return (
 		<div className="flex flex-col gap-2">
-			<details className="flex flex-col">
+			<details className="group flex flex-col">
 				<summary className="flex items-center justify-between cursor-pointer list-none font-bold text-gray-800 pb-2">
 					<h3 className="text-[10px] font-bold text-gray-700">{title}</h3>
 

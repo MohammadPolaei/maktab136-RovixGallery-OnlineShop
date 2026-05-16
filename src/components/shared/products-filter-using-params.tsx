@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import SummeryFilter from "../base/summery-filter";
+import SummaryFilter from "../base/summary-filter";
 
 export interface ProductSearchParams {
 	page?: string;
@@ -56,7 +56,11 @@ const sortOptions = [
 	{ label: "محبوبترین", value: "popularity" },
 ];
 
-export default function ProductsFilter() {
+export default function ProductsFilter({
+	mobileResponsive,
+}: {
+	mobileResponsive: boolean;
+}) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -112,7 +116,11 @@ export default function ProductsFilter() {
 	return (
 		<aside
 			dir="rtl"
-			className="w-full max-w-sm bg-white border border-gray-100 rounded-md shadow-sm p-6 flex flex-col gap-5 text-[10px]"
+			className={`w-full max-w-sm max-h-screen overflow-y-auto bg-white ${
+				mobileResponsive
+					? ""
+					: "border border-gray-100 shadow-2xl shadow-black/5 p-6"
+			} rounded-md flex flex-col gap-2 text-[10px]`}
 		>
 			{/* HEADER */}
 
@@ -129,7 +137,7 @@ export default function ProductsFilter() {
 
 			{/* BRAND */}
 
-			<SummeryFilter title="برند">
+			<SummaryFilter title="برند">
 				{brands.map((b) => (
 					<summary key={b} className="list-none py-1">
 						<label className="flex items-center gap-2 cursor-pointer">
@@ -142,11 +150,11 @@ export default function ProductsFilter() {
 						</label>
 					</summary>
 				))}
-			</SummeryFilter>
+			</SummaryFilter>
 
 			{/* MATERIAL */}
 
-			<SummeryFilter title="جنس بند">
+			<SummaryFilter title="جنس بند">
 				{materials.map((m) => (
 					<summary key={m} className="list-none py-1">
 						<label className="flex items-center gap-2">
@@ -159,7 +167,7 @@ export default function ProductsFilter() {
 						</label>
 					</summary>
 				))}
-			</SummeryFilter>
+			</SummaryFilter>
 
 			{/* STRAP COLOR */}
 
