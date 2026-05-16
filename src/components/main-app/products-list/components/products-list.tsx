@@ -15,7 +15,7 @@ export default function ProductsList({
 				<div>مرتب سازی</div>
 			</div>
 			{products.length > 0 ? (
-				<div className="w-full h-110 overflow-y-auto grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 grid-row-2 gap-2 px-5 py-1 rounded-md shadow-2xl shadow-black/5">
+				<div className="w-full h-110 overflow-y-auto grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 grid-row-2 gap-2 px-5 py-1 rounded-xl shadow-2xl shadow-black/5">
 					{products.map((p: Product) => (
 						<ProductCard key={p._id} product={p} cardUsageType="product-list" />
 					))}

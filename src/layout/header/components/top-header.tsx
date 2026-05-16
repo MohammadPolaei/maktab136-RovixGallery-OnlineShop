@@ -37,7 +37,7 @@ export default function HeaderTop() {
 						>
 							سبد خرید
 						</Link>
-						<span className="absolute -top-1 right-0 rovix-bg-gold text-black text-xs px-1 rounded-full">
+						<span className="absolute -top-2 right-0 rovix-bg-gold text-black text-[10px] px-1 rounded-full">
 							0
 						</span>
 					</div>

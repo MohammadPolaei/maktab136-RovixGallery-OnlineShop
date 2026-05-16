@@ -17,7 +17,7 @@ export default function ProductCard({
 }: ProductCardProps) {
 	return (
 		<div className="w-full px-2 pt-8 pb-1 bg-white rounded-md shadow text-[10px] border-2 border-white/0 text-black/80 cursor-pointer flex flex-col justify-between items-center gap-5 relative transition-all ease-in-out duration-500">
-			<div className="w-full h-full bg-white/50 backdrop-blur-[5px] absolute flex flex-col justify-center items-center gap-1 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out">
+			<div className="w-full h-full bg-(--color-accent-green)/20 backdrop-blur-[15px] absolute top-0 rounded-md border flex flex-col justify-center items-center gap-1 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out">
 				<EyeIcon />
 				<span>{`مشاهده محصول`}</span>
 				<span>{`${product.name}`}</span>
