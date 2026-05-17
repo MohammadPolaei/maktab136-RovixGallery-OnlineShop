@@ -29,9 +29,16 @@ export default function FooterBar() {
 		return () => observer.disconnect();
 	}, []);
 
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	};
+
 	return (
 		<div
-			className={`fixed bottom-0 left-0 w-full text-[12px]
+			className={`fixed bottom-0 left-0 w-full text-[12px] z-100
       transition-all ease-in-out duration-500
       ${
 				expanded
@@ -52,7 +59,10 @@ export default function FooterBar() {
 						<WhatsappIconFooter />
 					</div>
 				</span>
-				<button className="flex flex-row items-center justify-center gap-2 text-[12px] rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out">
+				<button
+					onClick={scrollToTop}
+					className="flex flex-row items-center justify-center gap-2 text-[12px] rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out"
+				>
 					<BackToTopIcon />
 					برگشت به بالا
 				</button>
