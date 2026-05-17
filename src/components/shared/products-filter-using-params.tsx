@@ -119,7 +119,7 @@ export default function ProductsFilter({
 			className={`w-full max-w-sm max-h-screen overflow-y-auto bg-white ${
 				mobileResponsive
 					? ""
-					: "border border-gray-100 shadow-2xl shadow-black/5 p-6"
+					: "border border-gray-100 shadow-2xl shadow-black/5 p-6 sticky top-24"
 			} rounded-md flex flex-col gap-2 text-[10px]`}
 		>
 			{/* HEADER */}

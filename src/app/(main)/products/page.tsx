@@ -1,3 +1,4 @@
+import discountBanner from "@/assets/img/discount-banner.webp";
 import SummaryFilterContainer from "@/components/base/summary-filter-container";
 import ProductsBlog from "@/components/main-app/blog/products-blog";
 import ProductsList from "@/components/main-app/products-list/components/products-list";
@@ -6,6 +7,8 @@ import ProductsFilterUsingParams from "@/components/shared/products-filter-using
 import { getProductsSSR } from "@/services/get-products-by-params";
 import { Product } from "@/types/product-data-type";
 import { buildQuery } from "@/utils/build-query";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function ProductsPage({
 	searchParams,
@@ -34,8 +37,21 @@ export default async function ProductsPage({
 				<section className="w-full md:flex-1 md:min-h-screen mt-7">
 					<div className="rounded-xl w-full hidden md:flex flex-col justify-items-start items-center">
 						{/* Desktop */}
-						<div className="w-full hidden md:block">
-							<ProductsFilterUsingParams mobileResponsive={false} />
+						<div className="w-full h-520 hidden md:block space-y-5 relative">
+							<div className="min-h-2/3 relative">
+								<ProductsFilterUsingParams mobileResponsive={false} />
+							</div>
+							<div className="sticky top-24">
+								<Link href={"/products/discounts"} target="_blank">
+									<Image
+										alt="banner"
+										src={discountBanner}
+										width={1000}
+										height={1000}
+										className="rounded-md"
+									/>
+								</Link>
+							</div>
 						</div>
 					</div>
 					{/* Mobile */}
@@ -50,7 +66,7 @@ export default async function ProductsPage({
 					<div className="w-full bg-white py-2 rounded-md">
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>
-					<article>
+					<article className="h-screen overflow-y-auto rounded-md">
 						<ProductsBlog />
 					</article>
 				</section>
