@@ -103,7 +103,8 @@ const DivFadeBlurIn = ({ children }: { children: React.ReactNode }) => {
 				duration: 0.9,
 				ease: [0.16, 1, 0.3, 1],
 			}}
-			className="flex flex-col justify-center items-center gap-1 bg-(--color-accent-green)/20 rounded-lg border border-white/10 backdrop-blur-[5px] px-5 py-2 md:py-10 min-h-full"
+			className="flex flex-col justify-center items-center gap-1 bg-(--color-accent-green)/20 rounded-lg border border-white/10 backdrop-blur-[5px] px-5 py-2 md:py-10 
+		 min-h-full"
 		>
 			{children}
 		</motion.div>
@@ -204,7 +205,7 @@ export default function HeroSlider() {
 											animate={{ opacity: 1 }}
 											transition={{ duration: 0.8 }}
 										>
-											<div className="relative h-50 w-50 overflow-hidden">
+											<div className="relative md:h-50 h-30 md:w-50 w-30 overflow-hidden">
 												<motion.div
 													className="relative h-full w-full"
 													animate={{
@@ -258,14 +259,14 @@ export default function HeroSlider() {
 										<motion.div className="space-y-4 max-w-md">
 											<motion.h1
 												variants={fadeUp}
-												className="text-sm md:text-lg font-semibold tracking-tight text-white leading-snug"
+												className="text-[12px] md:text-lg font-semibold tracking-tight text-white leading-snug"
 											>
 												تجربه‌ای متمایز از زیبایی، کیفیت و اعتماد
 											</motion.h1>
 
 											<motion.p
 												variants={fadeUp}
-												className="text-[10px] md:text-[12px] lg:text-[14px] leading-4 md:leading-8 text-white/70"
+												className="text-[8px] md:text-[12px] lg:text-[14px] leading-4 md:leading-8 text-white/70"
 											>
 												ما با تکیه بر استانداردهای حرفه‌ای، محصولات و خدماتی را
 												ارائه می‌دهیم که در کنار زیبایی، بر کیفیت، اصالت و رضایت

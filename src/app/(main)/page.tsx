@@ -8,14 +8,16 @@ import SpecialOffers from "@/components/main-app/home/components/special-offers"
 
 export default function HomePage() {
 	return (
-		<section className="min-h-screen flex flex-col justify-start items-center gap-2 -mt-1">
+		<section className="min-h-screen flex flex-col justify-start items-center -mt-1">
 			<HeroSlider />
-			<Categories />
-			<SpecialOffers />
-			<FeaturedCollection />
-			<BestSellers />
-			<Brands />
-			<SelectedCategories />
+			<div className="container max-w-7xl min-h-screen flex flex-col justify-start items-center">
+				<Categories />
+				<SpecialOffers />
+				<FeaturedCollection />
+				<BestSellers />
+				<Brands />
+				<SelectedCategories />
+			</div>
 		</section>
 	);
 }
