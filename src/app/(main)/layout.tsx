@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="bg-zinc-50 flex flex-col justify-between items-center ">
 			<Header />
-			<div className="pt-15 md:mt-12 mb-15">{children}</div>
+			<main className="pt-15 md:mt-12 mb-15">{children}</main>
 			<Footer />
 		</div>
 	);
