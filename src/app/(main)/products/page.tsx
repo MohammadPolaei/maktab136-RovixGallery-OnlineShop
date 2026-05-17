@@ -1,4 +1,5 @@
 import SummaryFilterContainer from "@/components/base/summary-filter-container";
+import ProductsBlog from "@/components/main-app/blog/products-blog";
 import ProductsList from "@/components/main-app/products-list/components/products-list";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilterUsingParams from "@/components/shared/products-filter-using-params";
@@ -49,6 +50,9 @@ export default async function ProductsPage({
 					<div className="w-full bg-white py-2 rounded-md">
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>
+					<article>
+						<ProductsBlog />
+					</article>
 				</section>
 			</div>
 		</main>

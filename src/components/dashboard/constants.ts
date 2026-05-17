@@ -1,5 +1,6 @@
 import { Product } from "@/types/product-data-type";
-import { CategorySales, OrderType } from "./types/dashboard-order-types";
+import { OrderType } from "./types/dashboard-order-types";
+import { CategorySales } from "./types/overal-view-types";
 
 export const DASHBOARD_BASE_URL = "/dashboard";
 
