@@ -6,8 +6,8 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
-	background-color: #00a86b !important;
+.custom-progress .swiper-pagination-progressbar-fill {
+	background-color: var(--color-accent-green) !important;
 }
 .swiper-slide {
 	overflow: hidden;
