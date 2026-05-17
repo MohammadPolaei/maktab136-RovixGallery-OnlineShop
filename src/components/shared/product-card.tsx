@@ -16,8 +16,8 @@ export default function ProductCard({
 	cardUsageType,
 }: ProductCardProps) {
 	return (
-		<div className="w-full px-3 pb-3 pt-10 bg-white rounded-md shadow text-[10px] text-black/80 cursor-pointer flex flex-col justify-between items-center relative">
-			<div className="w-full h-full bg-white/90 backdrop-blur-[3px] absolute top-0 rounded-md flex flex-col justify-center items-center gap-1 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out">
+		<div className="w-full px-3 pb-3 pt-10 bg-white rounded-sm shadow shadow-black/5 text-[10px] text-black/80 cursor-pointer flex flex-col justify-between items-center relative">
+			<div className="w-full h-full bg-white/90 backdrop-blur-[3px] absolute top-0 rounded-sm flex flex-col justify-center items-center gap-1 opacity-0 hover:opacity-100 transition-all duration-500 ease-in-out">
 				<EyeIcon />
 				<span>{`مشاهده محصول`}</span>
 				<span>{`${product.name}`}</span>
@@ -31,7 +31,7 @@ export default function ProductCard({
 					alt={product.name}
 					width={300}
 					height={200}
-					className="rounded-md"
+					className="rounded-sm"
 				/>
 			</div>
 			<div className="w-full">
@@ -83,10 +83,6 @@ export default function ProductCard({
 					</div>
 				</div>
 			</div>
-			{/* <button className="absolute -bottom-1 bg-(--color-gold) hover:bg-(--color-gold-dark) text-[10px] mx-2 py-2  flex justify-center items-center gap-2 rounded-md cursor-pointer transition-all ease-in-out duration-500">
-					<CartIconButton />
-					<span className="text-[8px]">افزودن به سبد خرید</span>
-					</button> */}
 		</div>
 	);
 }

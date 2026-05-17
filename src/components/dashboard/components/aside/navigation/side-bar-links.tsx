@@ -76,7 +76,7 @@ export function SidebarLinks({
 						className={`
               flex items-center gap-3
               px-3 py-3
-              rounded-xl
+              rounded-sm
               text-[12px]
               transition-all
 							ease-in-out

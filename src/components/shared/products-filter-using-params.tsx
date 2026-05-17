@@ -116,11 +116,11 @@ export default function ProductsFilter({
 	return (
 		<aside
 			dir="rtl"
-			className={`w-full max-w-sm max-h-screen overflow-y-auto bg-white ${
+			className={`w-full max-w-sm max-h-127.25 overflow-y-auto bg-white ${
 				mobileResponsive
 					? ""
-					: "border border-gray-100 shadow-2xl shadow-black/5 p-6 sticky top-24"
-			} rounded-md flex flex-col gap-2 text-[10px]`}
+					: "border border-gray-100 shadow  shadow-black/5 p-6 sticky top-24"
+			} rounded-sm flex flex-col gap-2 text-[10px]`}
 		>
 			{/* HEADER */}
 
@@ -129,7 +129,7 @@ export default function ProductsFilter({
 
 				<button
 					onClick={clearFilters}
-					className="text-[10px] text-red-500 px-3 py-1 rounded-md bg-red-500/10 cursor-pointer hover:bg-red-500/50 hover:text-white transition-all duration-300 ease-in-out"
+					className="text-[10px] text-red-500 px-3 py-1 rounded-sm bg-red-500/10 cursor-pointer hover:bg-red-500/50 hover:text-white transition-all duration-300 ease-in-out"
 				>
 					حذف فیلتر
 				</button>
@@ -216,7 +216,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("gender", e.target.value)}
 					className={`${
 						searchParams.get("gender") ? "bg-(--color-accent-green)/10" : ""
-					} shadow rounded-md px-3 py-2 text-[10px] outline-0 cursor-pointer`}
+					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
 				>
 					<option value="">انتخاب جنسیت</option>
 
@@ -242,7 +242,7 @@ export default function ProductsFilter({
 						searchParams.get("brandCountry")
 							? "bg-(--color-accent-green)/10"
 							: ""
-					} shadow rounded-md px-3 py-2 text-[10px] outline-0 cursor-pointer`}
+					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
 				>
 					<option value="">همه کشورها</option>
 
@@ -264,7 +264,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("available", e.target.value)}
 					className={`${
 						searchParams.get("available") ? "bg-(--color-accent-green)/10" : ""
-					} shadow rounded-md px-3 py-2 text-[10px] outline-0 cursor-pointer`}
+					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
 				>
 					<option value="">همه</option>
 					<option value="true">فقط موجود</option>
@@ -282,7 +282,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("sort", e.target.value)}
 					className={`${
 						searchParams.get("sort") ? "bg-(--color-accent-green)/10" : ""
-					} shadow rounded-md px-3 py-2 text-[10px] outline-0 cursor-pointer`}
+					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
 				>
 					<option value="">پیش فرض</option>
 

@@ -7,7 +7,9 @@ export default function StatusBadge({ status }: { status: string }) {
 	};
 
 	return (
-		<span className={`px-3 py-1 rounded text-xs font-medium ${styles[status]}`}>
+		<span
+			className={`px-3 py-1 rounded-sm text-xs font-medium ${styles[status]}`}
+		>
 			{status}
 		</span>
 	);

@@ -10,7 +10,7 @@ export default function HeaderTop() {
 			<div className="max-w-7xl mx-auto flex items-center justify-evenly py-2 px-2">
 				{/* Search */}
 				<div className="flex items-center justify-center md:w-100">
-					<SearchInput name="search" extraClasses="rounded-md" />
+					<SearchInput name="search" extraClasses="rounded-sm" />
 				</div>
 				{/* Logo */}
 				<div className="flex-col h-10 justify-center items-center transition-all duration-300 ease-in-out hidden md:flex">

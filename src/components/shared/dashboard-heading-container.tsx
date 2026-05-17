@@ -16,7 +16,7 @@ export default function DashboardHeadingContainer({
 		<h1
 			className={`${
 				extraClasses ? extraClasses : ""
-			} flex ${flexClass} justify-between items-center text-sm md:text-lg font-semibold text-(--color-gold) bg-(--color-dark-green) rounded-xl p-2 px-8 shadow-md sticky top-0 backdrop-blur-lg z-5`}
+			} flex ${flexClass} justify-between items-center text-sm md:text-lg font-semibold text-(--color-gold) bg-(--color-dark-green) rounded-sm p-2 px-8 shadow shadow-black/5 sticky top-0 backdrop-blur-lg z-5`}
 		>
 			{children}
 			<div className={`flex justify-center items-center gap-2`}>
@@ -24,7 +24,7 @@ export default function DashboardHeadingContainer({
 				<button
 					className={`${
 						closeFn ? "flex" : "hidden"
-					}  text-[10px] border border-gray-400 py-1 px-2 rounded-lg text-white cursor-pointer hover:bg-gray-500`}
+					}  text-[10px] border border-gray-400/20 h-6.25 px-2 rounded-sm text-white flex flex-col justify-center items-center cursor-pointer hover:bg-gray-500`}
 					onClick={closeFn}
 				>
 					✖

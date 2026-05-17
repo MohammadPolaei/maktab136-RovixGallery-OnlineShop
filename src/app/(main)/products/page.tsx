@@ -35,7 +35,7 @@ export default async function ProductsPage({
 		<main className="container px-5">
 			<div className="flex flex-col md:flex-row justify-center items-start gap-5">
 				<section className="w-full md:flex-1 md:min-h-screen mt-7">
-					<div className="rounded-xl w-full hidden md:flex flex-col justify-items-start items-center">
+					<div className="rounded-sm w-full hidden md:flex flex-col justify-items-start items-center">
 						{/* Desktop */}
 						<div className="w-full h-520 hidden md:block space-y-5 relative">
 							<div className="min-h-2/3 relative">
@@ -48,7 +48,7 @@ export default async function ProductsPage({
 										src={discountBanner}
 										width={1000}
 										height={1000}
-										className="rounded-md"
+										className="rounded-sm"
 									/>
 								</Link>
 							</div>
@@ -63,10 +63,10 @@ export default async function ProductsPage({
 				</section>
 				<section className="flex-5 flex flex-col justify-center items-center gap-3">
 					<ProductsList totalProducts={total} products={products} />
-					<div className="w-full bg-white py-2 rounded-md">
+					<div className="w-full bg-white py-2 rounded-sm">
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>
-					<article className="h-screen overflow-y-auto rounded-md">
+					<article className="h-screen overflow-y-auto rounded-sm">
 						<ProductsBlog />
 					</article>
 				</section>

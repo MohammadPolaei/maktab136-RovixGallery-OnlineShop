@@ -167,7 +167,7 @@ export default function ProductEditForm({
 		<div className="w-full max-w-5xl mx-auto text-right">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
-				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
+				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						اطلاعات اصلی محصول
 					</h2>
@@ -182,7 +182,7 @@ export default function ProductEditForm({
 				</section>
 
 				{/* مشخصات */}
-				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
+				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						مشخصات محصول
 					</h2>
@@ -197,7 +197,7 @@ export default function ProductEditForm({
 				</section>
 
 				{/* تنظیمات */}
-				<section className="bg-white border border-gray-200 rounded-2xl p-6 space-y-8 shadow-sm">
+				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
 					<h2 className="text-lg font-bold text-(--color-accent-green)">
 						تنظیمات
 					</h2>

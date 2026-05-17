@@ -1,3 +1,9 @@
+import SectionTitle from "@/components/base/section-title";
+
 export default function SpecialOffers() {
-	return <div>SpecialOffers</div>;
+	return (
+		<div>
+			<SectionTitle title={`پیشنهادات ویژه`} />
+		</div>
+	);
 }

@@ -76,7 +76,7 @@ export default function LoginForm() {
 					placeholder="ایمیل خود را وارد کنید"
 				/>
 				{errors.email && (
-					<InputValidationError extraClasses="absolute top-0 left-0 text-[10px] md:text-[14px]">
+					<InputValidationError extraClasses="absolute top-0 left-0 text-left text-[10px] md:text-[14px]">
 						{errors.email.message}
 					</InputValidationError>
 				)}
@@ -91,7 +91,7 @@ export default function LoginForm() {
 					placeholder="کلمه عبور را وارد کنید"
 				/>
 				{errors.password && (
-					<InputValidationError extraClasses="absolute top-0 left-0 text-[10px] md:text-[14px]">
+					<InputValidationError extraClasses="absolute top-0 left-0 text-left text-[10px] md:text-[14px]">
 						{errors.password.message}
 					</InputValidationError>
 				)}

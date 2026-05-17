@@ -88,7 +88,7 @@ export default function Products() {
 
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 py-3">
 					<SearchInput
-						extraClasses="rounded-md"
+						extraClasses="rounded-sm"
 						name="search"
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
@@ -116,7 +116,7 @@ export default function Products() {
 					/>
 				)}
 			</DashboardSectionsContainer>
-			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
+			<div className="flex justify-between items-center rounded-sm bg-white shadow shadow-black/5 p-3">
 				<ProductPagination
 					currentPage={page}
 					totalPages={totalPages}

@@ -14,7 +14,7 @@ export default function SectionTitle({ title }: Props) {
 	return (
 		<div
 			ref={ref}
-			className="flex flex-col items-center py-10 overflow-hidden w-full"
+			className="flex flex-col items-center py-5 overflow-hidden w-full"
 		>
 			{/* تاج */}
 			<motion.div
@@ -95,7 +95,7 @@ export default function SectionTitle({ title }: Props) {
 					initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
 					animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
 					transition={{ duration: 0.8, delay: 0.35 }}
-					className="text-[16px] md:text-[20px] font-semibold tracking-wider text-gray-800"
+					className="text-[12px] sm:tsxt-[18px] md:text-[20px] font-semibold tracking-wider text-gray-800"
 				>
 					{title}
 				</motion.h2>

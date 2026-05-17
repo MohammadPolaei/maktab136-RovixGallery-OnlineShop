@@ -33,7 +33,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => (setPage ? setPage(1) : goToPage(1))}
 				disabled={currentPage <= 1}
-				className="w-8 h-6 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
+				className="w-8 h-6 rounded-sm cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				اول
 			</button>
@@ -43,7 +43,7 @@ export default function ProductPagination({
 					setPage ? setPage(currentPage - 1) : goToPage(currentPage - 1)
 				}
 				disabled={currentPage <= 1 || currentPage > totalPages}
-				className="w-12 h-7 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
+				className="w-12 h-7 rounded-sm cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				{"<<	قبلی "}
 			</button>
@@ -66,7 +66,7 @@ export default function ProductPagination({
 					setPage ? setPage(currentPage + 1) : goToPage(currentPage + 1)
 				}
 				disabled={currentPage >= totalPages || currentPage > totalPages}
-				className="w-12 h-7 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
+				className="w-12 h-7 rounded-sm cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				{"بعدی >>"}
 			</button>
@@ -74,7 +74,7 @@ export default function ProductPagination({
 			<button
 				onClick={() => (setPage ? setPage(totalPages) : goToPage(totalPages))}
 				disabled={currentPage >= totalPages}
-				className="w-8 h-6 rounded-md cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
+				className="w-8 h-6 rounded-sm cursor-pointer text-[10px] text-(--color-bg) bg-(--color-dark-green) hover:bg-(--color-accent-green) hover:text-(--color-gold) disabled:text-black/60 disabled:bg-(--color-accent-green)/20 disabled:cursor-auto disabled:opacity-30"
 			>
 				آخر
 			</button>

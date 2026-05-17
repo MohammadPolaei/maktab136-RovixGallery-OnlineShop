@@ -38,7 +38,7 @@ export function FooterMainSinglePart({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-full flex flex-col justify-center items-start p-5 rounded-2xl hover:bg-(--color-dark-green) transition-all duration-800 ease-in-out">
+		<div className="w-full flex flex-col justify-center items-start p-5 rounded-sm hover:bg-(--color-dark-green) transition-all duration-800 ease-in-out">
 			{children}
 		</div>
 	);

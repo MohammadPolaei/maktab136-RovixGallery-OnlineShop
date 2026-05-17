@@ -9,6 +9,7 @@ import SpecialOffers from "@/components/main-app/home/components/special-offers"
 export default function HomePage() {
 	return (
 		<section className="min-h-full flex flex-col justify-start items-center -mt-1">
+			<div className="bg-(--color-darkest) md:h-28 min-w-full absolute top-0" />
 			<HeroSlider />
 			<div className="container max-w-7xl min-h-screen flex flex-col justify-start items-center">
 				<Categories />

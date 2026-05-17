@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function ProductsBlog() {
 	return (
-		<section className="max-w-screen min-h-full mx-auto px-6 py-10 leading-relaxed text-gray-800 dark:text-gray-200 text-[12px] bg-white rounded-md relative">
-			<div className="w-full flex flex-col justify-center items-center bg-white/40 backdrop-blur-[5px] rounded-b-md sticky top-0">
+		<section className="max-w-screen min-h-full mx-auto px-6 py-10 leading-relaxed text-gray-800 dark:text-gray-200 text-[12px] bg-white rounded-sm relative">
+			<div className="w-full flex flex-col justify-center items-center bg-white/40 backdrop-blur-[5px] rounded-b-sm sticky top-0">
 				<Image
 					alt="Rovix Gallery"
 					src={rovixGalleryLogo}
@@ -49,12 +49,12 @@ export default function ProductsBlog() {
 					<li>ارسال سریع و بسته‌بندی ایمن</li>
 					<li>پشتیبانی آنلاین و مشاوره انتخاب ساعت</li>
 				</ul>
-				<div className="rounded-2xl py-10 overflow-hidden">
+				<div className="rounded-sm py-10 overflow-hidden">
 					<Image
 						draggable={false}
 						src={watchImage}
 						alt="watch"
-						className="w-full rounded-2xl"
+						className="w-full rounded-sm"
 						width={2500}
 						height={2500}
 					/>

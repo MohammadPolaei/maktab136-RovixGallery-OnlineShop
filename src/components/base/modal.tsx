@@ -61,7 +61,7 @@ export default function Modal({
 							: modalUsecaseType == "form"
 							? "inset-[1%] md:inset-[15%]"
 							: ""
-					} z-60 bg-gray-100 rounded-2xl shadow py-5 overflow-y-auto`}
+					} z-60 bg-gray-100 rounded-sm shadow shadow-black/5 py-5 overflow-y-auto`}
 				>
 					<div
 						className={`flex flex-col justify-evenly items-center gap-2 ${
@@ -73,7 +73,7 @@ export default function Modal({
 					<div
 						className={`${
 							modalUsecaseType !== "message"
-								? "fixed inset-[0%] md:top-[15%] mx-auto h-20 flex flex-col justify-evenly items-center bg-white rounded-b-md md:rounded-md md:w-[70%] shadow"
+								? "fixed inset-[0%] md:top-[15%] mx-auto h-20 flex flex-col justify-evenly items-center bg-white rounded-b-sm md:rounded-sm md:w-[70%] shadow shadow-black/5"
 								: "hidden"
 						} `}
 					>

@@ -8,7 +8,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.brand}
 				onChange={(e) => filters.setBrand(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">برندها</option>
 				<option value="Citizen">Citizen</option>
@@ -26,7 +26,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.gender}
 				onChange={(e) => filters.setGender(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">جنسیت</option>
 				<option value="مردانه">مردانه</option>
@@ -36,7 +36,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.sort}
 				onChange={(e) => filters.setSort(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">قیمت</option>
 				<option value="cheap">ارزان‌ترین</option>
@@ -45,7 +45,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.brandCountry}
 				onChange={(e) => filters.setBrandCountry(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">کشور</option>
 				<option value="ژاپن">ژاپن</option>
@@ -54,7 +54,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.color}
 				onChange={(e) => filters.setColor(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">رنگ</option>
 				<option value="مشکی">مشکی</option>
@@ -65,7 +65,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.dialColor}
 				onChange={(e) => filters.setDialColor(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">رنگ صفحه</option>
 				<option value="مشکی">مشکی</option>
@@ -76,7 +76,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.material}
 				onChange={(e) => filters.setMaterial(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">جنس بدنه</option>
 				<option value="چرم">چرم</option>
@@ -87,7 +87,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 			<select
 				value={filters.available}
 				onChange={(e) => filters.setAvailable(e.target.value)}
-				className="border px-3 py-2 rounded-md text-[8px] border-black/10 outline-0"
+				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
 				<option value="">موجودی</option>
 				<option value="true">موجود</option>

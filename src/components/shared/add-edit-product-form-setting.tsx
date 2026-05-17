@@ -49,13 +49,13 @@ export default function AddEditProductFormSetting({
 			<div className="relative py-8 space-y-4">
 				<div className="w-100 flex justify-items-start items-center">
 					<label htmlFor="images" className="cursor-pointer">
-						<div className="w-30 flex justify-evenly items-center font-medium text-[12px] p-2 rounded-md bg-(--color-dark-green) hover:bg-(--color-accent-green) text-white disabled:opacity-50 cursor-pointer">
+						<div className="w-30 flex justify-evenly items-center font-medium text-[12px] p-2 rounded-sm bg-(--color-dark-green) hover:bg-(--color-accent-green) text-white disabled:opacity-50 cursor-pointer">
 							<ImageIcon />
 							انتخاب تصاویر
 						</div>
 					</label>
 
-					<span className="mr-3 text-gray-600 text-[12px] w-40 rounded-md p-3 file:ml-4 file:rounded-md file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white">
+					<span className="mr-3 text-gray-600 text-[12px] w-40 rounded-sm p-3 file:ml-4 file:rounded-sm file:border-0 file:bg-(--color-accent-green) file:px-4 file:py-2 file:text-white">
 						{previews?.length
 							? `${previews.length} فایل انتخاب شد`
 							: "فایلی انتخاب نشده"}
@@ -83,14 +83,14 @@ export default function AddEditProductFormSetting({
 						{previews.map((src, index) => (
 							<div
 								key={index}
-								className="relative overflow-hidden rounded-xl border border-gray-200"
+								className="relative overflow-hidden rounded-sm border border-gray-200"
 							>
 								<div className="relative">
 									<span
 										onClick={() => {
 											setPreviews(previews.filter((img) => img !== src));
 										}}
-										className="absolute top-1 right-1 py-1 px-2 rounded-md bg-white/40 text-[10px] text-center"
+										className="absolute top-1 right-1 py-1 px-2 rounded-sm bg-white/40 text-[10px] text-center"
 									>
 										✖
 									</span>

@@ -61,7 +61,7 @@ export default function FooterBar() {
 				</span>
 				<button
 					onClick={scrollToTop}
-					className="flex flex-row items-center justify-center gap-2 text-[12px] rounded-2xl p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out"
+					className="flex flex-row items-center justify-center gap-2 text-[12px] rounded-sm p-3 cursor-pointer hover:bg-(--color-accent-green) active:text-[#e4e4e4] transition-all duration-500 ease-in-out"
 				>
 					<BackToTopIcon />
 					برگشت به بالا

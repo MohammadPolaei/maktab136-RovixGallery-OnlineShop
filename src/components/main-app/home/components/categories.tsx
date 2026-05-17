@@ -27,7 +27,7 @@ export default function Categories() {
 			<SectionTitle
 				title={`
 				
-					دسته‌بندی‌ها
+					دسته‌ بندی‌ ها
 				`}
 			/>
 
@@ -36,7 +36,7 @@ export default function Categories() {
 					<Link
 						key={cat.title}
 						href={cat.href}
-						className="group relative overflow-hidden rounded-md cursor-pointer"
+						className="group relative overflow-hidden rounded-sm cursor-pointer"
 					>
 						<Image
 							src={cat.image}

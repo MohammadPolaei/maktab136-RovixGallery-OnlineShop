@@ -70,7 +70,7 @@ export default function ProductsTableRow({
 					alt={product.name}
 					width={50}
 					height={50}
-					className="rounded"
+					className="rounded-sm"
 				/>
 			</td>
 
@@ -99,7 +99,7 @@ export default function ProductsTableRow({
 								}}
 								min={1000}
 								autoFocus
-								className={`bg-(--color-accent-green)/20 rounded px-2 py-1 w-25 text-[10px] text-center outline-none transition-colors ${
+								className={`bg-(--color-accent-green)/20 rounded-sm px-2 py-1 w-25 text-[10px] text-center outline-none transition-colors ${
 									isPriceInvalid
 										? "border-red-500 bg-red-50 text-red-700"
 										: "border-(--color-accent-green) text-(--color-accent-green)"
@@ -135,14 +135,14 @@ export default function ProductsTableRow({
 								type="number"
 								value={stock}
 								onChange={(e) => setStock(Number(e.target.value))}
-								className="bg-(--color-accent-green)/20 rounded px-2 py-1 text-[10px] text-center w-10 outline-none transition-colors "
+								className="bg-(--color-accent-green)/20 rounded-sm px-2 py-1 text-[10px] text-center w-10 outline-none transition-colors "
 							/>
 						) : (
 							faNumber(product.stock)
 						)}
 						{/* to set confirm button after edit */}
 						{readyToEdit && (
-							<div className="h-10 rounded-md flex justify-center items-center gap-1 absolute top-0 left-10 text-gray-700">
+							<div className="h-10 rounded-sm flex justify-center items-center gap-1 absolute top-0 left-10 text-gray-700">
 								<span className="px-1 w-30 ">ذخیره تغییرات ؟</span>
 								<button
 									onClick={handleCancel}

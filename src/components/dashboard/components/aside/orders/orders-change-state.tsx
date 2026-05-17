@@ -6,7 +6,7 @@ export default function OrdersChangeState({ order }: { order: OrderType }) {
 	return (
 		<button
 			onClick={() => setDeliveredState(!deliveredState)}
-			className={`px-3 py-1 rounded text-xs font-medium cursor-pointer 
+			className={`px-3 py-1 rounded-sm text-xs font-medium cursor-pointer 
           ${
 						deliveredState
 							? "bg-green-200 text-green-800"

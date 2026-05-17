@@ -103,7 +103,7 @@ const DivFadeBlurIn = ({ children }: { children: React.ReactNode }) => {
 				duration: 0.9,
 				ease: [0.16, 1, 0.3, 1],
 			}}
-			className="flex flex-col justify-center items-center gap-1 bg-(--color-accent-green)/20 rounded-lg border border-white/10 backdrop-blur-[5px] px-5 py-2 md:py-10 
+			className="flex flex-col justify-center items-center gap-1 bg-(--color-accent-green)/20 rounded-sm border border-white/10 backdrop-blur-[5px] px-5 py-2 md:py-10 
 		 min-h-full"
 		>
 			{children}
@@ -183,7 +183,7 @@ export default function HeroSlider() {
 												>
 													<Link
 														href="/products"
-														className="text-[8px] md:text-[14px] lg:text-lg bg-(--color-gold) hover:bg-green-600 text-black font-semibold py-2 px-6 rounded-md transition-all hover:scale-105 ease-in-out duration-500"
+														className="text-[8px] md:text-[14px] lg:text-lg bg-(--color-gold) hover:bg-green-600 text-black font-semibold py-2 px-6 rounded-sm transition-all hover:scale-105 ease-in-out duration-500"
 													>
 														مشاهده محصولات
 													</Link>

@@ -18,7 +18,7 @@ export default function ProductsTable({
 	deleteProduct,
 }: ProductDataTable) {
 	return (
-		<div className="bg-white rounded-lg overflow-x-auto">
+		<div className="bg-white rounded-sm overflow-x-auto">
 			<table className="w-full text-[12px] text-center min-w-300">
 				<thead className="bg-(--color-dark-green) text-(--color-bg) text-center">
 					<tr>

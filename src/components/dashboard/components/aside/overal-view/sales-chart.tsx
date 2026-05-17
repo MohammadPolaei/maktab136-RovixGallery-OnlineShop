@@ -13,11 +13,11 @@ import {
 
 export default function SalesChart() {
 	return (
-		<div className="bg-white rounded-xl shadow p-6 flex-1">
+		<div className="bg-white rounded-sm shadow shadow-black/5 p-5 flex-1">
 			<div className="flex justify-between mb-4">
 				<h3 className="font-bold text-gray-900">تحلیل فروش</h3>
 
-				<select className="shadow outline-0 rounded px-2 py-1 text-sm">
+				<select className="shadow shadow-black/5 outline-0 rounded-sm px-2 py-1 text-sm">
 					<option>۳۰ روز گذشته</option>
 					<option>۷ روز گذشته</option>
 				</select>

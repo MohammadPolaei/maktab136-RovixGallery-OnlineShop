@@ -70,11 +70,11 @@ export default function Quantity() {
 				</SummaryFilterContainer>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-2 py-3">
 					<SearchInput
-						extraClasses="rounded-md w-8"
+						extraClasses="rounded-sm w-8"
 						name="search"
 						onChange={(e) => setSearchData(e.target.value)}
 					/>
-					<div className="text-[10px] md:text-[12px] text-black/80 bg-(--color-accent-green)/20 p-2 rounded-md">
+					<div className="text-[10px] md:text-[12px] text-black/80 bg-(--color-accent-green)/20 p-2 rounded-sm">
 						{"جهت ویرایش قیمت و موجودی هر محصول ، روی آن کلیک کنید"}
 					</div>
 				</div>
@@ -97,7 +97,7 @@ export default function Quantity() {
 					/>
 				)}
 			</DashboardSectionsContainer>
-			<div className="flex justify-between items-center rounded-xl bg-white shadow-md p-3">
+			<div className="flex justify-between items-center rounded-sm bg-white shadow shadow-black/5 p-3">
 				<ProductPagination
 					currentPage={page}
 					totalPages={totalPages}
