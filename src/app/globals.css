@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* swiper slider package */
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+	background-color: #00a86b !important;
+}
+.swiper-slide {
+	overflow: hidden;
+}
+@media (max-width: 768px) {
+	.custom-prev,
+	.custom-next {
+		display: none;
+	}
+}
+
 @font-face {
 	font-family: Samim;
 	src: url(../assets/fonts/Samim.woff2);
