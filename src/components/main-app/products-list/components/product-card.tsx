@@ -7,11 +7,11 @@ import {
 	WatchDialIcon,
 	WatchStrapIcon,
 } from "@/assets/SVG/product-card/watch-icon";
+import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import ShowColorOnCard from "./show-color-on-card";
 
 const cardItemVariants: Variants = {
 	hidden: { opacity: 0, y: 30, scale: 0.96 },

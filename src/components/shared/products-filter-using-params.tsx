@@ -216,7 +216,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("gender", e.target.value)}
 					className={`${
 						searchParams.get("gender") ? "bg-(--color-accent-green)/10" : ""
-					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
+					} shadow shadow-black/2 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/2 cursor-pointer`}
 				>
 					<option value="">انتخاب جنسیت</option>
 
@@ -242,7 +242,7 @@ export default function ProductsFilter({
 						searchParams.get("brandCountry")
 							? "bg-(--color-accent-green)/10"
 							: ""
-					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
+					} shadow shadow-black/2 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/2 cursor-pointer`}
 				>
 					<option value="">همه کشورها</option>
 
@@ -264,7 +264,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("available", e.target.value)}
 					className={`${
 						searchParams.get("available") ? "bg-(--color-accent-green)/10" : ""
-					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
+					} shadow shadow-black/2 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/2 cursor-pointer`}
 				>
 					<option value="">همه</option>
 					<option value="true">فقط موجود</option>
@@ -282,7 +282,7 @@ export default function ProductsFilter({
 					onChange={(e) => updateSingle("sort", e.target.value)}
 					className={`${
 						searchParams.get("sort") ? "bg-(--color-accent-green)/10" : ""
-					} shadow shadow-black/5 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/10 cursor-pointer`}
+					} shadow shadow-black/2 rounded-sm px-3 py-2 text-[10px] outline-1 outline-black/2 cursor-pointer`}
 				>
 					<option value="">پیش فرض</option>
 
