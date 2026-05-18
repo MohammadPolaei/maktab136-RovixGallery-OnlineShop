@@ -37,7 +37,7 @@ export default async function ProductsPage({
 				<section className="w-full md:flex-1 md:min-h-screen mt-7">
 					<div className="rounded-sm w-full hidden md:flex flex-col justify-items-start items-center">
 						{/* Desktop */}
-						<div className="w-full h-520 hidden md:block space-y-5 relative">
+						<div className="w-full h-565 hidden md:block space-y-5 relative">
 							<div className="min-h-2/3 relative">
 								<ProductsFilterUsingParams mobileResponsive={false} />
 							</div>
@@ -64,7 +64,11 @@ export default async function ProductsPage({
 					</div>
 				</section>
 				<section className="flex-5 flex flex-col justify-center items-center gap-3">
-					<ProductsList totalProducts={total} products={products} />
+					<ProductsList
+						totalProducts={total}
+						currentPage={page}
+						products={products}
+					/>
 					<div className="w-full bg-white py-2 rounded-sm">
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>

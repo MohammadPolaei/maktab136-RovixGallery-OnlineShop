@@ -1,29 +1,46 @@
-import ProductCard from "@/components/shared/product-card";
+"use client";
 import { Product } from "@/types/product-data-type";
+import { motion, Variants } from "framer-motion";
+import ProductCard from "./product-card";
+
+const containerVariants: Variants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+};
 
 export default function ProductsList({
 	products,
 	totalProducts,
+	currentPage,
 }: {
-	products: any[];
+	products: Product[];
 	totalProducts: number;
+	currentPage: string;
 }) {
 	return (
 		<div className="w-full">
-			<div className="text-black/50 text-[10px] w-full flex flex-col md:flex-row justify-between items-center gap-1 pb-1 pt-2 px-6">
-				<div>{`نمایش 12 از ${totalProducts} محصول`}</div>
+			<div className="text-neutral-400 text-[11px] w-full flex justify-between items-center pb-5 pt-2 px-2">
+				<div className="bg-white shadow shadow-black/5 px-4 py-1.5 rounded-sm font-medium text-neutral-500">
+					{`نمایش ${products.length} از ${totalProducts} محصول`}
+				</div>
 			</div>
-			<div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-row-2 gap-2 rounded-sm shadow shadow-black/5">
-				{products.length > 0 ? (
-					products.map((p: Product) => (
-						<ProductCard key={p._id} product={p} cardUsageType="product-list" />
-					))
-				) : (
-					<div className="w-full md:w-260 h-100 text-center bg-(--color-accent-green)/10 flex flex-col items-center justify-center rounded-sm">
-						محصولی برای نمایش وجود ندارد
-					</div>
-				)}
-			</div>
+
+			<motion.div
+				key={currentPage}
+				variants={containerVariants}
+				initial="hidden"
+				animate="visible"
+				className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-start"
+			>
+				{products.map((p: Product) => (
+					<ProductCard key={p._id} product={p} />
+				))}
+			</motion.div>
 		</div>
 	);
 }
