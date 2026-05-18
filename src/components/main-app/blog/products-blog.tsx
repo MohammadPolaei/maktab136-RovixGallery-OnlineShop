@@ -184,12 +184,9 @@ export default function ProductsBlog() {
 				</ul>
 			</motion.div>
 
-			<motion.div
-				variants={item}
-				className="text-center mt-10 border-t border-emerald-600 pt-6"
-			>
+			<motion.div variants={item} className="text-center mt-10 pt-6">
 				<p className="text-lg font-semibold text-emerald-700">
-					✨ با رویکس گالری، زمان را با سلیقه‌تان بسازید ✨
+					با رویکس گالری، زمان را با سلیقه‌تان بسازید
 				</p>
 			</motion.div>
 		</motion.section>

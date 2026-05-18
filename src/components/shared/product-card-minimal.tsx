@@ -37,7 +37,7 @@ export function ProductCardMinimal({
 		<motion.article
 			variants={cardVariants}
 			whileHover={{ y: -8 }}
-			className="group relative flex max-w-70 flex-col overflow-hidden rounded-sm bg-white p-3 shadow-sm ring-1 ring-slate-100 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+			className="group relative cursor-pointer flex max-w-70 flex-col overflow-hidden rounded-sm bg-white p-3 shadow-sm ring-1 ring-slate-100 hover:ring-(--color-accent-green) hover:bg-(--color-accent-green) transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
 		>
 			{/* Favorite Button */}
 			<button className="absolute left-4 top-4 z-10 rounded-full bg-white/80 p-1.5 text-slate-300 backdrop-blur-md transition-all hover:bg-white hover:text-rose-500">
@@ -45,7 +45,7 @@ export function ProductCardMinimal({
 			</button>
 
 			{/* Product Image Container */}
-			<div className="relative aspect-4/5 overflow-hidden rounded-xl bg-[#F8F9FA] flex items-center justify-center p-6">
+			<div className="relative aspect-4/5 overflow-hidden rounded-sm bg-[#F8F9FA] flex items-center justify-center p-6">
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.02),transparent)]" />
 				<Image
 					src={image}
@@ -64,7 +64,7 @@ export function ProductCardMinimal({
 				</span>
 
 				{/* Product Name */}
-				<h3 className="mt-1 line-clamp-1 text-[13px] font-medium text-slate-800 transition-colors group-hover:text-black">
+				<h3 className="mt-1 line-clamp-1 text-[13px] font-medium text-slate-800 transition-colors group-hover:text-white/80">
 					{name}
 				</h3>
 
@@ -92,7 +92,7 @@ export function ProductCardMinimal({
 
 				{/* Price */}
 				<div className="mt-4 flex items-baseline gap-1">
-					<span className="text-[14px] md:text-lg font-black text-slate-900">
+					<span className="text-[14px] md:text-lg font-black text-slate-900 group-hover:text-white/80">
 						{price.toLocaleString("fa-IR")}
 					</span>
 					<span className="text-[10px] font-bold text-slate-500 uppercase">

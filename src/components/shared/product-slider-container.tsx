@@ -42,6 +42,7 @@ export function ProductSliderContainer({
 					spaceBetween={8}
 					freeMode
 					grabCursor
+					navigation={true}
 					autoplay={{ delay: 4000 }}
 					slidesPerView={1.2}
 					breakpoints={{
@@ -50,9 +51,13 @@ export function ProductSliderContainer({
 						1024: { slidesPerView: 4.5, spaceBetween: 10 },
 						1280: { slidesPerView: 6, spaceBetween: 10 },
 					}}
+					className="w-full overflow-hidden group/swiper"
 				>
 					{product.map((item) => (
-						<SwiperSlide key={item._id} className="w-full flex justify-center">
+						<SwiperSlide
+							key={item._id}
+							className="w-full flex justify-center overflow-hidden!"
+						>
 							<ProductCardMinimal
 								isFavorite={false}
 								rating={item.popularity / 10}
