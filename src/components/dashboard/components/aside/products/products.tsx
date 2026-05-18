@@ -65,7 +65,7 @@ export default function Products() {
 			</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer>
-				<SummaryFilterContainer>
+				<SummaryFilterContainer useCase="Dashboard">
 					<ProductsFilters
 						setBrandCountry={setBrandCountry}
 						setColor={setColor}

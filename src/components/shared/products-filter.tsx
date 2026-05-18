@@ -59,8 +59,8 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				<option value="">رنگ</option>
 				<option value="مشکی">مشکی</option>
 				<option value="آبی">آبی</option>
-				<option value="نقره ای">نقره ای</option>
-				<option value="قهوه ای">قهوه ای</option>
+				<option value="نقره‌ای">نقره‌ای</option>
+				<option value="قهوه‌ای">قهوه‌ای</option>
 			</select>
 			<select
 				value={filters.dialColor}
@@ -82,7 +82,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				<option value="چرم">چرم</option>
 				<option value="لاستیک">لاستیک</option>
 				<option value="تیتانیوم">تیتانیوم</option>
-				<option value="استیل ضد زنگ">استیل ضد زنگ</option>
+				<option value="استیل ضدزنگ">استیل ضدزنگ</option>
 			</select>
 			<select
 				value={filters.available}

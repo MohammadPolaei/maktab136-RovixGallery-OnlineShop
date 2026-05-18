@@ -37,16 +37,16 @@ const genders = ["مردانه", "زنانه", "فاقد جنسیت"];
 const materials = ["چرم", "لاستیک", "تیتانیوم", "استیل ضد زنگ"];
 
 const dialColors = [
-	{ label: "مشکی", value: "مشکی", hex: "#000" },
-	{ label: "سبز", value: "سبز", hex: "#20A520" },
+	{ label: "مشکی", value: "مشکی", hex: "#263238" },
+	{ label: "سبز", value: "سبز", hex: "#91F180" },
 	{ label: "سفید", value: "سفید", hex: "#FFF" },
-	{ label: "آبی", value: "آبی", hex: "#1D4ED8" },
+	{ label: "آبی", value: "آبی", hex: "#93C5FD" },
 ];
 const strapColors = [
-	{ label: "مشکی", value: "مشکی", hex: "#000" },
+	{ label: "مشکی", value: "مشکی", hex: "#263238" },
 	{ label: "قهوه‌ای", value: "قهوه‌ای", hex: "#7C4A2D" },
-	{ label: "نقره‌ای", value: "نقره‌ای", hex: "#BFC3C9" },
-	{ label: "آبی", value: "آبی", hex: "#1D4ED8" },
+	{ label: "نقره‌ای", value: "نقره‌ای", hex: "#E2E8F0" },
+	{ label: "آبی", value: "آبی", hex: "#93C5FD" },
 ];
 
 const sortOptions = [
@@ -180,7 +180,7 @@ export default function ProductsFilter({
 							key={c.value}
 							onClick={() => updateMulti("color", c.value)}
 							className={`w-5 h-5 rounded-full border border-black/10 cursor-pointer ${
-								isChecked("color", c.value) ? "ring-2 ring-yellow-600" : ""
+								isChecked("color", c.value) ? "ring-3 ring-black/30" : ""
 							}`}
 							style={{ backgroundColor: c.hex }}
 						/>
@@ -198,7 +198,7 @@ export default function ProductsFilter({
 							key={c.value}
 							onClick={() => updateMulti("dialColor", c.value)}
 							className={`w-5 h-5 rounded-full border border-black/10 cursor-pointer ${
-								isChecked("dialColor", c.value) ? "ring-2 ring-yellow-600" : ""
+								isChecked("dialColor", c.value) ? "ring-3 ring-black/30" : ""
 							}`}
 							style={{ backgroundColor: c.hex }}
 						/>

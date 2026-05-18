@@ -56,6 +56,19 @@ export function useGetProducts() {
 			search,
 		]
 	);
+	useEffect(() => {
+		setPage(1);
+	}, [
+		dialColor,
+		material,
+		brandCountry,
+		color,
+		brand,
+		gender,
+		sort,
+		available,
+		search,
+	]);
 
 	const { data, isLoading, error, isFetching } = useQuery({
 		queryKey: ["products", queryParams],

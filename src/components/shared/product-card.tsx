@@ -1,6 +1,10 @@
 import { EyeIcon } from "@/assets/SVG/auth/show-hide-password-icon";
 import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
 import { StarFilledIcon } from "@/assets/SVG/product-card/rating-icon";
+import {
+	WatchDialIcon,
+	WatchStrapIcon,
+} from "@/assets/SVG/product-card/watch-icon";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
@@ -35,51 +39,57 @@ export default function ProductCard({
 				/>
 			</div>
 			<div className="w-full">
-				<div className="w-full flex flex-col justify-between items-center gap-5 border-b border-black/10 pb-3">
-					<div className="w-full flex flex-row justify-between items-start text-[8px] lg:text-[10px]">
-						<div>
-							{`جنس بند : `}
-							{product.material}
-						</div>
-						<div className="flex gap-1">
-							<span>رنگ بند</span>
-							{ShowColorOnCard(product.color)}
-						</div>
-						<div className="flex gap-1">
-							<span>رنگ صفحه</span>
+				<div className="w-full flex flex-row justify-between items-center border-b border-black/10 pb-3">
+					<div className="w-full flex flex-col justify-between items-start gap-3 text-[8px] lg:text-[10px]">
+						<div className="flex justify-center items-center gap-1 font-normal text-black/60">
+							<WatchDialIcon />
 							{ShowColorOnCard(product.dialColor)}
+							{product.dialColor}
+						</div>
+						<div className="flex justify-center items-center gap-1 font-normal text-black/60">
+							<WatchStrapIcon />
+							{product.material}
+							{ShowColorOnCard(product.color)}
+							{product.color}
 						</div>
 					</div>
-					<div className="w-full flex flex-row justify-between items-start ">
-						<div className="flex justify-center items-center gap-1 font-semibold">
-							{product.gender}
+					<div className="w-full flex flex-col justify-between items-end gap-5">
+						<div className="flex justify-center items-center gap-1 font-normal text-black/60">
+							{product.gender === "مردانه" ? (
+								<span className="w-10 h-5 flex justify-center items-center rounded-sm bg-cyan-800/10">
+									{product.gender}
+								</span>
+							) : product.gender === "زنانه" ? (
+								<span className="w-10 h-5 flex justify-center items-center rounded-sm bg-pink-800/10">
+									{product.gender}
+								</span>
+							) : (
+								<span>{product.gender}</span>
+							)}
 						</div>
-						<div className="flex justify-center items-center gap-1 font-semibold">
+						<div className="flex justify-center items-center gap-1 font-semibold text-[14px] text-black/80">
 							{product.brand}
-						</div>
-						<div className="flex justify-center items-center gap-1">
-							{faNumber(product.popularity)}
-							<FavoriteOutlined size={12} />
 						</div>
 					</div>
 				</div>
-				<div className="w-full flex flex-col justify-between items-end gap-3 pt-5">
-					<span className="w-full font-semibold text-left">{product.name}</span>
-					<span className="w-full flex justify-end items-start gap-1">
-						{faNumber(product.popularity / 10)}
-						<StarFilledIcon />
+				<div className="w-full flex flex-col justify-between items-end gap-5 pt-5">
+					<span className="w-full font-normal text-[12px] text-left text-black/60">
+						{product.name}
 					</span>
-					<div className="w-full text-left">
-						<span>
-							{product.stock < 1 ? (
-								<span className="text-red-800">ناموجود</span>
-							) : (
-								<span className="font-bold">
-									{faNumber(product.price).toLocaleString()}{" "}
-									<span className="text-black/50">ریال</span>
-								</span>
-							)}
+					<div className="w-full flex">
+						<span className="w-full flex justify-start items-start gap-1">
+							{faNumber(product.popularity / 10)}
+							<StarFilledIcon />
 						</span>
+
+						{product.stock < 1 ? (
+							<span className="text-red-800 text-[14px]">ناموجود</span>
+						) : (
+							<span className="font-bold text-[14px] text-left flex justify-between items-center gap-2">
+								{faNumber(product.price).toLocaleString()}{" "}
+								<span className="text-black/40 text-[10px]">ریال</span>
+							</span>
+						)}
 					</div>
 				</div>
 			</div>

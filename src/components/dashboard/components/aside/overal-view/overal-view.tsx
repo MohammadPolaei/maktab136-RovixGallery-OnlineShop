@@ -9,7 +9,7 @@ export default function OveralView() {
 		<section className="flex flex-col justify-between gap-2 px-4 md:p-1">
 			<StatsGrid />
 
-			<div className="md:flex flex-row items-center justify-center gap-3">
+			<div className="md:flex flex-row items-center justify-center gap-2">
 				<SalesChart />
 				<CategorySalesChart data={categorySales} />
 			</div>

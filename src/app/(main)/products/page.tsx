@@ -41,22 +41,24 @@ export default async function ProductsPage({
 							<div className="min-h-2/3 relative">
 								<ProductsFilterUsingParams mobileResponsive={false} />
 							</div>
-							<div className="sticky top-24">
-								<Link href={"/products/discounts"} target="_blank">
-									<Image
-										alt="banner"
-										src={discountBanner}
-										width={1000}
-										height={1000}
-										className="rounded-sm"
-									/>
-								</Link>
+							<div className="relative min-h-1/3">
+								<div className="sticky top-24 mt-6">
+									<Link href={"/products/discounts"} target="_blank">
+										<Image
+											alt="banner"
+											src={discountBanner}
+											width={1000}
+											height={1000}
+											className="rounded-sm"
+										/>
+									</Link>
+								</div>
 							</div>
 						</div>
 					</div>
 					{/* Mobile */}
 					<div className="w-full fixed top-14 right-0 left-0 z-200 md:hidden">
-						<SummaryFilterContainer>
+						<SummaryFilterContainer useCase="main-site">
 							<ProductsFilterUsingParams mobileResponsive />
 						</SummaryFilterContainer>
 					</div>
