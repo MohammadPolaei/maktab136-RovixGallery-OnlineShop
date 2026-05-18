@@ -37,7 +37,7 @@ export function ProductCardMinimal({
 		<motion.article
 			variants={cardVariants}
 			whileHover={{ y: -8 }}
-			className="group relative flex w-50 max-w-70 flex-col overflow-hidden rounded-sm bg-white p-3 shadow-sm ring-1 ring-slate-100 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+			className="group relative flex max-w-70 flex-col overflow-hidden rounded-sm bg-white p-3 shadow-sm ring-1 ring-slate-100 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
 		>
 			{/* Favorite Button */}
 			<button className="absolute left-4 top-4 z-10 rounded-full bg-white/80 p-1.5 text-slate-300 backdrop-blur-md transition-all hover:bg-white hover:text-rose-500">
@@ -92,7 +92,7 @@ export function ProductCardMinimal({
 
 				{/* Price */}
 				<div className="mt-4 flex items-baseline gap-1">
-					<span className="text-lg font-black text-slate-900">
+					<span className="text-[14px] md:text-lg font-black text-slate-900">
 						{price.toLocaleString("fa-IR")}
 					</span>
 					<span className="text-[10px] font-bold text-slate-500 uppercase">

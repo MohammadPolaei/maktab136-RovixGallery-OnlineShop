@@ -35,20 +35,20 @@ export function ProductSliderContainer({
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true }}
-				className="w-full py-8"
+				className="w-full py-8 overflow-hidden"
 			>
 				<Swiper
 					modules={[FreeMode, Navigation, Autoplay]}
-					spaceBetween={0}
+					spaceBetween={8}
 					freeMode
 					grabCursor
 					autoplay={{ delay: 4000 }}
-					slidesPerView={1.35}
+					slidesPerView={1.2}
 					breakpoints={{
-						480: { slidesPerView: 2.5, spaceBetween: 1 },
-						640: { slidesPerView: 3.5, spaceBetween: 5 },
-						1024: { slidesPerView: 4.5, spaceBetween: 5 },
-						1280: { slidesPerView: 6, spaceBetween: 5 },
+						360: { slidesPerView: 2, spaceBetween: 10 },
+						640: { slidesPerView: 3.5, spaceBetween: 10 },
+						1024: { slidesPerView: 4.5, spaceBetween: 10 },
+						1280: { slidesPerView: 6, spaceBetween: 10 },
 					}}
 				>
 					{product.map((item) => (
