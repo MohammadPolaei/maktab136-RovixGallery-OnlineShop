@@ -27,8 +27,8 @@ export default function SummaryFilterContainer({
 			</summary>
 			<div
 				className={`${
-					useCase == "main-site" ? "pb-40" : ""
-				} w-full max-h-screen flex flex-col md:flex-row justify-between items-center gap-2 p-3`}
+					useCase == "main-site" ? "h-fit max-h-[75vh]" : "max-h-[90vh]"
+				} w-full flex flex-col md:flex-row justify-between items-center gap-2 p-3 transition-all duration-500 ease-in-out`}
 			>
 				{children}
 			</div>

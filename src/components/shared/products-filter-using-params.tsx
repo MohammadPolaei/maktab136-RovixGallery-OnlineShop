@@ -126,7 +126,7 @@ export default function ProductsFilter({
 	return (
 		<aside
 			dir="rtl"
-			className={`w-full max-w-sm h-[76vh] max-h-130 overflow-y-auto bg-white ${
+			className={`w-full max-w-sm h-fit max-h-[76vh] overflow-y-auto bg-white ${
 				mobileResponsive
 					? ""
 					: "border border-gray-100 shadow  shadow-black/5 p-6 sticky top-24"

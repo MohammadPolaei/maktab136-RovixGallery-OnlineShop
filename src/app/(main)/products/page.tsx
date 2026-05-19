@@ -38,29 +38,13 @@ export default async function ProductsPage({
 
 	return (
 		<div className="container px-5">
-			<div className="flex flex-col md:flex-row justify-center items-start gap-5">
-				<section className="w-full md:flex-1 md:min-h-screen mt-1">
-					<div className="rounded-sm w-full hidden md:flex flex-col justify-items-start items-center">
+			<div className="grid grid-cols-1 md:grid-cols-[1fr_5fr] justify-center items-start gap-5">
+				<section className="max-w-80 md:min-h-full mt-1 relative">
+					<div className="min-h-full sticky top-28 hidden md:flex">
 						{/* Desktop */}
-						<div className="w-full h-400 hidden md:block space-y-2 relative">
-							<div className="min-h-full relative">
-								<ProductsFilterUsingParams mobileResponsive={false} />
-							</div>
-							<div className="relative min-h-full">
-								<div className="sticky top-25 mt-0">
-									<Link href={"/products/discounts"} target="_blank">
-										<Image
-											alt="banner"
-											src={discountBanner}
-											width={1000}
-											height={1000}
-											className="rounded-sm"
-										/>
-									</Link>
-								</div>
-							</div>
-						</div>
+						<ProductsFilterUsingParams mobileResponsive={false} />
 					</div>
+
 					{/* Mobile */}
 					<div className="w-full fixed top-14 right-0 left-0 z-200 md:hidden">
 						<SummaryFilterContainer useCase="main-site">
@@ -68,7 +52,8 @@ export default async function ProductsPage({
 						</SummaryFilterContainer>
 					</div>
 				</section>
-				<section className="flex-5 flex flex-col justify-center items-center gap-3">
+
+				<section className="flex flex-col justify-center items-center gap-3">
 					<ProductsList
 						totalProducts={total}
 						currentPage={page}
@@ -77,6 +62,21 @@ export default async function ProductsPage({
 					<div className="w-full bg-white py-2 rounded-sm">
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>
+				</section>
+				<section className="max-w-80 md:min-h-full mt-1 relative">
+					<div className="sticky min-h-full top-25 mt-0">
+						<Link href={"/products/discounts"} target="_blank">
+							<Image
+								alt="banner"
+								src={discountBanner}
+								width={1000}
+								height={1000}
+								className="rounded-sm"
+							/>
+						</Link>
+					</div>
+				</section>
+				<section className="flex flex-col justify-center items-center">
 					<article className="rounded-sm">
 						<ProductsBlog />
 					</article>
