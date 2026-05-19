@@ -1,9 +1,9 @@
-import BestSellers from "@/components/main-app/home/components/best-sellers";
 import Brands from "@/components/main-app/home/components/brands";
 import Categories from "@/components/main-app/home/components/categories";
 import FaqSection from "@/components/main-app/home/components/FAQ";
 import FeaturedCollection from "@/components/main-app/home/components/featured-collection";
 import HeroSlider from "@/components/main-app/home/components/hero";
+import MostPopularProducts from "@/components/main-app/home/components/most-popular-products";
 import SelectedCategories from "@/components/main-app/home/components/selected-categories";
 import SpecialOffers from "@/components/main-app/home/components/special-offers";
 import SpecialProducts from "@/components/main-app/home/components/special-products";
@@ -21,7 +21,7 @@ export default async function HomePage({
 
 	const query = buildQuery(resolvedSearchParams);
 
-	const { data, pages, page, total } = await getProductsSSR(query);
+	const { data } = await getProductsSSR(query);
 
 	// reSetting products image by currecting URL
 	const products = data.map((prod: Product) => ({
@@ -44,9 +44,9 @@ export default async function HomePage({
 			<div className="container max-w-7xl min-h-screen flex flex-col justify-start items-center">
 				<Categories />
 				<SpecialOffers specialProducts={specialProducts} />
-				<SpecialProducts products={specialOffers} />
 				<SupportSection />
-				<BestSellers />
+				<SpecialProducts products={specialOffers} />
+				<MostPopularProducts products={products} />
 				<Brands />
 				<FaqSection />
 				<FeaturedCollection />

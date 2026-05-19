@@ -56,7 +56,7 @@ export function ProductSliderContainer({
 					{product.map((item) => (
 						<SwiperSlide
 							key={item._id}
-							className="w-full py-3 flex justify-center overflow-hidden!"
+							className="w-full pt-3 flex justify-center overflow-hidden!"
 						>
 							<ProductCardMinimal
 								isFavorite={false}

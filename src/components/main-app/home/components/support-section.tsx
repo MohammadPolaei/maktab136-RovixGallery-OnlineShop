@@ -45,9 +45,9 @@ const itemVariants: Variants = {
 
 export default function SupportSection() {
 	return (
-		<div className="w-full flex flex-col justify-center items-center gap-1 py-12 px-4">
+		<div className="w-full flex flex-col justify-center items-center gap-1 py-1 px-4">
 			<SectionTitle title="پشتیبانی 24/7" />
-			<div className="flex flex-wrap justify-evenly items-center text-center text-[16px] w-full max-w-5xl mx-auto">
+			<div className="flex flex-wrap justify-evenly items-center py-2 text-center text-[16px] w-full max-w-5xl mx-auto">
 				{supportContents.map((item) => {
 					return (
 						<motion.div
