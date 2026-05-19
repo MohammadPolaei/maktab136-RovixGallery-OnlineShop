@@ -16,50 +16,6 @@ export default function SectionTitle({ title }: Props) {
 			ref={ref}
 			className="flex flex-col items-center py-5 overflow-hidden w-full"
 		>
-			{/* تاج */}
-			<motion.div
-				initial={{ opacity: 0, y: -15, filter: "blur(8px)" }}
-				animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-				transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-				className="relative mb-1"
-			>
-				<svg
-					width="44"
-					height="20"
-					viewBox="0 0 64 24"
-					fill="none"
-					className="text-[#D4AF37]"
-				>
-					<path
-						d="M4 20L12 8L22 18L32 4L42 18L52 8L60 20"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-
-					<circle cx="12" cy="8" r="2" fill="currentColor" />
-					<circle cx="32" cy="4" r="2.4" fill="currentColor" />
-					<circle cx="52" cy="8" r="2" fill="currentColor" />
-				</svg>
-
-				{/* shine تاج */}
-				<motion.div
-					className="absolute inset-0"
-					animate={{ x: ["-120%", "120%"] }}
-					transition={{
-						duration: 2.5,
-						repeat: Infinity,
-						ease: "linear",
-					}}
-					style={{
-						background:
-							"linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.7) 50%, transparent 80%)",
-						filter: "blur(6px)",
-					}}
-				/>
-			</motion.div>
-
 			{/* خط + عنوان */}
 			<div className="flex items-center gap-1 md:gap-4 max-w-full px-1 md:px-4">
 				{" "}

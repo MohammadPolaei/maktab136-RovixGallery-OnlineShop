@@ -52,9 +52,9 @@ export default function ProductCard({ product }: { product: Product }) {
 			whileHover={{ y: -8 }}
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
-			className="
-        group w-full h-full
-        bg-white
+			className={`group w-full h-full
+				${product.stock < 1 ? "bg-neutral-50" : "bg-white"}
+
         rounded-sm
         border border-neutral-100
         px-4 pt-9 pb-5
@@ -62,8 +62,7 @@ export default function ProductCard({ product }: { product: Product }) {
         hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)]
         transition-all duration-500
         flex flex-col justify-between
-        relative overflow-hidden
-      "
+        relative overflow-hidden`}
 		>
 			{/* Hover overlay */}
 			<div
@@ -93,16 +92,26 @@ export default function ProductCard({ product }: { product: Product }) {
 				</div>
 
 				<span className="text-[10px] font-bold text-black">مشاهده جزئیات</span>
-
-				<motion.button
-					variants={addToCartVariants}
-					initial="hidden"
-					animate={isHovered ? "visible" : "hidden"}
-					className="w-2/3 py-3 mx-auto bg-black/80 hover:bg-(--color-gold) text-[10px] text-white font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
-				>
-					<CartIconButton />
-					<span>افزودن به سبد خرید</span>
-				</motion.button>
+				{product.stock < 1 ? (
+					<motion.button
+						variants={addToCartVariants}
+						initial="hidden"
+						animate={isHovered ? "visible" : "hidden"}
+						className="w-2/3 py-3 mx-auto bg-black/20 hover:bg-(--color-gold)/20 text-[10px] text-black font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
+					>
+						<span>در صورت موجود شدن اطلاع بده !</span>
+					</motion.button>
+				) : (
+					<motion.button
+						variants={addToCartVariants}
+						initial="hidden"
+						animate={isHovered ? "visible" : "hidden"}
+						className="w-2/3 py-3 mx-auto bg-black/80 hover:bg-(--color-gold) text-[10px] text-white font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
+					>
+						<CartIconButton />
+						<span>افزودن به سبد خرید</span>
+					</motion.button>
+				)}
 			</div>
 
 			{/* Favorite */}
@@ -136,13 +145,13 @@ export default function ProductCard({ product }: { product: Product }) {
 					alt={product.name}
 					width={280}
 					height={280}
-					className="
-            relative z-10
+					className={`relative z-10
             object-contain
             p-2
             group-hover:scale-110
             transition-transform duration-700
-          "
+						${product.stock < 1 ? "saturate-10 opacity-50" : ""}
+						`}
 				/>
 			</div>
 

@@ -30,6 +30,7 @@ const PriceRangeFilter: React.FC<PriceRangeProps> = ({
 
 	const updateUrl = (values: number[]): void => {
 		const params = new URLSearchParams(searchParams.toString());
+		params.delete("page");
 		params.set("minPrice", values[0].toString());
 		params.set("maxPrice", values[1].toString());
 		router.push(`/products?${params.toString()}`);
@@ -48,6 +49,7 @@ const PriceRangeFilter: React.FC<PriceRangeProps> = ({
 		const params = new URLSearchParams(searchParams.toString());
 		params.delete("minPrice");
 		params.delete("maxPrice");
+		params.delete("page");
 		router.push(`/products?${params.toString()}`);
 	};
 
