@@ -8,7 +8,7 @@ export default function SpecialOffers({
 	specialProducts: Product[];
 }) {
 	return (
-		<div className="w-full flex flex-col">
+		<div className="w-full flex flex-col justify-center items-center">
 			<SectionTitle title={`تخفیف های داغ`} />
 			<ProductSliderContainer product={specialProducts} />
 		</div>

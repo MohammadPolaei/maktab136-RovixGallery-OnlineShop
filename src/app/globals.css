@@ -1,21 +1,52 @@
 @import "tailwindcss";
 
 /* swiper slider package */
-
 @import "swiper/css";
+@import "swiper/css/free-mode";
 @import "swiper/css/navigation";
-@import "swiper/css/pagination";
 
-.custom-progress .swiper-pagination-progressbar-fill {
-	background-color: var(--color-accent-green) !important;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
-.swiper-slide {
-	overflow: hidden;
+.group\/swiper .swiper-button-prev,
+.group\/swiper .swiper-button-next {
+	display: none;
 }
-@media (max-width: 768px) {
-	.custom-prev,
-	.custom-next {
-		display: none;
+
+@media (min-width: 768px) {
+	.group\/swiper .swiper-button-prev,
+	.group\/swiper .swiper-button-next {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 5px;
+		width: 25px;
+		height: 25px;
+		background-color: #12291e55;
+		border-radius: 50%;
+		color: white;
+		transition: background-color 0.3s ease;
+	}
+
+	.group\/swiper .swiper-button-prev:hover,
+	.group\/swiper .swiper-button-next:hover {
+		background-color: #1e5142;
+	}
+
+	.group\/swiper .swiper-button-prev {
+		left: 10px;
+	}
+
+	.group\/swiper .swiper-button-next {
+		right: 10px;
+	}
+
+	.group\/swiper .swiper-button-prev::after,
+	.group\/swiper .swiper-button-next::after {
+		font-size: 16px;
+		font-weight: bold;
 	}
 }
 

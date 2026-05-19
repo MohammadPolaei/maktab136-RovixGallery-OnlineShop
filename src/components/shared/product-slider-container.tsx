@@ -34,8 +34,8 @@ export function ProductSliderContainer({
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
-				viewport={{ once: true }}
-				className="w-full py-8 overflow-hidden"
+				viewport={{ once: true, amount: 0.5 }}
+				className="w-full overflow-hidden"
 			>
 				<Swiper
 					modules={[FreeMode, Navigation, Autoplay]}
@@ -44,7 +44,7 @@ export function ProductSliderContainer({
 					grabCursor
 					navigation={true}
 					autoplay={{ delay: 4000 }}
-					slidesPerView={1.2}
+					slidesPerView={1}
 					breakpoints={{
 						360: { slidesPerView: 2, spaceBetween: 10 },
 						640: { slidesPerView: 3.5, spaceBetween: 10 },
@@ -56,7 +56,7 @@ export function ProductSliderContainer({
 					{product.map((item) => (
 						<SwiperSlide
 							key={item._id}
-							className="w-full flex justify-center overflow-hidden!"
+							className="w-full py-3 flex justify-center overflow-hidden!"
 						>
 							<ProductCardMinimal
 								isFavorite={false}

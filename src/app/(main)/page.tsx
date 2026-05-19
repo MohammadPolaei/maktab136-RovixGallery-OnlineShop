@@ -6,6 +6,7 @@ import HeroSlider from "@/components/main-app/home/components/hero";
 import SelectedCategories from "@/components/main-app/home/components/selected-categories";
 import SpecialOffers from "@/components/main-app/home/components/special-offers";
 import SpecialProducts from "@/components/main-app/home/components/special-products";
+import SupportSection from "@/components/main-app/home/components/support-section";
 import { getProductsSSR } from "@/services/get-products-by-params";
 import { Product } from "@/types/product-data-type";
 import { buildQuery } from "@/utils/build-query";
@@ -28,10 +29,11 @@ export default async function HomePage({
 			(img: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}${img}`
 		),
 	}));
-
+	// Offers
 	const specialOffers = products.filter(
 		(p: Product) => (p.brand == "Rolex" || "Casio") && p.popularity > 70
 	);
+	// Rovix Products
 	const specialProducts = products.filter((p: Product) => p);
 
 	return (
@@ -42,6 +44,7 @@ export default async function HomePage({
 				<Categories />
 				<SpecialOffers specialProducts={specialProducts} />
 				<SpecialProducts products={specialOffers} />
+				<SupportSection />
 				<FeaturedCollection />
 				<BestSellers />
 				<Brands />

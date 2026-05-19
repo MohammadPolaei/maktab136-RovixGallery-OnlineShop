@@ -11,7 +11,7 @@ export default function SpecialProducts({ products }: { products: Product[] }) {
 		<div className="w-full flex flex-col justify-center items-center">
 			<SectionTitle title="پیشنهاد Rovix" />
 			<div
-				className="w-full flex flex-row justify-end items-center gap-4 py-10 px-5 rounded-sm"
+				className="w-full flex flex-col md:flex-row justify-end items-center gap-4 py-10 px-5 rounded-sm"
 				style={{
 					backgroundImage: `url(${specialProductBackground.src})`,
 					backgroundSize: "cover",
@@ -20,13 +20,13 @@ export default function SpecialProducts({ products }: { products: Product[] }) {
 					minHeight: "320px",
 				}}
 			>
-				<div>
+				<div className="text-center">
 					<AboutModal
 						title="پیشنهادات ویژه Rovix Gallery"
 						description="گلچینی از خاص‌ترین و پرفروش‌ترین ساعت‌های لوکس، انتخاب‌شده با دقت برای سلیقه‌هایی که به دنبال کیفیت، اصالت و طراحی ماندگار هستند. این مجموعه محدود، تنها شامل محصولاتی است که از نظر زیبایی، دوام و ارزش خرید در بالاترین سطح قرار می‌گیرند"
 					/>{" "}
 				</div>
-				<div className="flex flex-row justify-center items-center gap-1">
+				<div className="w-full flex flex-col sm:flex-row justify-center items-center gap-5">
 					{products.map((p) => (
 						<ProductCardMinimal
 							brand={p.brand}
