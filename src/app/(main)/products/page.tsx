@@ -40,7 +40,7 @@ export default async function ProductsPage({
 		<div className="container px-5">
 			<div className="grid grid-cols-1 md:grid-cols-[1fr_5fr] justify-center items-start gap-5">
 				<section className="max-w-80 md:min-h-full mt-1 relative">
-					<div className="min-h-full sticky top-28.75 hidden md:flex">
+					<div className="min-h-full sticky top-29.5 hidden md:flex">
 						{/* Desktop */}
 						<ProductsFilterUsingParams mobileResponsive={false} />
 					</div>
@@ -63,7 +63,7 @@ export default async function ProductsPage({
 						<ProductPagination totalPages={pages} currentPage={page} />
 					</div>
 				</section>
-				<section className="max-w-80 md:min-h-full mt-1 relative">
+				<section className="max-w-full px-15 md:px-0 md:max-w-80 md:min-h-full mt-1 relative flex flex-col justify-start items-center">
 					<div className="sticky min-h-full top-25 mt-0">
 						<Link href={"/products/discounts"} target="_blank">
 							<Image

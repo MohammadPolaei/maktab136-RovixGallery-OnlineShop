@@ -25,11 +25,11 @@ export default function ProductsList({
 }) {
 	return (
 		<div className="w-full">
-			<div className="text-neutral-400 text-[11px] w-full flex justify-between items-center gap-5 pb-5 pt-8 md:pt-2">
-				<div className="bg-white shadow shadow-black/5 px-4 py-1.5 rounded-sm font-medium text-neutral-500">
+			<div className="w-full text-neutral-400 text-[10px] flex flex-col lg:flex-row justify-between items-center gap-3 pb-3 pt-8 md:pt-2">
+				<div className="w-full lg:w-40 text-center bg-white shadow shadow-black/5 px-4 py-3 rounded-sm font-medium text-neutral-500">
 					{`نمایش ${products.length} از ${totalProducts} محصول`}
 				</div>
-				<div className="w-fit hidden md:block">
+				<div className="w-full hidden md:block">
 					<PriceRangeFilter />
 				</div>
 			</div>
