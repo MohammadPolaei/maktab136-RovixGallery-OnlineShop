@@ -1,6 +1,7 @@
 import BestSellers from "@/components/main-app/home/components/best-sellers";
 import Brands from "@/components/main-app/home/components/brands";
 import Categories from "@/components/main-app/home/components/categories";
+import FaqSection from "@/components/main-app/home/components/FAQ";
 import FeaturedCollection from "@/components/main-app/home/components/featured-collection";
 import HeroSlider from "@/components/main-app/home/components/hero";
 import SelectedCategories from "@/components/main-app/home/components/selected-categories";
@@ -45,9 +46,10 @@ export default async function HomePage({
 				<SpecialOffers specialProducts={specialProducts} />
 				<SpecialProducts products={specialOffers} />
 				<SupportSection />
-				<FeaturedCollection />
 				<BestSellers />
 				<Brands />
+				<FaqSection />
+				<FeaturedCollection />
 				<SelectedCategories />
 			</div>
 		</section>
