@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { ProductCardMinimal } from "./product-card-minimal";
 
 type ProductSliderContainerProps = {
+	discounted?: boolean;
 	page?: number;
 	product: Product[];
 };
@@ -25,6 +26,7 @@ const containerVariants = {
 };
 
 export function ProductSliderContainer({
+	discounted = false,
 	page,
 	product,
 }: ProductSliderContainerProps) {
@@ -62,6 +64,7 @@ export function ProductSliderContainer({
 							className="w-full py-5 flex justify-center overflow-hidden!"
 						>
 							<ProductCardMinimal
+								discounted={discounted}
 								isFavorite={false}
 								rating={item.popularity / 10}
 								images={item.images}

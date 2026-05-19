@@ -50,7 +50,7 @@ export default function MostPopularProducts({
 					variants={itemVariants}
 					className="w-full flex flex-col justify-center items-center"
 				>
-					<h2 className="py-3 my-2 bg-(--color-dark-green)/80 text-white/80 w-full rounded-sm text-center">
+					<h2 className="py-1 my-2 bg-(--color-dark-green)/80 text-white/80 w-full rounded-sm text-center">
 						{"محبوب ترین ساعتهای سوئیسی"}
 					</h2>
 					<div className="w-full flex flex-col justify-center items-center">
@@ -65,7 +65,7 @@ export default function MostPopularProducts({
 					variants={itemVariants}
 					className="w-full flex flex-col justify-center items-center"
 				>
-					<h2 className="py-3 my-2 bg-(--color-dark-green)/80 text-white/80 w-full rounded-sm text-center">
+					<h2 className="py-1 my-2 bg-(--color-dark-green)/80 text-white/80 w-full rounded-sm text-center">
 						{"محبوب ترین ساعتهای ژاپنی"}
 					</h2>
 					<div className="w-full flex flex-col justify-center items-center">

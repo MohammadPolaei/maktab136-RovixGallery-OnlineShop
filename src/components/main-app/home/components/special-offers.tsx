@@ -10,7 +10,7 @@ export default function SpecialOffers({
 	return (
 		<div className="w-full flex flex-col justify-center items-center">
 			<SectionTitle title={`تخفیف های داغ`} />
-			<ProductSliderContainer product={specialProducts} />
+			<ProductSliderContainer discounted product={specialProducts} />
 		</div>
 	);
 }
