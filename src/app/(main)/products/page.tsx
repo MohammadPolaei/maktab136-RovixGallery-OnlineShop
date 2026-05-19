@@ -42,12 +42,12 @@ export default async function ProductsPage({
 				<section className="w-full md:flex-1 md:min-h-screen mt-1">
 					<div className="rounded-sm w-full hidden md:flex flex-col justify-items-start items-center">
 						{/* Desktop */}
-						<div className="w-full h-390 hidden md:block space-y-5 relative">
+						<div className="w-full h-400 hidden md:block space-y-2 relative">
 							<div className="min-h-full relative">
 								<ProductsFilterUsingParams mobileResponsive={false} />
 							</div>
 							<div className="relative min-h-full">
-								<div className="sticky top-24 mt-20">
+								<div className="sticky top-25 mt-0">
 									<Link href={"/products/discounts"} target="_blank">
 										<Image
 											alt="banner"
@@ -84,7 +84,7 @@ export default async function ProductsPage({
 			</div>
 			<section className="flex flex-col justify-center items-center w-full">
 				<SectionTitle title="محبوبترین ها" />
-				<ProductSliderContainer product={mostPopularProducts} />
+				<ProductSliderContainer product={mostPopularProducts} key={page} />
 			</section>
 		</div>
 	);

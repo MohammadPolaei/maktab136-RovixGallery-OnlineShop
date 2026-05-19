@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { ProductCardMinimal } from "./product-card-minimal";
 
 type ProductSliderContainerProps = {
+	page?: number;
 	product: Product[];
 };
 
@@ -24,6 +25,7 @@ const containerVariants = {
 };
 
 export function ProductSliderContainer({
+	page,
 	product,
 }: ProductSliderContainerProps) {
 	if (!product?.length) return null;
@@ -38,6 +40,7 @@ export function ProductSliderContainer({
 				className="w-full overflow-hidden"
 			>
 				<Swiper
+					key={page}
 					modules={[FreeMode, Navigation, Autoplay]}
 					spaceBetween={8}
 					freeMode
@@ -56,7 +59,7 @@ export function ProductSliderContainer({
 					{product.map((item) => (
 						<SwiperSlide
 							key={item._id}
-							className="w-full pt-3 flex justify-center overflow-hidden!"
+							className="w-full py-5 flex justify-center overflow-hidden!"
 						>
 							<ProductCardMinimal
 								isFavorite={false}

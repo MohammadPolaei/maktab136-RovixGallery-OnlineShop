@@ -29,18 +29,6 @@ const item: Variants = {
 	},
 };
 
-const imageReveal: Variants = {
-	hidden: { opacity: 0, scale: 0.96 },
-	visible: {
-		opacity: 1,
-		scale: 1,
-		transition: {
-			duration: 0.7,
-			ease: "easeOut",
-		},
-	},
-};
-
 export default function ProductsBlog() {
 	const ref = useRef(null);
 
@@ -58,7 +46,7 @@ export default function ProductsBlog() {
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, margin: "-100px" }}
-			className="max-w-screen mx-auto px-6 py-10 leading-relaxed text-gray-800 dark:text-gray-200 text-[12px] bg-white rounded-sm relative overflow-hidden"
+			className="max-w-screen mx-auto px-6 py-10 leading-8 text-gray-800 dark:text-gray-200 text-[12px] bg-white rounded-sm relative overflow-hidden"
 		>
 			{/* Header */}
 			<motion.div
@@ -112,12 +100,7 @@ export default function ProductsBlog() {
 			</motion.div>
 
 			{/* Image with Parallax */}
-			<motion.div
-				style={{ y: parallax }}
-				variants={imageReveal}
-				whileHover={{ scale: 1.02 }}
-				className="rounded-sm py-10 overflow-hidden"
-			>
+			<div className="rounded-sm py-10 overflow-hidden">
 				<Image
 					draggable={false}
 					src={watchImage}
@@ -126,7 +109,7 @@ export default function ProductsBlog() {
 					width={2500}
 					height={2500}
 				/>
-			</motion.div>
+			</div>
 
 			<motion.h2
 				variants={item}

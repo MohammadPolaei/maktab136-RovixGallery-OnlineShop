@@ -1,6 +1,16 @@
 "use client";
 
+import {
+	BandIcon,
+	BrandIcon,
+	DialIcon,
+	GenderIcon,
+	GlobeIcon,
+	SortIcon,
+	StockIcon,
+} from "@/assets/SVG/product-card/filters/filters-icon";
 import { useRouter, useSearchParams } from "next/navigation";
+import SelectFilter from "../base/select-filter";
 import SummaryFilter from "../base/summary-filter";
 
 export interface ProductSearchParams {
@@ -116,11 +126,11 @@ export default function ProductsFilter({
 	return (
 		<aside
 			dir="rtl"
-			className={`w-full max-w-sm max-h-127.25 overflow-y-auto bg-white ${
+			className={`w-full max-w-sm h-[76vh] max-h-130 overflow-y-auto bg-white ${
 				mobileResponsive
 					? ""
 					: "border border-gray-100 shadow  shadow-black/5 p-6 sticky top-24"
-			} rounded-sm flex flex-col gap-2 text-[10px]`}
+			} rounded-sm flex flex-col justify-start gap-3.5 text-[10px]`}
 		>
 			{/* HEADER */}
 
@@ -137,7 +147,7 @@ export default function ProductsFilter({
 
 			{/* BRAND */}
 
-			<SummaryFilter title="برند">
+			<SummaryFilter icon={<BrandIcon />} title="برند">
 				{brands.map((b) => (
 					<summary key={b} className="list-none py-1">
 						<label className="flex items-center gap-2 cursor-pointer">
@@ -154,7 +164,7 @@ export default function ProductsFilter({
 
 			{/* MATERIAL */}
 
-			<SummaryFilter title="جنس بند">
+			<SummaryFilter icon={<BandIcon />} title="جنس بند">
 				{materials.map((m) => (
 					<summary key={m} className="list-none py-1">
 						<label className="flex items-center gap-2">
@@ -170,29 +180,26 @@ export default function ProductsFilter({
 			</SummaryFilter>
 
 			{/* STRAP COLOR */}
-
-			<div className="flex flex-col gap-2">
-				<h3 className="text-[10px] font-bold text-gray-700">رنگ بند</h3>
-
-				<div className="flex flex-wrap gap-2">
+			<SummaryFilter icon={<BandIcon />} title="رنگ بند">
+				<div className="flex items-center gap-2">
 					{strapColors.map((c) => (
-						<button
-							key={c.value}
-							onClick={() => updateMulti("color", c.value)}
-							className={`w-5 h-5 rounded-full border border-black/10 cursor-pointer ${
-								isChecked("color", c.value) ? "ring-3 ring-black/30" : ""
-							}`}
-							style={{ backgroundColor: c.hex }}
-						/>
+						<summary key={c.label} className="list-none py-1">
+							<button
+								key={c.value}
+								onClick={() => updateMulti("color", c.value)}
+								className={`w-5 h-5 rounded-full border border-black/10 cursor-pointer ${
+									isChecked("color", c.value) ? "ring-3 ring-black/30" : ""
+								}`}
+								style={{ backgroundColor: c.hex }}
+							/>
+						</summary>
 					))}
 				</div>
-			</div>
+			</SummaryFilter>
 
 			{/* DIAL COLOR */}
-
-			<div className="flex flex-col gap-2">
-				<h3 className="text-[10px] font-bold text-gray-700">رنگ صفحه</h3>
-				<div className="flex flex-wrap gap-2">
+			<SummaryFilter icon={<DialIcon />} title="رنگ صفحه">
+				<div className="flex items-center gap-2">
 					{dialColors.map((c) => (
 						<button
 							key={c.value}
@@ -204,13 +211,11 @@ export default function ProductsFilter({
 						/>
 					))}
 				</div>
-			</div>
+			</SummaryFilter>
 
 			{/* GENDER */}
 
-			<div className="flex flex-col gap-2">
-				<label className="text-[10px] font-bold text-gray-700">جنسیت</label>
-
+			<SelectFilter icon={<GenderIcon />} title="جنسیت">
 				<select
 					value={searchParams.get("gender") || ""}
 					onChange={(e) => updateSingle("gender", e.target.value)}
@@ -226,15 +231,11 @@ export default function ProductsFilter({
 						</option>
 					))}
 				</select>
-			</div>
+			</SelectFilter>
 
 			{/* BRAND COUNTRY */}
 
-			<div className="flex flex-col gap-2">
-				<label className="text-[10px] font-bold text-gray-700">
-					کشور سازنده
-				</label>
-
+			<SelectFilter icon={<GlobeIcon />} title="کشور سازنده">
 				<select
 					value={searchParams.get("brandCountry") || ""}
 					onChange={(e) => updateSingle("brandCountry", e.target.value)}
@@ -252,13 +253,11 @@ export default function ProductsFilter({
 						</option>
 					))}
 				</select>
-			</div>
+			</SelectFilter>
 
 			{/* AVAILABLE */}
 
-			<div className="flex flex-col gap-2">
-				<label className="text-[10px] font-bold text-gray-700">موجودی</label>
-
+			<SelectFilter icon={<StockIcon />} title="موجودی">
 				<select
 					value={searchParams.get("available") || ""}
 					onChange={(e) => updateSingle("available", e.target.value)}
@@ -270,13 +269,11 @@ export default function ProductsFilter({
 					<option value="true">فقط موجود</option>
 					<option value="false">ناموجود</option>
 				</select>
-			</div>
+			</SelectFilter>
 
 			{/* SORT */}
 
-			<div className="flex flex-col gap-2">
-				<label className="text-[10px] font-bold text-gray-700">مرتب سازی</label>
-
+			<SelectFilter icon={<SortIcon />} title="مرتب سازی">
 				<select
 					value={searchParams.get("sort") || ""}
 					onChange={(e) => updateSingle("sort", e.target.value)}
@@ -292,7 +289,7 @@ export default function ProductsFilter({
 						</option>
 					))}
 				</select>
-			</div>
+			</SelectFilter>
 		</aside>
 	);
 }
