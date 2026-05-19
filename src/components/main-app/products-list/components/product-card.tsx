@@ -45,6 +45,7 @@ const addToCartVariants: Variants = {
 
 export default function ProductCard({ product }: { product: Product }) {
 	const [isHovered, setIsHovered] = useState(false);
+	const notInStock = product.stock < 1;
 
 	return (
 		<motion.article
@@ -53,12 +54,16 @@ export default function ProductCard({ product }: { product: Product }) {
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
 			className={`group w-full h-full
-				${product.stock < 1 ? "bg-neutral-50" : "bg-white"}
+				${
+					notInStock
+						? "bg-neutral-100 shadow-[0_4px_18px_rgba(0,0,0,0.02)]"
+						: "bg-white"
+				}
 
         rounded-sm
         border border-neutral-100
         px-4 pt-9 pb-5
-        shadow-[0_4px_18px_rgba(0,0,0,0.02)]
+        
         hover:shadow-[0_25px_50px_rgba(0,0,0,0.08)]
         transition-all duration-500
         flex flex-col justify-between
@@ -92,14 +97,14 @@ export default function ProductCard({ product }: { product: Product }) {
 				</div>
 
 				<span className="text-[10px] font-bold text-black">مشاهده جزئیات</span>
-				{product.stock < 1 ? (
+				{notInStock ? (
 					<motion.button
 						variants={addToCartVariants}
 						initial="hidden"
 						animate={isHovered ? "visible" : "hidden"}
 						className="w-2/3 py-3 mx-auto bg-black/20 hover:bg-(--color-gold)/20 text-[10px] text-black font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
 					>
-						<span>در صورت موجود شدن اطلاع بده !</span>
+						<span>به من اطلاع بده !</span>
 					</motion.button>
 				) : (
 					<motion.button
@@ -150,7 +155,7 @@ export default function ProductCard({ product }: { product: Product }) {
             p-2
             group-hover:scale-110
             transition-transform duration-700
-						${product.stock < 1 ? "saturate-10 opacity-50" : ""}
+						${notInStock ? "saturate-10 opacity-30" : ""}
 						`}
 				/>
 			</div>
@@ -215,7 +220,7 @@ export default function ProductCard({ product }: { product: Product }) {
 						</span>
 					</div>
 
-					{product.stock < 1 ? (
+					{notInStock ? (
 						<span className="text-red-500 font-bold text-[13px]">ناموجود</span>
 					) : (
 						<div className="flex items-baseline gap-1.5">

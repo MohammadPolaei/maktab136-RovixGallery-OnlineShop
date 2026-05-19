@@ -143,7 +143,7 @@ export default function ProductsFilter({
 					onClick={clearFilters}
 					className="text-[10px] text-red-500 px-3 py-1 rounded-sm bg-red-500/10 cursor-pointer hover:bg-red-500/50 hover:text-white transition-all duration-300 ease-in-out"
 				>
-					حذف فیلتر
+					حذف فیلترها
 				</button>
 			</div>
 			{/* PRICE FILTERING */}

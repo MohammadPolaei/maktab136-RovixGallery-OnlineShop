@@ -38,7 +38,7 @@ export default async function ProductsPage({
 
 	return (
 		<div className="container px-5">
-			<div className="grid grid-cols-1 md:grid-cols-[1fr_5fr] justify-center items-start gap-5">
+			<div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] lg:grid-cols-[1fr_5fr] justify-center items-start gap-5">
 				<section className="max-w-80 md:min-h-full mt-1 relative">
 					<div className="min-h-full sticky top-29.5 hidden md:flex">
 						{/* Desktop */}
