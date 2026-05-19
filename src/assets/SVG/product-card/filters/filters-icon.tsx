@@ -4,7 +4,6 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 	size?: number;
 }
 
-// ۱. برند (Brand) - طرح لیبل یا تگ
 export const BrandIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -17,7 +16,6 @@ export const BrandIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۲. جنسیت (Gender) - طرح فیگور انسانی مینیمال
 export const GenderIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -30,7 +28,6 @@ export const GenderIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۳. رنگ بند (Band Color) - طرح بند ساعت
 export const BandIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -43,7 +40,6 @@ export const BandIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۴. رنگ صفحه (Dial Color) - طرح دایره متمرکز
 export const DialIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -56,7 +52,6 @@ export const DialIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۵. کشور سازنده (Origin) - طرح کره زمین
 export const GlobeIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -69,7 +64,6 @@ export const GlobeIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۶. موجودی (Stock) - طرح پکیج/جعبه
 export const StockIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -82,7 +76,6 @@ export const StockIcon = ({ size = 15, ...props }: IconProps) => (
 	</svg>
 );
 
-// ۷. مرتب‌سازی (Sort) - طرح نمودار میله‌ای
 export const SortIcon = ({ size = 15, ...props }: IconProps) => (
 	<svg
 		width={size}
@@ -92,5 +85,17 @@ export const SortIcon = ({ size = 15, ...props }: IconProps) => (
 		{...props}
 	>
 		<path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z" />
+	</svg>
+);
+
+export const DollarIcon = ({ size = 15, ...props }: IconProps) => (
+	<svg
+		width={size}
+		height={size}
+		viewBox="0 0 24 24"
+		fill="currentColor"
+		{...props}
+	>
+		<path d="M13 2v2.06c2.28.46 4 2.48 4 4.94h-2a3 3 0 0 0-3-3c-1.66 0-3 1.12-3 2.5 0 1.42 1.23 2.07 3.38 2.61C15.07 11.82 17 12.9 17 15.5 17 17.97 15.05 19.81 13 20.25V22h-2v-1.74C8.67 19.79 7 17.93 7 15.5h2a3 3 0 0 0 3 3c1.66 0 3-1.12 3-2.5 0-1.42-1.23-2.07-3.38-2.61C8.93 12.18 7 11.1 7 8.5 7 6.03 8.95 4.19 11 3.75V2h2z" />
 	</svg>
 );

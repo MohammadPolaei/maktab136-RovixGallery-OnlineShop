@@ -80,7 +80,7 @@ export default function ProductCard({ product }: { product: Product }) {
 			>
 				<div
 					className="
-          bg-black/50 text-white
+          bg-black/80 text-white
           p-3
           rounded-full
           translate-y-4
@@ -92,13 +92,13 @@ export default function ProductCard({ product }: { product: Product }) {
 					<EyeIcon />
 				</div>
 
-				<span className="text-[11px] font-bold text-black">مشاهده جزئیات</span>
+				<span className="text-[10px] font-bold text-black">مشاهده جزئیات</span>
 
 				<motion.button
 					variants={addToCartVariants}
 					initial="hidden"
 					animate={isHovered ? "visible" : "hidden"}
-					className="w-2/3 py-3 mx-auto bg-black/50 hover:bg-(--color-gold) text-[12px] text-white hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
+					className="w-2/3 py-3 mx-auto bg-black/80 hover:bg-(--color-gold) text-[10px] text-white font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
 				>
 					<CartIconButton />
 					<span>افزودن به سبد خرید</span>

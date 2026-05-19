@@ -4,6 +4,7 @@ import {
 	BandIcon,
 	BrandIcon,
 	DialIcon,
+	DollarIcon,
 	GenderIcon,
 	GlobeIcon,
 	SortIcon,
@@ -12,6 +13,7 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import SelectFilter from "../base/select-filter";
 import SummaryFilter from "../base/summary-filter";
+import PriceRangeFilter from "../main-app/products-list/components/price-range-filter";
 
 export interface ProductSearchParams {
 	page?: string;
@@ -143,6 +145,14 @@ export default function ProductsFilter({
 				>
 					حذف فیلتر
 				</button>
+			</div>
+			{/* PRICE FILTERING */}
+			<div className="w-full md:hidden">
+				<SummaryFilter icon={<DollarIcon />} title="بر اساس قیمت">
+					<div className="w-full md:hidden">
+						<PriceRangeFilter />
+					</div>
+				</SummaryFilter>
 			</div>
 
 			{/* BRAND */}

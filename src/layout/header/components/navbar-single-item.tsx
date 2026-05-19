@@ -22,7 +22,7 @@ export default function NavbarSingleItem({
 						className="rovix-link transition-all ease-in-out duration-500 cursor-pointer relative"
 					>
 						<div
-							className={`${extraClasses} group px-3 py-3 rounded-sm flex items-center justify-between gap-2 text-center hover:bg-[#0f3b2e] active:text-white origin-center transition-all ease-in-out duration-500`}
+							className={`${extraClasses} group px-3 py-3 rounded-sm flex items-center justify-between gap-2 text-center bg-linear-0 hover:from-transparent hover:to-[#0f3b2e] active:text-white origin-center transition-all ease-in-out duration-500`}
 						>
 							{icon}
 							{title}
@@ -52,7 +52,7 @@ export default function NavbarSingleItem({
 					className="rovix-link transition-all ease-in-out duration-500"
 				>
 					<div
-						className={`${extraClasses} px-3 py-3 rounded-sm flex items-center justify-between gap-2 text-center hover:bg-[#0f3b2e] active:text-white origin-center transition-all ease-in-out duration-500`}
+						className={`${extraClasses} px-3 py-3 rounded-sm flex items-center justify-between gap-2 text-center bg-linear-0 hover:from-transparent hover:to-[#0f3b2e] active:text-white origin-center transition-all ease-in-out duration-500`}
 					>
 						{icon}
 						{title}

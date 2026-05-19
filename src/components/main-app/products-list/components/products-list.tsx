@@ -1,6 +1,7 @@
 "use client";
 import { Product } from "@/types/product-data-type";
 import { motion, Variants } from "framer-motion";
+import PriceRangeFilter from "./price-range-filter";
 import ProductCard from "./product-card";
 
 const containerVariants: Variants = {
@@ -24,9 +25,12 @@ export default function ProductsList({
 }) {
 	return (
 		<div className="w-full">
-			<div className="text-neutral-400 text-[11px] w-full flex justify-between items-center pb-5 pt-8 md:pt-2 px-2">
+			<div className="text-neutral-400 text-[11px] w-full flex justify-between items-center gap-5 pb-5 pt-8 md:pt-2">
 				<div className="bg-white shadow shadow-black/5 px-4 py-1.5 rounded-sm font-medium text-neutral-500">
 					{`نمایش ${products.length} از ${totalProducts} محصول`}
+				</div>
+				<div className="w-fit hidden md:block">
+					<PriceRangeFilter />
 				</div>
 			</div>
 
