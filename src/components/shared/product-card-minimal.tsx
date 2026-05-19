@@ -37,7 +37,7 @@ export function ProductCardMinimal({
 		<motion.article
 			variants={cardVariants}
 			whileHover={{ y: -8 }}
-			className="group relative cursor-pointer flex max-w-70 flex-col overflow-hidden rounded-sm bg-white p-3 shadow-sm ring-1 ring-slate-100 hover:ring-(--color-accent-green) hover:bg-(--color-accent-green) transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+			className="group relative cursor-pointer flex max-w-70 flex-col overflow-hidden rounded-sm hover:rounded-md bg-white p-3 shadow-sm ring-1 ring-slate-100 hover:ring-(--color-accent-green) hover:bg-(--color-accent-green) transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
 		>
 			{/* Favorite Button */}
 			<button className="absolute left-4 top-4 z-10 rounded-full bg-white/80 p-1.5 text-slate-300 backdrop-blur-md transition-all hover:bg-white hover:text-rose-500">
@@ -45,21 +45,21 @@ export function ProductCardMinimal({
 			</button>
 
 			{/* Product Image Container */}
-			<div className="relative aspect-4/5 overflow-hidden rounded-sm bg-[#F8F9FA] flex items-center justify-center p-6">
+			<div className="relative aspect-4/4 overflow-hidden rounded-md bg-[#F8F9FA] flex items-center justify-center p-6 transition-all duration-500 ease-in-out">
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.02),transparent)]" />
 				<Image
 					src={image}
 					alt={name}
 					width={200}
 					height={200}
-					className="relative z-10 mix-blend-multiply object-contain transition-transform duration-700 group-hover:scale-110"
+					className="relative z-10 mix-blend-multiply object-contain transition-transform duration-700 group-hover:scale-130"
 				/>
 			</div>
 
 			{/* Info Content */}
 			<div className="mt-4 flex flex-col items-center px-1 pb-2">
 				{/* Brand */}
-				<span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-600/80">
+				<span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-600/80 group-hover:text-emerald-200/80 group-hover:text-[12px] transition-all duration-500 ease-in-out">
 					{brand}
 				</span>
 

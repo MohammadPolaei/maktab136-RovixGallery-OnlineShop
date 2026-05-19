@@ -101,7 +101,7 @@ const PriceRangeFilter: React.FC<PriceRangeProps> = ({
 			<div className="min-w-25 flex-1 flex justify-center items-center">
 				<button
 					onClick={resetFilter}
-					className="text-[10px] text-red-500 px-3 py-1 rounded-sm bg-red-500/10 hover:bg-red-500/50 hover:text-white transition-all duration-300"
+					className="text-[10px] text-red-500 px-3 py-1 rounded-sm bg-red-500/10 hover:bg-red-500/50 hover:text-white transition-all duration-300 cursor-pointer"
 				>
 					حذف فیلتر قیمت
 				</button>
