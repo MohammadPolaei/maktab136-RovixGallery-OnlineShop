@@ -50,7 +50,24 @@ input[type="number"]::-webkit-outer-spin-button {
 	}
 }
 
-/* select element customize */
+/* swiper setting for single product image */
+.mySwiperMain {
+	height: 450px !important;
+	width: 100% !important;
+}
+
+.mySwiperThumbs {
+	height: 80px !important;
+	width: 100% !important;
+}
+
+.swiper-slide-thumb-active .thumb-overlay {
+	opacity: 0 !important;
+}
+
+.thumb-overlay {
+	opacity: 0.5;
+}
 
 select {
 	appearance: none;

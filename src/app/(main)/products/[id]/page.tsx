@@ -22,17 +22,21 @@ export default async function ProductPage(props: ProductPageProps) {
 	};
 
 	return (
-		<div className="rovix-bg-darkest text-[10px] text-white min-h-screen py-10 px-6 md:px-14">
-			<div className="grid md:grid-cols-2 gap-8">
-				<ProductGallery images={product.images} />
-				<div className="flex flex-col gap-4">
-					<ProductInfo product={product} />
-					<ProductActions product={product} />
+		<section className="rovix-bg-darkest -mt-4 -mb-10 w-screen flex flex-col justify-start items-center">
+			<div className="container rovix-bg-darkest text-[10px] text-white min-h-full py-10 px-6 md:px-14 flex flex-col justify-start items-center">
+				<div className="grid md:grid-cols-2 gap-8">
+					<div className="w-full border border-(--color-gold)/20 rounded-sm overflow-hidden">
+						<ProductGallery images={product.images} />
+					</div>
+					<div className="flex flex-col gap-4">
+						<ProductInfo product={product} />
+						<ProductActions product={product} />
+					</div>
 				</div>
-			</div>
 
-			<ProductSpecs product={product} />
-			<RelatedProducts brand={product.brand} />
-		</div>
+				<ProductSpecs product={product} />
+				<RelatedProducts brand={product.brand} />
+			</div>
+		</section>
 	);
 }
