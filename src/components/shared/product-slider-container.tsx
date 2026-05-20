@@ -30,8 +30,6 @@ export function ProductSliderContainer({
 	page,
 	product,
 }: ProductSliderContainerProps) {
-	if (!product?.length) return null;
-
 	return (
 		<section className="w-70 sm:w-150 md:min-w-full overflow-hidden">
 			<motion.div
@@ -58,22 +56,28 @@ export function ProductSliderContainer({
 					}}
 					className="w-full overflow-hidden group/swiper"
 				>
-					{product.map((item) => (
-						<SwiperSlide
-							key={item._id}
-							className="w-full py-5 flex justify-center overflow-hidden!"
-						>
-							<ProductCardMinimal
-								discounted={discounted}
-								isFavorite={false}
-								rating={item.popularity / 10}
-								images={item.images}
-								name={item.name}
-								brand={item.brand}
-								price={item.price}
-							/>
-						</SwiperSlide>
-					))}
+					{product.length > 0 ? (
+						product.map((item) => (
+							<SwiperSlide
+								key={item._id}
+								className="w-full py-5 flex justify-center overflow-hidden!"
+							>
+								<ProductCardMinimal
+									discounted={discounted}
+									isFavorite={false}
+									rating={item.popularity / 10}
+									images={item.images}
+									name={item.name}
+									brand={item.brand}
+									price={item.price}
+								/>
+							</SwiperSlide>
+						))
+					) : (
+						<div className="w-full min-h-80 rounded-sm bg-radial via-transparent from-(--color-gold)/40 to-transparent flex flex-col justify-center items-center text-[14px]">
+							موردی برای نمایش وجود ندارد
+						</div>
+					)}
 				</Swiper>
 			</motion.div>
 		</section>

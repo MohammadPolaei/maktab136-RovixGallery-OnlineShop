@@ -10,6 +10,7 @@ import imageSupp1 from "@/assets/img/support-section/rovix_return_exchange_14day
 import imageSupp4 from "@/assets/img/support-section/rovix_secure_payment_outline.webp";
 import imageSupp5 from "@/assets/img/support-section/rovix_secure_purchase_outline.webp";
 import imageSupp6 from "@/assets/img/support-section/rovix_support_24h_outline.webp";
+import { faNumber } from "@/utils/convert-number-into-persian";
 
 const supportContents = [
 	{ title: "مرجوعی و تعویض ۱۴ روز", image: imageSupp1 },
@@ -46,7 +47,7 @@ const itemVariants: Variants = {
 export default function SupportSection() {
 	return (
 		<div className="w-full flex flex-col justify-center items-center gap-1 py-1 px-4">
-			<SectionTitle title="پشتیبانی 24/7" />
+			<SectionTitle title={`پشتیبانی ${faNumber(24)}/${faNumber(7)}`} />
 			<div className="flex flex-wrap justify-evenly items-center py-2 text-center text-[16px] w-full max-w-5xl mx-auto">
 				{supportContents.map((item) => {
 					return (

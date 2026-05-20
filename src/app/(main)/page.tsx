@@ -1,9 +1,9 @@
 import Brands from "@/components/main-app/home/components/brands";
 import Categories from "@/components/main-app/home/components/categories";
 import FaqSection from "@/components/main-app/home/components/FAQ";
-import FeaturedCollection from "@/components/main-app/home/components/featured-collection";
 import HeroSlider from "@/components/main-app/home/components/hero";
 import MostPopularProducts from "@/components/main-app/home/components/most-popular-products";
+import NewestProducts from "@/components/main-app/home/components/newest-products";
 import SelectedCategories from "@/components/main-app/home/components/selected-categories";
 import SpecialOffers from "@/components/main-app/home/components/special-offers";
 import SpecialProducts from "@/components/main-app/home/components/special-products";
@@ -21,7 +21,7 @@ export default async function HomePage({
 
 	const query = buildQuery(resolvedSearchParams);
 
-	const { data } = await getProductsSSR(query);
+	const { data, page } = await getProductsSSR(query);
 
 	// reSetting products image by currecting URL
 	const products = data.map((prod: Product) => ({
@@ -45,11 +45,11 @@ export default async function HomePage({
 				<Categories />
 				<SpecialOffers specialProducts={specialProducts} />
 				<SupportSection />
+				<NewestProducts page={page} product={products} />
 				<SpecialProducts products={specialOffers} />
 				<MostPopularProducts products={products} />
 				<Brands />
 				<FaqSection />
-				<FeaturedCollection />
 				<SelectedCategories />
 			</div>
 		</section>
