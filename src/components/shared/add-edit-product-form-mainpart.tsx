@@ -3,11 +3,18 @@
 import InputValidationError from "@/components/base/input-validation-error";
 import { TextInput } from "@/components/base/inputs";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import {
+	Control,
+	Controller,
+	FieldErrors,
+	UseFormRegister,
+} from "react-hook-form";
 import AddProductInputContainer from "../dashboard/components/aside/products/add-product-input-container";
+import RichTextEditor from "../dashboard/components/aside/products/rich-text-editor";
 
 type Props = {
 	register: UseFormRegister<ProductAddSchemaType>;
+	control: Control<ProductAddSchemaType>;
 	isUpdating: boolean | undefined;
 	isAdding: boolean;
 	editable: boolean;
@@ -41,6 +48,7 @@ export default function AddEditProductFormMainpart({
 	isAdding,
 	editable,
 	errors,
+	control,
 }: Props) {
 	const isSubmiting = editable ? isUpdating : isAdding;
 
@@ -89,12 +97,17 @@ export default function AddEditProductFormMainpart({
 					</div>
 
 					{/* -------------------- DESCRIPTION TEXTAREA -------------------- */}
-					<div className="relative flex flex-col">
-						<textarea
+					<label className="text-[12px] md:text-[14px] text-(--color-dark-green) font-semibold">
+						{"توضیحات محصول"}
+					</label>
+					<div className="relative col-span-2 ">
+						<Controller
 							disabled={isSubmiting}
-							{...register("description")}
-							placeholder="توضیحات محصول"
-							className="w-full min-h-32 rounded-md border border-gray-300 p-4 outline-none focus:ring-2 focus:ring-(--color-accent-green)"
+							name="description"
+							control={control}
+							render={({ field }) => (
+								<RichTextEditor value={field.value} onChange={field.onChange} />
+							)}
 						/>
 
 						{errors.description?.message && (

@@ -1,5 +1,5 @@
 import { Product } from "@/types/product-data-type";
-
+import DOMPurify from "isomorphic-dompurify";
 interface SpecsProps {
 	product: Product;
 }
@@ -12,9 +12,12 @@ export default function ProductSpecs({ product }: SpecsProps) {
 					توضیحات محصول
 				</h2>
 			</div>
-			<p className="text-[10px] leading-5 text-gray-300">
-				{product.description}
-			</p>
+			<p className="text-[10px] leading-5 text-gray-300"></p>
+			<div
+				dangerouslySetInnerHTML={{
+					__html: DOMPurify.sanitize(product.description),
+				}}
+			/>
 		</div>
 	);
 }

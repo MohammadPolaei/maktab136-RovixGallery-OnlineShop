@@ -35,9 +35,7 @@ export default function ProductEditForm({
 	errorUpdating: Error | null;
 }) {
 	const [previews, setPreviews] = useState<string[]>(product.images || []);
-	const [existingImages, setExistingImages] = useState<string[]>([]);
-	const [newImages, setNewImages] = useState<File[]>([]);
-	const [deletedImages, setDeletedImages] = useState<string[]>([]);
+
 	// edit product
 
 	const {
@@ -46,6 +44,7 @@ export default function ProductEditForm({
 		setValue,
 		getValues,
 		reset,
+		control,
 		formState: { errors },
 	} = useForm<ProductAddSchemaType>({
 		resolver: zodResolver(ProductAddSchema),
@@ -56,6 +55,7 @@ export default function ProductEditForm({
 			isActive: true,
 			popularity: 0,
 			images: [],
+			description: product.description || "",
 		},
 	});
 
@@ -173,6 +173,7 @@ export default function ProductEditForm({
 					</h2>
 
 					<AddEditProductFormMainpart
+						control={control}
 						isUpdating={isUpdating}
 						register={register}
 						errors={errors}

@@ -30,6 +30,7 @@ export default function AddProductForm({
 		register,
 		handleSubmit,
 		setValue,
+		control,
 		formState: { errors },
 	} = useForm<ProductAddSchemaType>({
 		resolver: zodResolver(ProductAddSchema),
@@ -40,6 +41,7 @@ export default function AddProductForm({
 			isActive: true,
 			popularity: 0,
 			images: [],
+			description: "",
 		},
 	});
 
@@ -87,6 +89,7 @@ export default function AddProductForm({
 					</h2>
 
 					<AddEditProductFormMainpart
+						control={control}
 						isUpdating={false}
 						register={register}
 						errors={errors}

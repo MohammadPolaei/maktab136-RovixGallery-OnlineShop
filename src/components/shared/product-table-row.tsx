@@ -31,9 +31,9 @@ export default function ProductsTableRow({
 	const [openEdit, setOpenEdit] = useState(false);
 
 	const toCancelForAll = () => {
+		setReadyToEdit(false);
 		setStock(product.stock);
 		setPrice(product.price);
-		setReadyToEdit(false);
 	};
 
 	useEffect(() => {
@@ -51,6 +51,10 @@ export default function ProductsTableRow({
 	}, [confirmQuestion, deleteProduct, product._id]);
 
 	// handle price and Quantity edit
+	useEffect(() => {
+		setPrice(product.price);
+		setStock(product.stock);
+	}, [product.price, product.stock]);
 
 	const isPriceInvalid = price! < 1000;
 
@@ -86,7 +90,8 @@ export default function ProductsTableRow({
 								type="number"
 								value={price}
 								onChange={(e) => {
-									setPrice(Number(e.target.value));
+									const newPrice = Number(e.target.value);
+									setPrice(newPrice);
 									handleUpdateChange(product._id, {
 										price: price,
 										stock: product.stock,
@@ -146,7 +151,8 @@ export default function ProductsTableRow({
 								type="number"
 								value={stock}
 								onChange={(e) => {
-									setStock(Number(e.target.value));
+									const newStock = Number(e.target.value);
+									setStock(newStock);
 									handleUpdateChange(product._id, {
 										price: product.price,
 										stock: stock,
