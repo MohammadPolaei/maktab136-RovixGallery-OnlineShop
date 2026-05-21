@@ -24,11 +24,15 @@ export default async function RelatedProducts({ brand }: RelatedProductsProps) {
 		});
 	});
 
+	const eightRelatedProductsToShow = resolvedProductsWithCorrectImages.filter(
+		(p, index) => index <= 7
+	);
+
 	return (
 		<div className="mt-10">
 			<h3 className="text-[12px] rovix-text-gold mb-4">محصولات مرتبط</h3>
 			<div className="grid md:grid-cols-4 gap-6">
-				{resolvedProductsWithCorrectImages.map((p) => (
+				{eightRelatedProductsToShow.map((p) => (
 					<Link key={p._id} href={`/products/${p._id}`} title={p.name}>
 						<div className="bg-(--color-dark-green) rounded-lg p-4 hover:bg-(--color-accent-green) transition-all duration-800 ease-in-out hover:scale-105 origin-center">
 							<img

@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Product } from "@/types/product-data-type";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ProductCardMinimal } from "./product-card-minimal";
 
 type ProductSliderContainerProps = {
@@ -62,15 +63,17 @@ export function ProductSliderContainer({
 								key={item._id}
 								className="w-full py-5 flex justify-center overflow-hidden!"
 							>
-								<ProductCardMinimal
-									discounted={discounted}
-									isFavorite={false}
-									rating={item.popularity}
-									images={item.images}
-									name={item.name}
-									brand={item.brand}
-									price={item.price}
-								/>
+								<Link href={`/products/${item._id}`} title={item.name}>
+									<ProductCardMinimal
+										discounted={discounted}
+										isFavorite={false}
+										rating={item.popularity}
+										images={item.images}
+										name={item.name}
+										brand={item.brand}
+										price={item.price}
+									/>
+								</Link>
 							</SwiperSlide>
 						))
 					) : (

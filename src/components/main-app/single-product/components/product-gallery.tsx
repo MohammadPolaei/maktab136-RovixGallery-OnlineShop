@@ -45,31 +45,28 @@ export default function ProductGallery({ images }: GalleryProps) {
 				className="w-full flex-5 rounded-sm overflow-hidden"
 			>
 				{images.map((img, i) => (
-					<>
-						<SwiperSlide key={i} className="aspect-square relative">
-							<div className="w-full h-full relative">
-								<Image
-									src={img}
-									alt={`product-${i}`}
-									fill
-									className="object-contain"
-									priority={i === 0}
-									loading="eager"
-								/>
-							</div>
-							{/* background blur */}
-							<div className="w-full h-full blur-3xl absolute">
-								<Image
-									src={img}
-									alt={`product-${i}`}
-									fill
-									className="object-cover"
-									priority={i === 0}
-									loading="eager"
-								/>
-							</div>
-						</SwiperSlide>
-					</>
+					<SwiperSlide key={i} className="aspect-square relative">
+						<div className="w-full h-full relative">
+							<Image
+								src={img}
+								alt={`product-${i}`}
+								fill
+								className="object-contain"
+								priority={i === 0}
+								loading="eager"
+							/>
+						</div>
+						{/* background blur */}
+						<div className="w-full h-full blur-3xl absolute">
+							<Image
+								src={img}
+								alt={`product-${i}-back`}
+								fill
+								className="object-cover overflow-auto"
+								loading="lazy"
+							/>
+						</div>
+					</SwiperSlide>
 				))}
 			</Swiper>
 

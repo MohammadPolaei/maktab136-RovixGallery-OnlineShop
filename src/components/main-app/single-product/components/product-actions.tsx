@@ -3,6 +3,7 @@
 import CartIconButton from "@/assets/SVG/cart-icon-button";
 import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
+import { faNumber } from "@/utils/convert-number-into-persian";
 import AddToCartSingleProduct from "./add-to-cart-single-product";
 
 interface ActionsProps {
@@ -35,7 +36,7 @@ export default function ProductActions({ product }: ActionsProps) {
 						))}
 					</div>
 					<span className="text-[12px] text-white/50">
-						{(product.popularity / 20).toFixed(1)}
+						{faNumber((product.popularity / 20).toFixed(1))}
 					</span>
 				</div>
 			</div>

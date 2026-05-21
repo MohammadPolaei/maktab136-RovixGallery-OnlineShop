@@ -1,6 +1,7 @@
 "use client";
 
 import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
+import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -114,7 +115,7 @@ export function ProductCardMinimal({
 							))}
 						</div>
 						<span className="text-[10px] font-medium text-slate-400 group-hover:text-slate-200">
-							({(rating / 20).toFixed(1)})
+							({faNumber((rating / 20).toFixed(1))})
 						</span>
 					</div>
 

@@ -8,7 +8,6 @@ import { getProduct } from "@/services/get-single-product";
 interface ProductPageProps {
 	params: Promise<{ id: string }>;
 }
-
 export default async function ProductPage(props: ProductPageProps) {
 	const { id } = await props.params;
 

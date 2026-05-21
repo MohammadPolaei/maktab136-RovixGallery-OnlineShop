@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
 import { samim } from "./fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-	title: "فروشگاه رویکس - Rovix Gallery",
-	description: "فروشگاه اینترنتی ساعت مچی - رویکس گالری",
+export const metadata = {
+	title: "فروشگاه روویکس | Rovix Store",
+	description: "بهترین ساعت‌ها و اکسسوری‌های لوکس.",
+	openGraph: {
+		type: "website",
+		images: ["/og-main.jpg"],
+	},
 };
 
 export default function RootLayout({

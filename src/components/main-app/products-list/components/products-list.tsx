@@ -1,5 +1,6 @@
 "use client";
 import { Product } from "@/types/product-data-type";
+import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import PriceRangeFilter from "./price-range-filter";
 import ProductCard from "./product-card";
@@ -27,7 +28,9 @@ export default function ProductsList({
 		<div className="w-full">
 			<div className="w-full text-neutral-400 text-[10px] flex flex-col lg:flex-row justify-between items-center gap-3 pb-3 pt-8 md:pt-2">
 				<div className="w-full lg:w-40 text-center bg-white shadow shadow-black/5 px-4 py-3 rounded-sm font-medium text-neutral-500">
-					{`نمایش ${products.length} از ${totalProducts} محصول`}
+					{`نمایش ${faNumber(products.length)} از ${faNumber(
+						totalProducts
+					)} محصول`}
 				</div>
 				<div className="w-full hidden md:block">
 					<PriceRangeFilter />
