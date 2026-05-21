@@ -22,10 +22,12 @@ export default function ProductsTable({
 	deleteProduct,
 }: ProductDataTable) {
 	const [changes, setChanges] = useState<any>({});
+	const [readyToEditForAll, setReadyToEditForAll] = useState(true);
 
 	// handle all changes
 	const handleCancel = () => {
 		setChanges({});
+		setReadyToEditForAll(false);
 	};
 
 	const handleSaveAll = async () => {
@@ -38,10 +40,15 @@ export default function ProductsTable({
 			});
 		});
 
-		await Promise.all(promises);
-
-		setChanges({});
-		setEditSuccess(true);
+		await Promise.all(promises)
+			.then(() => {
+				setChanges({});
+				setEditSuccess(true);
+				setReadyToEditForAll(false);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 	};
 
 	// handle single change
@@ -60,10 +67,10 @@ export default function ProductsTable({
 		});
 	};
 
+	// to disable button
 	let disabledButton = Object.entries(changes).length == 0;
 	useEffect(() => {
 		disabledButton = Object.entries(changes).length == 0;
-		console.log(changes);
 	}, [changes]);
 
 	return (
@@ -71,7 +78,7 @@ export default function ProductsTable({
 			{editable ? null : (
 				<div className="w-full flex flex-row justify-end items-center gap-2">
 					<button
-						className="px-2 py-1 rounded-sm bg-red-600/70 text-white text-[12px] disabled:bg-gray-600 hover:scale-110 origin-center cursor-pointer transition-all duration-500 ease-in-out"
+						className="px-2 py-1 rounded-sm bg-red-600/70 text-white text-[12px] disabled:bg-gray-600 disabled:opacity-20 disabled:cursor-not-allowed hover:scale-103 origin-center cursor-pointer transition-all duration-500 ease-in-out"
 						onClick={handleCancel}
 					>
 						لغو همه
@@ -79,7 +86,7 @@ export default function ProductsTable({
 
 					<button
 						disabled={disabledButton}
-						className="px-2 py-1 rounded-sm bg-green-600/70 text-white text-[12px] disabled:bg-gray-600 hover:scale-110 origin-center cursor-pointer transition-all duration-500 ease-in-out"
+						className="px-2 py-1 rounded-sm bg-green-600/70 text-white text-[12px] disabled:bg-gray-600 disabled:opacity-20 disabled:cursor-not-allowed hover:scale-103 origin-center cursor-pointer transition-all duration-500 ease-in-out"
 						onClick={handleSaveAll}
 					>
 						ذخیره همه
@@ -120,6 +127,7 @@ export default function ProductsTable({
 					<tbody>
 						{productData.map((item) => (
 							<ProductsTableRow
+								readyToEditForAll={readyToEditForAll}
 								handleUpdateChange={handleUpdateChange}
 								setEditSuccess={setEditSuccess}
 								errorUpdating={errorUpdating}

@@ -81,6 +81,7 @@ export const prepareProductForUpdate = (
 };
 
 export interface TableRowPropsType {
+	readyToEditForAll: boolean;
 	handleUpdateChange: (
 		id: string,
 		data: { price: number; stock: number } | null

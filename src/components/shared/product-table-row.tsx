@@ -16,6 +16,7 @@ export default function ProductsTableRow({
 	deleteProduct,
 	updateProduct,
 	handleUpdateChange,
+	readyToEditForAll,
 }: TableRowPropsType) {
 	// handle delete
 
@@ -26,14 +27,28 @@ export default function ProductsTableRow({
 	const [stock, setStock] = useState<number>(product.stock);
 	const [readyToEdit, setReadyToEdit] = useState(false);
 
+	// handle edit for overal product edit
+	const [openEdit, setOpenEdit] = useState(false);
+
+	const toCancelForAll = () => {
+		setStock(product.stock);
+		setPrice(product.price);
+		setReadyToEdit(false);
+	};
+
+	useEffect(() => {
+		if (!readyToEditForAll) {
+			toCancelForAll();
+		}
+	}, [readyToEditForAll]);
+
+	// delete single item
+
 	useEffect(() => {
 		if (confirmQuestion && deleteProduct) {
 			deleteProduct(product._id);
 		}
 	}, [confirmQuestion, deleteProduct, product._id]);
-
-	// handle edit
-	const [openEdit, setOpenEdit] = useState(false);
 
 	// handle price and Quantity edit
 
@@ -89,7 +104,7 @@ export default function ProductsTableRow({
 								}`}
 							/>
 							{isPriceInvalid && (
-								<span className="absolute -bottom-10 text-[10px] text-red-500 font-normal">
+								<span className="absolute bottom-5 text-[10px] text-red-500 font-normal">
 									حداقل قیمت ۱,۰۰۰ ریال
 								</span>
 							)}
