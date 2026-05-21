@@ -1,7 +1,10 @@
 "use client";
 
+import CartIconButton from "@/assets/SVG/cart-icon-button";
+import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
 import { useState } from "react";
+import AddToCartSingleProduct from "./add-to-cart-single-product";
 
 interface ActionsProps {
 	product: Product;
@@ -11,20 +14,50 @@ export default function ProductActions({ product }: ActionsProps) {
 	const [quantity, setQuantity] = useState(1);
 
 	return (
-		<div className="mt-4">
-			<div className="flex items-center gap-2">
-				<input
-					type="number"
-					value={quantity}
-					min={1}
-					className="w-16 text-center bg-transparent border rovix-border-gold rounded text-[10px] text-white"
-					onChange={(e) => setQuantity(+e.target.value)}
+		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
+			<div className="w-full flex flex-col md:flex-row justify-between items-center">
+				<AddToCartSingleProduct
+					productStock={product.stock}
+					prodID={product._id}
 				/>
-				<button className="rovix-bg-gold text-black text-[10px] px-4 py-2 rounded hover:rovix-bg-gold-dark transition">
-					افزودن به سبد خرید
-				</button>
-				<button className="rovix-bg-super-dark-green text-[10px] px-4 py-2 rounded border border-gold hover:rovix-bg-dark-green transition">
-					افزودن به علاقه‌مندی‌ها
+				<div className="flex items-center gap-1">
+					<p>{"نطرات کاربران"}</p>
+					<div className="flex items-center">
+						{[...Array(5)].map((_, i) => (
+							<svg
+								key={i}
+								className={`h-4 w-4 ${
+									i < Math.floor(product.popularity / 20)
+										? "text-amber-400 fill-current"
+										: "text-slate-200 fill-current"
+								}`}
+								viewBox="0 0 20 20"
+							>
+								<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+							</svg>
+						))}
+					</div>
+					<span className="text-[12px] text-white/50">
+						{(product.popularity / 20).toFixed(1)}
+					</span>
+				</div>
+			</div>
+			<div className="w-full">
+				{product.stock == 0 ? (
+					<button className="w-full py-3 mx-auto bg-white/20 hover:bg-(--color-gold)/20 text-[10px] text-white font-bold hover:text-(--color-gold) cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+						<span>به من اطلاع بده !</span>
+					</button>
+				) : (
+					<button className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+						<CartIconButton size={25} />
+						<span>افزودن به سبد خرید</span>
+					</button>
+				)}
+			</div>
+			<div className="w-full">
+				<button className="w-full py-1 mx-auto border border-(--color-gold) text-[12px] text-(--color-gold) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+					<FavoriteFilled size={25} />
+					<span>افزودن به علاقه مندی ها</span>
 				</button>
 			</div>
 		</div>

@@ -1,5 +1,8 @@
+import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
+import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
+import AddToCartSingleProduct from "./add-to-cart-single-product";
 
 interface InfoProps {
 	product: Product;
@@ -8,22 +11,59 @@ interface InfoProps {
 export default function ProductInfo({ product }: InfoProps) {
 	return (
 		<div>
-			<h1 className="text-[14px] font-bold rovix-text-gold mb-2">
-				ساعت مچی {product.brand} {product.name}
+			<h1 className="text-[14px] font-semibold text-white mb-2 flex flex-row justify-start items-center gap-2">
+				<FavoriteOutlined color="#d8c27a55" size={20} />
+				ساعت مچی {product.name}
 			</h1>
-			<ul className="text-[10px] space-y-1 text-gray-300">
-				<li>برند: {product.brand}</li>
-				<li>مدل: {product._id}</li>
-				<li>جنسیت: {product.gender}</li>
-				<li>رنگ صفحه: {product.dialColor}</li>
-				<li>کشور سازنده: {product.brandCountry}</li>
+			<ul className="text-[12px] text-gray-300 flex flex-col justify-start gap-2 border-b border-b-(--color-gold)/20 pb-10">
+				<li className="grid grid-cols-2">
+					برند: <span className="font-bold">{product.brand}</span>
+				</li>
+				<li className="grid grid-cols-2">
+					جنس بند: <span>{product.material}</span>
+				</li>
+				<li className="grid grid-cols-2">
+					رنگ بند:{" "}
+					<span className="flex items-center gap-2">
+						{product.color}
+						<div>{ShowColorOnCard(product.color)}</div>
+					</span>
+				</li>
+				<li className="grid grid-cols-2">
+					جنسیت: <span>{product.gender}</span>
+				</li>
+				<li className="grid grid-cols-2">
+					رنگ صفحه:{" "}
+					<span className="flex items-center gap-2">
+						{product.dialColor}
+						<div>{ShowColorOnCard(product.color)}</div>
+					</span>
+				</li>
+				<li className="grid grid-cols-2">
+					کشور سازنده: <span>{product.brandCountry}</span>
+				</li>
 			</ul>
-			<p className="mt-4 text-[10px] text-gray-400 leading-relaxed">
-				{product.description}
-			</p>
-			<p className="text-[12px] mt-4 rovix-text-gold font-bold">
-				{faNumber(product.price)} ریال
-			</p>
+			<div className="mt-4 text-[10px] text-gray-400 leading-relaxed flex flex-col md:flex-row justify-between items-center gap-5">
+				<div className="flex justify-center items-center gap-10">
+					{"وضعیت :"}
+					{product.stock > 1 ? (
+						<div className="flex items-center gap-2">
+							<div className="bg-green-500 w-3 h-3 rounded-full" />
+							{`موجود`}
+						</div>
+					) : (
+						<div className="flex items-center gap-2">
+							<div className="bg-red-500 w-3 h-3 rounded-full" />
+							{`ناموجود`}
+						</div>
+					)}
+				</div>
+				<div>
+					<p className="text-[20px] rovix-text-gold font-bold">
+						{faNumber(product.price)} ریال
+					</p>
+				</div>
+			</div>
 		</div>
 	);
 }

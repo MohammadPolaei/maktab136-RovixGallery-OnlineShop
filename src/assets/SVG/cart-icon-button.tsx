@@ -1,8 +1,8 @@
-export default function CartIconButton() {
+export default function CartIconButton({ size = 15 }: { size?: number }) {
 	return (
 		<svg
-			width="15"
-			height="15"
+			width={size}
+			height={size}
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke="currentColor"

@@ -65,7 +65,7 @@ export function ProductSliderContainer({
 								<ProductCardMinimal
 									discounted={discounted}
 									isFavorite={false}
-									rating={item.popularity / 10}
+									rating={item.popularity}
 									images={item.images}
 									name={item.name}
 									brand={item.brand}

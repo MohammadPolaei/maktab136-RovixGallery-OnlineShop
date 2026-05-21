@@ -20,7 +20,6 @@ const supportContents = [
 	{ title: "خرید امن", image: imageSupp5 },
 	{ title: "پشتیبانی 24/7", image: imageSupp6 },
 ];
-
 const itemVariants: Variants = {
 	initial: { opacity: 0, scale: 0.8, y: 20 },
 	animate: {
@@ -48,7 +47,7 @@ export default function SupportSection() {
 	return (
 		<div className="w-full flex flex-col justify-center items-center gap-1 py-1 px-4">
 			<SectionTitle title={`پشتیبانی ${faNumber(24)}/${faNumber(7)}`} />
-			<div className="flex flex-wrap justify-evenly items-center py-2 text-center text-[16px] w-full max-w-5xl mx-auto">
+			<div className="grid grid-cols-2 md:grid-cols-3 place-items-center py-2 text-center text-[16px] w-full max-w-4xl mx-auto">
 				{supportContents.map((item) => {
 					return (
 						<motion.div
@@ -57,9 +56,9 @@ export default function SupportSection() {
 							initial="initial"
 							animate="animate"
 							whileHover="hover"
-							className="flex flex-col justify-center items-center gap-2 m-4"
+							className="flex flex-col justify-center items-center gap-2 m-4 cursor-pointer"
 						>
-							<motion.div className="w-20 h-20 md:w-24 md:h-24 relative">
+							<motion.div className="w-20 h-20 md:w-24 md:h-24 rounded-[80%]  bg-(--color-gold)/20 hover:bg-(--color-gold-dark)/20 transition-all duration-500 ease-in-out relative">
 								<Image
 									alt={item.title}
 									src={item.image}
@@ -67,7 +66,7 @@ export default function SupportSection() {
 									objectFit="contain"
 								/>
 							</motion.div>
-							<motion.span className="text-sm md:text-base font-semibold text-gray-700">
+							<motion.span className="text-[10px] md:text-[14px] font-semibold text-gray-700">
 								{item.title}
 							</motion.span>
 						</motion.div>

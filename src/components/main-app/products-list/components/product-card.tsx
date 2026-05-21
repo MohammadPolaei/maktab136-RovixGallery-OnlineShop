@@ -13,6 +13,7 @@ import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const cardItemVariants: Variants = {
@@ -82,21 +83,29 @@ export default function ProductCard({ product }: { product: Product }) {
 				cursor-pointer
       "
 			>
-				<div
-					className="
+				<Link href={`/products/${product._id}`} title={product.name}>
+					<div
+						className="w-full flex flex-col justify-center items-center gap-2 p-5  translate-y-4
+          group-hover:translate-y-0
+          transition-all duration-500 hover:scale-130 origin-center active:scale-150 active:opacity-0"
+					>
+						<div
+							className="
           bg-black/80 text-white
           p-3
           rounded-full
-          translate-y-4
-          group-hover:translate-y-0
-          transition-all duration-500
           shadow-xl
-        "
-				>
-					<EyeIcon />
-				</div>
+					"
+						>
+							<EyeIcon />
+						</div>
 
-				<span className="text-[10px] font-bold text-black">مشاهده جزئیات</span>
+						<span className="text-[10px] font-bold text-black">
+							مشاهده جزئیات
+						</span>
+					</div>
+				</Link>
+
 				{notInStock ? (
 					<motion.button
 						variants={addToCartVariants}

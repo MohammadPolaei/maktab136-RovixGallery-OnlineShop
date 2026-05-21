@@ -50,7 +50,7 @@ export function ProductCardMinimal({
 				className="group relative cursor-pointer flex max-w-70 flex-col overflow-hidden rounded-sm hover:rounded-md bg-white p-3 shadow-sm ring-1 ring-slate-100 hover:ring-(--color-accent-green) hover:bg-(--color-accent-green) transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
 			>
 				{/* Favorite Button */}
-				<button className="absolute left-4 top-4 z-10 rounded-full bg-white/80 p-1.5 text-slate-300 backdrop-blur-md transition-all hover:bg-white hover:text-rose-500">
+				<button className="absolute left-4 top-4 z-10 rounded-full bg-white/80 p-1.5 text-slate-500 backdrop-blur-md transition-all hover:bg-white hover:text-rose-500">
 					<FavoriteOutlined size={15} />
 				</button>
 				{/* for Discounted cards */}
@@ -89,11 +89,11 @@ export function ProductCardMinimal({
 
 				{/* Info Content */}
 				<div className="mt-4 flex flex-col items-center px-1 pb-2">
-					<span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-600/80">
+					<span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-600/80 group-hover:text-emerald-300">
 						{brand}
 					</span>
 
-					<h3 className="mt-1 line-clamp-1 text-[13px] font-medium text-slate-800 transition-colors group-hover:text-white/80">
+					<h3 className="mt-1 line-clamp-1 text-[13px] font-medium text-slate-800 transition-colors group-hover:text-white">
 						{name}
 					</h3>
 
@@ -103,7 +103,7 @@ export function ProductCardMinimal({
 								<svg
 									key={i}
 									className={`h-2.5 w-2.5 ${
-										i < Math.floor(rating)
+										i < Math.floor(rating / 20)
 											? "text-amber-400 fill-current"
 											: "text-slate-200 fill-current"
 									}`}
@@ -113,8 +113,8 @@ export function ProductCardMinimal({
 								</svg>
 							))}
 						</div>
-						<span className="text-[10px] font-medium text-slate-400">
-							({rating})
+						<span className="text-[10px] font-medium text-slate-400 group-hover:text-slate-200">
+							({(rating / 20).toFixed(1)})
 						</span>
 					</div>
 
@@ -122,12 +122,12 @@ export function ProductCardMinimal({
 						{discounted ? (
 							<div className="flex flex-col justify-center items-center">
 								<div>
-									<span className="text-[14px] md:text-lg font-black text-(--color-accent-green) group-hover:text-white/80">
+									<span className="text-[14px] md:text-lg font-black text-(--color-accent-green) group-hover:text-white">
 										{(price * ((100 - discountNumber) / 100)).toLocaleString(
 											"fa-IR"
 										)}
 									</span>
-									<span className="text-[10px] font-bold text-slate-500 uppercase">
+									<span className="text-[10px] font-bold text-slate-500 group-hover:text-slate-200 uppercase">
 										ریال
 									</span>
 								</div>
@@ -137,10 +137,10 @@ export function ProductCardMinimal({
 							</div>
 						) : (
 							<>
-								<span className="text-[14px] md:text-lg font-black text-slate-900 group-hover:text-white/80">
+								<span className="text-[14px] md:text-lg font-black text-slate-900 group-hover:text-white">
 									{price.toLocaleString("fa-IR")}
 								</span>
-								<span className="text-[10px] font-bold text-slate-500 uppercase">
+								<span className="text-[10px] font-bold text-slate-500 group-hover:text-slate-200 uppercase">
 									ریال
 								</span>
 							</>

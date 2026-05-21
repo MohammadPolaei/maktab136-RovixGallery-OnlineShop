@@ -22,15 +22,15 @@ import AboutModal from "@/components/shared/about-modal";
 const slides = [
 	{
 		id: 1,
-		image: hero1,
-		title: "زمان خود را خاص بسازید",
-		text: "مجموعه‌ای از بهترین برندهای ساعت لوکس در RovixGallery",
-	},
-	{
-		id: 2,
 		image: hero2,
 		title: "ترکیبی از دقت و زیبایی",
 		text: "ساعت‌هایی که زمان را با شکوه تعریف می‌کنند",
+	},
+	{
+		id: 2,
+		image: hero1,
+		title: "زمان خود را خاص بسازید",
+		text: "مجموعه‌ای از بهترین برندهای ساعت لوکس در RovixGallery",
 	},
 	{
 		id: 3,

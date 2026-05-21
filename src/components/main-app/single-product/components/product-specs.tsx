@@ -7,7 +7,7 @@ interface SpecsProps {
 export default function ProductSpecs({ product }: SpecsProps) {
 	return (
 		<div className="mt-12 w-full">
-			<div className="border-b border-gold pb-2 mb-4">
+			<div className="border-b border-(--color-gold)/20 pb-2 mb-4">
 				<h2 className="text-[12px] rovix-text-gold font-semibold">
 					توضیحات محصول
 				</h2>

@@ -192,3 +192,58 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
 	display: none;
 }
+
+/* zoom */
+/* react-inner-image-zoom – minimal required styles (fix broken layout) */
+.iiz {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.iiz__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* hover zoom img (overlay) */
+.iiz__zoom-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transform-origin: 0 0;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 120ms ease;
+	z-index: 5;
+}
+
+.iiz:hover .iiz__zoom-img {
+	opacity: 1;
+}
+
+/* optional: cursor feel */
+.iiz,
+.iiz__img {
+	cursor: zoom-in;
+}
+/* حذف استایل‌های مزاحم کتابخانه که باعث شکستن لی‌اوت می‌شوند */
+.iiz {
+	width: 100% !important;
+	height: 100% !important;
+}
+.iiz__img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+}
+.iiz__zoom-portal {
+	z-index: 9999 !important; /* تضمین نمایش روی بقیه المان‌ها */
+}

@@ -34,7 +34,7 @@ export default function SpecialProducts({ products }: { products: Product[] }) {
 							name={p.name}
 							price={p.price}
 							key={p._id}
-							rating={p.popularity / 10}
+							rating={p.popularity}
 						/>
 					))}
 				</div>
