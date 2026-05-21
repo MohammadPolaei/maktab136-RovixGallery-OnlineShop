@@ -9,7 +9,6 @@ export default async function ProductsSliderWrapper({
 	query: Record<string, string>;
 }) {
 	// to test skeleton loading
-	await new Promise((resolve) => setTimeout(resolve, 2000));
 
 	const { data, page } = await getProductsSSR(query);
 
