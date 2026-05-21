@@ -1,9 +1,6 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
-import {
-	prepareProductForUpdate,
-	TableRowPropsType,
-} from "@/types/product-data-type";
+import { TableRowPropsType } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -18,11 +15,16 @@ export default function ProductsTableRow({
 	setEditSuccess,
 	deleteProduct,
 	updateProduct,
+	handleUpdateChange,
 }: TableRowPropsType) {
 	// handle delete
 
 	const [confirmQuestion, setConfirmQuestion] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
+
+	const [price, setPrice] = useState<number>(product.price);
+	const [stock, setStock] = useState<number>(product.stock);
+	const [readyToEdit, setReadyToEdit] = useState(false);
 
 	useEffect(() => {
 		if (confirmQuestion && deleteProduct) {
@@ -34,33 +36,8 @@ export default function ProductsTableRow({
 	const [openEdit, setOpenEdit] = useState(false);
 
 	// handle price and Quantity edit
-	const [price, setPrice] = useState(product.price);
-	const [stock, setStock] = useState(product.stock);
-	const [readyToEdit, setReadyToEdit] = useState(false);
-	const isPriceInvalid = price < 1000;
 
-	// handle update
-	const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.stopPropagation();
-		updateProduct(
-			{
-				id: product._id,
-				data: prepareProductForUpdate(product, price, stock),
-			},
-			{
-				onSuccess: () => {
-					setEditSuccess(true);
-					setReadyToEdit(false);
-				},
-			}
-		);
-	};
-	const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.stopPropagation();
-		setReadyToEdit(false);
-		setStock(product.stock);
-		setPrice(product.price);
-	};
+	const isPriceInvalid = price! < 1000;
 
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10 h-28">
@@ -85,17 +62,23 @@ export default function ProductsTableRow({
 
 			{editable == false ? (
 				<td
-					className="p-10 text-(--color-accent-green) font-bold"
-					onClick={() => setReadyToEdit(true)}
+					className="p-10 text-(--color-accent-green) font-bold relative"
+					onClick={() => setReadyToEdit!(true)}
 				>
 					{readyToEdit ? (
-						<div className="flex flex-col justify-center items-center relative">
+						<div className="flex flex-col justify-center items-center">
 							<input
 								type="number"
 								value={price}
-								onChange={(e) => setPrice(Number(e.target.value))}
+								onChange={(e) => {
+									setPrice(Number(e.target.value));
+									handleUpdateChange(product._id, {
+										price: price,
+										stock: product.stock,
+									});
+								}}
 								onBlur={() => {
-									if (price < 1000) setPrice(1000);
+									if (price! < 1000) setPrice!(1000);
 								}}
 								min={1000}
 								autoFocus
@@ -110,6 +93,19 @@ export default function ProductsTableRow({
 									حداقل قیمت ۱,۰۰۰ ریال
 								</span>
 							)}
+
+							<button
+								onClick={(e) => {
+									e.stopPropagation();
+									setPrice(product.price);
+									setStock(product.stock);
+									setReadyToEdit(false);
+									handleUpdateChange(product._id, null);
+								}}
+								className="w-18 rounded-sm bg-red-500/20 hover:bg-red-500/40 hover:text-white text-red-500/60 text-[10px] px-1 py-1 absolute top-4 -left-6 cursor-pointer transition-all duration-500 ease-in-out"
+							>
+								لغو تغییرات
+							</button>
 						</div>
 					) : (
 						<span className="text-(--color-accent-green)">
@@ -120,7 +116,7 @@ export default function ProductsTableRow({
 			) : (
 				<td
 					className="p-3 text-(--color-accent-green) font-bold"
-					onClick={() => setReadyToEdit(true)}
+					onClick={() => setReadyToEdit!(true)}
 				>
 					{faNumber(product.price).toLocaleString()} ریال
 				</td>
@@ -128,40 +124,28 @@ export default function ProductsTableRow({
 
 			{/* editable td */}
 			{editable == false ? (
-				<td className="p-3 relative" onClick={() => setReadyToEdit(true)}>
+				<td className="p-3 relative" onClick={() => setReadyToEdit!(true)}>
 					<div className="flex flex-row justify-center items-center gap-1">
 						{readyToEdit ? (
 							<input
 								type="number"
 								value={stock}
-								onChange={(e) => setStock(Number(e.target.value))}
+								onChange={(e) => {
+									setStock(Number(e.target.value));
+									handleUpdateChange(product._id, {
+										price: product.price,
+										stock: stock,
+									});
+								}}
 								className="bg-(--color-accent-green)/20 rounded-sm px-2 py-1 text-[10px] text-center w-10 outline-none transition-colors "
 							/>
 						) : (
 							faNumber(product.stock)
 						)}
-						{/* to set confirm button after edit */}
-						{readyToEdit && (
-							<div className="h-10 rounded-sm flex justify-center items-center gap-1 absolute top-0 left-10 text-gray-700">
-								<span className="px-1 w-30 ">ذخیره تغییرات ؟</span>
-								<button
-									onClick={handleCancel}
-									className="mx-1 p-2 cursor-pointer hover:scale-120"
-								>
-									✖
-								</button>
-								<button
-									onClick={handleUpdate}
-									className="mx-1 p-2 cursor-pointer hover:scale-120"
-								>
-									✔
-								</button>
-							</div>
-						)}
 					</div>
 				</td>
 			) : (
-				<td className="p-3" onClick={() => setReadyToEdit(true)}>
+				<td className="p-3" onClick={() => setReadyToEdit!(true)}>
 					{faNumber(product.stock)}
 				</td>
 			)}

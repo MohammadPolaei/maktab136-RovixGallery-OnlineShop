@@ -81,6 +81,10 @@ export const prepareProductForUpdate = (
 };
 
 export interface TableRowPropsType {
+	handleUpdateChange: (
+		id: string,
+		data: { price: number; stock: number } | null
+	) => void;
 	setEditSuccess: (val: boolean) => void;
 	editable: boolean;
 	product: Product;
