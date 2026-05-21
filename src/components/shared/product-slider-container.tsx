@@ -36,7 +36,7 @@ export function ProductSliderContainer({
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
-				viewport={{ once: true, amount: 0.5 }}
+				viewport={{ once: true, amount: 0.3 }}
 				className="w-full overflow-hidden"
 			>
 				<Swiper

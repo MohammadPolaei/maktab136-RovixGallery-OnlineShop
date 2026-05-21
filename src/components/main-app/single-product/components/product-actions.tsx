@@ -3,7 +3,6 @@
 import CartIconButton from "@/assets/SVG/cart-icon-button";
 import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
-import { useState } from "react";
 import AddToCartSingleProduct from "./add-to-cart-single-product";
 
 interface ActionsProps {
@@ -11,8 +10,6 @@ interface ActionsProps {
 }
 
 export default function ProductActions({ product }: ActionsProps) {
-	const [quantity, setQuantity] = useState(1);
-
 	return (
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
 			<div className="w-full flex flex-col md:flex-row justify-between items-center">
@@ -21,7 +18,7 @@ export default function ProductActions({ product }: ActionsProps) {
 					prodID={product._id}
 				/>
 				<div className="flex items-center gap-1">
-					<p>{"نطرات کاربران"}</p>
+					<p>{"نظرات کاربران"}</p>
 					<div className="flex items-center">
 						{[...Array(5)].map((_, i) => (
 							<svg

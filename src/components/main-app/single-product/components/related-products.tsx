@@ -1,4 +1,5 @@
 import { Product } from "@/types/product-data-type";
+import { faNumber } from "@/utils/convert-number-into-persian";
 import Link from "next/link";
 
 interface RelatedProductsProps {
@@ -29,15 +30,17 @@ export default async function RelatedProducts({ brand }: RelatedProductsProps) {
 			<div className="grid md:grid-cols-4 gap-6">
 				{resolvedProductsWithCorrectImages.map((p) => (
 					<Link key={p._id} href={`/products/${p._id}`} title={p.name}>
-						<div className="rovix-bg-super-dark-green rounded-lg p-4 hover:rovix-bg-dark-green transition">
+						<div className="bg-(--color-dark-green) rounded-lg p-4 hover:bg-(--color-accent-green) transition-all duration-800 ease-in-out hover:scale-105 origin-center">
 							<img
 								src={p.images[0]}
 								alt={p.name}
 								className="w-full h-40 object-cover rounded"
 							/>
-							<h4 className="text-[10px] mt-2 rovix-text-gold">{p.name}</h4>
-							<p className="text-[10px] text-gray-300">
-								{p.price.toLocaleString()} تومان
+							<h4 className="text-[10px] text-left mt-2 rovix-text-gold">
+								{p.name}
+							</h4>
+							<p className="text-[12px] font-semibold text-left text-gray-300">
+								{faNumber(p.price)} ریال
 							</p>
 						</div>
 					</Link>

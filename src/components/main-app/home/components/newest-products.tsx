@@ -35,7 +35,7 @@ export default function NewestProducts({
 							{`جدیدترین ساعت های مردانه`}
 						</h2>
 
-						<div className="w-full">
+						<div className="w-full flex flex-col items-center">
 							<ProductSliderContainer key={page} product={menNewest} />
 						</div>
 					</motion.div>
@@ -52,7 +52,7 @@ export default function NewestProducts({
 							{`جدیدترین ساعت های زنانه`}
 						</h2>
 
-						<div className="w-full">
+						<div className="w-full flex flex-col items-center">
 							<ProductSliderContainer key={page + 1} product={womenNewest} />
 						</div>
 					</motion.div>

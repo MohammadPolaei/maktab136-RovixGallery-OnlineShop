@@ -43,7 +43,7 @@ export default function FaqSection() {
 	};
 
 	return (
-		<div className="faq-container w-full h-85 overflow-y-hidden mx-auto my-4 px-4">
+		<div className="faq-container w-full h-fit md:h-90 overflow-y-hidden mx-auto my-4 px-4">
 			<div className="space-y-4">
 				{faqData.map((faq, index) => {
 					const isOpen = openIndex === index;

@@ -2,7 +2,6 @@ import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
-import AddToCartSingleProduct from "./add-to-cart-single-product";
 
 interface InfoProps {
 	product: Product;
@@ -36,7 +35,7 @@ export default function ProductInfo({ product }: InfoProps) {
 					رنگ صفحه:{" "}
 					<span className="flex items-center gap-2">
 						{product.dialColor}
-						<div>{ShowColorOnCard(product.color)}</div>
+						<div>{ShowColorOnCard(product.dialColor)}</div>
 					</span>
 				</li>
 				<li className="grid grid-cols-2">

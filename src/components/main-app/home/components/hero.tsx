@@ -58,7 +58,7 @@ export default function HeroSlider() {
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	return (
-		<section className="relative w-screen h-50 sm:h-80 md:h-150 overflow-hidden bg-black">
+		<section className="group/swiper relative w-screen h-50 sm:h-80 md:h-150 overflow-hidden bg-black">
 			<Swiper
 				modules={[Navigation, Pagination, Autoplay, EffectFade]}
 				slidesPerView={1}
@@ -154,10 +154,13 @@ export default function HeroSlider() {
 				))}
 			</Swiper>
 
-			<div className="custom-prev absolute left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur text-green-400 hover:bg-(--color-accent-green) hover:text-white cursor-pointer transition-all duration-300">
+			{/* دکمه قبلی */}
+			<div className="custom-prev absolute left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 hidden md:flex items-center justify-center rounded-full bg-white/20 backdrop-blur text-green-400 hover:bg-(--color-accent-green) hover:text-white cursor-pointer transition-all duration-300">
 				❯
 			</div>
-			<div className="custom-next absolute right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur text-green-400 hover:bg-(--color-accent-green) hover:text-white cursor-pointer transition-all duration-300">
+
+			{/* دکمه بعدی */}
+			<div className="custom-next absolute right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 hidden md:flex items-center justify-center rounded-full bg-white/20 backdrop-blur text-green-400 hover:bg-(--color-accent-green) hover:text-white cursor-pointer transition-all duration-300">
 				❮
 			</div>
 
