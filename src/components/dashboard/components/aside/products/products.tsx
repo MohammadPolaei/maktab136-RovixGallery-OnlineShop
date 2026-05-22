@@ -6,6 +6,7 @@ import SummaryFilterContainer from "@/components/base/summary-filter-container";
 import { useProductMutations } from "@/components/dashboard/hooks/use-product-mutation";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
+import ProductAddEditTabs from "@/components/shared/product-add-edit-tabs";
 import ProductPagination from "@/components/shared/product-pagination";
 import ProductsFilters from "@/components/shared/products-filter";
 import { useGetProducts } from "@/hooks/use-get-data";
@@ -19,6 +20,9 @@ export default function Products() {
 	const [open, setOpen] = useState(false);
 	const [addSuccess, setAddSuccess] = useState(false);
 	const [editSuccess, setEditSuccess] = useState(false);
+	const [tab, setTab] = useState<"main-info" | "product-spec" | "setting">(
+		"main-info"
+	);
 
 	// Get products
 	const {
@@ -132,7 +136,13 @@ export default function Products() {
 				open={open}
 				setOpen={setOpen}
 			>
-				<AddProductForm setOpen={setOpen} setAddSuccess={setAddSuccess} />
+				<ProductAddEditTabs setTab={setTab} tab={tab}>
+					<AddProductForm
+						tab={tab}
+						setOpen={setOpen}
+						setAddSuccess={setAddSuccess}
+					/>
+				</ProductAddEditTabs>
 			</Modal>
 			{addSuccess && (
 				<Modal

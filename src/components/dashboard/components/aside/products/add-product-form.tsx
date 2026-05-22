@@ -17,9 +17,11 @@ import AddEditProductFormSetting from "../../../../shared/add-edit-product-form-
 export default function AddProductForm({
 	setOpen,
 	setAddSuccess,
+	tab,
 }: {
 	setOpen: (val: boolean) => void;
 	setAddSuccess: (val: boolean) => void;
+	tab: "main-info" | "product-spec" | "setting";
 }) {
 	const [previews, setPreviews] = useState<string[]>([]);
 	// add product
@@ -84,50 +86,35 @@ export default function AddProductForm({
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
 				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						اطلاعات اصلی محصول
-					</h2>
-
-					<AddEditProductFormMainpart
-						control={control}
-						isUpdating={false}
-						register={register}
-						errors={errors}
-						isAdding={isAdding}
-						editable={false}
-					/>
-				</section>
-
-				{/* مشخصات */}
-				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						مشخصات محصول
-					</h2>
-
-					<AddProductFormProperties
-						isUpdating={false}
-						register={register}
-						errors={errors}
-						isAdding={isAdding}
-						editable={false}
-					/>
-				</section>
-
-				{/* تنظیمات */}
-				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						تنظیمات
-					</h2>
-					<AddEditProductFormSetting
-						setPreviews={setPreviews}
-						previews={previews}
-						handleImageChange={handleImageChange}
-						isUpdating={false}
-						register={register}
-						errors={errors}
-						isAdding={isAdding}
-						editable={false}
-					/>
+					{tab == "main-info" ? (
+						<AddEditProductFormMainpart
+							control={control}
+							isUpdating={false}
+							register={register}
+							errors={errors}
+							isAdding={isAdding}
+							editable={false}
+						/>
+					) : tab == "product-spec" ? (
+						<AddProductFormProperties
+							isUpdating={false}
+							register={register}
+							errors={errors}
+							isAdding={isAdding}
+							editable={false}
+						/>
+					) : (
+						<AddEditProductFormSetting
+							setPreviews={setPreviews}
+							previews={previews}
+							handleImageChange={handleImageChange}
+							isUpdating={false}
+							register={register}
+							errors={errors}
+							isAdding={isAdding}
+							editable={false}
+						/>
+					)}
 				</section>
 
 				<div className="flex justify-center pt-4">

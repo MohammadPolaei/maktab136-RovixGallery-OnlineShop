@@ -6,7 +6,11 @@ export const metadata = {
 	description: "بهترین ساعت‌ها و اکسسوری‌های لوکس.",
 	openGraph: {
 		type: "website",
-		images: ["/og-main.jpg"],
+	},
+	icons: {
+		icon: "/favicon.ico",
+		shortcut: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
 	},
 };
 

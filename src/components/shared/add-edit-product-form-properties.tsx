@@ -1,6 +1,6 @@
 import InputValidationError from "@/components/base/input-validation-error";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
-import { FieldErrors, UseFormRegister, UseFormTrigger } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 const brandOptions = [
 	{ value: "", text: "برند" },
@@ -69,9 +69,9 @@ export default function AddEditProductFormProperties({
 	const isSubmitting = editable ? isUpdating : isAdding;
 
 	return (
-		<section>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-				<div className="relative p-0 flex items-center justify-between h-16">
+		<section className="min-w-full">
+			<div className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div className="min-w-full relative p-0 flex items-center justify-between h-16">
 					<select
 						disabled={isSubmitting}
 						{...register("brand")}

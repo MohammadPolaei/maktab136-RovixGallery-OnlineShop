@@ -6,6 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
 	title: "فروشگاه رویکس - Rovix Gallery",
 	description: "فروشگاه اینترنتی ساعت مچی - رویکس گالری",
+	icons: {
+		icon: "/favicon.ico",
+		shortcut: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
+	},
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -12,7 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import favIcon from "@/assets/img/favIcon-rovix.png";
 export const metadata = {
 	title: "محصولات رویکس - RovixGallery",
 	description: "بهترین ساعت‌ها و اکسسوری‌های لوکس.",
@@ -20,9 +19,9 @@ export const metadata = {
 		type: "website",
 	},
 	icons: {
-		icon: "@/assets/img/favIcon-rovix.png",
-		shortcut: "@/assets/img/favIcon-rovix.png",
-		apple: "@/assets/img/favIcon-rovix.png",
+		icon: "/favicon.ico",
+		shortcut: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
 	},
 };
 export default async function ProductsPage({

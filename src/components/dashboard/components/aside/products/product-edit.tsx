@@ -1,7 +1,9 @@
 import Modal from "@/components/base/modal";
 import { ProductAddSchemaType } from "@/components/dashboard/utils/product-add-schema";
+import ProductAddEditTabs from "@/components/shared/product-add-edit-tabs";
 import { Product } from "@/types/product-data-type";
 import { UseMutateFunction } from "@tanstack/react-query";
+import { useState } from "react";
 import ProductEditForm from "./product-edit-form";
 
 type ProductEditType = {
@@ -27,6 +29,9 @@ export default function ProductEdit({
 	isUpdating,
 	updateProduct,
 }: ProductEditType) {
+	const [tab, setTab] = useState<"main-info" | "product-spec" | "setting">(
+		"main-info"
+	);
 	return (
 		<Modal
 			modalTitle={`ویرایش محصول - ${product.name}`}
@@ -34,14 +39,17 @@ export default function ProductEdit({
 			open={open}
 			setOpen={setOpen}
 		>
-			<ProductEditForm
-				errorUpdating={errorUpdating}
-				isUpdating={isUpdating}
-				updateProduct={updateProduct}
-				product={product}
-				setEditSuccess={setEditSuccess}
-				setOpen={setOpen}
-			/>
+			<ProductAddEditTabs setTab={setTab} tab={tab}>
+				<ProductEditForm
+					tab={tab}
+					errorUpdating={errorUpdating}
+					isUpdating={isUpdating}
+					updateProduct={updateProduct}
+					product={product}
+					setEditSuccess={setEditSuccess}
+					setOpen={setOpen}
+				/>
+			</ProductAddEditTabs>
 		</Modal>
 	);
 }

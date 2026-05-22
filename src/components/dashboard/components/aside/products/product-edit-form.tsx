@@ -16,6 +16,7 @@ import AddEditProductFormProperties from "../../../../shared/add-edit-product-fo
 import AddEditProductFormSetting from "../../../../shared/add-edit-product-form-setting";
 
 export default function ProductEditForm({
+	tab,
 	product,
 	setOpen,
 	setEditSuccess,
@@ -23,6 +24,7 @@ export default function ProductEditForm({
 	errorUpdating,
 	isUpdating,
 }: {
+	tab: "main-info" | "product-spec" | "setting";
 	product: Product;
 	setOpen: (val: boolean) => void;
 	setEditSuccess: (val: boolean) => void;
@@ -164,55 +166,41 @@ export default function ProductEditForm({
 	}, [product, reset]);
 
 	return (
-		<div className="w-full max-w-5xl mx-auto text-right">
+		<div className="w-full max-w-5xl mx-auto text-right relative">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
 				{/* اطلاعات اصلی */}
-				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						اطلاعات اصلی محصول
-					</h2>
-
-					<AddEditProductFormMainpart
-						control={control}
-						isUpdating={isUpdating}
-						register={register}
-						errors={errors}
-						isAdding={false}
-						editable={false}
-					/>
+				<section className="bg-white w-full border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
+					{tab == "main-info" ? (
+						<AddEditProductFormMainpart
+							control={control}
+							isUpdating={isUpdating}
+							register={register}
+							errors={errors}
+							isAdding={false}
+							editable={false}
+						/>
+					) : tab == "product-spec" ? (
+						<AddEditProductFormProperties
+							isUpdating={isUpdating}
+							register={register}
+							errors={errors}
+							isAdding={false}
+							editable={false}
+						/>
+					) : (
+						<AddEditProductFormSetting
+							setPreviews={setPreviews}
+							previews={previews}
+							handleImageChange={handleImageChange}
+							isUpdating={isUpdating}
+							register={register}
+							errors={errors}
+							isAdding={false}
+							editable={false}
+						/>
+					)}
 				</section>
 
-				{/* مشخصات */}
-				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						مشخصات محصول
-					</h2>
-
-					<AddEditProductFormProperties
-						isUpdating={isUpdating}
-						register={register}
-						errors={errors}
-						isAdding={false}
-						editable={false}
-					/>
-				</section>
-
-				{/* تنظیمات */}
-				<section className="bg-white border border-gray-200 rounded-sm p-6 space-y-8 shadow shadow-black/5">
-					<h2 className="text-lg font-bold text-(--color-accent-green)">
-						تنظیمات
-					</h2>
-					<AddEditProductFormSetting
-						setPreviews={setPreviews}
-						previews={previews}
-						handleImageChange={handleImageChange}
-						isUpdating={isUpdating}
-						register={register}
-						errors={errors}
-						isAdding={false}
-						editable={false}
-					/>
-				</section>
 				<div className="flex justify-center pt-4">
 					<div className="w-full md:w-72">
 						{errorUpdating && (
