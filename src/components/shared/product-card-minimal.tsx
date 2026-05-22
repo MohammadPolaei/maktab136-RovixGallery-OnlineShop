@@ -98,7 +98,10 @@ export function ProductCardMinimal({
 							{brand}
 						</span>
 
-						<h3 className="mt-1 line-clamp-1 text-[13px] font-medium text-slate-800 transition-colors group-hover:text-white">
+						<h3
+							dir="ltr"
+							className="mt-1 line-clamp-1 text-[13px] text-center font-medium text-slate-800 transition-colors group-hover:text-white"
+						>
 							{name}
 						</h3>
 
@@ -107,7 +110,7 @@ export function ProductCardMinimal({
 								{[...Array(5)].map((_, i) => (
 									<svg
 										key={i}
-										className={`h-2.5 w-2.5 ${
+										className={`h-3 w-3 ${
 											i < Math.floor(rating / 20)
 												? "text-amber-400 fill-current"
 												: "text-slate-200 fill-current"
@@ -126,7 +129,7 @@ export function ProductCardMinimal({
 						<div className="mt-4 flex items-baseline gap-1">
 							{discounted ? (
 								<div className="flex flex-col justify-center items-center">
-									<div>
+									<div className="flex items-center gap-1">
 										<span className="text-[14px] md:text-lg font-black text-(--color-accent-green) group-hover:text-white">
 											{(price * ((100 - discountNumber) / 100)).toLocaleString(
 												"fa-IR"

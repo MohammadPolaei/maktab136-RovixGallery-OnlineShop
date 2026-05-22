@@ -1,4 +1,3 @@
-import Brands from "@/components/main-app/home/components/brands";
 import Categories from "@/components/main-app/home/components/categories";
 import FaqSection from "@/components/main-app/home/components/FAQ";
 import HeroSlider from "@/components/main-app/home/components/hero";
@@ -45,7 +44,7 @@ export default async function HomePage({
 				<NewestProducts page={page} product={products} />
 				<SpecialProducts products={specialOffers} />
 				<MostPopularProducts products={products} />
-				<Brands />
+				{/* <Brands /> */}
 				<FaqSection />
 				{/* <SelectedCategories /> */}
 			</div>

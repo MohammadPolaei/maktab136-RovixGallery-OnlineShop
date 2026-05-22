@@ -11,7 +11,6 @@ export default function AddToCartSingleProduct({
 	const [count, setCount] = useState<number>(1);
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const notAvailable = productStock == 0;
-	console.log(notAvailable);
 
 	useEffect(() => {
 		count < 1 ? setErrorMessage("مقدار نمیتواند کمتر از 1 باشد") : null;
