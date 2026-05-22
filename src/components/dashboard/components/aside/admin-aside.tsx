@@ -3,6 +3,7 @@ import backgroundImage from "@/assets/img/dashboard-photos/dashboard-side-backgr
 import rovixLogoOne from "@/assets/img/rovix-logo-1.png";
 import LogoutButton from "@/components/base/logut-button";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import HamburgerButton from "./hamburger-button";
 import { SidebarLinks } from "./navigation/side-bar-links";
@@ -44,7 +45,9 @@ export function AdminAside() {
 				>
 					{/* Logo */}
 					<div className="border-b border-(--color-dark-green) py-7 flex flex-col items-center z-10">
-						<Image src={rovixLogoOne.src} alt="" width={200} height={200} />
+						<Link href={"/"}>
+							<Image src={rovixLogoOne.src} alt="" width={200} height={200} />
+						</Link>
 					</div>
 
 					{/* Links */}
