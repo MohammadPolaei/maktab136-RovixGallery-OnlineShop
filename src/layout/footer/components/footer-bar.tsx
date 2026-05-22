@@ -42,7 +42,7 @@ export default function FooterBar() {
       transition-all ease-in-out duration-500
       ${
 				expanded
-					? "h-24 rovix-bg-dark-green rovix-text-gold"
+					? "h-20 bg-(--color-darkest)/80 rovix-text-gold"
 					: "h-12 rovix-bg-darkest text-(--color-bg)"
 			}`}
 		>

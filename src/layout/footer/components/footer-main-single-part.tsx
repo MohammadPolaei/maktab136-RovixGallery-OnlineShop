@@ -14,7 +14,7 @@ export function FooterMainSinglePartDescriptionContainer({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-full flex flex-col justify-center items-start pr-5 gap-2">
+		<div className="w-full flex flex-col justify-center items-start pr-5 gap-2 border-r border-(--color-gold)/20">
 			{children}
 		</div>
 	);

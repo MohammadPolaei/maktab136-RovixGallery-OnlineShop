@@ -12,7 +12,7 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Images
-import hero1 from "@/assets/img/hero/homepage-banner-2.webp";
+import hero1 from "@/assets/img/hero/homepage-banner-6.webp";
 import hero2 from "@/assets/img/hero/homepage-banner-4.webp";
 import hero3 from "@/assets/img/hero/homepage-banner-5.webp";
 import AboutModal from "@/components/shared/about-modal";
