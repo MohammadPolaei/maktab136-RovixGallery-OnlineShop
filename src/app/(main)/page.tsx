@@ -4,7 +4,6 @@ import FaqSection from "@/components/main-app/home/components/FAQ";
 import HeroSlider from "@/components/main-app/home/components/hero";
 import MostPopularProducts from "@/components/main-app/home/components/most-popular-products";
 import NewestProducts from "@/components/main-app/home/components/newest-products";
-import SelectedCategories from "@/components/main-app/home/components/selected-categories";
 import SpecialOffers from "@/components/main-app/home/components/special-offers";
 import SpecialProducts from "@/components/main-app/home/components/special-products";
 import SupportSection from "@/components/main-app/home/components/support-section";
@@ -31,9 +30,7 @@ export default async function HomePage({
 		),
 	}));
 	// Offers
-	const specialOffers = products.filter(
-		(p: Product) => (p.brand == "Rolex" || "Casio") && p.popularity > 70
-	);
+	const specialOffers = products.filter((p: Product) => p.popularity > 70);
 	// Rovix Products
 	const specialProducts = products.filter((p: Product) => p);
 
@@ -50,7 +47,7 @@ export default async function HomePage({
 				<MostPopularProducts products={products} />
 				<Brands />
 				<FaqSection />
-				<SelectedCategories />
+				{/* <SelectedCategories /> */}
 			</div>
 		</section>
 	);

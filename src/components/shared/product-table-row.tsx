@@ -1,6 +1,6 @@
+"use client";
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
 import { EditIcon } from "@/assets/SVG/dashboard-icons/edit-icon";
-import { TableRowPropsType } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,53 +10,33 @@ import ProductEdit from "../dashboard/components/aside/products/product-edit";
 export default function ProductsTableRow({
 	product,
 	editable,
+	editMode,
+	changes,
+	handleUpdateChange,
+	handleCancelSingle,
+	setEditSuccess,
 	errorUpdating,
 	isUpdating,
-	setEditSuccess,
 	deleteProduct,
 	updateProduct,
-	handleUpdateChange,
-	readyToEditForAll,
-}: TableRowPropsType) {
-	// handle delete
-
-	const [confirmQuestion, setConfirmQuestion] = useState(false);
+	isDeleting,
+	errorDeleting,
+}: any) {
+	const isEditing = editMode[product._id] === true;
 	const [openDelete, setOpenDelete] = useState(false);
-
-	const [price, setPrice] = useState<number>(product.price);
-	const [stock, setStock] = useState<number>(product.stock);
-	const [readyToEdit, setReadyToEdit] = useState(false);
-
-	// handle edit for overal product edit
+	const [confirmDelete, setConfirmDelete] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
 
-	const toCancelForAll = () => {
-		setReadyToEdit(false);
-		setStock(product.stock);
-		setPrice(product.price);
-	};
+	const price = changes[product._id]?.price ?? product.price;
+	const stock = changes[product._id]?.stock ?? product.stock;
 
 	useEffect(() => {
-		if (!readyToEditForAll) {
-			toCancelForAll();
-		}
-	}, [readyToEditForAll]);
-
-	// delete single item
-
-	useEffect(() => {
-		if (confirmQuestion && deleteProduct) {
+		if (confirmDelete) {
 			deleteProduct(product._id);
+			setConfirmDelete(false);
+			setOpenDelete(false);
 		}
-	}, [confirmQuestion, deleteProduct, product._id]);
-
-	// handle price and Quantity edit
-	useEffect(() => {
-		setPrice(product.price);
-		setStock(product.stock);
-	}, [product.price, product.stock]);
-
-	const isPriceInvalid = price! < 1000;
+	}, [confirmDelete]);
 
 	return (
 		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10 h-28">
@@ -70,146 +50,105 @@ export default function ProductsTableRow({
 				/>
 			</td>
 
-			<td className="p-3 font-medium">{product.name}</td>
-
+			<td className="p-3">{product.name}</td>
 			<td className="p-3">{product.brand}</td>
 			<td className="p-3">{product.brandCountry}</td>
 			<td className="p-3">{product.material}</td>
 			<td className="p-3">{product.color}</td>
 			<td className="p-3">{product.dialColor}</td>
-			{/* editable td */}
 
-			{editable == false ? (
-				<td
-					className="p-10 text-(--color-accent-green) font-bold relative"
-					onClick={() => setReadyToEdit!(true)}
-				>
-					{readyToEdit ? (
-						<div className="flex flex-col justify-center items-center">
-							<input
-								type="number"
-								value={price}
-								onChange={(e) => {
-									const newPrice = Number(e.target.value);
-									setPrice(newPrice);
-									handleUpdateChange(product._id, {
-										price: price,
-										stock: product.stock,
-									});
-								}}
-								onBlur={() => {
-									if (price! < 1000) setPrice!(1000);
-								}}
-								min={1000}
-								autoFocus
-								className={`bg-(--color-accent-green)/20 rounded-sm px-2 py-1 w-25 text-[10px] text-center outline-none transition-colors ${
-									isPriceInvalid
-										? "border-red-500 bg-red-50 text-red-700"
-										: "border-(--color-accent-green) text-(--color-accent-green)"
-								}`}
-							/>
-							{isPriceInvalid && (
-								<span className="absolute bottom-5 text-[10px] text-red-500 font-normal">
-									حداقل قیمت ۱,۰۰۰ ریال
-								</span>
-							)}
+			<td
+				className="p-3"
+				onClick={() =>
+					!editable && handleUpdateChange(product._id, "price", price)
+				}
+			>
+				{isEditing ? (
+					<div className="relative flex flex-col items-center">
+						<input
+							type="number"
+							value={price}
+							min={1000}
+							onChange={(e) =>
+								handleUpdateChange(product._id, "price", Number(e.target.value))
+							}
+							className="bg-(--color-accent-green)/20 rounded-sm px-2 py-1 w-25 text-[10px] text-center"
+						/>
 
-							<button
-								onClick={(e) => {
-									e.stopPropagation();
-									setPrice(product.price);
-									setStock(product.stock);
-									setReadyToEdit(false);
-									handleUpdateChange(product._id, null);
-								}}
-								className="w-18 rounded-sm bg-red-500/20 hover:bg-red-500/40 hover:text-white text-red-500/60 text-[10px] px-1 py-1 absolute top-4 -left-6 cursor-pointer transition-all duration-500 ease-in-out"
-							>
-								لغو تغییرات
-							</button>
-						</div>
-					) : (
-						<span className="text-(--color-accent-green)">
-							{faNumber(product.price).toLocaleString()} ریال
-						</span>
-					)}
-				</td>
-			) : (
-				<td
-					className="p-3 text-(--color-accent-green) font-bold"
-					onClick={() => setReadyToEdit!(true)}
-				>
-					{faNumber(product.price).toLocaleString()} ریال
-				</td>
-			)}
-
-			{/* editable td */}
-			{editable == false ? (
-				<td className="p-3 relative" onClick={() => setReadyToEdit!(true)}>
-					<div className="flex flex-row justify-center items-center gap-1">
-						{readyToEdit ? (
-							<input
-								type="number"
-								value={stock}
-								onChange={(e) => {
-									const newStock = Number(e.target.value);
-									setStock(newStock);
-									handleUpdateChange(product._id, {
-										price: product.price,
-										stock: stock,
-									});
-								}}
-								className="bg-(--color-accent-green)/20 rounded-sm px-2 py-1 text-[10px] text-center w-10 outline-none transition-colors "
-							/>
-						) : (
-							faNumber(product.stock)
-						)}
+						<button
+							onClick={(e) => {
+								e.stopPropagation();
+								handleCancelSingle(product._id);
+							}}
+							className="absolute top-4 -left-6 text-[10px] text-red-500 bg-red-500/20 px-1 py-1 rounded-sm"
+						>
+							لغو
+						</button>
 					</div>
-				</td>
-			) : (
-				<td className="p-3" onClick={() => setReadyToEdit!(true)}>
-					{faNumber(product.stock)}
-				</td>
-			)}
+				) : (
+					<span>{faNumber(product.price)} ریال</span>
+				)}
+			</td>
+
+			<td
+				className="p-3"
+				onClick={() =>
+					!editable && handleUpdateChange(product._id, "stock", stock)
+				}
+			>
+				{isEditing ? (
+					<input
+						type="number"
+						value={stock}
+						onChange={(e) =>
+							handleUpdateChange(product._id, "stock", Number(e.target.value))
+						}
+						className="bg-(--color-accent-green)/20 rounded-sm px-2 py-1 text-[10px] text-center w-14"
+					/>
+				) : (
+					faNumber(product.stock)
+				)}
+			</td>
 
 			<td className="p-3">{product.gender}</td>
 			<td className="p-3">{faNumber(product.popularity)}</td>
 
-			{/* to check if component is editable for Price and Quantity */}
 			<td className={`${editable ? "" : "hidden"} p-3`}>
-				<div className="flex justify-evenly items-center">
+				<div className="flex justify-evenly items-center gap-2">
 					<button
-						className="hover:scale-120 origin-center active:scale-50 cursor-pointer transition-all duration-500 ease-in-out"
 						onClick={() => setOpenEdit(true)}
+						className="cursor-pointer outline-0 active:scale-110 origin-center"
 					>
 						<EditIcon />
 					</button>
+
 					<button
-						className="hover:scale-120 origin-center active:scale-50 cursor-pointer transition-all duration-500 ease-in-out"
 						onClick={() => setOpenDelete(true)}
+						className="cursor-pointer outline-0 active:scale-110 origin-center"
 					>
 						<DeleteIcon />
 					</button>
 				</div>
-				{openDelete ? (
+
+				{openDelete && (
 					<AskModal
-						confirmQuestion={confirmQuestion}
-						setConfirmQuestion={setConfirmQuestion}
 						openDelete={openDelete}
 						setOpenDelete={setOpenDelete}
-						theQuestion={`آیا از حذف این محصول - ${product.name} - اطمینان دارید ؟`}
+						confirmQuestion={confirmDelete}
+						setConfirmQuestion={setConfirmDelete}
+						theQuestion={`آیا از حذف محصول ${product.name} اطمینان دارید؟`}
 					/>
-				) : null}
+				)}
 
 				{openEdit && (
 					<ProductEdit
-						errorUpdating={errorUpdating}
-						isUpdating={isUpdating}
-						updateProduct={updateProduct}
-						setEditSuccess={setEditSuccess}
-						product={product}
 						open
 						setOpen={setOpenEdit}
-						key={"edit"}
+						product={product}
+						updateProduct={updateProduct}
+						setEditSuccess={setEditSuccess}
+						errorUpdating={errorUpdating}
+						isUpdating={isUpdating}
 					/>
 				)}
 			</td>

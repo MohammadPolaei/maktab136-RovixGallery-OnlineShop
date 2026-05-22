@@ -7,6 +7,7 @@ import { ProductCardMinimal } from "@/components/shared/product-card-minimal";
 import { Product } from "@/types/product-data-type";
 
 export default function SpecialProducts({ products }: { products: Product[] }) {
+	const selectedProductsToShow = products.filter((p, index) => index < 4);
 	return (
 		<div className="w-full flex flex-col justify-center items-center">
 			<SectionTitle title="پیشنهاد Rovix" />
@@ -27,8 +28,9 @@ export default function SpecialProducts({ products }: { products: Product[] }) {
 					/>{" "}
 				</div>
 				<div className="w-full flex flex-col sm:flex-row justify-center items-center gap-5">
-					{products.map((p) => (
+					{selectedProductsToShow.map((p) => (
 						<ProductCardMinimal
+							id={p._id}
 							brand={p.brand}
 							images={p.images}
 							name={p.name}

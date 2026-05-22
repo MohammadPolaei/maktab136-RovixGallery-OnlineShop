@@ -28,7 +28,7 @@ export default function RichTextEditor({ value = "", onChange }: Props) {
 		editorProps: {
 			attributes: {
 				class:
-					"prose max-w-none border rounded-md p-3 min-h-[150px] focus:outline-none",
+					"prose max-w-none border border-black/20 rounded-sm p-3 min-h-[150px] focus:outline-none",
 			},
 		},
 	});
@@ -36,9 +36,9 @@ export default function RichTextEditor({ value = "", onChange }: Props) {
 	if (!editor) return null;
 
 	return (
-		<div className="border rounded-lg p-2 space-y-2">
+		<div className="border border-black/5 rounded-sm p-2 space-y-2">
 			{/* Toolbar */}
-			<div className="flex flex-wrap gap-2 border-b pb-2">
+			<div className="flex flex-wrap gap-2 border-b border-b-black/10 pb-2">
 				<ToolbarButton
 					onClick={() => editor.chain().focus().toggleBold().run()}
 					active={editor.isActive("bold")}
@@ -135,8 +135,8 @@ function ToolbarButton({
 		<button
 			type="button"
 			onClick={onClick}
-			className={`px-2 py-1 text-sm border rounded ${
-				active ? "bg-blue-600 text-white" : "bg-gray-100"
+			className={`px-2 py-1 text-sm rounded cursor-pointer ${
+				active ? "bg-(--color-dark-green) text-white" : "bg-gray-100"
 			}`}
 		>
 			{label}

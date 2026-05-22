@@ -24,7 +24,7 @@ export default function AskModal({
 	return (
 		<Modal modalUsecaseType="message" open={openDelete} setOpen={setOpenDelete}>
 			<div className="w-full flex flex-col justify-center items-center gap-5">
-				<div className="text-center text-[12px] text-black/70 pt-10">
+				<div className="w-full text-center text-[12px] text-black/70 pt-10 rounded-sm flex flex-col justify-center items-center">
 					{theQuestion}
 				</div>
 				<div className="w-full flex justify-center items-center gap-3">

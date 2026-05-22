@@ -5,7 +5,7 @@ import {
 	prepareProductForUpdate,
 	ProductDataTable,
 } from "@/types/product-data-type";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../base/modal";
 import ProductsTableRow from "./product-table-row";
 
@@ -21,19 +21,17 @@ export default function ProductsTable({
 	updateProduct,
 	deleteProduct,
 }: ProductDataTable) {
-	const [changes, setChanges] = useState<any>({});
-	const [readyToEditForAll, setReadyToEditForAll] = useState(true);
+	const [changes, setChanges] = useState({});
+	const [editMode, setEditMode] = useState({});
 
-	// handle all changes
 	const handleCancel = () => {
 		setChanges({});
-		setReadyToEditForAll(false);
+		setEditMode({});
 	};
 
 	const handleSaveAll = async () => {
 		const promises = Object.entries(changes).map(([id, data]: any) => {
 			const product = productData.find((p) => p._id === id);
-
 			return updateProduct({
 				id,
 				data: prepareProductForUpdate(product, data.price, data.stock),
@@ -43,42 +41,55 @@ export default function ProductsTable({
 		await Promise.all(promises)
 			.then(() => {
 				setChanges({});
+				setEditMode({});
 				setEditSuccess(true);
-				setReadyToEditForAll(false);
 			})
-			.catch((err) => {
-				console.error(err);
-			});
+			.catch((err) => console.error(err));
 	};
 
-	// handle single change
 	const handleUpdateChange = (
 		id: string,
-		data: { price: number; stock: number } | null
+		field: "price" | "stock",
+		value: number
 	) => {
-		setChanges((prev: any) => {
-			const newData = { ...prev };
-			if (data === null) {
-				delete newData[id];
-			} else {
-				newData[id] = data;
-			}
-			return newData;
+		setChanges((prev: any) => ({
+			...prev,
+			[id]: {
+				price:
+					field === "price"
+						? value
+						: prev[id]?.price ?? productData.find((p) => p._id === id)!.price,
+				stock:
+					field === "stock"
+						? value
+						: prev[id]?.stock ?? productData.find((p) => p._id === id)!.stock,
+			},
+		}));
+
+		setEditMode((prev) => ({ ...prev, [id]: true }));
+	};
+
+	const handleCancelSingle = (id: string) => {
+		setChanges((prev) => {
+			const updated: Record<string, unknown> = { ...prev };
+			delete updated[id];
+			return updated;
+		});
+		setEditMode((prev) => {
+			const updated: Record<string, unknown> = { ...prev };
+			delete updated[id];
+			return updated;
 		});
 	};
 
-	// to disable button
-	let disabledButton = Object.entries(changes).length == 0;
-	useEffect(() => {
-		disabledButton = Object.entries(changes).length == 0;
-	}, [changes]);
+	const disabledButton = Object.keys(changes).length === 0;
 
 	return (
 		<section className="w-full flex flex-col justify-start items-center gap-2">
 			{editable ? null : (
 				<div className="w-full flex flex-row justify-end items-center gap-2">
 					<button
-						className="px-2 py-1 rounded-sm bg-red-600/70 text-white text-[12px] disabled:bg-gray-600 disabled:opacity-20 disabled:cursor-not-allowed hover:scale-103 origin-center cursor-pointer transition-all duration-500 ease-in-out"
+						className="px-2 py-1 rounded-sm bg-red-600/70 text-white text-[12px]"
 						onClick={handleCancel}
 					>
 						لغو همه
@@ -86,49 +97,43 @@ export default function ProductsTable({
 
 					<button
 						disabled={disabledButton}
-						className="px-2 py-1 rounded-sm bg-green-600/70 text-white text-[12px] disabled:bg-gray-600 disabled:opacity-20 disabled:cursor-not-allowed hover:scale-103 origin-center cursor-pointer transition-all duration-500 ease-in-out"
+						className="px-2 py-1 rounded-sm bg-green-600/70 text-white text-[12px] disabled:bg-gray-500 disabled:opacity-50"
 						onClick={handleSaveAll}
 					>
 						ذخیره همه
 					</button>
 				</div>
 			)}
+
 			<div className="w-full bg-white rounded-sm overflow-x-auto">
 				<table className="w-full text-[12px] text-center min-w-300">
-					<thead className="bg-(--color-dark-green) text-(--color-bg) text-center">
+					<thead className="bg-(--color-dark-green) text-(--color-bg)">
 						<tr>
-							<th className="p-3 border-l border-(--color-gold)/20">تصویر</th>
-							<th className="p-3 border-l border-(--color-gold)/20">
-								نام محصول
-							</th>
-							<th className="p-3 border-l border-(--color-gold)/20">برند</th>
-							<th className="p-3 border-l border-(--color-gold)/20">کشور</th>
-							<th className="p-3 border-l border-(--color-gold)/20">
-								جنس بدنه
-							</th>
-							<th className="p-3 border-l border-(--color-gold)/20">رنگ</th>
-							<th className="p-3 border-l border-(--color-gold)/20">
-								رنگ صفحه
-							</th>
-							<th className="p-3 border-l border-(--color-gold)/20">قیمت</th>
-							<th className="p-3 border-l border-(--color-gold)/20">موجودی</th>
-							<th className="p-3 border-l border-(--color-gold)/20">جنسیت</th>
-							<th className="p-3 border-l border-(--color-gold)/20">محبوبیت</th>
-							<th
-								className={`${
-									editable ? "" : "hidden"
-								} p-3 border-l border-(--color-gold)/20`}
-							>
-								عملیات
-							</th>
+							<th className="p-3">تصویر</th>
+							<th className="p-3">نام محصول</th>
+							<th className="p-3">برند</th>
+							<th className="p-3">کشور</th>
+							<th className="p-3">جنس بدنه</th>
+							<th className="p-3">رنگ</th>
+							<th className="p-3">رنگ صفحه</th>
+							<th className="p-3">قیمت</th>
+							<th className="p-3">موجودی</th>
+							<th className="p-3">جنسیت</th>
+							<th className="p-3">محبوبیت</th>
+							<th className={`${editable ? "" : "hidden"} p-3`}>عملیات</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						{productData.map((item) => (
 							<ProductsTableRow
-								readyToEditForAll={readyToEditForAll}
+								key={item._id}
+								product={item}
+								editable={editable}
+								editMode={editMode}
+								changes={changes}
 								handleUpdateChange={handleUpdateChange}
+								handleCancelSingle={handleCancelSingle}
 								setEditSuccess={setEditSuccess}
 								errorUpdating={errorUpdating}
 								updateProduct={updateProduct}
@@ -136,59 +141,39 @@ export default function ProductsTable({
 								deleteProduct={deleteProduct}
 								errorDeleting={errorDeleting}
 								isDeleting={isDeleting}
-								key={item._id}
-								product={item}
-								editable={editable}
 							/>
 						))}
 					</tbody>
 				</table>
+
 				{isUpdating && (
-					<Modal
-						modalUsecaseType="message"
-						extraClasses="text-[10px]"
-						open
-						setOpen={() => {}}
-					>
+					<Modal modalUsecaseType="message" open setOpen={() => {}}>
 						{errorUpdating ? (
-							<span className="text-red-500">
-								{errorUpdating.message || "خطا در بروزرسانی محصولات"}
-							</span>
+							<span className="text-red-500">{errorUpdating.message}</span>
 						) : (
-							<div className="flex flex-col items-center justify-center">
-								<span>{"در حال بروزرسانی"}</span>
+							<div className="flex flex-col items-center">
+								<span>در حال بروزرسانی</span>
 								<RovixLuxuryLoader />
 							</div>
 						)}
 					</Modal>
 				)}
+
 				{isDeleting && (
-					<Modal
-						modalUsecaseType="message"
-						extraClasses="text-[10px]"
-						open
-						setOpen={() => {}}
-					>
-						{errorDeleting ? (
-							<span className="text-red-500">
-								{errorDeleting.message || "خطا در حذف محصول"}
-							</span>
-						) : (
-							<div className="flex flex-col items-center justify-center gap-2">
-								<span>{"در حال حذف"}</span>
-								<RovixLuxuryLoader />
-							</div>
-						)}
+					<Modal modalUsecaseType="message" open setOpen={() => {}}>
+						<span>در حال حذف . . .</span>
 					</Modal>
 				)}
+
 				{editSuccess && (
 					<Modal
 						modalUsecaseType="message"
-						key={"succes"}
-						extraClasses=" text-green-700 text-[10px]"
 						open={editSuccess}
 						setOpen={setEditSuccess}
-					>{`بروزرسانی محصولات با موفقیت انجام شد ✔`}</Modal>
+						extraClasses=" text-green-700 text-[10px]"
+					>
+						بروزرسانی محصولات با موفقیت انجام شد ✔
+					</Modal>
 				)}
 			</div>
 		</section>

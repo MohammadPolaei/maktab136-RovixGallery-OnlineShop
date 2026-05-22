@@ -57,7 +57,9 @@ export function useGetProducts() {
 		]
 	);
 	useEffect(() => {
-		setPage(1);
+		if (page !== 1) {
+			setPage(1);
+		}
 	}, [
 		dialColor,
 		material,
