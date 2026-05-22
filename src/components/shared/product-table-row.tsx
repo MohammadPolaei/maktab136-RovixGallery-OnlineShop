@@ -41,7 +41,11 @@ export default function ProductsTableRow({
 	return (
 		<tr
 			className={`${
-				product.stock == 0 ? "opacity-40 bg-black/10" : ""
+				product.stock == 0
+					? openEdit || openDelete
+						? ""
+						: "opacity-40 bg-black/10"
+					: ""
 			} border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10 h-28`}
 		>
 			<td className="p-3">
