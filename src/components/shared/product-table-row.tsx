@@ -39,7 +39,15 @@ export default function ProductsTableRow({
 	}, [confirmDelete]);
 
 	return (
-		<tr className="border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10 h-28">
+		<tr
+			className={`${
+				product.stock == 0
+					? openEdit || openDelete
+						? ""
+						: "opacity-40 bg-black/10"
+					: ""
+			} border-b border-(--color-accent-green)/20 hover:bg-(--color-accent-green)/10 h-28`}
+		>
 			<td className="p-3">
 				<Image
 					src={product.images[0]}
@@ -80,7 +88,7 @@ export default function ProductsTableRow({
 								e.stopPropagation();
 								handleCancelSingle(product._id);
 							}}
-							className="absolute top-4 -left-6 text-[10px] text-red-500 bg-red-500/20 px-1 py-1 rounded-sm"
+							className="absolute -top-6 -left-6 text-[10px] text-red-500 bg-red-500/20 px-2 py-1 rounded-sm cursor-pointer"
 						>
 							لغو
 						</button>
