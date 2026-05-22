@@ -70,6 +70,7 @@ export default function LoginForm() {
 			<div className="w-full relative">
 				<EmailIcon className="absolute top-9 right-1 text-black/80" />
 				<TextInput
+					inputExtraclasses="h-12 bg-(--color-accent-green)/15 px-15 border border-black/80"
 					label="ایمیل"
 					name="email"
 					register={{ ...register("email") }}
@@ -85,6 +86,7 @@ export default function LoginForm() {
 			<div className="w-full relative">
 				<PasswordIcon className="absolute top-9 right-1 text-black" />
 				<PasswordInput
+					inputExtraclasses="h-12 bg-(--color-accent-green)/15 px-15 border border-black/80"
 					label="کلمه عبور"
 					name="password"
 					register={{ ...register("password") }}
