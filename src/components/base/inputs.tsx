@@ -52,7 +52,11 @@ export function PasswordInput(userInput: InputType) {
 				</div>
 			</div>
 			<input
-				className="pr-8 px-1 py-2 outline-0 rounded-sm text-[10px] h-12 sm:text-sm text-(--color-bg) bg-(--color-accent-green)/60 "
+				className={`${
+					userInput.inputExtraclasses
+						? userInput.inputExtraclasses
+						: "pr-8 h-12 bg-(--color-accent-green)/60 text-(--color-bg)"
+				}  px-1 py-2 outline-0 rounded-sm text-[10px] sm:text-sm `}
 				name={userInput.name}
 				{...(userInput.register || undefined)}
 				id={userInput.id || undefined}
