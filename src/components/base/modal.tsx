@@ -65,7 +65,7 @@ export default function Modal({
 				>
 					<div
 						className={`flex flex-col justify-evenly items-center gap-2 ${
-							modalUsecaseType === "form" ? "pt-20" : "py-1"
+							modalUsecaseType === "form" ? "pt-10" : "py-1"
 						}`}
 					>
 						{children}
@@ -79,7 +79,7 @@ export default function Modal({
 					>
 						<DashboardHeadingContainer
 							closeFn={() => setOpen(false)}
-							extraClasses="w-[95%]"
+							extraClasses="w-full"
 							flexClass="flex-col md:flex-row"
 						>
 							{modalTitle}

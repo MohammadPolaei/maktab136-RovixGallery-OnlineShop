@@ -55,12 +55,12 @@ export default function AddEditProductFormMainpart({
 	return (
 		<section>
 			<AddProductInputContainer>
-				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 					{/* -------------------- TEXT INPUTS (Dynamic) -------------------- */}
 					{fields.map((item) => (
 						<div className="relative" key={item.name}>
 							<TextInput
-								inputExtraclasses="text-center bg-(--color-accent-green)/10 h-10"
+								inputExtraclasses="text-center border border-black/20 h-8 md:h-10"
 								type={item.type}
 								isSubmiting={isSubmiting}
 								extraClasses="w-full disabled:opacity-50"
@@ -100,7 +100,7 @@ export default function AddEditProductFormMainpart({
 					<label className="text-[12px] md:text-[14px] text-(--color-dark-green) font-semibold">
 						{"توضیحات محصول"}
 					</label>
-					<div className="relative col-span-2 ">
+					<div className="relative md:col-span-2 ">
 						<Controller
 							disabled={isSubmiting}
 							name="description"

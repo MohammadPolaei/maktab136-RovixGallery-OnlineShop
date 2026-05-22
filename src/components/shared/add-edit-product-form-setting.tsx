@@ -47,7 +47,7 @@ export default function AddEditProductFormSetting({
 			</div>
 
 			<div className="relative py-8 space-y-4">
-				<div className="w-100 flex justify-items-start items-center">
+				<div className="w-72 md:w-100 flex justify-items-start items-center">
 					<label htmlFor="images" className="cursor-pointer">
 						<div className="w-30 flex justify-evenly items-center font-medium text-[12px] p-2 rounded-sm bg-(--color-dark-green) hover:bg-(--color-accent-green) text-white disabled:opacity-50 cursor-pointer">
 							<ImageIcon />
