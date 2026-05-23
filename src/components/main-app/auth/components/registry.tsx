@@ -3,25 +3,25 @@
 import AuthForm from "@/components/shared/auth-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { LoginInput, loginSchema } from "../utils/login-schemas";
+import { RegisterInput, registerSchema } from "../utils/registry-schemas";
 
-export default function Login() {
+export default function Registry() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
-	} = useForm<LoginInput>({
-		resolver: zodResolver(loginSchema),
+	} = useForm<RegisterInput>({
+		resolver: zodResolver(registerSchema),
 	});
 
-	const onSubmit = async (data: LoginInput) => {
+	const onSubmit = async (data: RegisterInput) => {
 		console.log(data);
 	};
 	return (
 		<div>
 			<AuthForm
 				errors={errors}
-				formType="login"
+				formType="registry"
 				handleSubmit={handleSubmit}
 				isSubmitting={isSubmitting}
 				onSubmit={onSubmit}
