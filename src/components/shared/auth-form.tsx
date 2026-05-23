@@ -30,7 +30,7 @@ export default function AuthForm<TFieldValues extends FieldValues>({
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="flex flex-col w-full gap-4"
+			className="flex flex-col justify-center w-full gap-4"
 		>
 			<h2 className="w-full text-center border-b border-b-black/20 pb-2 font-bold">
 				{formType === "registry" ? "ایجاد حساب کاربری" : "ورود به حساب کاربری"}

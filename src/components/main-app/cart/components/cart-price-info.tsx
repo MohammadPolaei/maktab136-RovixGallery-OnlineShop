@@ -1,3 +1,3 @@
 export default function CartPriceInfo() {
-	return <div>CartPriceInfo</div>;
+	return <div className="w-full bg-red-300">CartPriceInfo</div>;
 }
