@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+const backendUrl = process.env.BACKEND_URL;
+
 const getAdminToken = (req: NextRequest) =>
 	req.cookies.get("access_token")?.value;
 
@@ -11,7 +13,7 @@ export async function GET(
 	try {
 		const { id } = await context.params;
 
-		const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
+		const res = await fetch(`${backendUrl}/api/products/${id}`, {
 			next: { revalidate: 60 },
 		});
 
@@ -39,7 +41,7 @@ export async function DELETE(
 	const token = getAdminToken(req);
 	const { id } = await params;
 
-	const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
+	const res = await fetch(`${backendUrl}/api/products/${id}`, {
 		method: "DELETE",
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -61,7 +63,7 @@ export async function PUT(
 	const token = getAdminToken(req);
 	const formData = await req.formData();
 
-	const res = await fetch(`${process.env.BACKEND_URL}/api/products/${id}`, {
+	const res = await fetch(`${backendUrl}/api/products/${id}`, {
 		method: "PUT",
 		headers: {
 			Authorization: `Bearer ${token}`,

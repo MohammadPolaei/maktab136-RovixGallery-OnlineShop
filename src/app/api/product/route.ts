@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+const backendUrl = process.env.BACKEND_URL;
+
 const getAdminToken = (req: NextRequest) =>
 	req.cookies.get("access_token")?.value;
 
@@ -9,7 +11,7 @@ export async function POST(req: NextRequest) {
 
 		const formData = await req.formData();
 
-		const res = await fetch(`${process.env.BACKEND_URL}/api/products`, {
+		const res = await fetch(`${backendUrl}/api/products`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -32,8 +34,6 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: Request) {
 	try {
-		const backendUrl = process.env.BACKEND_URL;
-
 		if (!backendUrl) {
 			console.error("❌ BACKEND_URL is missing");
 			return NextResponse.json(
