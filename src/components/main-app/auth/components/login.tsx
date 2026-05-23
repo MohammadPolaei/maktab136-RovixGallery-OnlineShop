@@ -53,7 +53,7 @@ export default function Login() {
 				modalTitle="خطا در ورود به حساب"
 				open={errorLogin}
 			>
-				{errorMessage}
+				<span className="text-red-600 text-[10px">{errorMessage}</span>
 			</Modal>
 		</div>
 	);

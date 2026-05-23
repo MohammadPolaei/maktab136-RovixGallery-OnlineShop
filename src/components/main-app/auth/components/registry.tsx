@@ -54,8 +54,8 @@ export default function Registry() {
 				modalTitle="خطا در ورود به حساب"
 				open={errorRegistry}
 			>
-				نام کاربری یا رمز عبور اشتباه است
-				{errorMessage}
+				<span>"نام کاربری یا رمز عبور اشتباه است"</span>
+				<span className="text-red-600 text-[10px">{errorMessage}</span>
 			</Modal>
 		</div>
 	);
