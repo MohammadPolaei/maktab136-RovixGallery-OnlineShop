@@ -1,46 +1,44 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-const isProd = process.env.NODE_ENV === "production";
 
-export async function POST(req: Request) {
-	const body = await req.json();
+export async function POST(request: Request) {
+	const body = await request.json();
 
-	const res = await fetch(`${process.env.BACKEND_URL}/api/auth/login`, {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(body),
-	});
+	try {
+		const response = await fetch(`${process.env.BACKEND_URL}/api/auth/login`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(body),
+		});
 
-	if (!res.ok) {
-		console.log(res);
+		const result = await response.json();
 
-		return NextResponse.json(
-			{ message: "اطلاعات ورود اشتباه است" },
-			{ status: 401 }
-		);
+		if (!response.ok) {
+			return NextResponse.json(result, { status: response.status });
+		}
+
+		const { token, refreshToken } = result.data;
+
+		const cookieStore = await cookies();
+
+		cookieStore.set("accessToken", token, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === "production",
+			sameSite: "lax",
+			maxAge: 60 * 15, // 15 دقیقه
+			path: "/",
+		});
+
+		cookieStore.set("refreshToken", refreshToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === "production",
+			sameSite: "lax",
+			maxAge: 60 * 60 * 24 * 7, // 7 روز
+			path: "/",
+		});
+
+		return NextResponse.json({ success: true, user: result.data.user });
+	} catch (error) {
+		return NextResponse.json({ message: "خطای سرور" }, { status: 500 });
 	}
-
-	const data = await res.json();
-	const { token, refreshToken, user } = data.data;
-
-	const cookieStore = await cookies();
-
-	cookieStore.set("access_token", token, {
-		httpOnly: true,
-		secure: isProd,
-		path: "/",
-	});
-
-	cookieStore.set("refresh_token", refreshToken, {
-		httpOnly: true,
-		secure: isProd,
-		path: "/",
-	});
-
-	cookieStore.set("role", user.role.toUpperCase(), {
-		httpOnly: false,
-		path: "/",
-	});
-
-	return NextResponse.json({ success: true });
 }

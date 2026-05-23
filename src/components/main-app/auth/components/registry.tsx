@@ -1,7 +1,10 @@
 "use client";
 
+import Modal from "@/components/base/modal";
 import AuthForm from "@/components/shared/auth-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterInput, registerSchema } from "../utils/registry-schemas";
 
@@ -14,8 +17,26 @@ export default function Registry() {
 		resolver: zodResolver(registerSchema),
 	});
 
+	const [errorRegistry, setErrorRegistry] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
+
+	const router = useRouter();
+
 	const onSubmit = async (data: RegisterInput) => {
-		console.log(data);
+		const response = await fetch("/api/auth/register", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+
+		const result = await response.json();
+
+		if (response.ok) {
+			router.push("/auth/login");
+		} else {
+			setErrorRegistry(true);
+			setErrorMessage(response.statusText);
+		}
 	};
 	return (
 		<div>
@@ -27,6 +48,15 @@ export default function Registry() {
 				onSubmit={onSubmit}
 				register={register}
 			/>
+			<Modal
+				modalUsecaseType="message"
+				setOpen={() => {}}
+				modalTitle="خطا در ورود به حساب"
+				open={errorRegistry}
+			>
+				نام کاربری یا رمز عبور اشتباه است
+				{errorMessage}
+			</Modal>
 		</div>
 	);
 }
