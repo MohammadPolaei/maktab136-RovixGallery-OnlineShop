@@ -18,7 +18,6 @@ import ProductAdd from "./product-add";
 export default function Products() {
 	// add new product
 	const [open, setOpen] = useState(false);
-	const [addSuccess, setAddSuccess] = useState(false);
 	const [editSuccess, setEditSuccess] = useState(false);
 	const [tab, setTab] = useState<"main-info" | "product-spec" | "setting">(
 		"main-info"
@@ -137,22 +136,9 @@ export default function Products() {
 				setOpen={setOpen}
 			>
 				<ProductAddEditTabs setTab={setTab} tab={tab}>
-					<AddProductForm
-						tab={tab}
-						setOpen={setOpen}
-						setAddSuccess={setAddSuccess}
-					/>
+					<AddProductForm tab={tab} setOpen={setOpen} />
 				</ProductAddEditTabs>
 			</Modal>
-			{addSuccess && (
-				<Modal
-					modalUsecaseType="message"
-					key={"succes"}
-					extraClasses="text-green-700 text-[10px]"
-					open={addSuccess}
-					setOpen={setAddSuccess}
-				>{`محصول با موفقیت ثبت شد ✔`}</Modal>
-			)}
 		</section>
 	);
 }

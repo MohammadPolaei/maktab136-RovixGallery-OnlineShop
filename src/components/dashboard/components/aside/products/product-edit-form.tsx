@@ -138,7 +138,7 @@ export default function ProductEditForm({
 				product.material === "چرم" ||
 				product.material === "لاستیک" ||
 				product.material === "تیتانیوم" ||
-				product.material === "استیل ضد زنگ"
+				product.material === "استیل ضدزنگ"
 					? product.material
 					: "چرم",
 

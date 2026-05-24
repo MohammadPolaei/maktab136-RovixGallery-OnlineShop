@@ -16,11 +16,9 @@ import AddEditProductFormSetting from "../../../../shared/add-edit-product-form-
 
 export default function AddProductForm({
 	setOpen,
-	setAddSuccess,
 	tab,
 }: {
 	setOpen: (val: boolean) => void;
-	setAddSuccess: (val: boolean) => void;
 	tab: "main-info" | "product-spec" | "setting";
 }) {
 	const [previews, setPreviews] = useState<string[]>([]);
@@ -68,7 +66,6 @@ export default function AddProductForm({
 				onSuccess: () => {
 					setPreviews([]);
 					setOpen(false);
-					setAddSuccess(true);
 				},
 			}
 		);

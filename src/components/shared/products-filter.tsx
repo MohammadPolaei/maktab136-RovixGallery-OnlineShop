@@ -78,7 +78,7 @@ export default function ProductsFilters(filters: ProductFiltersSet) {
 				onChange={(e) => filters.setMaterial(e.target.value)}
 				className="border px-3 py-2 rounded-sm text-[8px] border-black/10 outline-0"
 			>
-				<option value="">جنس بدنه</option>
+				<option value="">جنس بند</option>
 				<option value="چرم">چرم</option>
 				<option value="لاستیک">لاستیک</option>
 				<option value="تیتانیوم">تیتانیوم</option>

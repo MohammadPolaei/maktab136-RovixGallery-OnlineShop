@@ -164,17 +164,6 @@ export default function ProductsTable({
 						<span>در حال حذف . . .</span>
 					</Modal>
 				)}
-
-				{editSuccess && (
-					<Modal
-						modalUsecaseType="message"
-						open={editSuccess}
-						setOpen={setEditSuccess}
-						extraClasses=" text-green-700 text-[10px]"
-					>
-						بروزرسانی محصولات با موفقیت انجام شد ✔
-					</Modal>
-				)}
 			</div>
 		</section>
 	);

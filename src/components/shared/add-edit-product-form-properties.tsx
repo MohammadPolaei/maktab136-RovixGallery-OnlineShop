@@ -30,11 +30,11 @@ const genderOptions = [
 ];
 
 const materialOptions = [
-	{ value: "", text: "جنس بدنه" },
+	{ value: "", text: "جنس بند" },
 	{ value: "چرم", text: "چرم" },
 	{ value: "لاستیک", text: "لاستیک" },
 	{ value: "تیتانیوم", text: "تیتانیوم" },
-	{ value: "استیل زد زنگ", text: "استیل زد زنگ" },
+	{ value: "استیل ضدزنگ", text: "استیل ضدزنگ" },
 ];
 
 const colorOptions = [
