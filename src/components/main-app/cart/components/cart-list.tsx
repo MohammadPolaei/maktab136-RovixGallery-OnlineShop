@@ -4,8 +4,8 @@ import {
 	UseMutateFunction,
 } from "@tanstack/react-query";
 import { CartMutationResponse } from "../services/cart-CRUD";
-import { GetCartResponse } from "../types";
-import CartItem from "./cart-item";
+import { CartItem, GetCartResponse } from "../types";
+import CartItemCard from "./cart-item-card";
 
 const cartItemsMock = [
 	{
@@ -44,18 +44,31 @@ export default function CartList({
 		unknown
 	>;
 }) {
+	const products = cart
+		? cart.data.items.map((cart: CartItem) => ({
+				...cart.product,
+				images: cart.product.images.map(
+					(img: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}${img}`
+				),
+		  }))
+		: [];
 	return (
-		<div className="w-full">
-			{cart?.data.items.map((cartItem) => (
-				<CartItem
-					key={cartItem._id}
-					dialColor={cartItem.product.dialColor}
-					color={cartItem.product.dialColor}
-					images={cartItem.product.images}
-					name={cartItem.product.name}
-					price={cartItem.product.price}
-				/>
-			))}
+		<div className="w-full overflow-auto md:overflow-visible flex flex-col justify-between items-start gap-1">
+			{cart ? (
+				products.map((cartItem) => (
+					<CartItemCard
+						cartItemInfo={cart}
+						key={cartItem._id}
+						dialColor={cartItem.dialColor}
+						color={cartItem.dialColor}
+						images={cartItem.images}
+						name={cartItem.name}
+						price={cartItem.price}
+					/>
+				))
+			) : (
+				<div className="w-full">محصولی برای نمایش وجود ندارد</div>
+			)}
 		</div>
 	);
 }
