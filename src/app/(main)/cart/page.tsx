@@ -1,8 +1,13 @@
 "use client";
+import AskModal from "@/components/base/ask-modal";
+import SectionTitle from "@/components/base/section-title";
 import CartList from "@/components/main-app/cart/components/cart-list";
 import CartPriceInfo from "@/components/main-app/cart/components/cart-price-info";
 import SpecialOffers from "@/components/main-app/cart/components/special-offers";
 import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
+import { useGetProducts } from "@/hooks/use-get-data";
+import { Product } from "@/types/product-data-type";
+import { useEffect, useState } from "react";
 
 export default function Page() {
 	const {
@@ -16,11 +21,40 @@ export default function Page() {
 		removeItem,
 		updateItem,
 	} = useCartStore();
+
+	const data = useGetProducts();
+
+	const offeredProducts = data.products.filter(
+		(p: Product) => p.popularity > 50
+	);
+	const [clearConfirmQuestion, setClearConfirmQuestion] = useState(false);
+	const [openClear, setOpenClear] = useState(false);
+
+	useEffect(() => {
+		if (clearConfirmQuestion) {
+			clearCart();
+		} else {
+			return;
+		}
+	}, [clearConfirmQuestion]);
+
 	return (
 		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 flex flex-col justify-start items-center gap-3">
-			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full">
-				<CartPriceInfo />
+			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5 relative">
+				<div className="absolute top-2 right-2 z-100 backdrop-blur-[5px]">
+					<button
+						onClick={() => {
+							setOpenClear(true);
+						}}
+						className="w-full p-3 bg-red-500/20 text-[12px] text-black hover:bg-red-500/80 hover:text-white rounded-sm border border-black/10 cursor-pointer"
+					>
+						{"خالی کردن سبد خرید"}
+					</button>
+				</div>
+				<CartPriceInfo cart={cart} clearCart={clearCart} />
 				<CartList
+					setConfirmQuestion={setClearConfirmQuestion}
+					setOpenDelete={setOpenClear}
 					cart={cart}
 					error={error}
 					isError={isError}
@@ -29,9 +63,17 @@ export default function Page() {
 					removeItem={removeItem}
 					updateItem={updateItem}
 				/>
+				<AskModal
+					confirmQuestion={clearConfirmQuestion}
+					setConfirmQuestion={setClearConfirmQuestion}
+					theQuestion="آیا از خالی کردن سبد خرید اطمینان دارید؟"
+					openDelete={openClear}
+					setOpenDelete={setOpenClear}
+				/>
 			</div>
 			<div className="w-full">
-				<SpecialOffers />
+				<SectionTitle title="پیشنهادات ویژه" />
+				<SpecialOffers page={data.page} products={offeredProducts} />
 			</div>
 		</section>
 	);

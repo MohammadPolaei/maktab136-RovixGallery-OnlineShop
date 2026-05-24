@@ -4,7 +4,7 @@ import CartIconButton from "@/assets/SVG/cart-icon-button";
 import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
-import AddToCartSingleProduct from "./add-to-cart-single-product";
+import AddToCartSingleProduct from "../../../shared/add-to-cart-single-product";
 
 interface ActionsProps {
 	product: Product;
@@ -15,6 +15,7 @@ export default function ProductActions({ product }: ActionsProps) {
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
 			<div className="w-full flex flex-col md:flex-row justify-between items-center">
 				<AddToCartSingleProduct
+					usageType="single-product"
 					productStock={product.stock}
 					prodID={product._id}
 				/>

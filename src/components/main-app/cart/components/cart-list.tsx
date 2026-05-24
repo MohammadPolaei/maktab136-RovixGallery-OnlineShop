@@ -25,7 +25,11 @@ export default function CartList({
 	refetch,
 	removeItem,
 	updateItem,
+	setOpenDelete,
+	setConfirmQuestion,
 }: {
+	setConfirmQuestion: (val: boolean) => void;
+	setOpenDelete: (val: boolean) => void;
 	error: {} | null;
 	cart: GetCartResponse | undefined;
 	isError: boolean;
@@ -45,25 +49,32 @@ export default function CartList({
 	>;
 }) {
 	const products = cart
-		? cart.data.items.map((cart: CartItem) => ({
-				...cart.product,
-				images: cart.product.images.map(
-					(img: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}${img}`
-				),
+		? cart.data.items.map((item: CartItem) => ({
+				...item,
+				product: {
+					...item.product,
+					images: item.product.images.map(
+						(img: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}${img}`
+					),
+				},
 		  }))
 		: [];
 	return (
-		<div className="w-full overflow-auto md:overflow-visible flex flex-col justify-between items-start gap-1">
+		<div className="w-full h-[70vh] overflow-auto md:overflow-y-auto flex flex-col justify-between items-start gap-1 rounded-sm shadow shadow-black/5">
 			{cart ? (
 				products.map((cartItem) => (
 					<CartItemCard
+						quantity={cartItem.quantity}
+						prodID={cartItem.product._id}
+						stock={cartItem.product.stock}
 						cartItemInfo={cart}
 						key={cartItem._id}
-						dialColor={cartItem.dialColor}
-						color={cartItem.dialColor}
-						images={cartItem.images}
-						name={cartItem.name}
+						dialColor={cartItem.product.dialColor}
+						color={cartItem.product.dialColor}
+						images={cartItem.product.images}
+						name={cartItem.product.name}
 						price={cartItem.price}
+						brand={cartItem.product.brand}
 					/>
 				))
 			) : (
