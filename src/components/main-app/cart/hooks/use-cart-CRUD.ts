@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { cartApi } from "../services/cart-CRUD";
 
 export const queryKeys = {
@@ -16,33 +17,51 @@ export function useCartStore() {
 		staleTime: 1000 * 30,
 	});
 
-	const refresh = () => qc.invalidateQueries({ queryKey: queryKeys.cart });
+	const refresh = async () => {
+		await qc.invalidateQueries({ queryKey: queryKeys.cart });
+	};
 
-	const onError = (err: unknown) => {};
+	const onError = (err: unknown, actionText?: string) => {
+		toast.error(actionText ? `${actionText} ناموفق بود` : "عملیات ناموفق بود", {
+			description: typeof err == "string" ? err : null,
+		});
+	};
 
 	const add = useMutation({
 		mutationFn: cartApi.addItem,
-		onSuccess: refresh,
-		onError,
+		onSuccess: async () => {
+			await refresh();
+			toast.success("به سبد خرید اضافه شد");
+		},
+		onError: (err) => onError(err, "افزودن به سبد خرید"),
 	});
 
 	const remove = useMutation({
 		mutationFn: cartApi.removeItem,
-		onSuccess: refresh,
-		onError,
+		onSuccess: async () => {
+			await refresh();
+			toast.success("از سبد خرید حذف شد");
+		},
+		onError: (err) => onError(err, "حذف از سبد خرید"),
 	});
 
 	const update = useMutation({
 		mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) =>
 			cartApi.updateItem(itemId, { quantity }),
-		onSuccess: refresh,
-		onError,
+		onSuccess: async () => {
+			await refresh();
+			toast.success("سبد خرید به‌روزرسانی شد");
+		},
+		onError: (err) => onError(err, "به‌روزرسانی سبد خرید"),
 	});
 
 	const clear = useMutation({
 		mutationFn: cartApi.clear,
-		onSuccess: refresh,
-		onError,
+		onSuccess: async () => {
+			await refresh();
+			toast.success("سبد خرید خالی شد");
+		},
+		onError: (err) => onError(err, "خالی کردن سبد خرید"),
 	});
 
 	const isMutating =
