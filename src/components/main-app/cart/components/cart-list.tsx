@@ -6,16 +6,7 @@ import {
 import { CartMutationResponse } from "../services/cart-CRUD";
 import { CartItem, GetCartResponse } from "../types";
 import CartItemCard from "./cart-item-card";
-
-const cartItemsMock = [
-	{
-		name: "p1",
-		color: "red",
-		dialColor: "blue",
-		images: [],
-		price: 5,
-	},
-];
+import CartItemSkeletonCard from "./cart-item-skeleton-card";
 
 export default function CartList({
 	cart,
@@ -26,11 +17,17 @@ export default function CartList({
 	removeItem,
 	updateItem,
 	setOpenDelete,
-	setConfirmQuestion,
+	confirmQuestion,
+	openDelete,
+	setConfirmQuestionForItem,
+	itemIdToDelete,
+	setItemIdToDelete,
 }: {
-	setConfirmQuestion: (val: boolean) => void;
+	itemIdToDelete: string;
+	setItemIdToDelete: (val: string) => void;
 	setOpenDelete: (val: boolean) => void;
-	error: {} | null;
+	openDelete: boolean;
+	error: Error | null;
 	cart: GetCartResponse | undefined;
 	isError: boolean;
 	isLoading: boolean;
@@ -47,6 +44,8 @@ export default function CartList({
 		},
 		unknown
 	>;
+	confirmQuestion: boolean;
+	setConfirmQuestionForItem: (val: boolean) => void;
 }) {
 	const products = cart
 		? cart.data.items.map((item: CartItem) => ({
@@ -60,25 +59,44 @@ export default function CartList({
 		  }))
 		: [];
 	return (
-		<div className="w-full h-[70vh] overflow-auto md:overflow-y-auto flex flex-col justify-between items-start gap-1 rounded-sm shadow shadow-black/5">
+		<div className="w-full h-[70vh] overflow-auto md:overflow-y-auto flex flex-col justify-start items-start gap-5 md:gap-1 rounded-sm shadow shadow-black/5">
 			{cart ? (
-				products.map((cartItem) => (
-					<CartItemCard
-						quantity={cartItem.quantity}
-						prodID={cartItem.product._id}
-						stock={cartItem.product.stock}
-						cartItemInfo={cart}
-						key={cartItem._id}
-						dialColor={cartItem.product.dialColor}
-						color={cartItem.product.dialColor}
-						images={cartItem.product.images}
-						name={cartItem.product.name}
-						price={cartItem.price}
-						brand={cartItem.product.brand}
-					/>
-				))
+				cart.data.items.length == 0 ? (
+					<div className="w-full h-full flex flex-col justify-center items-center">
+						محصولی برای نمایش وجود ندارد
+					</div>
+				) : (
+					products.map((cartItem) => (
+						<CartItemCard
+							isLoading={isLoading}
+							refetch={refetch}
+							removeItem={removeItem}
+							updateItem={updateItem}
+							error={error}
+							setOpenDelete={setOpenDelete}
+							setItemIdToDelete={setItemIdToDelete}
+							openDelete={openDelete && itemIdToDelete === cartItem._id}
+							confirmQuestion={confirmQuestion}
+							setConfirmQuestion={setConfirmQuestionForItem}
+							quantity={cartItem.quantity}
+							prodID={cartItem.product._id}
+							cartID={cartItem._id}
+							stock={cartItem.product.stock}
+							cartItemInfo={cart}
+							key={cartItem._id}
+							dialColor={cartItem.product.dialColor}
+							color={cartItem.product.dialColor}
+							images={cartItem.product.images}
+							name={cartItem.product.name}
+							price={cartItem.price}
+							brand={cartItem.product.brand}
+						/>
+					))
+				)
 			) : (
-				<div className="w-full">محصولی برای نمایش وجود ندارد</div>
+				<div className="w-full h-full flex flex-col justify-center items-center">
+					<CartItemSkeletonCard />
+				</div>
 			)}
 		</div>
 	);

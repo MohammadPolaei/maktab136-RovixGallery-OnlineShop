@@ -27,6 +27,8 @@ export default function Page() {
 	const offeredProducts = data.products.filter(
 		(p: Product) => p.popularity > 50
 	);
+
+	// clear cart
 	const [clearConfirmQuestion, setClearConfirmQuestion] = useState(false);
 	const [openClear, setOpenClear] = useState(false);
 
@@ -37,6 +39,17 @@ export default function Page() {
 			return;
 		}
 	}, [clearConfirmQuestion]);
+
+	// delete one item
+	const [confirmQuestion, setConfirmQuestion] = useState(false);
+	const [openDelete, setOpenDelete] = useState(false);
+	const [itemIdToDelete, setItemIdtoDelete] = useState("");
+
+	useEffect(() => {
+		if (itemIdToDelete && confirmQuestion) {
+			removeItem(itemIdToDelete);
+		}
+	}, [confirmQuestion, itemIdToDelete]);
 
 	return (
 		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 flex flex-col justify-start items-center gap-3">
@@ -51,10 +64,14 @@ export default function Page() {
 						{"خالی کردن سبد خرید"}
 					</button>
 				</div>
-				<CartPriceInfo cart={cart} clearCart={clearCart} />
+				<CartPriceInfo cart={cart} />
 				<CartList
-					setConfirmQuestion={setClearConfirmQuestion}
-					setOpenDelete={setOpenClear}
+					itemIdToDelete={itemIdToDelete}
+					setItemIdToDelete={setItemIdtoDelete}
+					confirmQuestion={confirmQuestion}
+					setConfirmQuestionForItem={setConfirmQuestion}
+					setOpenDelete={setOpenDelete}
+					openDelete={openDelete}
 					cart={cart}
 					error={error}
 					isError={isError}

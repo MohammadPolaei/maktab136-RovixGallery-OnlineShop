@@ -1,15 +1,24 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
+import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
 import {
 	BrandIcon,
 	DialIcon,
 	DollarIcon,
 } from "@/assets/SVG/product-card/filters/filters-icon";
+import AskModal from "@/components/base/ask-modal";
+import Modal from "@/components/base/modal";
 import AddToCartSingleProduct from "@/components/shared/add-to-cart-single-product";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { faNumber } from "@/utils/convert-number-into-persian";
+import {
+	QueryObserverResult,
+	RefetchOptions,
+	UseMutateFunction,
+} from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
+import { CartMutationResponse } from "../services/cart-CRUD";
 import { GetCartResponse } from "../types";
 
 type Props = {
@@ -23,6 +32,27 @@ type Props = {
 	prodID: string;
 	stock: number;
 	quantity: number;
+	error: Error | null;
+	isLoading: boolean;
+	confirmQuestion: boolean;
+	cartID: string;
+	openDelete: boolean;
+	refetch: (
+		options?: RefetchOptions
+	) => Promise<QueryObserverResult<GetCartResponse, Error>>;
+	removeItem: UseMutateFunction<CartMutationResponse, unknown, string, unknown>;
+	updateItem: UseMutateFunction<
+		CartMutationResponse,
+		unknown,
+		{
+			itemId: string;
+			quantity: number;
+		},
+		unknown
+	>;
+	setOpenDelete: (val: boolean) => void;
+	setConfirmQuestion: (val: boolean) => void;
+	setItemIdToDelete: (val: string) => void;
 };
 
 // date format
@@ -49,6 +79,17 @@ export default function CartItemCard({
 	brand,
 	cartItemInfo,
 	quantity,
+	error,
+	isLoading,
+	openDelete,
+	confirmQuestion,
+	cartID,
+	refetch,
+	removeItem,
+	setConfirmQuestion,
+	setOpenDelete,
+	setItemIdToDelete,
+	updateItem,
 }: Props) {
 	// default product quantity
 
@@ -125,14 +166,36 @@ export default function CartItemCard({
 			</div>
 			<div className="absolute top-15 left-5 md:top-15 md:left-10 flex flex-col justify-center items-end gap-3">
 				<div className="flex flex-col justify-center items-center gap-3">
-					<div>
+					<button onClick={() => {}}>
 						<FavoriteOutlined size={18} />
-					</div>
-					<div>
+					</button>
+					<button
+						onClick={() => {
+							setItemIdToDelete(cartID);
+							setOpenDelete(true);
+						}}
+					>
 						<DeleteIcon size={22} />
-					</div>
+					</button>
 				</div>
 			</div>
+			<AskModal
+				confirmQuestion={confirmQuestion}
+				setConfirmQuestion={setConfirmQuestion}
+				theQuestion={`آیا از حذف ${name} اطمینان دارید؟`}
+				openDelete={openDelete}
+				setOpenDelete={setOpenDelete}
+			/>
+			<Modal
+				modalUsecaseType="message"
+				open={isLoading}
+				setOpen={() => {}}
+				modalTitle="حذف محصول"
+				extraClasses=""
+			>
+				{"در حال حذف"}
+				<RovixLuxuryLoader />
+			</Modal>
 		</div>
 	);
 }

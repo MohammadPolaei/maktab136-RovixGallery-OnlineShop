@@ -3,10 +3,8 @@ import { GetCartResponse } from "../types";
 
 export default function CartPriceInfo({
 	cart,
-	clearCart,
 }: {
 	cart: GetCartResponse | undefined;
-	clearCart: () => void;
 }) {
 	const deliveryCost = cart
 		? cart.data.totalPrice > 100000000
@@ -15,11 +13,11 @@ export default function CartPriceInfo({
 		: null;
 
 	return (
-		<div className="w-full bg-white flex flex-col justify-start pt-20 pb-10 rounded-sm gap-5 px-5 shadow shadow-black/5">
+		<div className="w-full h-fit bg-white flex flex-col justify-start pt-20 pb-10 rounded-sm gap-5 px-5 shadow shadow-black/5">
 			<div className="font-semibold text-(--color-accent-green) border-b border-b-black/20 pb-5">
 				{"خلاصه سفارش"}
 			</div>
-			<div className="flex flex-col justify-between items-start gap-2 h-full pb-10 border-b border-b-black/20">
+			<div className="flex flex-col justify-start items-start gap-2 h-fit pb-10 border-b border-b-black/20">
 				<div className="w-full flex justify-between items-center gap-2">
 					<span className="text-[12px]">{"جمع مبلغ کالاها"}</span>
 					<span>

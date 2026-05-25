@@ -53,7 +53,7 @@ export default function Modal({
 					: "h-0 bg-black/0"
 			} transition-all duration-300 ease-in-out`}
 		>
-			<div className="">
+			<div>
 				<div
 					className={`fixed ${extraClasses} ${
 						modalUsecaseType == "message"
