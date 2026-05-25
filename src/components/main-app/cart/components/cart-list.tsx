@@ -1,9 +1,3 @@
-import {
-	QueryObserverResult,
-	RefetchOptions,
-	UseMutateFunction,
-} from "@tanstack/react-query";
-import { CartMutationResponse } from "../services/cart-CRUD";
 import { CartItem, GetCartResponse } from "../types";
 import CartItemCard from "./cart-item-card";
 import CartItemSkeletonCard from "./cart-item-skeleton-card";
@@ -13,15 +7,13 @@ export default function CartList({
 	error,
 	isError,
 	isLoading,
-	refetch,
-	removeItem,
-	updateItem,
 	setOpenDelete,
 	confirmQuestion,
 	openDelete,
 	setConfirmQuestionForItem,
 	itemIdToDelete,
 	setItemIdToDelete,
+	handleQuantityChange,
 }: {
 	itemIdToDelete: string;
 	setItemIdToDelete: (val: string) => void;
@@ -31,21 +23,14 @@ export default function CartList({
 	cart: GetCartResponse | undefined;
 	isError: boolean;
 	isLoading: boolean;
-	refetch: (
-		options?: RefetchOptions
-	) => Promise<QueryObserverResult<GetCartResponse, Error>>;
-	removeItem: UseMutateFunction<CartMutationResponse, unknown, string, unknown>;
-	updateItem: UseMutateFunction<
-		CartMutationResponse,
-		unknown,
-		{
-			itemId: string;
-			quantity: number;
-		},
-		unknown
-	>;
+
 	confirmQuestion: boolean;
 	setConfirmQuestionForItem: (val: boolean) => void;
+	handleQuantityChange: (
+		itemId: string,
+		newQuantity: number,
+		originalQuantity: number
+	) => void;
 }) {
 	const products = cart
 		? cart.data.items.map((item: CartItem) => ({
@@ -68,10 +53,8 @@ export default function CartList({
 				) : (
 					products.map((cartItem) => (
 						<CartItemCard
+							handleQuantityChange={handleQuantityChange}
 							isLoading={isLoading}
-							refetch={refetch}
-							removeItem={removeItem}
-							updateItem={updateItem}
 							error={error}
 							setOpenDelete={setOpenDelete}
 							setItemIdToDelete={setItemIdToDelete}

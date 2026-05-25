@@ -50,7 +50,6 @@ export function useCartStore() {
 			cartApi.updateItem(itemId, { quantity }),
 		onSuccess: async () => {
 			refresh();
-			toast.success("سبد خرید به‌روزرسانی شد");
 		},
 		onError: (err) => onError(err, "به‌روزرسانی سبد خرید"),
 	});
@@ -89,7 +88,7 @@ export function useCartStore() {
 
 		addItem: add.mutate,
 		removeItem: remove.mutate,
-		updateItem: update.mutate,
+		updateItem: update,
 		clearCart: clear.mutate,
 	};
 }

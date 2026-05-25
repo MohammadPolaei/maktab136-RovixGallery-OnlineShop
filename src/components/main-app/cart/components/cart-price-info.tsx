@@ -4,34 +4,60 @@ import { GetCartResponse } from "../types";
 export default function CartPriceInfo({
 	cart,
 	setOpenClear,
+	anyUpdate,
+	handleBatchUpdate,
 }: {
 	cart: GetCartResponse | undefined;
 	setOpenClear: (val: boolean) => void;
+	anyUpdate: boolean;
+	handleBatchUpdate: () => Promise<void>;
 }) {
-	const deliveryCost = cart
-		? cart.data.totalPrice > 100000000
-			? 0
-			: cart.data.totalPrice / 100 + 500000
-		: null;
-
 	return (
 		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">
-			<div className="w-full backdrop-blur-[5px] flex justify-start items-center gap-2">
+			<div
+				className={`w-full backdrop-blur-[5px] flex flex-col justify-start items-center gap-2 ${
+					!anyUpdate ? "opacity-10" : ""
+				}`}
+			>
 				<button
+					disabled={!anyUpdate}
 					onClick={() => {
 						setOpenClear(true);
 					}}
-					className="w-full py-3 bg-red-500/20 text-[10px] lg:text-[12px] text-black hover:bg-red-500/80 hover:text-white rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out"
+					className={`w-full py-3  text-[10px] lg:text-[12px]  rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out ${
+						anyUpdate
+							? "bg-yellow-700/20 hover:bg-yellow-700/80 text-black  hover:text-white"
+							: "bg-black hover:bg-black text-white  hover:text-white"
+					}`}
 				>
 					{"خالی کردن سبد خرید"}
 				</button>
-				<button
-					onClick={() => {}}
-					className="w-full py-3 bg-(--color-accent-green)/20 text-[10px] lg:text-[12px] text-black hover:bg-(--color-accent-green)/80 hover:text-white rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out"
-				>
-					{"ذخیره تغییرات"}
-				</button>
+				<div className="w-full flex justify-between items-center gap-1">
+					<button
+						disabled={!anyUpdate}
+						onClick={() => {}}
+						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
+							anyUpdate
+								? "bg-red-500/20 hover:bg-red-500/80 text-black  hover:text-white"
+								: "bg-black hover:bg-black text-white  hover:text-white"
+						}`}
+					>
+						{"لغو تغییرات"}
+					</button>
+					<button
+						disabled={!anyUpdate}
+						onClick={handleBatchUpdate}
+						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
+							anyUpdate
+								? "bg-(--color-accent-green)/20 hover:bg-(--color-accent-green)/80 text-black  hover:text-white"
+								: "bg-black hover:bg-black text-white  hover:text-white"
+						}`}
+					>
+						{"ذخیره تغییرات"}
+					</button>
+				</div>
 			</div>
+
 			<div className="font-semibold text-(--color-accent-green) border-b border-b-black/20 pb-5">
 				{"خلاصه سفارش"}
 			</div>

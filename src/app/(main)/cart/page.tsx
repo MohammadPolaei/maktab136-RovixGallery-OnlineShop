@@ -8,6 +8,7 @@ import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
 import { useGetProducts } from "@/hooks/use-get-data";
 import { Product } from "@/types/product-data-type";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
 	const {
@@ -49,13 +50,59 @@ export default function Page() {
 		if (itemIdToDelete && confirmQuestion) {
 			removeItem(itemIdToDelete);
 		}
+		return () => {
+			setConfirmQuestion(false);
+		};
 	}, [confirmQuestion, itemIdToDelete]);
+
+	// cart quantity update
+
+	const [updateQueue, setUpdateQueue] = useState<Record<string, number>>({});
+
+	const handleBatchUpdate = async () => {
+		const entries = Object.entries(updateQueue);
+		if (entries.length === 0) return;
+
+		try {
+			for (const [itemId, quantity] of entries) {
+				await updateItem.mutateAsync({ itemId, quantity });
+			}
+
+			setUpdateQueue({});
+			toast.success("سبد خرید با موفقیت بروزرسانی شد");
+		} catch (err) {
+			toast.error("خطا در بروزرسانی برخی آیتم‌ها");
+		}
+	};
+
+	const handleQuantityChange = (itemId: string, newQuantity: number) => {
+		const originalItem = cart?.data.items.find((item) => item._id === itemId);
+		const originalQuantity = originalItem ? originalItem.quantity : 0;
+		setUpdateQueue((prev) => {
+			const newQueue = { ...prev };
+
+			if (newQuantity === originalQuantity) {
+				delete newQueue[itemId];
+			} else {
+				newQueue[itemId] = newQuantity;
+			}
+			return newQueue;
+		});
+	};
+
+	const anyUpdateAvailable = Object.entries(updateQueue).length > 0;
 
 	return (
 		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 flex flex-col justify-start items-center gap-3">
 			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5">
-				<CartPriceInfo cart={cart} setOpenClear={setOpenClear} />
+				<CartPriceInfo
+					cart={cart}
+					setOpenClear={setOpenClear}
+					anyUpdate={anyUpdateAvailable}
+					handleBatchUpdate={handleBatchUpdate}
+				/>
 				<CartList
+					handleQuantityChange={handleQuantityChange}
 					itemIdToDelete={itemIdToDelete}
 					setItemIdToDelete={setItemIdtoDelete}
 					confirmQuestion={confirmQuestion}
@@ -66,9 +113,6 @@ export default function Page() {
 					error={error}
 					isError={isError}
 					isLoading={isLoading}
-					refetch={refetch}
-					removeItem={removeItem}
-					updateItem={updateItem}
 				/>
 				<AskModal
 					confirmQuestion={clearConfirmQuestion}

@@ -37,22 +37,15 @@ type Props = {
 	confirmQuestion: boolean;
 	cartID: string;
 	openDelete: boolean;
-	refetch: (
-		options?: RefetchOptions
-	) => Promise<QueryObserverResult<GetCartResponse, Error>>;
-	removeItem: UseMutateFunction<CartMutationResponse, unknown, string, unknown>;
-	updateItem: UseMutateFunction<
-		CartMutationResponse,
-		unknown,
-		{
-			itemId: string;
-			quantity: number;
-		},
-		unknown
-	>;
+
 	setOpenDelete: (val: boolean) => void;
 	setConfirmQuestion: (val: boolean) => void;
 	setItemIdToDelete: (val: string) => void;
+	handleQuantityChange: (
+		itemId: string,
+		newQuantity: number,
+		originalQuantity: number
+	) => void;
 };
 
 // date format
@@ -79,21 +72,24 @@ export default function CartItemCard({
 	brand,
 	cartItemInfo,
 	quantity,
-	error,
 	isLoading,
 	openDelete,
 	confirmQuestion,
 	cartID,
-	refetch,
-	removeItem,
 	setConfirmQuestion,
 	setOpenDelete,
 	setItemIdToDelete,
-	updateItem,
+	handleQuantityChange,
 }: Props) {
 	// default product quantity
 
-	const [defaultQuantity, setDefaultQuantity] = useState(quantity);
+	// local update change
+	const [localQuantity, setLocalQuantity] = useState(quantity);
+
+	const handleInternalQuantityChange = (newVal: number) => {
+		setLocalQuantity(newVal);
+		handleQuantityChange(cartID, newVal, quantity);
+	};
 
 	return (
 		<div className="w-full bg-white text-[10px] rounded-sm py-5 px-3 md:px-10 relative flex flex-col lg:flex-row justify-evenly items-start md:items-center gap-5">
@@ -144,15 +140,15 @@ export default function CartItemCard({
 								usageType="cart"
 								prodID={prodID}
 								productStock={stock}
-								defaultQuantity={defaultQuantity}
-								setDefaultQuantity={setDefaultQuantity}
+								defaultQuantity={localQuantity}
+								handleInternalQuantityChange={handleInternalQuantityChange}
 							/>
 						</div>
 					</div>
 					<div className="flex justify-center items-center gap-2 min-w-50">
 						<span>قیمت کل</span>
 						<span className="flex items-center gap-1">
-							{faNumber(price * defaultQuantity)}
+							{faNumber(price * localQuantity)}
 							<span className="text-black/40 text-[10px]">{"ریال"}</span>
 						</span>
 					</div>
@@ -166,7 +162,10 @@ export default function CartItemCard({
 			</div>
 			<div className="absolute top-15 left-5 md:top-15 md:left-10 flex flex-col justify-center items-end gap-3">
 				<div className="flex flex-col justify-center items-center gap-3">
-					<button onClick={() => {}}>
+					<button
+						onClick={() => {}}
+						className="cursor-pointer active:scale-115 origin-center transition-all duration-200 ease-in-out"
+					>
 						<FavoriteOutlined size={18} />
 					</button>
 					<button
@@ -174,6 +173,7 @@ export default function CartItemCard({
 							setItemIdToDelete(cartID);
 							setOpenDelete(true);
 						}}
+						className="cursor-pointer active:scale-115 origin-center transition-all duration-200 ease-in-out"
 					>
 						<DeleteIcon size={22} />
 					</button>

@@ -2,17 +2,16 @@
 import { useEffect, useState } from "react";
 
 export default function AddToCartSingleProduct({
-	prodID,
 	productStock,
 	usageType,
 	defaultQuantity = 0,
-	setDefaultQuantity,
+	handleInternalQuantityChange,
 }: {
 	prodID: string;
 	productStock: number;
 	usageType: "single-product" | "cart";
 	defaultQuantity?: number;
-	setDefaultQuantity?: (val: number) => void;
+	handleInternalQuantityChange?: (newVal: number) => void;
 }) {
 	const [count, setCount] = useState<number>(
 		defaultQuantity ? defaultQuantity : 1
@@ -35,8 +34,10 @@ export default function AddToCartSingleProduct({
 					disabled={notAvailable}
 					onClick={() => {
 						count > 1 ? setCount((perv) => perv - 1) : "";
-						usageType == "cart" && setDefaultQuantity && defaultQuantity > 1
-							? setDefaultQuantity(count - 1)
+						usageType == "cart" &&
+						handleInternalQuantityChange &&
+						defaultQuantity > 1
+							? handleInternalQuantityChange(count - 1)
 							: null;
 					}}
 					className={`active:scale-120 origin-center ${
@@ -93,8 +94,8 @@ export default function AddToCartSingleProduct({
 					disabled={notAvailable}
 					onClick={() => {
 						setCount((perv) => perv + 1);
-						usageType == "cart" && setDefaultQuantity
-							? setDefaultQuantity(count + 1)
+						usageType == "cart" && handleInternalQuantityChange
+							? handleInternalQuantityChange(count + 1)
 							: null;
 					}}
 					className={`active:scale-120 origin-center
