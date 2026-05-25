@@ -12,12 +12,11 @@ export async function getProductsSSR(query: Record<string, string>) {
 		cache: "no-store",
 	});
 
-	const data = await res.json();
-
 	if (!res.ok) {
 		console.error("Failed to fetch products:", res.status);
 		throw new Error("Failed to fetch products");
 	}
+	const data = await res.json();
 
 	return data.data;
 }

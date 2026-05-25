@@ -3,8 +3,10 @@ import { GetCartResponse } from "../types";
 
 export default function CartPriceInfo({
 	cart,
+	setOpenClear,
 }: {
 	cart: GetCartResponse | undefined;
+	setOpenClear: (val: boolean) => void;
 }) {
 	const deliveryCost = cart
 		? cart.data.totalPrice > 100000000
@@ -13,7 +15,23 @@ export default function CartPriceInfo({
 		: null;
 
 	return (
-		<div className="w-full h-fit bg-white flex flex-col justify-start pt-20 pb-10 rounded-sm gap-5 px-5 shadow shadow-black/5">
+		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">
+			<div className="w-full backdrop-blur-[5px] flex justify-start items-center gap-2">
+				<button
+					onClick={() => {
+						setOpenClear(true);
+					}}
+					className="w-full py-3 bg-red-500/20 text-[10px] lg:text-[12px] text-black hover:bg-red-500/80 hover:text-white rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out"
+				>
+					{"خالی کردن سبد خرید"}
+				</button>
+				<button
+					onClick={() => {}}
+					className="w-full py-3 bg-(--color-accent-green)/20 text-[10px] lg:text-[12px] text-black hover:bg-(--color-accent-green)/80 hover:text-white rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out"
+				>
+					{"ذخیره تغییرات"}
+				</button>
+			</div>
 			<div className="font-semibold text-(--color-accent-green) border-b border-b-black/20 pb-5">
 				{"خلاصه سفارش"}
 			</div>

@@ -1,3 +1,4 @@
+import QueryProvider from "@/providers/query-provider";
 import MobileMenu from "./components/mobile-menu";
 import Navbar from "./components/navbar";
 import ScrollInit from "./components/scroll-init";
@@ -6,7 +7,9 @@ import HeaderTop from "./components/top-header";
 export default function Header() {
 	return (
 		<header className="fixed top-0 w-full z-500">
-			<HeaderTop />
+			<QueryProvider>
+				<HeaderTop />
+			</QueryProvider>
 			<div className="hidden md:block">
 				<Navbar />
 			</div>

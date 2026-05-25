@@ -1,10 +1,13 @@
+"use client";
 import CartIcon from "@/assets/SVG/cart-icon";
 import UserProfile from "@/assets/SVG/user-profile";
 import SearchInput from "@/components/base/search-input";
+import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
 import ShowDate from "@/components/shared/show-date";
 import Link from "next/link";
 
 export default function HeaderTop() {
+	const { cart } = useCartStore();
 	return (
 		<div className="w-full rovix-bg-darkest rovix-text-gold">
 			<div className="max-w-7xl mx-auto flex items-center justify-evenly py-2 px-2">
@@ -38,7 +41,7 @@ export default function HeaderTop() {
 							سبد خرید
 						</Link>
 						<span className="absolute -top-3 right-0 rovix-bg-gold text-black text-[10px] px-1 rounded-full">
-							0
+							{cart ? cart.data.items.length : 0}
 						</span>
 					</div>
 					<div className="w-35 text-center hidden md:inline">

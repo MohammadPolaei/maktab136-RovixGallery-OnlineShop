@@ -53,18 +53,8 @@ export default function Page() {
 
 	return (
 		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 flex flex-col justify-start items-center gap-3">
-			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5 relative">
-				<div className="absolute top-2 right-2 z-100 backdrop-blur-[5px]">
-					<button
-						onClick={() => {
-							setOpenClear(true);
-						}}
-						className="w-full p-3 bg-red-500/20 text-[12px] text-black hover:bg-red-500/80 hover:text-white rounded-sm border border-black/10 cursor-pointer"
-					>
-						{"خالی کردن سبد خرید"}
-					</button>
-				</div>
-				<CartPriceInfo cart={cart} />
+			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5">
+				<CartPriceInfo cart={cart} setOpenClear={setOpenClear} />
 				<CartList
 					itemIdToDelete={itemIdToDelete}
 					setItemIdToDelete={setItemIdtoDelete}

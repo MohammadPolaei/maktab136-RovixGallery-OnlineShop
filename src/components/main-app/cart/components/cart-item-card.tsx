@@ -96,18 +96,18 @@ export default function CartItemCard({
 	const [defaultQuantity, setDefaultQuantity] = useState(quantity);
 
 	return (
-		<div className="w-full bg-white text-[10px] rounded-sm py-5 px-3 md:px-10 relative flex flex-col md:flex-row justify-evenly items-start md:items-center gap-5">
+		<div className="w-full bg-white text-[10px] rounded-sm py-5 px-3 md:px-10 relative flex flex-col lg:flex-row justify-evenly items-start md:items-center gap-5">
 			<div className="w-full flex-1">
 				<Image
 					alt={`تصویر محصول ${name}`}
 					src={images[0]}
 					width={500}
 					height={500}
-					className="rounded-md w-30 md:w-full mt-10 md:mt-0 object-cover aspect-square"
+					className="rounded-md w-30 lg:w-full mt-10 md:mt-0 object-cover aspect-square"
 				/>
 			</div>
 			<div className="w-full flex-4 flex flex-col justify-between md:justify-center items-start gap-5">
-				<div className="flex-1 flex flex-col justify-between w-full h-full md:justify-center items-start gap-2 border-b border-b-black/20 md:border-0 pb-5 md:pb-0">
+				<div className="flex-1 flex flex-col justify-between w-full h-full md:justify-center items-start gap-2 border-b border-b-black/20 lg:border-0 pb-5 lg:pb-0">
 					<div className="text-[10px] md:text-[16px] font-semibold">{name}</div>
 					<div className="flex items-center gap-1">
 						<BrandIcon size={12} />
@@ -127,7 +127,7 @@ export default function CartItemCard({
 					</div>
 				</div>
 
-				<div className="w-full flex-1 flex flex-col md:flex-row justify-between items-center gap-2">
+				<div className="w-full flex-1 flex flex-col lg:flex-row justify-between items-center gap-2">
 					<div className="flex justify-center items-center gap-1 min-w-50">
 						<div className="hidden md:block">
 							<DollarIcon size={14} />
