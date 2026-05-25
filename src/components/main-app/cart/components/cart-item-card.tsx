@@ -11,14 +11,7 @@ import Modal from "@/components/base/modal";
 import AddToCartSingleProduct from "@/components/shared/add-to-cart-single-product";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { faNumber } from "@/utils/convert-number-into-persian";
-import {
-	QueryObserverResult,
-	RefetchOptions,
-	UseMutateFunction,
-} from "@tanstack/react-query";
 import Image from "next/image";
-import { useState } from "react";
-import { CartMutationResponse } from "../services/cart-CRUD";
 import { GetCartResponse } from "../types";
 
 type Props = {
@@ -46,6 +39,7 @@ type Props = {
 		newQuantity: number,
 		originalQuantity: number
 	) => void;
+	updateQueue: Record<string, number>;
 };
 
 // date format
@@ -76,6 +70,7 @@ export default function CartItemCard({
 	openDelete,
 	confirmQuestion,
 	cartID,
+	updateQueue,
 	setConfirmQuestion,
 	setOpenDelete,
 	setItemIdToDelete,
@@ -84,10 +79,9 @@ export default function CartItemCard({
 	// default product quantity
 
 	// local update change
-	const [localQuantity, setLocalQuantity] = useState(quantity);
+	const displayQuantity = updateQueue[cartID] ?? quantity;
 
 	const handleInternalQuantityChange = (newVal: number) => {
-		setLocalQuantity(newVal);
 		handleQuantityChange(cartID, newVal, quantity);
 	};
 
@@ -140,7 +134,7 @@ export default function CartItemCard({
 								usageType="cart"
 								prodID={prodID}
 								productStock={stock}
-								defaultQuantity={localQuantity}
+								defaultQuantity={displayQuantity}
 								handleInternalQuantityChange={handleInternalQuantityChange}
 							/>
 						</div>
@@ -148,7 +142,7 @@ export default function CartItemCard({
 					<div className="flex justify-center items-center gap-2 min-w-50">
 						<span>قیمت کل</span>
 						<span className="flex items-center gap-1">
-							{faNumber(price * localQuantity)}
+							{faNumber(price * displayQuantity)}
 							<span className="text-black/40 text-[10px]">{"ریال"}</span>
 						</span>
 					</div>
@@ -193,7 +187,6 @@ export default function CartItemCard({
 				modalTitle="حذف محصول"
 				extraClasses=""
 			>
-				{"در حال حذف"}
 				<RovixLuxuryLoader />
 			</Modal>
 		</div>

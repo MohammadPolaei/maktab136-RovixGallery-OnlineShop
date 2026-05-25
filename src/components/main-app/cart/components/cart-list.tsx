@@ -14,6 +14,7 @@ export default function CartList({
 	itemIdToDelete,
 	setItemIdToDelete,
 	handleQuantityChange,
+	updateQueue,
 }: {
 	itemIdToDelete: string;
 	setItemIdToDelete: (val: string) => void;
@@ -31,6 +32,7 @@ export default function CartList({
 		newQuantity: number,
 		originalQuantity: number
 	) => void;
+	updateQueue: Record<string, number>;
 }) {
 	const products = cart
 		? cart.data.items.map((item: CartItem) => ({
@@ -53,6 +55,8 @@ export default function CartList({
 				) : (
 					products.map((cartItem) => (
 						<CartItemCard
+							key={cartItem._id}
+							updateQueue={updateQueue}
 							handleQuantityChange={handleQuantityChange}
 							isLoading={isLoading}
 							error={error}
@@ -66,7 +70,6 @@ export default function CartList({
 							cartID={cartItem._id}
 							stock={cartItem.product.stock}
 							cartItemInfo={cart}
-							key={cartItem._id}
 							dialColor={cartItem.product.dialColor}
 							color={cartItem.product.dialColor}
 							images={cartItem.product.images}

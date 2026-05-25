@@ -16,12 +16,24 @@ export default function AddToCartSingleProduct({
 	const [count, setCount] = useState<number>(
 		defaultQuantity ? defaultQuantity : 1
 	);
+
+	useEffect(() => {
+		setCount(defaultQuantity);
+	}, [defaultQuantity]);
+
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const notAvailable = productStock == 0;
+
+	const updateValue = (newVal: number) => {
+		if (newVal < 1 || newVal > productStock) return;
+		setCount(newVal);
+		handleInternalQuantityChange?.(newVal);
+	};
 
 	useEffect(() => {
 		count < 1 ? setErrorMessage("مقدار نمیتواند کمتر از 1 باشد") : null;
 	}, [count]);
+
 	return (
 		<div
 			className={`flex flex-col md:flex-row justify-start items-center gap-1 relative ${
@@ -33,12 +45,7 @@ export default function AddToCartSingleProduct({
 				<button
 					disabled={notAvailable}
 					onClick={() => {
-						count > 1 ? setCount((perv) => perv - 1) : "";
-						usageType == "cart" &&
-						handleInternalQuantityChange &&
-						defaultQuantity > 1
-							? handleInternalQuantityChange(count - 1)
-							: null;
+						updateValue(count - 1);
 					}}
 					className={`active:scale-120 origin-center ${
 						usageType == "single-product"
@@ -93,10 +100,7 @@ export default function AddToCartSingleProduct({
 				<button
 					disabled={notAvailable}
 					onClick={() => {
-						setCount((perv) => perv + 1);
-						usageType == "cart" && handleInternalQuantityChange
-							? handleInternalQuantityChange(count + 1)
-							: null;
+						updateValue(count + 1);
 					}}
 					className={`active:scale-120 origin-center
 						${

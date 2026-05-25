@@ -1,4 +1,5 @@
 import { faNumber } from "@/utils/convert-number-into-persian";
+import { Dispatch, SetStateAction } from "react";
 import { GetCartResponse } from "../types";
 
 export default function CartPriceInfo({
@@ -6,40 +7,41 @@ export default function CartPriceInfo({
 	setOpenClear,
 	anyUpdate,
 	handleBatchUpdate,
+	setUpdateQueue,
+	customTotal,
+	customFinal,
+	customShipping,
 }: {
 	cart: GetCartResponse | undefined;
 	setOpenClear: (val: boolean) => void;
 	anyUpdate: boolean;
 	handleBatchUpdate: () => Promise<void>;
+	setUpdateQueue: Dispatch<SetStateAction<Record<string, number>>>;
+	customTotal: number;
+	customFinal: number;
+	customShipping: number;
 }) {
 	return (
 		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">
 			<div
-				className={`w-full backdrop-blur-[5px] flex flex-col justify-start items-center gap-2 ${
-					!anyUpdate ? "opacity-10" : ""
-				}`}
+				className={`w-full backdrop-blur-[5px] flex flex-col justify-start items-center gap-2`}
 			>
 				<button
-					disabled={!anyUpdate}
 					onClick={() => {
 						setOpenClear(true);
 					}}
-					className={`w-full py-3  text-[10px] lg:text-[12px]  rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out ${
-						anyUpdate
-							? "bg-yellow-700/20 hover:bg-yellow-700/80 text-black  hover:text-white"
-							: "bg-black hover:bg-black text-white  hover:text-white"
-					}`}
+					className={`w-full py-3 bg-yellow-700/20 hover:bg-yellow-700/80 text-black  hover:text-white text-[10px] lg:text-[12px]  rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out`}
 				>
 					{"خالی کردن سبد خرید"}
 				</button>
 				<div className="w-full flex justify-between items-center gap-1">
 					<button
 						disabled={!anyUpdate}
-						onClick={() => {}}
+						onClick={() => setUpdateQueue({})}
 						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
 							anyUpdate
 								? "bg-red-500/20 hover:bg-red-500/80 text-black  hover:text-white"
-								: "bg-black hover:bg-black text-white  hover:text-white"
+								: "bg-black hover:bg-black text-white  hover:text-white opacity-10"
 						}`}
 					>
 						{"لغو تغییرات"}
@@ -50,7 +52,7 @@ export default function CartPriceInfo({
 						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
 							anyUpdate
 								? "bg-(--color-accent-green)/20 hover:bg-(--color-accent-green)/80 text-black  hover:text-white"
-								: "bg-black hover:bg-black text-white  hover:text-white"
+								: "bg-black hover:bg-black text-white  hover:text-white opacity-10"
 						}`}
 					>
 						{"ذخیره تغییرات"}
@@ -68,7 +70,7 @@ export default function CartPriceInfo({
 						{cart ? (
 							<span className="flex justify-center items-center gap-1">
 								{" "}
-								{`${faNumber(cart.data.totalPrice)}`}
+								{`${faNumber(customTotal)}`}
 								<span className="text-black/50 text-[10px]">{"ریال"}</span>
 							</span>
 						) : null}
@@ -78,11 +80,11 @@ export default function CartPriceInfo({
 					<span>{"هزینه ارسال"}</span>
 					<span className="text-(--color-accent-green)">
 						{cart ? (
-							cart.data.totalPrice > 100000000 ? (
+							cart.data.totalPrice > 10000000000 ? (
 								"رایگان"
 							) : (
 								<span>
-									${faNumber(cart.data.totalPrice / 100 + 500000)}{" "}
+									{faNumber(customShipping)}{" "}
 									<span className="text-black/50 text-[10px]">{"ریال"}</span>
 								</span>
 							)
@@ -102,7 +104,7 @@ export default function CartPriceInfo({
 						{"مبلغ قابل پرداخت"}
 					</span>
 					<span className="text-(--color-gold-dark) font-semibold">
-						{cart && faNumber(cart.data.totalPrice)}{" "}
+						{cart && faNumber(customFinal)}{" "}
 						<span className="text-black/50 text-[10px]">{"ریال"}</span>
 					</span>
 				</div>
