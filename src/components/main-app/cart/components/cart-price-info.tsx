@@ -21,6 +21,18 @@ export default function CartPriceInfo({
 	customFinal: number;
 	customShipping: number;
 }) {
+	const formatCartDate = (isoDate: string): string => {
+		const date = new Date(isoDate);
+
+		return new Intl.DateTimeFormat("fa-IR", {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+			calendar: "persian",
+		}).format(date);
+	};
 	return (
 		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">
 			<div
@@ -60,8 +72,18 @@ export default function CartPriceInfo({
 				</div>
 			</div>
 
-			<div className="font-semibold text-(--color-accent-green) border-b border-b-black/20 pb-5">
-				{"خلاصه سفارش"}
+			<div className="font-semibold text-(--color-accent-green) border-b border-b-black/20 pb-5 relative flex flex-col lg:flex-row justify-between items-center gap-1">
+				<span>{"خلاصه سفارش"}</span>
+				<div className="flex flex-col justify-center items-center text-[10px]">
+					{cart ? (
+						<div className="flex items-center gap-1">
+							<span className="text-black/50 font-normal">آخرین تغییرات</span>
+							<time className="p-1 bg-gray-100 rounded-sm">
+								{formatCartDate(cart.data.createdAt)}
+							</time>
+						</div>
+					) : null}
+				</div>
 			</div>
 			<div className="flex flex-col justify-start items-start gap-2 h-fit pb-10 border-b border-b-black/20">
 				<div className="w-full flex justify-between items-center gap-2">
@@ -118,7 +140,7 @@ export default function CartPriceInfo({
 						className="w-full p-2 border border-black/50 text-[10px] outline-0 rounded-sm h-10"
 					/>
 				</div>
-				<button className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] ">
+				<button className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] cursor-pointer">
 					{"ادامه فرایند خرید"}
 				</button>
 			</div>

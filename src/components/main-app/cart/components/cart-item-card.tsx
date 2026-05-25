@@ -1,5 +1,4 @@
 import { DeleteIcon } from "@/assets/SVG/dashboard-icons/delete-icon";
-import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import { FavoriteOutlined } from "@/assets/SVG/product-card/favorite-icon";
 import {
 	BrandIcon,
@@ -7,7 +6,6 @@ import {
 	DollarIcon,
 } from "@/assets/SVG/product-card/filters/filters-icon";
 import AskModal from "@/components/base/ask-modal";
-import Modal from "@/components/base/modal";
 import AddToCartSingleProduct from "@/components/shared/add-to-cart-single-product";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { faNumber } from "@/utils/convert-number-into-persian";
@@ -42,20 +40,6 @@ type Props = {
 	updateQueue: Record<string, number>;
 };
 
-// date format
-const formatCartDate = (isoDate: string): string => {
-	const date = new Date(isoDate);
-
-	return new Intl.DateTimeFormat("fa-IR", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-		hour: "2-digit",
-		minute: "2-digit",
-		calendar: "persian",
-	}).format(date);
-};
-
 export default function CartItemCard({
 	prodID,
 	stock,
@@ -64,9 +48,7 @@ export default function CartItemCard({
 	images,
 	price,
 	brand,
-	cartItemInfo,
 	quantity,
-	isLoading,
 	openDelete,
 	confirmQuestion,
 	cartID,
@@ -148,12 +130,7 @@ export default function CartItemCard({
 					</div>
 				</div>
 			</div>
-			<div className="absolute top-2 left-2 flex flex-col justify-center items-center text-[10px]">
-				<span>تاریخ افزودن محصول به سبد خرید</span>
-				<time className="p-1 bg-gray-100 rounded-sm">
-					{formatCartDate(cartItemInfo.data.createdAt)}
-				</time>
-			</div>
+
 			<div className="absolute top-15 left-5 md:top-15 md:left-10 flex flex-col justify-center items-end gap-3">
 				<div className="flex flex-col justify-center items-center gap-3">
 					<button
@@ -180,15 +157,6 @@ export default function CartItemCard({
 				openDelete={openDelete}
 				setOpenDelete={setOpenDelete}
 			/>
-			<Modal
-				modalUsecaseType="message"
-				open={isLoading}
-				setOpen={() => {}}
-				modalTitle="حذف محصول"
-				extraClasses=""
-			>
-				<RovixLuxuryLoader />
-			</Modal>
 		</div>
 	);
 }

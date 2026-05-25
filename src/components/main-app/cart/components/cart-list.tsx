@@ -46,7 +46,7 @@ export default function CartList({
 		  }))
 		: [];
 	return (
-		<div className="w-full h-[70vh] overflow-auto md:overflow-y-auto flex flex-col justify-start items-start gap-5 md:gap-1 rounded-sm shadow shadow-black/5">
+		<div className="w-full h-[71vh] overflow-auto md:overflow-y-auto flex flex-col justify-start items-start gap-5 md:gap-1 rounded-sm shadow shadow-black/5">
 			{cart ? (
 				cart.data.items.length == 0 ? (
 					<div className="w-full h-full flex flex-col justify-center items-center">
