@@ -86,9 +86,9 @@ export function useCartStore() {
 		isError,
 		error,
 
-		addItem: add.mutate,
+		addItem: add.mutateAsync,
 		removeItem: remove.mutate,
-		updateItem: update,
+		updateItem: update.mutateAsync,
 		clearCart: clear.mutate,
 	};
 }

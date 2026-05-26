@@ -79,7 +79,7 @@ export default function CartPriceInfo({
 						<div className="flex items-center gap-1">
 							<span className="text-black/50 font-normal">آخرین تغییرات</span>
 							<time className="p-1 bg-gray-100 rounded-sm">
-								{formatCartDate(cart.data.createdAt)}
+								{formatCartDate(cart.data.updatedAt)}
 							</time>
 						</div>
 					) : null}

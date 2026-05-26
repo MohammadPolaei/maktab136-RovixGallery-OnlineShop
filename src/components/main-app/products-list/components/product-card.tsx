@@ -8,6 +8,7 @@ import {
 	WatchDialIcon,
 	WatchStrapIcon,
 } from "@/assets/SVG/product-card/watch-icon";
+import AddToCartSingleProduct from "@/components/shared/add-to-cart-single-product";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
@@ -15,6 +16,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
 
 const cardItemVariants: Variants = {
 	hidden: { opacity: 0, y: 30, scale: 0.96 },
@@ -44,9 +46,43 @@ const addToCartVariants: Variants = {
 	},
 };
 
+const containerVariants: Variants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.001,
+			delayChildren: 0.001,
+			duration: 1,
+		},
+	},
+};
+
+const childVariants: Variants = {
+	hidden: { opacity: 0, y: 15, scale: 0.98 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: {
+			type: "tween",
+			stiffness: 100,
+			damping: 20,
+		},
+	},
+};
+
 export default function ProductCard({ product }: { product: Product }) {
 	const [isHovered, setIsHovered] = useState(false);
 	const notInStock = product.stock < 1;
+	const { addItem } = useCartStore();
+
+	const [quantity, setQuantity] = useState(1);
+
+	const handleAddToCart = async () => {
+		if (notInStock) return;
+		await addItem({ productId: product._id, quantity: quantity });
+	};
 
 	return (
 		<motion.article
@@ -116,15 +152,32 @@ export default function ProductCard({ product }: { product: Product }) {
 						<span>به من اطلاع بده !</span>
 					</motion.button>
 				) : (
-					<motion.button
-						variants={addToCartVariants}
+					<motion.div
+						variants={containerVariants}
 						initial="hidden"
 						animate={isHovered ? "visible" : "hidden"}
-						className="w-2/3 py-3 mx-auto bg-black/80 hover:bg-(--color-gold) text-[10px] text-white font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10"
+						className="absolute inset-0 flex flex-col items-center pointer-events-none"
 					>
-						<CartIconButton />
-						<span>افزودن به سبد خرید</span>
-					</motion.button>
+						<motion.div
+							variants={childVariants}
+							className="w-full flex flex-col justify-center items-center absolute bottom-25 bg-radial from-white via-transparent to-transparent z-40 pointer-events-auto"
+						>
+							<AddToCartSingleProduct
+								productStock={product.stock}
+								setSingleProdQuantityValue={setQuantity}
+								usageType="product-card"
+							/>
+						</motion.div>
+
+						<motion.button
+							onClick={handleAddToCart}
+							variants={childVariants}
+							className="w-2/3 py-3 bg-black/80 hover:bg-(--color-gold) text-[10px] text-white font-bold hover:text-black cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out absolute bottom-10 pointer-events-auto"
+						>
+							<CartIconButton />
+							<span>افزودن به سبد خرید</span>
+						</motion.button>
+					</motion.div>
 				)}
 			</div>
 

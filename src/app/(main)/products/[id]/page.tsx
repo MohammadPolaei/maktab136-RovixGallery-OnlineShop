@@ -3,6 +3,7 @@ import ProductGallery from "@/components/main-app/single-product/components/prod
 import ProductInfo from "@/components/main-app/single-product/components/product-info";
 import ProductSpecs from "@/components/main-app/single-product/components/product-specs";
 import RelatedProducts from "@/components/main-app/single-product/components/related-products";
+import QueryProvider from "@/providers/query-provider";
 import { getProduct } from "@/services/get-single-product";
 
 interface ProductPageProps {
@@ -29,7 +30,9 @@ export default async function ProductPage(props: ProductPageProps) {
 					</div>
 					<div className="bg-(--color-gold-dark)/5 py-5 px-10 flex flex-col border border-(--color-gold)/20 rounded-sm overflow-hidden">
 						<ProductInfo product={product} />
-						<ProductActions product={product} />
+						<QueryProvider>
+							<ProductActions product={product} />
+						</QueryProvider>
 					</div>
 				</div>
 

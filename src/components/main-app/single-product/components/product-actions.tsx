@@ -4,20 +4,35 @@ import CartIconButton from "@/assets/SVG/cart-icon-button";
 import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
+import { useState } from "react";
+import { toast } from "sonner";
 import AddToCartSingleProduct from "../../../shared/add-to-cart-single-product";
+import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
 
 interface ActionsProps {
 	product: Product;
 }
 
 export default function ProductActions({ product }: ActionsProps) {
+	const { addItem, isLoading, error } = useCartStore();
+	const [singleProdQuantityValue, setSingleProdQuantityValue] = useState(1);
+	// handle add product
+	const handleAddToCart = async (id: string, quantity: number) => {
+		await addItem({ productId: id, quantity: quantity });
+		if (isLoading) {
+			toast.loading("در حال افزودن محصول به سبد خرید");
+		}
+		if (error) {
+			toast.error(`خطا در افزودن محصول به سبد خرید ${error.message}`);
+		}
+	};
 	return (
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
 			<div className="w-full flex flex-col md:flex-row justify-between items-center">
 				<AddToCartSingleProduct
+					setSingleProdQuantityValue={setSingleProdQuantityValue}
 					usageType="single-product"
 					productStock={product.stock}
-					prodID={product._id}
 				/>
 				<div className="flex items-center gap-1">
 					<p>{"نظرات کاربران"}</p>
@@ -47,7 +62,13 @@ export default function ProductActions({ product }: ActionsProps) {
 						<span>به من اطلاع بده !</span>
 					</button>
 				) : (
-					<button className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+					<button
+						disabled={singleProdQuantityValue == 0}
+						onClick={() =>
+							handleAddToCart(product._id, singleProdQuantityValue)
+						}
+						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
+					>
 						<CartIconButton size={25} />
 						<span>افزودن به سبد خرید</span>
 					</button>

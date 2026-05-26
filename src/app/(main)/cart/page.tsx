@@ -67,7 +67,7 @@ export default function Page() {
 
 		try {
 			for (const [itemId, quantity] of entries) {
-				await updateItem.mutateAsync({ itemId, quantity });
+				await updateItem({ itemId, quantity });
 			}
 
 			setUpdateQueue({});
