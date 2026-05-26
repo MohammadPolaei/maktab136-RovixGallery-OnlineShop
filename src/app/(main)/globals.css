@@ -1,5 +1,94 @@
 @import "tailwindcss";
 
+/* swiper slider package */
+@import "swiper/css";
+@import "swiper/css/free-mode";
+@import "swiper/css/navigation";
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.group\/swiper .swiper-button-prev,
+.group\/swiper .swiper-button-next {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	.group\/swiper .swiper-button-prev,
+	.group\/swiper .swiper-button-next {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 5px;
+		width: 25px;
+		height: 25px;
+		background-color: #12291e55;
+		border-radius: 50%;
+		color: white;
+		transition: background-color 0.3s ease;
+	}
+
+	.group\/swiper .swiper-button-prev:hover,
+	.group\/swiper .swiper-button-next:hover {
+		background-color: #1e5142;
+	}
+
+	.group\/swiper .swiper-button-prev {
+		left: 10px;
+	}
+
+	.group\/swiper .swiper-button-next {
+		right: 10px;
+	}
+
+	.group\/swiper .swiper-button-prev::after,
+	.group\/swiper .swiper-button-next::after {
+		font-size: 16px;
+		font-weight: bold;
+	}
+}
+
+/* swiper setting for single product image */
+.mySwiperMain {
+	height: 450px !important;
+	width: 100% !important;
+}
+
+.mySwiperThumbs {
+	height: 80px !important;
+	width: 100% !important;
+}
+
+.swiper-slide-thumb-active .thumb-overlay {
+	opacity: 0 !important;
+}
+
+.thumb-overlay {
+	opacity: 0.5;
+}
+
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+
+	background-repeat: no-repeat;
+	background-position: left 10px center;
+	background-size: 12px;
+
+	padding-left: 30px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 :root {
 	/* Primary Colors */
 	--color-darkest: #0e2219;
@@ -88,7 +177,14 @@
 }
 
 /* scroll bar */
-
-*::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
 	display: none;
+}
+
+@media (max-width: 767px) {
+	.swiper-button-prev,
+	.swiper-button-next {
+		display: none !important;
+	}
 }

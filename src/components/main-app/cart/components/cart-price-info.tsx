@@ -1,4 +1,5 @@
 import { faNumber } from "@/utils/convert-number-into-persian";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { GetCartResponse } from "../types";
 
@@ -33,6 +34,7 @@ export default function CartPriceInfo({
 			calendar: "persian",
 		}).format(date);
 	};
+	const router = useRouter();
 	return (
 		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">
 			<div
@@ -140,7 +142,12 @@ export default function CartPriceInfo({
 						className="w-full p-2 border border-black/50 text-[10px] outline-0 rounded-sm h-10"
 					/>
 				</div>
-				<button className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] cursor-pointer">
+				<button
+					onClick={() => {
+						router.push("/checkout");
+					}}
+					className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] cursor-pointer"
+				>
 					{"ادامه فرایند خرید"}
 				</button>
 			</div>
