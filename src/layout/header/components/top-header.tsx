@@ -44,7 +44,7 @@ export default function HeaderTop() {
 							{cart ? cart.data.items.length : 0}
 						</span>
 					</div>
-					<div className="w-35 text-center hidden md:inline">
+					<div className="w-35 text-left hidden md:inline">
 						<ShowDate extraClasses="text-(--color-gold)" />
 					</div>
 				</div>

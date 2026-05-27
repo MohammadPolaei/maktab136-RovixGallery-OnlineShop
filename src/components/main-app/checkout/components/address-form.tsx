@@ -1,24 +1,38 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { AddressFormValues, addressSchema } from "../utils";
+import { useCheckout } from "../utils/checkout-context";
+import {
+	AddressFormValues,
+	addressSchema,
+} from "../utils/checkout-form-schema";
 import { User } from "./checkout-layout";
 
-export default function AddressForm({ userData }: { userData: User | null }) {
+export default function AddressForm({
+	userData,
+}: {
+	userData: User | undefined;
+}) {
+	const { setAddressData, addressData } = useCheckout();
+
 	const {
 		register,
+		handleSubmit,
+		watch,
 		formState: { errors },
 	} = useForm<AddressFormValues>({
 		resolver: zodResolver(addressSchema),
-		defaultValues: {
-			province: "",
-			city: "",
-			address: "",
-			postalCode: "",
-			extraNote: "",
-		},
+		defaultValues: addressData ? addressData : {},
 	});
+
+	useEffect(() => {
+		const subscription = watch((value) => {
+			setAddressData(value as AddressFormValues);
+		});
+		return () => subscription.unsubscribe();
+	}, [watch, setAddressData]);
 
 	return (
 		<div className="rounded-sm border border-gray-200 bg-white p-5">

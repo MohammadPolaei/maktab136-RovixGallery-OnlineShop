@@ -7,13 +7,12 @@ interface SpecsProps {
 export default function ProductSpecs({ product }: SpecsProps) {
 	return (
 		<div className="mt-12 w-full">
-			<div className="border-b border-(--color-gold)/20 pb-2 mb-4">
-				<h2 className="text-[12px] rovix-text-gold font-semibold">
-					توضیحات محصول
-				</h2>
+			<div className="border-b border-black/20 pb-2 mb-4">
+				<h2 className="text-[12px] text-black font-semibold">توضیحات محصول</h2>
 			</div>
-			<p className="text-[10px] leading-5 text-gray-300"></p>
+
 			<div
+				className="text-[10px] leading-5 text-gray-800"
 				dangerouslySetInnerHTML={{
 					__html: DOMPurify.sanitize(product.description),
 				}}

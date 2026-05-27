@@ -10,11 +10,11 @@ interface InfoProps {
 export default function ProductInfo({ product }: InfoProps) {
 	return (
 		<div>
-			<h1 className="text-[14px] font-semibold text-white mb-2 flex flex-row justify-start items-center gap-2">
-				<FavoriteOutlined color="#d8c27a55" size={20} />
+			<h1 className="text-[14px] font-semibold text-black/80 mb-2 flex flex-row justify-start items-center gap-2">
+				<FavoriteOutlined color="#0008" size={20} />
 				ساعت مچی {product.name}
 			</h1>
-			<ul className="text-[12px] text-gray-300 flex flex-col justify-start gap-2 border-b border-b-(--color-gold)/20 pb-10">
+			<ul className="text-[14px] pt-5 text-gray-900 flex flex-col justify-start gap-2 border-b border-b-(--color-gold)/20 pb-10">
 				<li className="grid grid-cols-2">
 					برند: <span className="font-bold">{product.brand}</span>
 				</li>
@@ -42,7 +42,7 @@ export default function ProductInfo({ product }: InfoProps) {
 					کشور سازنده: <span>{product.brandCountry}</span>
 				</li>
 			</ul>
-			<div className="mt-4 text-[10px] text-gray-400 leading-relaxed flex flex-col md:flex-row justify-between items-center gap-5">
+			<div className="mt-4 text-[14px] text-gray-900 leading-relaxed flex flex-col md:flex-row justify-between items-center gap-5">
 				<div className="flex justify-center items-center gap-10">
 					{"وضعیت :"}
 					{product.stock > 1 ? (
@@ -58,7 +58,7 @@ export default function ProductInfo({ product }: InfoProps) {
 					)}
 				</div>
 				<div>
-					<p className="text-[20px] rovix-text-gold font-bold">
+					<p className="text-[20px] text-(--color-gold-dark) font-bold">
 						{faNumber(product.price)} ریال
 					</p>
 				</div>

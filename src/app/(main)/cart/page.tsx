@@ -109,7 +109,7 @@ export default function Page() {
 	const finalPayableAmount = totalProductsPrice + shippingCost;
 
 	return (
-		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 flex flex-col justify-start items-center gap-3">
+		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 pt-5 flex flex-col justify-start items-center gap-3">
 			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5">
 				<CartPriceInfo
 					setUpdateQueue={setUpdateQueue}

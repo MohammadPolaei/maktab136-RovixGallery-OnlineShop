@@ -55,7 +55,7 @@ export default function CartPriceInfo({
 						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
 							anyUpdate
 								? "bg-red-500/20 hover:bg-red-500/80 text-black  hover:text-white"
-								: "bg-black hover:bg-black text-white  hover:text-white opacity-10"
+								: "bg-black/20 text-black opacity-60"
 						}`}
 					>
 						{"لغو تغییرات"}
@@ -66,7 +66,7 @@ export default function CartPriceInfo({
 						className={`w-full py-3  text-[10px] lg:text-[12px] rounded-sm border border-black/10 cursor-pointer transition-all duration-500 ease-in-out  ${
 							anyUpdate
 								? "bg-(--color-accent-green)/20 hover:bg-(--color-accent-green)/80 text-black  hover:text-white"
-								: "bg-black hover:bg-black text-white  hover:text-white opacity-10"
+								: "bg-black/20 text-black opacity-60"
 						}`}
 					>
 						{"ذخیره تغییرات"}

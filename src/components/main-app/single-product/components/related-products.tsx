@@ -30,7 +30,7 @@ export default async function RelatedProducts({ brand }: RelatedProductsProps) {
 
 	return (
 		<div className="mt-10">
-			<h3 className="text-[12px] rovix-text-gold mb-4">محصولات مرتبط</h3>
+			<h3 className="text-[12px] text-black/80 mb-4">محصولات مرتبط</h3>
 			<div className="grid md:grid-cols-4 gap-6">
 				{eightRelatedProductsToShow.map((p) => (
 					<Link key={p._id} href={`/products/${p._id}`} title={p.name}>

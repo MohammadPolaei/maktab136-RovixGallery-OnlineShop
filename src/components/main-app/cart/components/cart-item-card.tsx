@@ -87,7 +87,7 @@ export default function CartItemCard({
 							{brand}
 						</span>
 					</div>
-					<div className="flex items-center gap-2">
+					<div className="flex items-center gap-2 text-[12px]">
 						<span>
 							<DialIcon size={12} />
 						</span>
@@ -99,7 +99,7 @@ export default function CartItemCard({
 					</div>
 				</div>
 
-				<div className="w-full flex-1 flex flex-col lg:flex-row justify-between items-center gap-2">
+				<div className="w-full flex-1 flex flex-col lg:flex-row justify-between items-center gap-2 text-[14px]">
 					<div className="flex justify-center items-center gap-1 min-w-50">
 						<div className="hidden md:block">
 							<DollarIcon size={14} />
@@ -114,7 +114,6 @@ export default function CartItemCard({
 						<div>
 							<AddToCartSingleProduct
 								usageType="cart"
-								prodID={prodID}
 								productStock={stock}
 								defaultQuantity={displayQuantity}
 								handleInternalQuantityChange={handleInternalQuantityChange}
@@ -137,7 +136,7 @@ export default function CartItemCard({
 						onClick={() => {}}
 						className="cursor-pointer active:scale-115 origin-center transition-all duration-200 ease-in-out"
 					>
-						<FavoriteOutlined size={18} />
+						<FavoriteOutlined size={20} />
 					</button>
 					<button
 						onClick={() => {
@@ -146,7 +145,7 @@ export default function CartItemCard({
 						}}
 						className="cursor-pointer active:scale-115 origin-center transition-all duration-200 ease-in-out"
 					>
-						<DeleteIcon size={22} />
+						<DeleteIcon size={26} />
 					</button>
 				</div>
 			</div>

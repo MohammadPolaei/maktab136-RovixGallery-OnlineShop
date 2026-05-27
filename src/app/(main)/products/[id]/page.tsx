@@ -22,10 +22,10 @@ export default async function ProductPage(props: ProductPageProps) {
 	};
 
 	return (
-		<section className="bg-[#111] -mt-4 -mb-10 w-screen flex flex-col justify-start items-center">
-			<div className="container bg-[#111] text-[10px] text-white min-h-full py-5 px-6 md:px-14 flex flex-col justify-start items-center">
+		<section className="bg-white -mt-4 -mb-10 w-screen flex flex-col justify-start items-center">
+			<div className="container text-[10px] text-white min-h-full py-5 px-6 md:px-14 flex flex-col justify-start items-center">
 				<div className="min-w-full grid md:grid-cols-[3fr_2fr] gap-2">
-					<div className="w-full border border-(--color-gold)/20 rounded-sm overflow-hidden">
+					<div className="w-full rounded-sm overflow-hidden">
 						<ProductGallery images={product.images} />
 					</div>
 					<div className="bg-(--color-gold-dark)/5 py-5 px-10 flex flex-col border border-(--color-gold)/20 rounded-sm overflow-hidden">

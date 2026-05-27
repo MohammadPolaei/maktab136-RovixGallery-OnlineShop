@@ -67,7 +67,7 @@ export default function ProductActions({ product }: ActionsProps) {
 						onClick={() =>
 							handleAddToCart(product._id, singleProdQuantityValue)
 						}
-						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
+						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
 					>
 						<CartIconButton size={25} />
 						<span>افزودن به سبد خرید</span>
@@ -75,7 +75,7 @@ export default function ProductActions({ product }: ActionsProps) {
 				)}
 			</div>
 			<div className="w-full">
-				<button className="w-full py-1 mx-auto border border-(--color-gold) text-[12px] text-(--color-gold) hover:shadow-2xl shadow-[#d8c27a55] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+				<button className="w-full py-1 mx-auto border border-(--color-gold-dark) text-[12px] text-(--color-gold-dark) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
 					<FavoriteFilled size={25} />
 					<span>افزودن به علاقه مندی ها</span>
 				</button>

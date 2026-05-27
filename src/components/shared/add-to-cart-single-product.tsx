@@ -6,7 +6,7 @@ interface Props {
 	usageType: "single-product" | "cart" | "product-card";
 	defaultQuantity?: number;
 	handleInternalQuantityChange?: (newVal: number) => void;
-	setSingleProdQuantityValue: (val: number) => void;
+	setSingleProdQuantityValue?: (val: number) => void;
 }
 
 export default function AddToCartSingleProduct({
@@ -38,7 +38,7 @@ export default function AddToCartSingleProduct({
 		handleInternalQuantityChange?.(newVal);
 
 		if (isSingle || isProdCard) {
-			setSingleProdQuantityValue(newVal);
+			setSingleProdQuantityValue ? setSingleProdQuantityValue(newVal) : null;
 		}
 	};
 
@@ -72,13 +72,7 @@ export default function AddToCartSingleProduct({
 	}, [count, productStock, notAvailable]);
 
 	const btnBase =
-		"font-bold w-6 h-8 border border-(--color-gold)/50 flex justify-center items-center cursor-pointer transition-all duration-500 ease-in-out disabled:opacity-30 disabled:border-white/0 active:scale-120 origin-center";
-
-	const themeStyles = isSingle
-		? "bg-(--color-gold)/10 active:bg-(--color-accent-green)/20 text-(--color-gold)/80"
-		: isProdCard
-		? "bg-black/80 active:bg-(--color-gold)/80 text-white/80"
-		: "bg-(--color-gold)/80 active:bg-(--color-accent-green)/80 text-black/80";
+		"font-bold w-6 h-8 text-[14px] border border-(--color-gold)/50 flex justify-center items-center cursor-pointer transition-all duration-500 ease-in-out disabled:opacity-30 disabled:border-white/0 active:scale-120 origin-center";
 
 	return (
 		<div
@@ -86,14 +80,16 @@ export default function AddToCartSingleProduct({
 				isSingle ? "py-6" : ""
 			}`}
 		>
-			{isProdCard ? null : <p className="text-gray-300">تعداد</p>}
+			{isProdCard ? null : (
+				<p className="text-gray-700 text-[12px] m-1">تعداد</p>
+			)}
 
 			<div className="flex justify-start items-center">
 				<button
 					type="button"
 					disabled={notAvailable || count <= 1}
 					onClick={() => updateByStep(-1)}
-					className={`${btnBase} ${themeStyles} border-l-0 rounded-r-sm`}
+					className={`${btnBase} bg-black/80 active:bg-(--color-gold)/80 text-white/80 border-l-0 rounded-r-sm`}
 				>
 					{"-"}
 				</button>
@@ -105,9 +101,9 @@ export default function AddToCartSingleProduct({
 					onChange={handleInputChange}
 					onBlur={handleBlur}
 					className={`w-15 h-10 border ${
-						errorMessage ? "border-red-500" : "border-(--color-gold)/50"
+						errorMessage ? "border-red-500" : "border-black/30"
 					} rounded-sm text-center ${
-						isProdCard ? "text-black" : "text-(--color-gold)"
+						isProdCard ? "text-black" : "text-black/80"
 					} outline-0 disabled:opacity-50`}
 				/>
 
@@ -115,15 +111,15 @@ export default function AddToCartSingleProduct({
 					type="button"
 					disabled={notAvailable || count >= productStock}
 					onClick={() => updateByStep(1)}
-					className={`${btnBase} ${themeStyles} border-r-0 rounded-l-sm`}
+					className={`${btnBase} bg-black/80 active:bg-(--color-gold)/80 text-white/80 border-r-0 rounded-l-sm`}
 				>
 					{"+"}
 				</button>
 
 				{errorMessage && (
 					<p
-						className={`p-1 bg-red-500/10 text-red-500 text-[8px] text-center absolute min-w-27 rounded-sm ${
-							isSingle ? "bottom-0" : "bottom-10 md:-bottom-5"
+						className={`p-1 bg-red-500/10 text-red-500 text-[12px] text-center absolute -right-7 md:right-0 min-w-40 rounded-sm ${
+							isSingle ? "bottom-0" : "bottom-10 sm:-bottom-12 lg:-bottom-6"
 						}`}
 					>
 						{errorMessage}
