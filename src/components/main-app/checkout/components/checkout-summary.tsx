@@ -1,39 +1,46 @@
-export default function CheckoutSummary() {
-	const items = [
-		{ name: "ساعت مچی مدل X", qty: 1, price: 12500000 },
-		{ name: "بند چرمی", qty: 1, price: 850000 },
-	];
+import { faNumber } from "@/utils/convert-number-into-persian";
+import { GetCartResponse } from "../../cart/types";
+import { useCheckout } from "../utils/checkout-context";
 
-	const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-	const shipping = 60000;
-	const total = subtotal + shipping;
+export default function CheckoutSummary({
+	cart,
+}: {
+	cart: GetCartResponse | undefined;
+}) {
+	const { shippingMethod, methods } = useCheckout();
+
+	const currentMethod = methods.filter((m) => m.value == shippingMethod);
+	const totalPrice = cart?.data.totalPrice;
 
 	return (
 		<div className="rounded-sm border border-gray-200 bg-white p-5">
 			<h2 className="mb-4 text-lg font-semibold">خلاصه سفارش</h2>
 
 			<div className="space-y-3">
-				{items.map((item, index) => (
+				{cart?.data.items.map((item, index) => (
 					<div
 						key={index}
-						className="flex items-center justify-between text-sm"
+						className="flex flex-col items-start justify-between text-sm pt-3 border-t border-t-black/20"
 					>
 						<span className="text-gray-700">
-							{item.name} × {item.qty}
+							{item.product.name} × {item.quantity}
 						</span>
-						<span className="font-medium">
-							{item.price.toLocaleString()} تومان
-						</span>
+						<span className="font-medium">{faNumber(item.price)} ریال</span>
 					</div>
 				))}
 			</div>
 
 			<div className="my-4 border-t pt-4 space-y-2 text-sm">
-				<Row label="جمع کالاها" value={`${subtotal.toLocaleString()} تومان`} />
-				<Row label="هزینه ارسال" value={`${shipping.toLocaleString()} تومان`} />
+				<Row label="جمع کالاها" value={faNumber(Number(totalPrice))} />
+				<Row
+					label="هزینه ارسال"
+					value={`${faNumber(currentMethod[0].price)} ریال`}
+				/>
 				<Row
 					label="مبلغ قابل پرداخت"
-					value={`${total.toLocaleString()} تومان`}
+					value={`${faNumber(
+						Number(totalPrice) + Number(currentMethod[0].price)
+					)} ریال`}
 					bold
 				/>
 			</div>

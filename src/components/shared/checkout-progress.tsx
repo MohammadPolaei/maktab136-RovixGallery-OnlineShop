@@ -1,13 +1,23 @@
-type Props = {
-	currentStep: number;
-};
+"use client";
+
+import { usePathname } from "next/navigation";
 
 const steps = ["سبد خرید", "اطلاعات ارسال", "پرداخت", "تایید نهایی"];
 
-export default function CheckoutProgress({ currentStep }: Props) {
+export default function CheckoutProgress() {
+	const pathname = usePathname();
+
 	return (
-		<div className="flex flex-wrap items-center gap-3 text-sm">
+		<div className="flex flex-wrap items-center gap-1 text-sm">
 			{steps.map((step, index) => {
+				let currentStep = 0;
+				pathname.includes("/payment")
+					? (currentStep = 3)
+					: pathname.includes("/checkout")
+					? (currentStep = 2)
+					: pathname.includes("/cart")
+					? (currentStep = 1)
+					: (currentStep = 4);
 				const stepNumber = index + 1;
 				const active = stepNumber === currentStep;
 				const done = stepNumber < currentStep;
@@ -15,7 +25,7 @@ export default function CheckoutProgress({ currentStep }: Props) {
 				return (
 					<div key={step} className="flex items-center gap-3">
 						<div
-							className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-bold
+							className={`flex h-8 w-8 items-center justify-center rounded-full border text-[10px] font-bold
                 ${done ? "bg-green-600 text-white border-green-600" : ""}
                 ${active ? "bg-black text-white border-black" : ""}
                 ${

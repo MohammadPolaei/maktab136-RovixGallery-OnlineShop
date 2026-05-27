@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useCheckout } from "../utils/checkout-context";
-import { UserData } from "./checkout-layout";
+import { User } from "./checkout-layout";
 
 export type PaymentPayload = {
 	shippingAddress: {
@@ -15,11 +15,7 @@ export type PaymentPayload = {
 	shippingMethod: string;
 };
 
-export default function CheckoutActions({
-	userData,
-}: {
-	userData: UserData | null;
-}) {
+export default function CheckoutActions({ userData }: { userData: User }) {
 	const { addressData, shippingMethod } = useCheckout();
 	const router = useRouter();
 
@@ -32,8 +28,8 @@ export default function CheckoutActions({
 		try {
 			const payload = {
 				shippingAddress: {
-					name: userData?.data.name || "نام پیش‌فرض",
-					phone: userData?.data.phone || "۰۹۱۲...",
+					name: userData.name || "نام پیش‌فرض",
+					phone: userData.phone || "۰۹۱۲...",
 					address: `${addressData.province}, ${addressData.city}, ${addressData.address}`,
 					postalCode: addressData.postalCode,
 				},
@@ -41,7 +37,9 @@ export default function CheckoutActions({
 				shippingMethod: shippingMethod,
 			};
 
-			router.replace(`/payment?payload:${payload}`);
+			const stringifiedPayload = encodeURIComponent(JSON.stringify(payload));
+
+			router.push(`checkout/payment?data=${stringifiedPayload}`);
 		} catch (error: any) {
 			toast.error(error.response?.data?.message || "خطا در ثبت سفارش");
 		}

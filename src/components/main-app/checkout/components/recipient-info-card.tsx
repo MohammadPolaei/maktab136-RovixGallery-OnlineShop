@@ -1,10 +1,6 @@
 import { User } from "./checkout-layout";
 
-export default function RecipientInfoCard({
-	userData,
-}: {
-	userData: User | undefined;
-}) {
+export default function RecipientInfoCard({ userData }: { userData: User }) {
 	return (
 		<div className="rounded-sm border border-gray-200 bg-white p-5">
 			<h2 className="mb-4 text-lg font-semibold">اطلاعات گیرنده</h2>

@@ -1,42 +1,9 @@
 "use client";
-import { useState } from "react";
-
-type ShippingMethod = "post" | "tipax" | "courier" | "pickup";
-
-const methods: {
-	value: ShippingMethod;
-	title: string;
-	description: string;
-	price: string;
-}[] = [
-	{
-		value: "post",
-		title: "پست پیشتاز",
-		description: "تحویل 2 تا 4 روز کاری",
-		price: "60,000 تومان",
-	},
-	{
-		value: "tipax",
-		title: "تیپاکس",
-		description: "تحویل 1 تا 2 روز کاری",
-		price: "95,000 تومان",
-	},
-	{
-		value: "courier",
-		title: "پیک موتوری",
-		description: "فقط برای تهران، همان روز",
-		price: "120,000 تومان",
-	},
-	{
-		value: "pickup",
-		title: "تحویل حضوری",
-		description: "تحویل از فروشگاه",
-		price: "رایگان",
-	},
-];
+import { faNumber } from "@/utils/convert-number-into-persian";
+import { useCheckout } from "../utils/checkout-context";
 
 export default function ShippingMethodSelector() {
-	const [selected, setSelected] = useState<ShippingMethod>("post");
+	const { methods, setShippingMethod, shippingMethod } = useCheckout();
 
 	return (
 		<div className="rounded-sm border border-gray-200 bg-white p-5">
@@ -44,13 +11,13 @@ export default function ShippingMethodSelector() {
 
 			<div className="space-y-3">
 				{methods.map((method) => {
-					const active = selected === method.value;
+					const active = shippingMethod === method.value;
 
 					return (
 						<button
 							key={method.value}
 							type="button"
-							onClick={() => setSelected(method.value)}
+							onClick={() => setShippingMethod(method.value)}
 							className={`w-full rounded-sm border p-4 text-right transition
                 ${
 									active
@@ -67,7 +34,10 @@ export default function ShippingMethodSelector() {
 									</div>
 								</div>
 								<div className="text-sm font-semibold text-gray-900">
-									{method.price}
+									{Number(method.price) == 0
+										? "رایگان"
+										: `${faNumber(method.price)}
+								 ریال`}
 								</div>
 							</div>
 						</button>

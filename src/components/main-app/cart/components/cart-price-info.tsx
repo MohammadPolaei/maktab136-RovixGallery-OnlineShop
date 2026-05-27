@@ -100,21 +100,7 @@ export default function CartPriceInfo({
 						) : null}
 					</span>
 				</div>
-				<div className="w-full flex justify-between items-center gap-2 text-[12px]">
-					<span>{"هزینه ارسال"}</span>
-					<span className="text-(--color-accent-green)">
-						{cart ? (
-							cart.data.totalPrice > 10000000000 ? (
-								"رایگان"
-							) : (
-								<span>
-									{faNumber(customShipping)}{" "}
-									<span className="text-black/50 text-[10px]">{"ریال"}</span>
-								</span>
-							)
-						) : null}
-					</span>
-				</div>
+
 				<div className="w-full flex justify-between items-center gap-2 text-[12px]">
 					<span>{"تخفیف اعمال شده"}</span>
 					<span className="text-(--color-accent-green)">
