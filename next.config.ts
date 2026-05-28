@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
 				pathname: "/uploads/**",
 			},
 		],
-		dangerouslyAllowLocalIP: true,
 	},
 };
 
