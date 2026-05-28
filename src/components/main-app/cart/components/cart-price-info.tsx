@@ -1,4 +1,5 @@
 import { faNumber } from "@/utils/convert-number-into-persian";
+import { formatCartDate } from "@/utils/format-date-persian";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { GetCartResponse } from "../types";
@@ -18,18 +19,6 @@ export default function CartPriceInfo({
 	setUpdateQueue: Dispatch<SetStateAction<Record<string, number>>>;
 	customTotal: number;
 }) {
-	const formatCartDate = (isoDate: string): string => {
-		const date = new Date(isoDate);
-
-		return new Intl.DateTimeFormat("fa-IR", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit",
-			calendar: "persian",
-		}).format(date);
-	};
 	const router = useRouter();
 	return (
 		<div className="w-full h-fit bg-white flex flex-col justify-start py-5 rounded-sm gap-5 px-5 shadow shadow-black/5 relative">

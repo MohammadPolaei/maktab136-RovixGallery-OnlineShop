@@ -1,12 +1,13 @@
 "use client";
 
-import { ordersMock } from "@/components/dashboard/constants";
+import { OrdersListResponse } from "@/types/orders-type";
 import OrdersTableRow from "./orders-table-row";
-type Props = {
-	filter?: "all" | "delivered" | "notDelivered";
-	setFilter?: (filter: "all" | "delivered" | "notDelivered") => void;
-};
-export default function OrdersTable({ filter, setFilter }: Props) {
+
+export default function OrdersTable({
+	orders,
+}: {
+	orders: OrdersListResponse;
+}) {
 	return (
 		<div className="bg-white rounded-sm overflow-x-auto">
 			<table className="w-full text-[12px] text-center min-w-300">
@@ -15,29 +16,24 @@ export default function OrdersTable({ filter, setFilter }: Props) {
 						<th className="p-3">شناسه سفارش</th>
 						<th className="p-3">نام کاربر</th>
 						<th className="p-3">تاریخ ثبت</th>
+						<th className="p-3">تاریخ تغییر وضعیت</th>
 						<th className="p-3">مبلغ کل</th>
+						<th className="p-3">روش ارسال</th>
 						<th className="p-3">وضعیت</th>
+						<th className="p-3">جزئیات سفارش</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					{filter
-						? filter === "all"
-							? ordersMock.map((order) => (
-									<OrdersTableRow key={order._id} order={order} />
-							  ))
-							: ordersMock
-									.filter((order) =>
-										filter === "delivered"
-											? order.isDelivered == true
-											: order.isDelivered == false
-									)
-									.map((order) => (
-										<OrdersTableRow key={order._id} order={order} />
-									))
-						: ordersMock.map((order) => (
-								<OrdersTableRow key={order._id} order={order} />
-						  ))}
+					{orders?.data.map((order, index) => {
+						return (
+							<OrdersTableRow
+								showType="user"
+								key={order._id}
+								order={orders.data[index]}
+							/>
+						);
+					})}
 				</tbody>
 			</table>
 		</div>
