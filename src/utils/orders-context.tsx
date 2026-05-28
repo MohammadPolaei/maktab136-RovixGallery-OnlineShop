@@ -15,7 +15,6 @@ export const OrdersContext = createContext<OrdersContextType | null>(null);
 
 export const OrdersProvider = ({ children }: Props) => {
 	const { orders } = useGetOrders();
-	console.log(orders);
 
 	return (
 		<OrdersContext.Provider value={{ orders }}>
@@ -23,8 +22,6 @@ export const OrdersProvider = ({ children }: Props) => {
 		</OrdersContext.Provider>
 	);
 };
-
-export const orderDetailsModal = () => {};
 
 export const useOrders = () => {
 	const context = useContext(OrdersContext);
