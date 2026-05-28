@@ -7,7 +7,7 @@ import StatCard from "./status-card";
 const stats: StatusCardDataTypeForGrid[] = [
 	{
 		title: "فروش کل",
-		value: "12,450,000,000 تومان",
+		value: "12450000000",
 		increasePercent: 12.5,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (
@@ -25,7 +25,7 @@ const stats: StatusCardDataTypeForGrid[] = [
 	},
 	{
 		title: "تعداد سفارش‌ها",
-		value: "1,248",
+		value: "1248",
 		increasePercent: 8.2,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (
@@ -62,7 +62,7 @@ const stats: StatusCardDataTypeForGrid[] = [
 	},
 	{
 		title: "کاربران",
-		value: "2,340",
+		value: "2340",
 		increasePercent: 9.2,
 		increaseText: "افزایش نسبت به ماه قبل",
 		icon: (

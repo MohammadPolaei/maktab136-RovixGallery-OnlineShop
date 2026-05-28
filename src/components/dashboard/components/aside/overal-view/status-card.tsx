@@ -1,4 +1,5 @@
 import { StatCardProps } from "@/components/dashboard/types/overal-view-types";
+import { faNumber } from "@/utils/convert-number-into-persian";
 
 export default function StatCard({
 	icon,
@@ -16,7 +17,9 @@ export default function StatCard({
 				<span className="font-medium text-[12px] text-gray-800">{title}</span>
 			</div>
 
-			<p className="text-2xl font-extrabold text-gray-900">{value}</p>
+			<p className="text-2xl font-extrabold text-gray-900">
+				{`${faNumber(value!)} ${title == "فروش کل" ? "ریال" : ""}`}
+			</p>
 
 			<p className="text-green-600 text-xs flex items-center gap-1">
 				<svg
