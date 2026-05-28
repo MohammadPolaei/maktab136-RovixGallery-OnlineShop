@@ -13,14 +13,14 @@ export default function CheckoutSummary({
 	const totalPrice = cart?.data.totalPrice;
 
 	return (
-		<div className="rounded-sm border border-gray-200 bg-white p-5">
-			<h2 className="mb-4 text-lg font-semibold">خلاصه سفارش</h2>
+		<div className="rounded-sm border border-gray-200 bg-white p-5 flex flex-col justify-start items-start gap-3 h-full">
+			<h2 className="mb-4 text-lg font-semibold flex-1 w-full">خلاصه سفارش</h2>
 
-			<div className="space-y-3">
+			<div className="space-y-3 max-h-[30vh] w-full overflow-y-auto rounded-sm border border-black/10 bg-black/5">
 				{cart?.data.items.map((item, index) => (
 					<div
 						key={index}
-						className="flex flex-col items-start justify-between text-sm pt-3 border-t border-t-black/20"
+						className="flex flex-col items-start justify-between text-sm py-3 border-y border-y-black/20 px-3 bg-black/10"
 					>
 						<span className="text-gray-700">
 							{item.product.name} × {item.quantity}
@@ -30,7 +30,7 @@ export default function CheckoutSummary({
 				))}
 			</div>
 
-			<div className="my-4 border-t pt-4 space-y-2 text-sm">
+			<div className="my-4 border-t pt-4 space-y-2 text-sm flex-1 w-full">
 				<Row label="جمع کالاها" value={faNumber(Number(totalPrice))} />
 				<Row
 					label="هزینه ارسال"

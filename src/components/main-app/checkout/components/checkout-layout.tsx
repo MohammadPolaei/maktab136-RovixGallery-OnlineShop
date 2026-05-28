@@ -28,7 +28,7 @@ export default function CheckoutLayout() {
 		<div className="mx-auto max-w-7xl px-4 py-6">
 			<div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
 				<div className="lg:col-span-4 h-[60vh] overflow-auto">
-					<div className="sticky top-6 space-y-4">
+					<div className="sticky top-0 space-y-4">
 						<CheckoutSummary cart={cart} />
 					</div>
 				</div>
