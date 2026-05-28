@@ -28,12 +28,12 @@ export default function OrderDetailPage() {
 
 	const statusToPersian = (status: OrderStatus) => {
 		switch (status) {
+			case "pending":
+				return { text: "در حال پردازش", color: "bg-yellow-100" };
 			case "cancelled":
 				return { text: "لغو شده", color: "bg-red-100" };
 			case "confirmed":
 				return { text: "تائید شده", color: "bg-blue-100" };
-			case "pending":
-				return { text: "در حال پردازش", color: "bg-yellow-100" };
 			case "shipping":
 				return { text: "در حال ارسال", color: "bg-green-100" };
 			case "delivered":
@@ -102,7 +102,7 @@ export default function OrderDetailPage() {
 						>
 							<div>{item.name}</div>
 							<div>{`${faNumber(item.price)} ریال`}</div>
-							<div>{item.quantity}</div>
+							<div>{faNumber(item.quantity)}</div>
 						</div>
 					))}
 				</div>

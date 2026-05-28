@@ -1,7 +1,7 @@
 import Footer from "@/layout/footer/footer";
 import Header from "@/layout/header/header";
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
 	title: "فروشگاه رویکس - Rovix Gallery",

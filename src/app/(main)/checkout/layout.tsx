@@ -1,6 +1,6 @@
 import { CheckoutProvider } from "@/components/main-app/checkout/utils/checkout-context";
 import CheckoutProgress from "@/components/shared/checkout-progress";
-import "../globals.css";
+import "../../globals.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (

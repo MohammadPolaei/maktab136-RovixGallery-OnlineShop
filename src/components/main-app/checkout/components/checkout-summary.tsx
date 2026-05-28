@@ -23,7 +23,7 @@ export default function CheckoutSummary({
 						className="flex flex-col items-start justify-between text-sm py-3 border-y border-y-black/20 px-3 bg-black/10"
 					>
 						<span className="text-gray-700">
-							{item.product.name} × {item.quantity}
+							{item.product.name} × {faNumber(item.quantity)}
 						</span>
 						<span className="font-medium">{faNumber(item.price)} ریال</span>
 					</div>

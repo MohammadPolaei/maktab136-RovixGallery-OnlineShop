@@ -79,7 +79,7 @@ export default function CartItemCard({
 				/>
 			</div>
 			<div className="w-full flex-4 flex flex-col justify-between md:justify-center items-start gap-5">
-				<div className="flex-1 flex flex-col justify-between w-full h-full md:justify-center items-start gap-2 border-b border-b-black/20 lg:border-0 pb-5 lg:pb-0">
+				<div className="flex-1 flex flex-col justify-between w-full h-full md:justify-center items-start gap-2 border-b border-b-black/20 pb-5">
 					<div className="text-[10px] md:text-[16px] font-semibold">{name}</div>
 					<div className="flex items-center gap-1">
 						<BrandIcon size={12} />
@@ -99,12 +99,14 @@ export default function CartItemCard({
 					</div>
 				</div>
 
-				<div className="w-full flex-1 flex flex-col lg:flex-row justify-between items-center gap-2 text-[14px]">
-					<div className="flex justify-center items-center gap-1 min-w-50">
-						<div className="hidden md:block">
-							<DollarIcon size={14} />
+				<div className="w-full flex-1 flex flex-col lg:flex-row justify-between items-center gap-2 text-[12px]">
+					<div className="flex justify-between items-center gap-0 min-w-47">
+						<div className="flex items-center gap-0.5">
+							<div className="hidden md:block">
+								<DollarIcon size={14} />
+							</div>
+							<span>{`قیمت واحد :`}</span>
 						</div>
-						<span>{`قیمت واحد :`}</span>
 						<span className="flex items-center gap-1">
 							{faNumber(price)}
 							<span className="text-black/40 text-[10px]">{"ریال"}</span>
@@ -130,7 +132,7 @@ export default function CartItemCard({
 				</div>
 			</div>
 
-			<div className="absolute top-15 left-5 md:top-15 md:left-10 flex flex-col justify-center items-end gap-3">
+			<div className="absolute top-12 left-5 md:top-10 md:left-10 flex flex-col justify-center items-end gap-3">
 				<div className="flex flex-col justify-center items-center gap-3">
 					<button
 						onClick={() => {}}

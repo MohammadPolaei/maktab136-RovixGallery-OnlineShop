@@ -1,7 +1,7 @@
 import QueryProvider from "@/providers/query-provider";
 import { OrdersProvider } from "@/utils/orders-context";
 import type { Metadata } from "next";
-import "./globals.css";
+import "../../globals.css";
 
 export const metadata: Metadata = {
 	title: "پنل کاربری",

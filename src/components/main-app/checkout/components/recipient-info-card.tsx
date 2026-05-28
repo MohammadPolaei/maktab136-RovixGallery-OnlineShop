@@ -1,13 +1,25 @@
+import { faNumber } from "@/utils/convert-number-into-persian";
 import { User } from "./checkout-layout";
 
 export default function RecipientInfoCard({ userData }: { userData: User }) {
+	const convertToFaSimple = (num: number | string): string => {
+		return new Intl.NumberFormat("fa-IR", { useGrouping: false }).format(
+			Number(num)
+		);
+	};
+
 	return (
 		<div className="rounded-sm border border-gray-200 bg-white p-5">
 			<h2 className="mb-4 text-lg font-semibold">اطلاعات گیرنده</h2>
 
 			<div className="grid gap-3 sm:grid-cols-2">
 				<Field label="نام" value={userData ? userData.name : ""} />
-				<Field label="شماره تماس" value={userData ? userData.phone : ""} />
+				<Field
+					label="شماره تماس"
+					value={
+						userData ? `${faNumber(0)}${convertToFaSimple(userData.phone)}` : ""
+					}
+				/>
 			</div>
 		</div>
 	);

@@ -3,7 +3,7 @@ import QueryProvider from "@/providers/query-provider";
 import { OrdersProvider } from "@/utils/orders-context";
 import type { Metadata } from "next";
 import React from "react";
-import "./globals.css";
+import "../../globals.css";
 
 export const metadata: Metadata = {
 	title: "داشبورد - Dashboard",
