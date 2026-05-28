@@ -103,11 +103,6 @@ export default function Page() {
 			return total + item.price * currentQuantity;
 		}, 0) || 0;
 
-	const shippingCost =
-		totalProductsPrice > 10000000000 ? 0 : totalProductsPrice / 10000 + 5000000;
-
-	const finalPayableAmount = totalProductsPrice + shippingCost;
-
 	return (
 		<section className="w-screen md:max-w-7xl md:min-w-3xl px-2 md:px-10 pt-5 flex flex-col justify-start items-center gap-3">
 			<div className="w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] h-full gap-5">
@@ -118,8 +113,6 @@ export default function Page() {
 					anyUpdate={anyUpdateAvailable}
 					handleBatchUpdate={handleBatchUpdate}
 					customTotal={totalProductsPrice}
-					customFinal={finalPayableAmount}
-					customShipping={shippingCost}
 				/>
 				<CartList
 					updateQueue={updateQueue}

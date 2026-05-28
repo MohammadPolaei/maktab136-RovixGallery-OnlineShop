@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-const steps = ["سبد خرید", "اطلاعات ارسال", "پرداخت", "تایید نهایی"];
+const steps = ["سبد خرید", "اطلاعات ارسال", "پرداخت"];
 
 export default function CheckoutProgress() {
 	const pathname = usePathname();
@@ -11,13 +11,15 @@ export default function CheckoutProgress() {
 		<div className="flex flex-wrap items-center gap-1 text-sm">
 			{steps.map((step, index) => {
 				let currentStep = 0;
-				pathname.includes("/payment")
+				pathname.includes("/checkout/payment?")
+					? (currentStep = 4)
+					: pathname.includes("/payment")
 					? (currentStep = 3)
 					: pathname.includes("/checkout")
 					? (currentStep = 2)
 					: pathname.includes("/cart")
 					? (currentStep = 1)
-					: (currentStep = 4);
+					: null;
 				const stepNumber = index + 1;
 				const active = stepNumber === currentStep;
 				const done = stepNumber < currentStep;

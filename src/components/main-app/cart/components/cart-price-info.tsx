@@ -10,8 +10,6 @@ export default function CartPriceInfo({
 	handleBatchUpdate,
 	setUpdateQueue,
 	customTotal,
-	customFinal,
-	customShipping,
 }: {
 	cart: GetCartResponse | undefined;
 	setOpenClear: (val: boolean) => void;
@@ -19,8 +17,6 @@ export default function CartPriceInfo({
 	handleBatchUpdate: () => Promise<void>;
 	setUpdateQueue: Dispatch<SetStateAction<Record<string, number>>>;
 	customTotal: number;
-	customFinal: number;
-	customShipping: number;
 }) {
 	const formatCartDate = (isoDate: string): string => {
 		const date = new Date(isoDate);
@@ -114,7 +110,7 @@ export default function CartPriceInfo({
 						{"مبلغ قابل پرداخت"}
 					</span>
 					<span className="text-(--color-gold-dark) font-semibold">
-						{cart && faNumber(customFinal)}{" "}
+						{cart && faNumber(customTotal)}{" "}
 						<span className="text-black/50 text-[10px]">{"ریال"}</span>
 					</span>
 				</div>
@@ -129,10 +125,11 @@ export default function CartPriceInfo({
 					/>
 				</div>
 				<button
+					disabled={cart?.data.items.length == 0}
 					onClick={() => {
 						router.push("/checkout");
 					}}
-					className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] cursor-pointer"
+					className="w-full bg-(--color-dark-green) px-2 py-2.5 min-w-20 rounded-sm text-white hover:bg-(--color-accent-green) text-[12px] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
 				>
 					{"ادامه فرایند خرید"}
 				</button>

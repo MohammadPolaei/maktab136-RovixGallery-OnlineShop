@@ -31,10 +31,8 @@ export default function CheckoutActions({ userData }: { userData: User }) {
 					name: userData.name || "نام پیش‌فرض",
 					phone: userData.phone || "۰۹۱۲...",
 					address: `${addressData.province}, ${addressData.city}, ${addressData.address}`,
-					postalCode: addressData.postalCode,
 				},
-				paymentMethod: "online",
-				shippingMethod: shippingMethod,
+				paymentMethod: shippingMethod,
 			};
 
 			const stringifiedPayload = encodeURIComponent(JSON.stringify(payload));

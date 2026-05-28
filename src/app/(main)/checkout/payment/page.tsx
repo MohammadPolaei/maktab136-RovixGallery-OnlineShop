@@ -1,5 +1,6 @@
 "use client";
-import axios from "axios";
+import PaymentPage from "@/components/main-app/payment/components/payment-page";
+import { addOrder } from "@/services/orders";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
@@ -14,11 +15,11 @@ export default function FakePayment() {
 		if (!payload) return;
 
 		try {
-			const res = await axios.post("/api/orders", payload);
-
-			if (res.data.success) {
+			const res = await addOrder(payload);
+			console.log(res);
+			if (res.success) {
 				toast.success("پرداخت موفقیت‌آمیز بود و سفارش ثبت شد");
-				// router.push("/profile/orders");
+				router.replace("/user-profile/orders");
 			}
 		} catch (error: any) {
 			toast.error("خطا در ثبت نهایی سفارش");
@@ -28,22 +29,8 @@ export default function FakePayment() {
 	if (!payload) return <div>خطا: اطلاعات پرداخت یافت نشد.</div>;
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-screen gap-6">
-			<h1 className="text-2xl font-bold">درگاه پرداخت شبیه‌سازی شده</h1>
-
-			<div className="bg-gray-100 p-4 rounded-md">
-				<p>
-					مبلغ قابل پرداخت: <span className="font-bold">... تومان</span>
-				</p>
-				<p>ارسال به: {payload.shippingAddress.address}</p>
-			</div>
-
-			<button
-				onClick={confirmPayment}
-				className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700"
-			>
-				پرداخت موفقیت‌آمیز (تست)
-			</button>
+		<div className="w-full">
+			<PaymentPage confirmPay={confirmPayment} />
 		</div>
 	);
 }
