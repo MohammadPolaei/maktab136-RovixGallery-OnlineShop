@@ -6,7 +6,7 @@ export default function page() {
 	const { orders } = useOrders();
 	return (
 		<div className="w-full flex flex-col justify-start items-start overflow-auto">
-			<OrdersTable orders={orders} />
+			<OrdersTable showType="user" orders={orders} />
 		</div>
 	);
 }

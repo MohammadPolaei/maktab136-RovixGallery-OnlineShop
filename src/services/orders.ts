@@ -1,5 +1,22 @@
 import { Order } from "@/types/orders-type";
 
+// get all orders /admin
+export async function getOrdersAdmin() {
+	const res = await fetch("/api/orders/admin", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+
+	if (!res.ok) {
+		throw new Error("Error showing Orders");
+	}
+
+	const data = await res.json();
+
+	return await data;
+}
 // get all orders /user
 export async function getOrders() {
 	const res = await fetch("/api/orders", {

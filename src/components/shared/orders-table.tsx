@@ -4,8 +4,10 @@ import { OrdersListResponse } from "@/types/orders-type";
 import OrdersTableRow from "./orders-table-row";
 
 export default function OrdersTable({
+	showType,
 	orders,
 }: {
+	showType: "user" | "admin";
 	orders: OrdersListResponse;
 }) {
 	return (
@@ -28,7 +30,7 @@ export default function OrdersTable({
 					{orders?.data.map((order, index) => {
 						return (
 							<OrdersTableRow
-								showType="user"
+								showType={showType}
 								key={order._id}
 								order={orders.data[index]}
 							/>
