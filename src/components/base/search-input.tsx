@@ -6,8 +6,8 @@ export default function SearchInput(userInput: InputType) {
 		<div className="relative w-full flex flex-row items-center h-10 md:w-100">
 			<input
 				className={`${
-					userInput.extraClasses ? userInput.extraClasses : "ml-10 rounded-sm"
-				} w-full h-8 border border-[#0000] bg-[#0f3b2e] text-[10px] text-right text-[#f4f4f4] py-2 px-4 pr-10 outline-none placeholder-[#f4f4f4aa] placeholder:px-2 hover:border hover:border-[#c9a667] transition-all ease-in-out duration-500 md:ml-0`}
+					userInput.extraClasses ? userInput.extraClasses : "rounded-sm"
+				} w-full h-8 border border-[#0000] bg-[#0f3b2e] text-[10px] text-right text-[#f4f4f4] py-2 px-4 pr-10 outline-none placeholder-[#f4f4f4aa] placeholder:px-2 hover:border hover:border-[#c9a667] transition-all ease-in-out duration-500`}
 				type="text"
 				name={userInput.name}
 				{...(userInput.register || undefined)}
