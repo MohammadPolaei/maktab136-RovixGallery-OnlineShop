@@ -8,6 +8,7 @@ export type LinkItemsType = {
 	href: string;
 	icon: JSX.Element | string;
 	modal: boolean;
+	childData?: JSX.Element;
 };
 
 // Single navbar/mobile menu item
@@ -17,4 +18,5 @@ export type NavbarSingleItemsType = {
 	title: string;
 	icon: JSX.Element | string;
 	hasModal?: boolean;
+	childData?: JSX.Element;
 };

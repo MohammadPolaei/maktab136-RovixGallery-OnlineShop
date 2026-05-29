@@ -35,7 +35,7 @@ export default function HeaderTop() {
 							showArrow={false}
 							closeOnInteract
 							trigger={
-								<button className="rovix-link flex items-center text-center transition-all duration-500 ease-in-out cursor-pointer">
+								<button className="rovix-link flex items-center gap-2 text-center transition-all duration-500 ease-in-out cursor-pointer">
 									<UserProfile />
 									حساب کاربری
 								</button>
@@ -66,7 +66,7 @@ export default function HeaderTop() {
 					<div className="=items-center cursor-pointer relative hidden md:flex">
 						<Link
 							href={"/cart"}
-							className="rovix-link flex items-center transition-all ease-in-out duration-500 text-center "
+							className="rovix-link flex items-center gap-2 transition-all ease-in-out duration-500 text-center "
 						>
 							<CartIcon />
 							سبد خرید

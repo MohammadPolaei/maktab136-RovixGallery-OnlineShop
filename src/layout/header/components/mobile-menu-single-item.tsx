@@ -1,37 +1,41 @@
 import { NavbarSingleItemsType } from "@/types/header-type";
 import Link from "next/link";
-import { useState } from "react";
-import NavModal from "./nav-modal";
+import { RadixNavabrMenu } from "./radix-navbar-menu";
 
 export default function MobileMenuSingleItem({
+	childData,
 	hasModal,
 	extraClasses,
 	href,
 	title,
 	icon,
 }: NavbarSingleItemsType) {
-	const [openModal, setOpenModal] = useState(false);
-
 	return (
 		<>
 			{hasModal ? (
-				<>
-					<button
-						title={title}
-						onClick={() => setOpenModal!(!openModal)}
-						className="transition-all ease-in-out duration-500 relative z-100"
-					>
-						<div
-							className={`${extraClasses} text-[8px] flex flex-col justify-center items-center gap-1 rounded-t-3xl active:text-white active:scale-150 origin-center transition-all ease-in-out duration-500`}
+				<RadixNavabrMenu
+					trigger={
+						<button
+							title={title}
+							className="transition-all ease-in-out duration-500 relative z-100"
 						>
-							<div className="w-12 h-10 flex flex-col items-center justify-center">
-								{icon}
-								{title}
+							<div
+								className={`${extraClasses} text-[8px] flex flex-col justify-center items-center gap-1 rounded-t-3xl active:text-white active:scale-150 origin-center transition-all ease-in-out duration-500`}
+							>
+								<div className="w-12 h-10 flex flex-col items-center justify-center">
+									{icon}
+									{title}
+								</div>
 							</div>
-						</div>
-					</button>
-					{openModal && <NavModal responsive="mobile" />}
-				</>
+						</button>
+					}
+					align="center"
+					closeOnInteract={true}
+					key={title}
+					contentClassName="w-64 p-3 rovix-bg-darkest rounded-sm border border-[rgba(255,215,0,0.25)] text-(--color-gold) z-600"
+				>
+					{childData}
+				</RadixNavabrMenu>
 			) : (
 				<Link
 					title={title}

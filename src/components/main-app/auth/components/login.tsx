@@ -25,10 +25,13 @@ export default function Login() {
 			body: JSON.stringify(data),
 		});
 
+		const resData = await response.json();
+
 		if (response.ok) {
+			console.log(router.back());
 			router.back();
 		} else {
-			toast.error(response.statusText);
+			toast.error(resData.message);
 		}
 	};
 	return (

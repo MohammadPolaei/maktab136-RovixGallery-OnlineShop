@@ -8,6 +8,7 @@ import MenWatchIcon from "@/assets/SVG/navbar-icons/men-watch-icon";
 import ProductsIcon from "@/assets/SVG/navbar-icons/products-icon";
 import WomenWatchIcon from "@/assets/SVG/navbar-icons/women-watch-icon";
 import { LinkItemsType } from "@/types/header-type";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavbarSingleItem from "./navbar-single-item";
 
@@ -32,6 +33,34 @@ const navbarLinkItems: LinkItemsType[] = [
 		href: "/products/cat",
 		icon: <CategoriesIcon />,
 		modal: true,
+		childData: (
+			<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] px-3 text-white/80">
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?gender=مردانه"}
+				>
+					ساعت مردانه
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?gender=زنانه"}
+				>
+					ساعت زنانه
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brandCountry=ژاپن"}
+				>
+					ساخت ژاپن
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brandCountry=سوئیس"}
+				>
+					ساخت سوئیس
+				</Link>
+			</div>
+		),
 	},
 	{
 		id: 4,
@@ -53,6 +82,70 @@ const navbarLinkItems: LinkItemsType[] = [
 		href: "/products/filter",
 		icon: <BrandsIcon />,
 		modal: true,
+		childData: (
+			<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] px-3 text-white/80">
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Rolex"}
+				>
+					Rolex
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Omega"}
+				>
+					Omega
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Casio"}
+				>
+					Casio
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Citizen"}
+				>
+					Citizen
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Seiko"}
+				>
+					Seiko
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Orient"}
+				>
+					Orient
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Hamilton"}
+				>
+					Hamilton
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Longines"}
+				>
+					Longines
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Tissot"}
+				>
+					Tissot
+				</Link>
+				<Link
+					className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
+					href={"/products?brand=Tag Heuer"}
+				>
+					Tag Heuer
+				</Link>
+			</div>
+		),
 	},
 	{
 		id: 7,
@@ -86,6 +179,7 @@ export default function Navbar() {
 							: pathname.startsWith(item.href);
 					return (
 						<NavbarSingleItem
+							childData={item.childData}
 							hasModal={item.modal}
 							key={item.id}
 							extraClasses={
