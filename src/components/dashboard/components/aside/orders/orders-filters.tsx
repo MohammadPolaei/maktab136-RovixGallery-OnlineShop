@@ -1,8 +1,22 @@
 "use client";
 
 type Props = {
-	filter: "all" | "delivered" | "notDelivered";
-	setFilter: (filter: "all" | "delivered" | "notDelivered") => void;
+	filter:
+		| "all"
+		| "delivered"
+		| "canceled"
+		| "pending"
+		| "confirmed"
+		| "shipping";
+	setFilter: (
+		filter:
+			| "all"
+			| "delivered"
+			| "canceled"
+			| "pending"
+			| "confirmed"
+			| "shipping"
+	) => void;
 };
 export default function OrdersFilters({ filter, setFilter }: Props) {
 	return (
@@ -32,15 +46,15 @@ export default function OrdersFilters({ filter, setFilter }: Props) {
 			</button>
 
 			<button
-				onClick={() => setFilter("notDelivered")}
+				onClick={() => setFilter("canceled")}
 				className={`px-4 py-2 rounded-sm text-sm cursor-pointer  
         ${
-					filter === "notDelivered"
+					filter === "canceled"
 						? "bg-(--color-accent-green) text-white"
 						: "bg-white border border-(--color-gold-dark) hover:bg-(--color-accent-green)/10"
 				}`}
 			>
-				تحویل داده نشده
+				لغو شده
 			</button>
 		</div>
 	);
