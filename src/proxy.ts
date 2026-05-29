@@ -17,11 +17,30 @@ export async function proxy(req: NextRequest) {
 	const isUser = USER_PATHS.some((p) => pathname.startsWith(p));
 	const isAdmin = ADMIN_PREFIX.some((p) => pathname.startsWith(p));
 
+	const isAuthRoute = pathname.startsWith("/auth");
+
+	const isLoggedIn = Boolean(accessToken);
+
+	const getHomeForRole = (r?: string) => {
+		if (r === "ADMIN") return "/dashboard";
+		return "/";
+	};
+
+	if (isAuthRoute && isLoggedIn) {
+		return NextResponse.redirect(new URL(getHomeForRole(role), req.url));
+	}
+
 	if (isPublic) return NextResponse.next();
 
 	if (!accessToken && refreshToken) {
 		const refreshRes = await fetch(new URL("/api/token", req.url));
-		if (refreshRes.ok) return NextResponse.next();
+
+		if (refreshRes.ok) {
+			if (isAuthRoute) {
+				return NextResponse.redirect(new URL(getHomeForRole(role), req.url));
+			}
+			return NextResponse.next();
+		}
 	}
 
 	if (!accessToken) {
@@ -29,8 +48,9 @@ export async function proxy(req: NextRequest) {
 			return NextResponse.rewrite(new URL("/404", req.url));
 		}
 
-		if (!pathname.startsWith("/auth"))
+		if (!isAuthRoute) {
 			return NextResponse.redirect(new URL("/auth/login", req.url));
+		}
 	}
 
 	if (isAdmin && role !== "ADMIN") {
@@ -43,6 +63,7 @@ export async function proxy(req: NextRequest) {
 
 	return NextResponse.next();
 }
+
 export const config = {
 	matcher: [
 		"/dashboard/:path*",
@@ -50,5 +71,6 @@ export const config = {
 		"/cart/:path*",
 		"/payment/:path*",
 		"/checkout/:path*",
+		"/auth/:path*",
 	],
 };
