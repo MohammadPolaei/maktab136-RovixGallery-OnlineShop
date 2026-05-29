@@ -32,7 +32,7 @@ export default function ProductGallery({ images }: GalleryProps) {
 	}, []);
 
 	return (
-		<div className="group/swiper flex flex-col md:flex-row-reverse gap-4 h-60 md:h-130 w-full relative overflow-hidden">
+		<div className="group/swiper flex flex-col lg:flex-row-reverse justify-between gap-4 h-100 md:h-140 w-full relative overflow-hidden">
 			<Swiper
 				modules={[Navigation, Thumbs, EffectFade]}
 				effect="fade"
@@ -80,7 +80,7 @@ export default function ProductGallery({ images }: GalleryProps) {
 				direction={isMobile ? "horizontal" : "vertical"}
 				spaceBetween={8}
 				freeMode
-				className="w-full md:w-24 lg:h-full flex-none"
+				className="w-full lg:w-24 lg:h-full flex-none"
 			>
 				{images.map((img, i) => (
 					<SwiperSlide

@@ -28,7 +28,7 @@ export default function ProductActions({ product }: ActionsProps) {
 	};
 	return (
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
-			<div className="w-full flex flex-col md:flex-row justify-between items-center">
+			<div className="w-full flex flex-col lg:flex-row justify-between items-center">
 				<AddToCartSingleProduct
 					setSingleProdQuantityValue={setSingleProdQuantityValue}
 					usageType="single-product"

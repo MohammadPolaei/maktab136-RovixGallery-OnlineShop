@@ -42,7 +42,7 @@ export default function ProductInfo({ product }: InfoProps) {
 					کشور سازنده: <span>{product.brandCountry}</span>
 				</li>
 			</ul>
-			<div className="mt-4 text-[14px] text-gray-900 leading-relaxed flex flex-col md:flex-row justify-between items-center gap-5">
+			<div className="mt-4 text-[14px] text-gray-900 leading-relaxed flex flex-col lg:flex-row justify-between items-center gap-5">
 				<div className="flex justify-center items-center gap-10">
 					{"وضعیت :"}
 					{product.stock > 1 ? (
