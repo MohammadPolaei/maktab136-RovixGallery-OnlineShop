@@ -1,6 +1,8 @@
 "use client";
 import PaymentPage from "@/components/main-app/payment/components/payment-page";
+import QueryProvider from "@/providers/query-provider";
 import { addOrder } from "@/services/orders";
+import { OrdersProvider } from "@/utils/orders-context";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
@@ -30,7 +32,11 @@ export default function FakePayment() {
 
 	return (
 		<div className="w-full">
-			<PaymentPage confirmPay={confirmPayment} />
+			<QueryProvider>
+				<OrdersProvider>
+					<PaymentPage confirmPay={confirmPayment} />
+				</OrdersProvider>
+			</QueryProvider>
 		</div>
 	);
 }

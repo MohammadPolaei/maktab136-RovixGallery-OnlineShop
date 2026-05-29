@@ -16,7 +16,7 @@ export interface User {
 }
 
 export default function CheckoutLayout() {
-	const { user, error, isLoading } = useGetUser();
+	const { user } = useGetUser();
 
 	const userData = user;
 

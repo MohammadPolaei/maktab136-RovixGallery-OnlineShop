@@ -1,4 +1,7 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
 import { PaymentFormData, PaymentStatus, ValidationErrors } from "../types";
 import CardForm from "./card-form";
 import PaymentButton from "./payment-button";
@@ -18,6 +21,9 @@ const PaymentPage = ({ confirmPay }: { confirmPay: any }) => {
 	const [errors, setErrors] = useState<ValidationErrors>({});
 	const [status, setStatus] = useState<PaymentStatus>("idle");
 	const [message, setMessage] = useState<string>("");
+
+	const router = useRouter();
+	const { refetch } = useCartStore();
 
 	const handleChange = (name: string, value: string) => {
 		if (name === "cardNumber") {
@@ -84,15 +90,20 @@ const PaymentPage = ({ confirmPay }: { confirmPay: any }) => {
 					درگاه پرداخت
 				</h1>
 
-				<PaymentSummary
-					merchantName="فروشگاه نمونه"
-					orderId="ORD-1001"
-					amount={250000}
-				/>
+				<PaymentSummary merchantName="فروشگاه رویکس گالری" amount={560000} />
 
 				<CardForm formData={formData} errors={errors} onChange={handleChange} />
 
 				<PaymentButton onClick={handlePay} loading={status === "processing"} />
+				<button
+					onClick={() => {
+						refetch();
+						router.back();
+					}}
+					className="mt-2 w-full rounded-xl px-4 py-3 text-sm font-semibold text-black/70 transition bg-red-200 hover:bg-red-300/80 focus:outline-none focus:ring-2 focus:ring-blue-200"
+				>
+					{"انصراف"}
+				</button>
 
 				<PaymentStatusView status={status} message={message} />
 			</div>
