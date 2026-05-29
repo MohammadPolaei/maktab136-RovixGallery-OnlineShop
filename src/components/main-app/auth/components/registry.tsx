@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterInput, registerSchema } from "../utils/registry-schemas";
+import { toast } from "sonner";
 
 export default function Registry() {
 	const {
@@ -16,9 +17,6 @@ export default function Registry() {
 	} = useForm<RegisterInput>({
 		resolver: zodResolver(registerSchema),
 	});
-
-	const [errorRegistry, setErrorRegistry] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
 
 	const router = useRouter();
 
@@ -34,8 +32,7 @@ export default function Registry() {
 		if (response.ok) {
 			router.push("/auth/login");
 		} else {
-			setErrorRegistry(true);
-			setErrorMessage(response.statusText);
+			toast.error(response.statusText);
 		}
 	};
 	return (
@@ -48,15 +45,6 @@ export default function Registry() {
 				onSubmit={onSubmit}
 				register={register}
 			/>
-			<Modal
-				modalUsecaseType="message"
-				setOpen={() => {}}
-				modalTitle="خطا در ورود به حساب"
-				open={errorRegistry}
-			>
-				<span>"نام کاربری یا رمز عبور اشتباه است"</span>
-				<span className="text-red-600 text-[10px">{errorMessage}</span>
-			</Modal>
 		</div>
 	);
 }

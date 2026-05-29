@@ -1,11 +1,10 @@
 "use client";
 
-import Modal from "@/components/base/modal";
 import AuthForm from "@/components/shared/auth-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { LoginInput, loginSchema } from "../utils/login-schemas";
 
 export default function Login() {
@@ -17,9 +16,6 @@ export default function Login() {
 		resolver: zodResolver(loginSchema),
 	});
 
-	const [errorLogin, setErrorLogin] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
-
 	const router = useRouter();
 
 	const onSubmit = async (data: LoginInput) => {
@@ -30,10 +26,9 @@ export default function Login() {
 		});
 
 		if (response.ok) {
-			router.replace("/");
+			router.back();
 		} else {
-			setErrorLogin(true);
-			setErrorMessage(response.statusText);
+			toast.error(response.statusText);
 		}
 	};
 	return (
@@ -46,14 +41,6 @@ export default function Login() {
 				onSubmit={onSubmit}
 				register={register}
 			/>
-			<Modal
-				modalUsecaseType="message"
-				setOpen={() => {}}
-				modalTitle="خطا در ورود به حساب"
-				open={errorLogin}
-			>
-				<span className="text-red-600 text-[10px">{errorMessage}</span>
-			</Modal>
 		</div>
 	);
 }

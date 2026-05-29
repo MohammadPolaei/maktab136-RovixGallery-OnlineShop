@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { cartApi } from "../services/cart-CRUD";
 
@@ -9,6 +10,7 @@ export const queryKeys = {
 };
 
 export function useCartStore() {
+	const router = useRouter();
 	const qc = useQueryClient();
 
 	const cartQuery = useQuery({
@@ -33,7 +35,14 @@ export function useCartStore() {
 			refresh();
 			toast.success("به سبد خرید اضافه شد");
 		},
-		onError: (err) => onError(err, "افزودن به سبد خرید"),
+		onError: (err) => {
+			if ((err.message = "توکن نامعتبر است")) {
+				toast.message("برای افزودن به سبد خرید ، وارد حساب کابری خود شوید");
+				setTimeout(() => router.push("/auth/login"), 2000);
+			} else {
+				onError(err.message);
+			}
+		},
 	});
 
 	const remove = useMutation({
