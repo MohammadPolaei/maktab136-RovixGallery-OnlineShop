@@ -22,7 +22,11 @@ export default function Orders() {
 				<OrdersFilters filter={filter} setFilter={setFilter} />
 				<OrdersTable showType="admin" orders={adminOrders} />
 			</DashboardSectionsContainer>
-			<ProductPagination currentPage={1} totalPages={1} setPage={() => {}} />
+			<ProductPagination
+				currentPage={Number(adminOrders.page)}
+				totalPages={Number(adminOrders.pages)}
+				setPage={() => {}}
+			/>
 		</section>
 	);
 }
