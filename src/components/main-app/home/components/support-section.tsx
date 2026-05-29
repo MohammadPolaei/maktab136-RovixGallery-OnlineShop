@@ -122,6 +122,7 @@ export default function SupportSection() {
 						>
 							<motion.div className="w-20 h-20 md:w-24 md:h-24 rounded-[80%] bg-(--color-gold) hover:bg-(--color-gold-dark)/20 transition-all duration-500 ease-in-out relative">
 								<Image
+									unoptimized
 									alt={item.title}
 									src={item.image}
 									layout="fill"

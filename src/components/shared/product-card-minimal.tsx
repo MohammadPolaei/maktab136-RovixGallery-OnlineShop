@@ -84,6 +84,7 @@ export function ProductCardMinimal({
 						<div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.02),transparent)]" />
 
 						<Image
+							unoptimized
 							src={image}
 							alt={name}
 							width={200}

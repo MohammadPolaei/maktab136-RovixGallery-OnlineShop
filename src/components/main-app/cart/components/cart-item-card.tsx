@@ -71,6 +71,7 @@ export default function CartItemCard({
 		<div className="w-full bg-white text-[10px] rounded-sm py-5 px-3 md:px-10 relative flex flex-col lg:flex-row justify-evenly items-start md:items-center gap-5">
 			<div className="w-full flex-1">
 				<Image
+					unoptimized
 					alt={`تصویر محصول ${name}`}
 					src={images[0]}
 					width={500}

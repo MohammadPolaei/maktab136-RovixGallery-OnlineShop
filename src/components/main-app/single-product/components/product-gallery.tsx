@@ -48,6 +48,7 @@ export default function ProductGallery({ images }: GalleryProps) {
 					<SwiperSlide key={i} className="aspect-square relative">
 						<div className="w-full h-full relative">
 							<Image
+								unoptimized
 								src={img}
 								alt={`product-${i}`}
 								fill
@@ -59,6 +60,7 @@ export default function ProductGallery({ images }: GalleryProps) {
 						{/* background blur */}
 						<div className="w-full h-full blur-3xl absolute">
 							<Image
+								unoptimized
 								src={img}
 								alt={`product-${i}-back`}
 								fill
@@ -87,6 +89,7 @@ export default function ProductGallery({ images }: GalleryProps) {
 					>
 						<div className="relative w-full h-full">
 							<Image
+								unoptimized
 								src={img}
 								alt={`thumb-${i}`}
 								fill

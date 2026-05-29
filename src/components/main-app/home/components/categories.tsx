@@ -39,6 +39,7 @@ export default function Categories() {
 						className="group relative overflow-hidden rounded-sm cursor-pointer"
 					>
 						<Image
+							unoptimized
 							src={cat.image}
 							alt={cat.title}
 							width={600}

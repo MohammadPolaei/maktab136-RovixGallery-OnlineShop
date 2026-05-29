@@ -50,6 +50,7 @@ export default function ProductsTableRow({
 		>
 			<td className="p-3">
 				<Image
+					unoptimized
 					src={product.images[0]}
 					alt={product.name}
 					width={50}

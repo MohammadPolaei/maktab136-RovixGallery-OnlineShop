@@ -208,6 +208,7 @@ export default function ProductCard({ product }: { product: Product }) {
 				/>
 
 				<Image
+					unoptimized
 					src={product.images[0]}
 					alt={product.name}
 					width={280}

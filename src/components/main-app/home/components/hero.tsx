@@ -80,6 +80,7 @@ export default function HeroSlider() {
 								transition={{ duration: 8, ease: "linear" }}
 							>
 								<Image
+									unoptimized
 									src={slide.image}
 									alt={slide.title}
 									fill
