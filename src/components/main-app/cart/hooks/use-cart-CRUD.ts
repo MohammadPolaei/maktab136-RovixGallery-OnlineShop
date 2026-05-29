@@ -19,10 +19,6 @@ export function useCartStore() {
 		staleTime: 1000 * 30,
 	});
 
-	const refresh = () => {
-		qc.invalidateQueries({ queryKey: queryKeys.cart });
-	};
-
 	const onError = (err: unknown, actionText?: string) => {
 		toast.error(actionText ? `${actionText} ناموفق بود` : "عملیات ناموفق بود", {
 			description: typeof err == "string" ? err : null,
@@ -32,11 +28,11 @@ export function useCartStore() {
 	const add = useMutation({
 		mutationFn: cartApi.addItem,
 		onSuccess: async () => {
-			refresh();
+			await cartQuery.refetch();
 			toast.success("به سبد خرید اضافه شد");
 		},
 		onError: (err) => {
-			if ((err.message = "توکن نامعتبر است")) {
+			if (err instanceof Error && err.message === "توکن نامعتبر است") {
 				toast.message("برای افزودن به سبد خرید ، وارد حساب کابری خود شوید");
 				setTimeout(() => router.push("/auth/login"), 2000);
 			} else {
@@ -48,7 +44,7 @@ export function useCartStore() {
 	const remove = useMutation({
 		mutationFn: cartApi.removeItem,
 		onSuccess: async () => {
-			refresh();
+			await cartQuery.refetch();
 			toast.success("از سبد خرید حذف شد");
 		},
 		onError: (err) => onError(err, "حذف از سبد خرید"),
@@ -58,7 +54,8 @@ export function useCartStore() {
 		mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) =>
 			cartApi.updateItem(itemId, { quantity }),
 		onSuccess: async () => {
-			refresh();
+			await cartQuery.refetch();
+			toast.success("سبد خرید به‌روزرسانی شد");
 		},
 		onError: (err) => onError(err, "به‌روزرسانی سبد خرید"),
 	});
@@ -66,7 +63,7 @@ export function useCartStore() {
 	const clear = useMutation({
 		mutationFn: cartApi.clear,
 		onSuccess: async () => {
-			refresh();
+			await cartQuery.refetch();
 			toast.success("سبد خرید خالی شد");
 		},
 		onError: (err) => onError(err, "خالی کردن سبد خرید"),
@@ -96,8 +93,8 @@ export function useCartStore() {
 		error,
 
 		addItem: add.mutateAsync,
-		removeItem: remove.mutate,
+		removeItem: remove.mutateAsync,
 		updateItem: update.mutateAsync,
-		clearCart: clear.mutate,
+		clearCart: clear.mutateAsync,
 	};
 }

@@ -118,8 +118,12 @@ export default function AddToCartSingleProduct({
 
 				{errorMessage && (
 					<p
-						className={`p-1 bg-red-500/10 text-red-500 text-[12px] text-center absolute -right-7 md:right-0 min-w-40 rounded-sm ${
-							isSingle ? "bottom-0" : "bottom-10 sm:-bottom-12 lg:-bottom-6"
+						className={`p-1 text-[12px] text-center absolute min-w-40 rounded-sm ${
+							isSingle
+								? "bottom-23 md:bottom-18 lg:-bottom-2 -right-6 md:right-1 lg:right-2 bg-red-500/10 text-red-500 "
+								: isProdCard
+								? "bottom-12 -right-6 bg-red-500/10 text-red-500 "
+								: "bottom-10 md:-bottom-12 lg:-bottom-6 -right-7 md:right-0 bg-red-200/90 text-red-900 "
 						}`}
 					>
 						{errorMessage}
