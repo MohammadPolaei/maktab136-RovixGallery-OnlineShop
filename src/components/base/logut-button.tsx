@@ -3,6 +3,7 @@
 import LogoutIcon from "@/assets/SVG/logout-icon";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LogoutButton() {
 	const router = useRouter();
@@ -11,6 +12,7 @@ export default function LogoutButton() {
 		try {
 			await axios.post("/api/auth/logout");
 			router.refresh();
+			toast.message("خروج از حساب موفقیت‌آمیز بود");
 		} catch (err) {
 			console.error("LOGOUT FAILED:", err);
 		}

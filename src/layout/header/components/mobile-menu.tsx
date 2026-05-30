@@ -41,7 +41,7 @@ export default function MobileMenu() {
 			icon: <CategoriesIconMobile />,
 			modal: true,
 			childData: (
-				<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] px-3 text-white/80">
+				<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] p-3 text-white/80">
 					<Link
 						className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
 						href={"/products?gender=مردانه"}
