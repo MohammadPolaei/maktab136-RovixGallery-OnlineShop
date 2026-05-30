@@ -15,7 +15,8 @@ import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
 
 const cardItemVariants: Variants = {
@@ -79,9 +80,34 @@ export default function ProductCard({ product }: { product: Product }) {
 
 	const [quantity, setQuantity] = useState(1);
 
+	const { cart } = useCartStore();
+
+	let thisProductInCart = cart?.data.items.find(
+		(prod) => prod.product._id == product._id
+	);
+	useEffect(() => {
+		thisProductInCart = cart?.data.items.find(
+			(prod) => prod.product._id == product._id
+		);
+	}, [cart]);
+
 	const handleAddToCart = async () => {
 		if (notInStock) return;
-		await addItem({ productId: product._id, quantity: quantity });
+		if (thisProductInCart) {
+			if (
+				quantity - thisProductInCart.quantity == 0 ||
+				quantity - thisProductInCart.quantity < 0
+			) {
+				toast.error("حداقل 1 عدد به سبد اضافه شود");
+				return;
+			}
+			await addItem({
+				productId: product._id,
+				quantity: quantity - thisProductInCart.quantity,
+			});
+		} else {
+			await addItem({ productId: product._id, quantity: quantity });
+		}
 	};
 
 	return (
@@ -163,7 +189,7 @@ export default function ProductCard({ product }: { product: Product }) {
 							className="w-full flex flex-col justify-center items-center absolute bottom-25 bg-radial from-white via-transparent to-transparent z-40 pointer-events-auto"
 						>
 							<AddToCartSingleProduct
-								productStock={product.stock}
+								product={product}
 								setSingleProdQuantityValue={setQuantity}
 								usageType="product-card"
 							/>

@@ -4,7 +4,7 @@ import CartIconButton from "@/assets/SVG/cart-icon-button";
 import { FavoriteFilled } from "@/assets/SVG/product-card/favorite-icon";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AddToCartSingleProduct from "../../../shared/add-to-cart-single-product";
 import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
@@ -16,9 +16,31 @@ interface ActionsProps {
 export default function ProductActions({ product }: ActionsProps) {
 	const { addItem, isLoading, error } = useCartStore();
 	const [singleProdQuantityValue, setSingleProdQuantityValue] = useState(1);
+	// cart info
+	const { cart } = useCartStore();
+
+	let thisProductInCart = cart?.data.items.find(
+		(prod) => prod.product._id == product._id
+	);
+	useEffect(() => {
+		thisProductInCart = cart?.data.items.find(
+			(prod) => prod.product._id == product._id
+		);
+	}, [cart]);
+
 	// handle add product
 	const handleAddToCart = async (id: string, quantity: number) => {
-		await addItem({ productId: id, quantity: quantity });
+		if (
+			quantity - thisProductInCart!.quantity == 0 ||
+			quantity - thisProductInCart!.quantity < 0
+		) {
+			toast.error("حداقل 1 عدد به سبد خرید اضافه شود");
+		} else {
+			await addItem({
+				productId: id,
+				quantity: quantity - thisProductInCart!.quantity,
+			});
+		}
 		if (isLoading) {
 			toast.loading("در حال افزودن محصول به سبد خرید");
 		}
@@ -30,9 +52,9 @@ export default function ProductActions({ product }: ActionsProps) {
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
 			<div className="w-full flex flex-col lg:flex-row justify-between items-center">
 				<AddToCartSingleProduct
+					product={product}
 					setSingleProdQuantityValue={setSingleProdQuantityValue}
 					usageType="single-product"
-					productStock={product.stock}
 				/>
 				<div className="flex items-center gap-1">
 					<p>{"نظرات کاربران"}</p>
@@ -67,7 +89,7 @@ export default function ProductActions({ product }: ActionsProps) {
 						onClick={() =>
 							handleAddToCart(product._id, singleProdQuantityValue)
 						}
-						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
+						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
 					>
 						<CartIconButton size={25} />
 						<span>افزودن به سبد خرید</span>
@@ -75,7 +97,7 @@ export default function ProductActions({ product }: ActionsProps) {
 				)}
 			</div>
 			<div className="w-full">
-				<button className="w-full py-1 mx-auto border border-(--color-gold-dark) text-[12px] text-(--color-gold-dark) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+				<button className="w-full py-1 mx-auto border border-(--color-gold-dark) text-[12px] text-(--color-gold-dark) hover:shadow shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
 					<FavoriteFilled size={25} />
 					<span>افزودن به علاقه مندی ها</span>
 				</button>

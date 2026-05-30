@@ -1,5 +1,4 @@
 import Header from "@/layout/header/header";
-import QueryProvider from "@/providers/query-provider";
 import type { Metadata } from "next";
 import "../../../globals.css";
 
@@ -15,11 +14,9 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<QueryProvider>
-			<div className="bg-zinc-100 flex flex-col justify-between items-center relative">
-				<Header />
-				<main className="pt-15 md:mt-12 min-h-fit">{children}</main>
-			</div>
-		</QueryProvider>
+		<div className="bg-zinc-100 flex flex-col justify-between items-center relative">
+			<Header />
+			<main className="pt-15 md:mt-12 min-h-fit">{children}</main>
+		</div>
 	);
 }

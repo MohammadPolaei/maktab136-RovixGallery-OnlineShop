@@ -1,3 +1,4 @@
+import QueryProvider from "@/providers/query-provider";
 import { samim } from "./fonts";
 import "./globals.css";
 
@@ -22,7 +23,7 @@ export default function RootLayout({
 	return (
 		<html lang="fa" dir="rtl" className={`h-full antialiased`}>
 			<body className={`${samim.className} min-h-full flex flex-col`}>
-				{children}
+				<QueryProvider>{children}</QueryProvider>
 			</body>
 		</html>
 	);

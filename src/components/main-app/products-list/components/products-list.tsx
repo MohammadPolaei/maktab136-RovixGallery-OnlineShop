@@ -1,5 +1,4 @@
 "use client";
-import QueryProvider from "@/providers/query-provider";
 import { Product } from "@/types/product-data-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
@@ -37,25 +36,22 @@ export default function ProductsList({
 					<PriceRangeFilter />
 				</div>
 			</div>
-			<QueryProvider>
-				<motion.div
-					key={currentPage}
-					variants={containerVariants}
-					initial="hidden"
-					animate="visible"
-					className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-start"
-				>
-					{products.length > 0 ? (
-						products.map((p: Product) => (
-							<ProductCard key={p._id} product={p} />
-						))
-					) : (
-						<div className="col-span-full min-h-80 rounded-sm bg-radial via-transparent from-(--color-gold)/40 to-transparent flex flex-col justify-center items-center text-[14px]">
-							موردی برای نمایش وجود ندارد
-						</div>
-					)}
-				</motion.div>
-			</QueryProvider>
+
+			<motion.div
+				key={currentPage}
+				variants={containerVariants}
+				initial="hidden"
+				animate="visible"
+				className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 items-start"
+			>
+				{products.length > 0 ? (
+					products.map((p: Product) => <ProductCard key={p._id} product={p} />)
+				) : (
+					<div className="col-span-full min-h-80 rounded-sm bg-radial via-transparent from-(--color-gold)/40 to-transparent flex flex-col justify-center items-center text-[14px]">
+						موردی برای نمایش وجود ندارد
+					</div>
+				)}
+			</motion.div>
 		</div>
 	);
 }

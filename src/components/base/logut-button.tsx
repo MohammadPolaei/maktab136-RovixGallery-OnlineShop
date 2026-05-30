@@ -10,8 +10,6 @@ export default function LogoutButton() {
 	const handleLogout = async () => {
 		try {
 			await axios.post("/api/auth/logout");
-
-			router.replace("/auth/login");
 			router.refresh();
 		} catch (err) {
 			console.error("LOGOUT FAILED:", err);

@@ -1,4 +1,3 @@
-import QueryProvider from "@/providers/query-provider";
 import { OrdersProvider } from "@/utils/orders-context";
 import type { Metadata } from "next";
 import "../../globals.css";
@@ -16,14 +15,12 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="w-full grid grid-cols-1 relative">
-			<QueryProvider>
-				<OrdersProvider>
-					<div className="fixed top-0 right-0 h-screen">
-						{/* <UserAside /> */}
-					</div>
-					{children}
-				</OrdersProvider>
-			</QueryProvider>
+			<OrdersProvider>
+				<div className="fixed top-0 right-0 h-screen">
+					{/* <UserAside /> */}
+				</div>
+				{children}
+			</OrdersProvider>
 		</div>
 	);
 }
