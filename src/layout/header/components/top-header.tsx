@@ -6,10 +6,24 @@ import SearchInput from "@/components/base/search-input";
 import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
 import ShowDate from "@/components/shared/show-date";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { RadixNavabrMenu } from "./radix-navbar-menu";
 
 export default function HeaderTop() {
 	const { cart } = useCartStore();
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const pathname = usePathname();
+	const router = useRouter();
+
+	useEffect(() => {
+		const role = document.cookie
+			.split("; ")
+			.find((row) => row.startsWith("role="))
+			?.split("=")[1];
+
+		setIsLoggedIn(!!role);
+	}, [pathname]);
 
 	return (
 		<div className="w-full rovix-bg-darkest rovix-text-gold">
@@ -57,9 +71,21 @@ export default function HeaderTop() {
 									سفارش‌ها
 								</Link>
 								<div className="my-1 h-px bg-white" />
-								<div className="w-full flex flex-col justify-center items-center">
-									<LogoutButton />
-								</div>
+
+								{isLoggedIn ? (
+									<div className="w-full flex flex-col justify-center items-center">
+										<LogoutButton setIsLogged={setIsLoggedIn} />
+									</div>
+								) : (
+									<div className="w-full flex flex-col justify-center items-center">
+										<button
+											onClick={() => router.push("/auth/login")}
+											className="w-full px-3 py-2 rounded-sm flex items-center justify-center gap-2 text-[10px] text-center cursor-pointer m-2 bg-[#213b0f]  hover:bg-green-600/40 active:text-white origin-center transition-all ease-in-out duration-500"
+										>
+											ورود به حساب
+										</button>
+									</div>
+								)}
 							</div>
 						</RadixNavabrMenu>
 					</div>
