@@ -1,5 +1,6 @@
 "use client";
 
+import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import DashboardHeadingContainer from "@/components/shared/dashboard-heading-container";
 import DashboardSectionsContainer from "@/components/shared/dashboard-sections-container";
 import ProductPagination from "@/components/shared/product-pagination";
@@ -8,10 +9,16 @@ import { useState } from "react";
 import OrdersTable from "../../../../shared/orders-table";
 import OrdersFilters from "./orders-filters";
 
+export type orderStatusFilter =
+	| "all"
+	| "delivered"
+	| "cancelled"
+	| "pending"
+	| "confirmed"
+	| "shipping";
+
 export default function Orders() {
-	const [filter, setFilter] = useState<
-		"all" | "delivered" | "canceled" | "pending" | "confirmed" | "shipping"
-	>("all");
+	const [filter, setFilter] = useState<orderStatusFilter>("all");
 	const [page, setPage] = useState<number>(1);
 
 	const { adminOrders, isAdminLoading } = useGetOrdersAdmin({
@@ -26,22 +33,28 @@ export default function Orders() {
 			? (adminOrders?.data ?? []).filter(
 					(order: any) => order.status === "delivered"
 			  )
-			: filter === "canceled"
+			: filter === "cancelled"
 			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status !== "canceled"
+					(order: any) => order.status == "cancelled"
 			  )
 			: filter === "pending"
 			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status !== "pending"
+					(order: any) => order.status == "pending"
 			  )
 			: filter === "confirmed"
 			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status !== "confirmed"
+					(order: any) => order.status == "confirmed"
 			  )
-			: null;
+			: (adminOrders?.data ?? []).filter(
+					(order: any) => order.status == "shipping"
+			  );
 
 	if (isAdminLoading) {
-		return <div>در حال بارگذاری...</div>;
+		return (
+			<div className="w-full h-full">
+				<RovixLuxuryLoader />
+			</div>
+		);
 	}
 
 	return (

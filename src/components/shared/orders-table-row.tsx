@@ -1,6 +1,7 @@
-import { Order, OrderStatus, ShippingMethod } from "@/types/orders-type";
+import { Order, ShippingMethod } from "@/types/orders-type";
 import { faNumber } from "@/utils/convert-number-into-persian";
 import { formatCartDate } from "@/utils/format-date-persian";
+import { statusToPersian } from "@/utils/status-to-persian";
 import Link from "next/link";
 
 export default function OrdersTableRow({
@@ -10,23 +11,6 @@ export default function OrdersTableRow({
 	order: Order;
 	showType: "admin" | "user";
 }) {
-	const statusToPersian = (status: OrderStatus) => {
-		switch (status) {
-			case "cancelled":
-				return { text: "لغو شده", color: "bg-red-100" };
-			case "confirmed":
-				return { text: "تائید شده", color: "bg-blue-100" };
-			case "pending":
-				return { text: "در حال پردازش", color: "bg-yellow-100" };
-			case "shipping":
-				return { text: "در حال ارسال", color: "bg-green-100" };
-			case "delivered":
-				return { text: "تحویل داده شده", color: "bg-green-700/50" };
-			default:
-				return { text: "نامشخص", color: "" };
-		}
-	};
-
 	const deliverToPersian = (delivery: ShippingMethod) => {
 		switch (delivery) {
 			case "post":
