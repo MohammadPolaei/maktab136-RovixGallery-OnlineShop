@@ -56,22 +56,38 @@ export function useGetProducts() {
 			search,
 		]
 	);
-	useEffect(() => {
-		if (page !== 1) {
-			setPage(1);
-		}
-	}, [
-		dialColor,
-		material,
-		brandCountry,
-		color,
-		brand,
-		gender,
-		sort,
-		available,
-		search,
-	]);
-
+	const setBrandSafe = (v: string) => {
+		setPage(1);
+		setBrand(v);
+	};
+	const setGenderSafe = (v: string) => {
+		setPage(1);
+		setGender(v);
+	};
+	const setSortSafe = (v: string) => {
+		setPage(1);
+		setSort(v);
+	};
+	const setAvailableSafe = (v: string) => {
+		setPage(1);
+		setAvailable(v);
+	};
+	const setColorSafe = (v: string) => {
+		setPage(1);
+		setColor(v);
+	};
+	const setDialColorSafe = (v: string) => {
+		setPage(1);
+		setDialColor(v);
+	};
+	const setMaterialSafe = (v: string) => {
+		setPage(1);
+		setMaterial(v);
+	};
+	const setBrandCountrySafe = (v: string) => {
+		setPage(1);
+		setBrandCountry(v);
+	};
 	const { data, isLoading, error, isFetching } = useQuery({
 		queryKey: ["products", queryParams],
 
@@ -107,16 +123,16 @@ export function useGetProducts() {
 
 		// filters
 		brand,
-		setBrand,
+		setBrand: setBrandSafe,
 
 		gender,
-		setGender,
+		setGender: setGenderSafe,
 
 		sort,
-		setSort,
+		setSort: setSortSafe,
 
 		available,
-		setAvailable,
+		setAvailable: setAvailableSafe,
 
 		page,
 		setPage,
@@ -131,15 +147,15 @@ export function useGetProducts() {
 		setLimit,
 
 		color,
-		setColor,
+		setColor: setColorSafe,
 
 		dialColor,
-		setDialColor,
+		setDialColor: setDialColorSafe,
 
 		material,
-		setMaterial,
+		setMaterial: setMaterialSafe,
 
 		brandCountry,
-		setBrandCountry,
+		setBrandCountry: setBrandCountrySafe,
 	};
 }
