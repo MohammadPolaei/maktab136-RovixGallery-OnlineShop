@@ -2,13 +2,15 @@
 
 import { OrderStatus } from "@/types/orders-type";
 import { statusToPersian } from "@/utils/status-to-persian";
-import { orderStatusFilter } from "./orders";
+import { Dispatch, SetStateAction } from "react";
+import { OrderStatusFilter } from "./orders";
 
 type Props = {
-	filter: orderStatusFilter;
-	setFilter: (filter: orderStatusFilter) => void;
+	filter: OrderStatusFilter;
+	setFilter: (filter: OrderStatusFilter) => void;
+	setPage: Dispatch<SetStateAction<number>>;
 };
-export default function OrdersFilters({ filter, setFilter }: Props) {
+export default function OrdersFilters({ filter, setFilter, setPage }: Props) {
 	return (
 		<div className="flex gap-3 px-3 w-full overflow-auto">
 			{[
@@ -22,7 +24,10 @@ export default function OrdersFilters({ filter, setFilter }: Props) {
 				return (
 					<button
 						key={item}
-						onClick={() => setFilter(item as orderStatusFilter)}
+						onClick={() => {
+							setFilter(item as OrderStatusFilter);
+							setPage(1);
+						}}
 						className={`px-4 py-2 rounded-sm text-sm cursor-pointer  
         ${
 					filter === item

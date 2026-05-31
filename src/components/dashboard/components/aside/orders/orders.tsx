@@ -9,7 +9,7 @@ import { useState } from "react";
 import OrdersTable from "../../../../shared/orders-table";
 import OrdersFilters from "./orders-filters";
 
-export type orderStatusFilter =
+export type OrderStatusFilter =
 	| "all"
 	| "delivered"
 	| "cancelled"
@@ -18,36 +18,14 @@ export type orderStatusFilter =
 	| "shipping";
 
 export default function Orders() {
-	const [filter, setFilter] = useState<orderStatusFilter>("all");
+	const [filter, setFilter] = useState<OrderStatusFilter>("all");
 	const [page, setPage] = useState<number>(1);
 
 	const { adminOrders, isAdminLoading } = useGetOrdersAdmin({
 		page,
 		limit: 10,
+		filter,
 	});
-
-	const filteredOrders =
-		filter === "all"
-			? adminOrders?.data ?? []
-			: filter === "delivered"
-			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status === "delivered"
-			  )
-			: filter === "cancelled"
-			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status == "cancelled"
-			  )
-			: filter === "pending"
-			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status == "pending"
-			  )
-			: filter === "confirmed"
-			? (adminOrders?.data ?? []).filter(
-					(order: any) => order.status == "confirmed"
-			  )
-			: (adminOrders?.data ?? []).filter(
-					(order: any) => order.status == "shipping"
-			  );
 
 	if (isAdminLoading) {
 		return (
@@ -64,14 +42,12 @@ export default function Orders() {
 			</DashboardHeadingContainer>
 
 			<DashboardSectionsContainer extraClasses="pt-3">
-				<OrdersFilters filter={filter} setFilter={setFilter} />
-				<OrdersTable
-					showType="admin"
-					orders={{
-						...adminOrders,
-						data: filteredOrders,
-					}}
+				<OrdersFilters
+					filter={filter}
+					setFilter={setFilter}
+					setPage={setPage}
 				/>
+				<OrdersTable showType="admin" orders={adminOrders} />
 			</DashboardSectionsContainer>
 
 			<ProductPagination

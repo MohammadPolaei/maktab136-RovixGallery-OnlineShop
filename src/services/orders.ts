@@ -3,18 +3,23 @@ import { Order } from "@/types/orders-type";
 type GetOrdersParams = {
 	page?: number;
 	limit?: number;
+	status?: any;
 };
 
 export async function getOrdersAdmin(params: GetOrdersParams) {
 	const page = params.page;
 	const limit = params.limit;
+	const status = params.status;
 
-	const res = await fetch(`/api/orders/admin?page=${page}&limit=${limit}`, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+	const res = await fetch(
+		`/api/orders/admin?page=${page}&limit=${limit}&status=${status}`,
+		{
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
 
 	if (!res.ok) {
 		throw new Error("Error showing Orders");
@@ -24,11 +29,8 @@ export async function getOrdersAdmin(params: GetOrdersParams) {
 	return data;
 }
 
-export async function getOrders(params?: GetOrdersParams) {
-	const page = params?.page ?? 1;
-	const limit = params?.limit ?? 10;
-
-	const res = await fetch(`/api/orders?page=${page}&limit=${limit}`, {
+export async function getOrders() {
+	const res = await fetch(`/api/orders`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

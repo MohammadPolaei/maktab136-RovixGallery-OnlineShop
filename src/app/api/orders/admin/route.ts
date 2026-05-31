@@ -25,10 +25,12 @@ export async function GET(req: NextRequest) {
 		const sp = req.nextUrl.searchParams;
 		const page = sp.get("page") ?? "1";
 		const limit = sp.get("limit") ?? "10";
+		const status = sp.get("status") ?? "";
 
 		const url = new URL(`${backendUrl}/api/orders/admin/all`);
 		url.searchParams.set("page", page);
 		url.searchParams.set("limit", limit);
+		url.searchParams.set("status", status);
 
 		const res = await fetch(url.toString(), {
 			method: "GET",

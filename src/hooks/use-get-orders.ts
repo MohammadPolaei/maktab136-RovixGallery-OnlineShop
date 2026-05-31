@@ -1,19 +1,18 @@
+import { OrderStatusFilter } from "@/components/dashboard/components/aside/orders/orders";
 import { getOrders, getOrdersAdmin } from "@/services/orders";
 import { useQuery } from "@tanstack/react-query";
 
 type UseOrdersParams = {
 	page?: number;
 	limit?: number;
+	filter?: OrderStatusFilter;
 };
 
-export function useGetOrders(params?: UseOrdersParams) {
-	const page = params?.page ?? 1;
-	const limit = params?.limit ?? 10;
-
+export function useGetOrders() {
 	const { data, isLoading, error } = useQuery({
-		queryKey: ["orders", page, limit],
+		queryKey: ["orders"],
 		queryFn: async () => {
-			const res = await getOrders({ page, limit });
+			const res = await getOrders();
 			return { orders: res };
 		},
 		staleTime: 1000 * 60,
@@ -29,11 +28,16 @@ export function useGetOrders(params?: UseOrdersParams) {
 export function useGetOrdersAdmin(params?: UseOrdersParams) {
 	const page = params?.page ?? 1;
 	const limit = params?.limit ?? 10;
+	const status = params?.filter
+		? params.filter == "all"
+			? ""
+			: params.filter
+		: "";
 
 	const { data, isLoading, error } = useQuery({
-		queryKey: ["admin-orders", page, limit],
+		queryKey: ["admin-orders", page, limit, status],
 		queryFn: async () => {
-			const res = await getOrdersAdmin({ page, limit });
+			const res = await getOrdersAdmin({ page, limit, status });
 			return { orders: res };
 		},
 		staleTime: 1000 * 60,
