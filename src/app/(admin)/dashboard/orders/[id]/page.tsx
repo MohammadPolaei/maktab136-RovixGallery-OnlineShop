@@ -10,16 +10,12 @@ export default function OrderDetailPage() {
 	const id = params.id;
 
 	const { updateOrder, updateOrderPending } = useOrderStatusChange();
-	const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const newStatus = e.target.value as OrderStatus;
-		updateOrder!({ id, data: newStatus });
-	};
 
 	return (
 		<SingleOrderDetails
 			id={id}
-			handleStatusChange={handleStatusChange}
 			updateOrderPending={updateOrderPending}
+			updateOrderFn={updateOrder}
 			usageType="admin"
 		/>
 	);

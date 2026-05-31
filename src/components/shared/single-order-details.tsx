@@ -5,21 +5,43 @@ import { useGetSingleOrder } from "@/hooks/use-get-single-order";
 import { OrderStatus, ShippingMethod } from "@/types/orders-type";
 import { faNumber, faNumberSimple } from "@/utils/convert-number-into-persian";
 import { formatCartDate } from "@/utils/format-date-persian";
-import React from "react";
+import { UseMutateAsyncFunction } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import DashboardHeadingContainer from "./dashboard-heading-container";
 
 export default function SingleOrderDetails({
 	id,
 	usageType,
 	updateOrderPending = false,
-	handleStatusChange,
+	updateOrderFn,
 }: {
 	id: string;
 	usageType: "admin" | "user";
 	updateOrderPending?: boolean;
+	updateOrderFn?: UseMutateAsyncFunction<
+		any,
+		any,
+		{
+			id: string;
+			data: OrderStatus;
+		},
+		unknown
+	>;
 	handleStatusChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
 	const { singleOrder, isLoading, error } = useGetSingleOrder(id);
+
+	const [newStatus, setNewStatus] = useState<OrderStatus>("pending");
+
+	useEffect(() => {
+		if (singleOrder?.data?.status) {
+			setNewStatus(singleOrder.data.status);
+		}
+	}, [singleOrder]);
+
+	const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setNewStatus(e.target.value as OrderStatus);
+	};
 
 	if (isLoading) {
 		return (
@@ -75,7 +97,7 @@ export default function SingleOrderDetails({
 		}
 	};
 
-	const statusBgColor = statusToPersian(singleOrder.data.status).color;
+	const statusBgColor = statusToPersian(newStatus).color;
 
 	return (
 		<div className="p-6 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-5">
@@ -120,7 +142,7 @@ export default function SingleOrderDetails({
 								className={`${statusBgColor} p-2 rounded-sm outline-0 cursor-pointer border-0 ${
 									updateOrderPending ? "opacity-50" : ""
 								}`}
-								value={singleOrder.data.status}
+								value={newStatus}
 								onChange={handleStatusChange}
 								disabled={updateOrderPending}
 							>
@@ -142,6 +164,17 @@ export default function SingleOrderDetails({
 						)} ریال`}</span>
 					</div>
 				</div>
+				{usageType == "admin" && (
+					<button
+						disabled={singleOrder.data.status == newStatus}
+						onClick={() => {
+							updateOrderFn!({ id, data: newStatus });
+						}}
+						className="w-full bg-(--color-dark-green) hover:bg-(--color-accent-green) disabled:bg-gray-200 disabled:cursor-not-allowed text-white p-3 rounded-sm cursor-pointer transition-all duration-500 ease-in-out"
+					>
+						{updateOrderPending ? "در حال بروزرسانی ..." : "بروزرسانی وضعیت"}
+					</button>
+				)}
 			</div>
 
 			<div className="rounded-sm bg-white mt-5 shadow shadow-black/5 p-5">
