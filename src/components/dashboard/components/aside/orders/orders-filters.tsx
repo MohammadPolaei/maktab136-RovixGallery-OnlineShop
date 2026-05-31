@@ -10,7 +10,7 @@ type Props = {
 };
 export default function OrdersFilters({ filter, setFilter }: Props) {
 	return (
-		<div className="flex gap-3 px-3">
+		<div className="flex gap-3 px-3 w-full overflow-auto">
 			{[
 				"all",
 				"delivered",

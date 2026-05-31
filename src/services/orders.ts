@@ -5,9 +5,9 @@ type GetOrdersParams = {
 	limit?: number;
 };
 
-export async function getOrdersAdmin(params?: GetOrdersParams) {
-	const page = params?.page ?? 1;
-	const limit = params?.limit ?? 10;
+export async function getOrdersAdmin(params: GetOrdersParams) {
+	const page = params.page;
+	const limit = params.limit;
 
 	const res = await fetch(`/api/orders/admin?page=${page}&limit=${limit}`, {
 		method: "GET",

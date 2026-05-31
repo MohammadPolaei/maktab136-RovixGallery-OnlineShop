@@ -7,8 +7,14 @@ const getUserToken = (req: NextRequest) =>
 
 export async function GET(req: NextRequest) {
 	try {
-		const token = getUserToken(req);
+		if (!backendUrl) {
+			return NextResponse.json(
+				{ message: "BACKEND_URL is not set" },
+				{ status: 500 }
+			);
+		}
 
+		const token = getUserToken(req);
 		if (!token) {
 			return NextResponse.json(
 				{ message: "Unauthorized: no token found" },
@@ -16,25 +22,27 @@ export async function GET(req: NextRequest) {
 			);
 		}
 
-		const res = await fetch(`${backendUrl}/api/orders/admin/all`, {
+		const sp = req.nextUrl.searchParams;
+		const page = sp.get("page") ?? "1";
+		const limit = sp.get("limit") ?? "10";
+
+		const url = new URL(`${backendUrl}/api/orders/admin/all`);
+		url.searchParams.set("page", page);
+		url.searchParams.set("limit", limit);
+
+		const res = await fetch(url.toString(), {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,
-				"Content-Type": "application/json",
+				Accept: "application/json",
 			},
 			cache: "no-store",
 		});
 
 		const contentType = res.headers.get("content-type") || "";
-
-		let data: unknown = null;
-
-		if (contentType.includes("application/json")) {
-			data = await res.json();
-		} else {
-			const text = await res.text();
-			data = { message: text || res.statusText };
-		}
+		const data = contentType.includes("application/json")
+			? await res.json()
+			: { message: (await res.text()) || res.statusText };
 
 		if (!res.ok) {
 			return NextResponse.json(
@@ -49,8 +57,6 @@ export async function GET(req: NextRequest) {
 
 		return NextResponse.json(data);
 	} catch (error) {
-		console.error("Route /api/orders/admin error:", error);
-
 		return NextResponse.json(
 			{
 				message: "Internal server error in admin orders route",

@@ -75,8 +75,8 @@ export default function Orders() {
 			</DashboardSectionsContainer>
 
 			<ProductPagination
-				currentPage={Number(adminOrders?.page ?? 1)}
-				totalPages={Number(adminOrders?.pages ?? 1)}
+				currentPage={adminOrders.page}
+				totalPages={adminOrders.pages}
 				setPage={setPage}
 			/>
 		</section>
