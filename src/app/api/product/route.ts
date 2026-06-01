@@ -57,10 +57,9 @@ export async function GET(req: Request) {
 		});
 
 		if (!res.ok) {
-			return NextResponse.json(
-				{ message: "Failed to fetch products" },
-				{ status: res.status }
-			);
+			const errorText = await res.text();
+			console.error("getProducts error response:", errorText);
+			throw new Error(`Failed to fetch products: ${res.status}`);
 		}
 
 		const data = await res.json();

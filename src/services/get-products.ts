@@ -17,7 +17,7 @@ export async function getProducts(filters: ProductFilters = {}) {
 		const res = await fetch(url, { method: "GET" });
 
 		if (!res.ok) {
-			throw new Error(`Failed to fetch products: ${res.status}`);
+			throw new Error(`${res.statusText} : ${res.status}`);
 		}
 
 		return await res.json();
