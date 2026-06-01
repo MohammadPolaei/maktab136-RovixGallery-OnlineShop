@@ -10,6 +10,7 @@ import { LinkItemsType } from "@/types/header-type";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import MobileMenuSingleItem from "./mobile-menu-single-item";
 
 export default function MobileMenu() {
@@ -18,12 +19,20 @@ export default function MobileMenu() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const role = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith("role="))
-			?.split("=")[1];
-
-		setIsLoggedIn(!!role);
+		const sessionCheck = async () => {
+			const res = await fetch("/api/auth/auth-check", {
+				method: "GET",
+				credentials: "include",
+				cache: "no-store",
+			});
+			if (!res.ok) {
+				const error = new Error("خطا در بررسی حساب شما ! لطفا مجددا وارد شوید");
+				toast.error(error.message);
+				return error;
+			}
+			return await res.json();
+		};
+		sessionCheck().then((r) => setIsLoggedIn(r.isLoggedIn));
 	}, [pathname]);
 
 	const mobileMenuLinkItems: LinkItemsType[] = [
