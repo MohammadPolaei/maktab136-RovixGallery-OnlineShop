@@ -1,3 +1,4 @@
+import UserAside from "@/components/main-app/user-profile/components/user-aside/user-aside";
 import { OrdersProvider } from "@/utils/orders-context";
 import type { Metadata } from "next";
 import "../../globals.css";
@@ -14,13 +15,13 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="w-full grid grid-cols-1 relative">
-			<OrdersProvider>
-				<div className="fixed top-0 right-0 h-screen">
-					{/* <UserAside /> */}
+		<OrdersProvider>
+			<div className="w-screen h-full grid grid-cols-1 md:grid-cols-[1fr_5fr] justify-items-center gap-3">
+				<div className="w-full">
+					<UserAside />
 				</div>
-				{children}
-			</OrdersProvider>
-		</div>
+				<div className="w-full overflow-auto">{children}</div>
+			</div>
+		</OrdersProvider>
 	);
 }

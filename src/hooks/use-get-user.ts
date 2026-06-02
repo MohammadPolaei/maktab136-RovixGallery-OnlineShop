@@ -1,6 +1,18 @@
 import { getUser } from "@/services/get-user";
 import { useQuery } from "@tanstack/react-query";
-
+export type UserProfile = {
+	success: boolean;
+	data: {
+		_id: string;
+		name: string;
+		email: string;
+		phone: string | number;
+		role: "user" | "admin";
+		createdAt: string;
+		updatedAt: string;
+		__v?: number;
+	};
+};
 export function useGetUser() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ["user"],
@@ -8,7 +20,7 @@ export function useGetUser() {
 		queryFn: async () => {
 			const res = await getUser();
 
-			const user = await res.data;
+			const user: UserProfile = await res.data;
 
 			return {
 				user,
