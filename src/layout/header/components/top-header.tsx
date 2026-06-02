@@ -7,13 +7,13 @@ import SearchInput from "@/components/base/search-input";
 import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
 import ShowDate from "@/components/shared/show-date";
 import { useGetProducts } from "@/hooks/use-get-data";
+import { sessionCheck } from "@/services/session-check";
 import { Product } from "@/types/product-data-type";
 import { faNumberSimple } from "@/utils/convert-number-into-persian";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { RadixNavabrMenu } from "./radix-navbar-menu";
 import RadixSearchPopover from "./radix-search-popover";
 
@@ -24,17 +24,7 @@ export default function HeaderTop() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const sessionCheck = async () => {
-			const res = await fetch("/api/auth/auth-check", {
-				method: "GET",
-				credentials: "include",
-				cache: "no-store",
-			});
-			return await res.json();
-		};
-		sessionCheck()
-			.catch((err) => toast.error(err.message))
-			.then((r) => setIsLoggedIn(r.isLoggedIn));
+		sessionCheck().then((r) => setIsLoggedIn(r.isLoggedIn));
 	}, [pathname]);
 
 	// searching

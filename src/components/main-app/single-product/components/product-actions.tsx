@@ -21,32 +21,53 @@ export default function ProductActions({ product }: ActionsProps) {
 		(item) => item.product._id === product._id
 	);
 
-	const currentCartQuantity = thisProductInCart?.quantity ?? 0;
-
 	const handleAddToCart = async (id: string, quantity: number) => {
-		const diff = quantity - currentCartQuantity;
+		const diff =
+			quantity - (thisProductInCart ? thisProductInCart.quantity : 0);
 
-		if (diff <= 0) {
-			toast.error("حداقل 1 عدد به سبد خرید اضافه شود");
+		if (quantity == 1 && !thisProductInCart) {
+			await addItem({ productId: product._id, quantity: quantity });
 			return;
 		}
-
-		if (diff > 5) {
+		if (
+			thisProductInCart
+				? thisProductInCart?.quantity > 5 || quantity > 5
+				: false
+		) {
 			toast.error("بیشتر از 5 عدد مجاز نیست");
 			return;
 		}
-		if (isLoading) {
-			toast.loading("در حال افزودن محصول به سبد خرید");
-		}
 
-		try {
+		if (thisProductInCart) {
+			if (diff <= 0) {
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
+				return;
+			}
+
+			if (diff > 5) {
+				toast.error("بیشتر از 5 عدد مجاز نیست");
+				return;
+			}
+
 			await addItem({
-				productId: id,
+				productId: product._id,
 				quantity: diff,
 			});
-		} catch (err) {
-			toast.error("خطا در افزودن محصول به سبد خرید");
-			console.error(err);
+		} else {
+			if (quantity <= 0) {
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
+				return;
+			}
+
+			if (quantity > 5) {
+				toast.error("بیشتر از 5 عدد مجاز نیست");
+				return;
+			}
+
+			await addItem({
+				productId: product._id,
+				quantity: quantity,
+			});
 		}
 	};
 

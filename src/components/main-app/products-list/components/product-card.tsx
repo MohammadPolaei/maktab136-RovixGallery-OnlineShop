@@ -93,12 +93,25 @@ export default function ProductCard({ product }: { product: Product }) {
 
 	const handleAddToCart = async () => {
 		if (notInStock) return;
+		const diff =
+			quantity - (thisProductInCart ? thisProductInCart.quantity : 0);
+
+		if (quantity == 1 && !thisProductInCart) {
+			await addItem({ productId: product._id, quantity: quantity });
+			return;
+		}
+		if (
+			thisProductInCart
+				? thisProductInCart?.quantity > 5 || quantity > 5
+				: false
+		) {
+			toast.error("بیشتر از 5 عدد مجاز نیست");
+			return;
+		}
 
 		if (thisProductInCart) {
-			const diff = quantity - thisProductInCart.quantity;
-
 			if (diff <= 0) {
-				toast.error("حداقل 1 عدد به سبد اضافه شود");
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
 				return;
 			}
 
@@ -113,7 +126,7 @@ export default function ProductCard({ product }: { product: Product }) {
 			});
 		} else {
 			if (quantity <= 0) {
-				toast.error("حداقل 1 عدد به سبد اضافه شود");
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
 				return;
 			}
 

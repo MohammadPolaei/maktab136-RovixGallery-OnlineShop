@@ -16,16 +16,18 @@ export default function CheckoutSummary({
 		<div className="rounded-sm border border-gray-200 bg-white p-5 flex flex-col justify-start items-start gap-3 h-full">
 			<h2 className="mb-4 text-lg font-semibold flex-1 w-full">خلاصه سفارش</h2>
 
-			<div className="space-y-3 max-h-[30vh] w-full overflow-y-auto rounded-sm border border-black/10 bg-black/5">
+			<div className="space-y-3 max-h-[30vh] w-full overflow-y-auto rounded-sm">
 				{cart?.data.items.map((item, index) => (
 					<div
 						key={index}
-						className="flex flex-col items-start justify-between text-sm py-3 border-y border-y-black/20 px-3 bg-black/10"
+						className="flex flex-col text-left justify-between gap-2 text-sm py-3 px-3 bg-linear-90 from-black/2 to-transparent"
 					>
 						<span className="text-gray-700">
 							{item.product.name} × {faNumber(item.quantity)}
 						</span>
-						<span className="font-medium">{faNumber(item.price)} ریال</span>
+						<span className="font-medium text-gray-400 text-[12px] px-2">
+							{faNumber(item.price)} ریال
+						</span>
 					</div>
 				))}
 			</div>

@@ -51,6 +51,7 @@ export async function addOrder(payload: unknown) {
 		headers: {
 			"Content-Type": "application/json",
 		},
+		cache: "no-cache",
 		body: JSON.stringify(payload),
 	});
 

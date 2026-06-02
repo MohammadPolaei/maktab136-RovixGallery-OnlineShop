@@ -17,7 +17,6 @@ export default function FakePayment() {
 
 		try {
 			const res = await addOrder(payload);
-			console.log(res);
 			if (res.success) {
 				toast.success("پرداخت موفقیت‌آمیز بود و سفارش ثبت شد");
 				router.replace("/user-profile/orders");

@@ -6,11 +6,11 @@ import HomePageIconMobile from "@/assets/SVG/mobile-menu/home-page-icon-mobile";
 import ProductsIconMobile from "@/assets/SVG/mobile-menu/products-icon-mobile";
 import UserProfileMobile from "@/assets/SVG/mobile-menu/user-profile-mobile";
 import LogoutButton from "@/components/base/logut-button";
+import { sessionCheck } from "@/services/session-check";
 import { LinkItemsType } from "@/types/header-type";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import MobileMenuSingleItem from "./mobile-menu-single-item";
 
 export default function MobileMenu() {
@@ -19,19 +19,6 @@ export default function MobileMenu() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const sessionCheck = async () => {
-			const res = await fetch("/api/auth/auth-check", {
-				method: "GET",
-				credentials: "include",
-				cache: "no-store",
-			});
-			if (!res.ok) {
-				const error = new Error("خطا در بررسی حساب شما ! لطفا مجددا وارد شوید");
-				toast.error(error.message);
-				return error;
-			}
-			return await res.json();
-		};
 		sessionCheck().then((r) => setIsLoggedIn(r.isLoggedIn));
 	}, [pathname]);
 

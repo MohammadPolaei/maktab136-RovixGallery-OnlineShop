@@ -140,11 +140,7 @@ export default function AddToCartSingleProduct({
 
 				<button
 					type="button"
-					disabled={
-						notAvailable ||
-						count >= product.stock ||
-						(item ? count - item!.quantity >= 5 : count > 5)
-					}
+					disabled={notAvailable || count >= 5}
 					onClick={() => updateByStep(1)}
 					className={`${btnBase} bg-black/80 active:bg-(--color-gold)/80 text-white/80 border-r-0 rounded-l-sm`}
 				>
