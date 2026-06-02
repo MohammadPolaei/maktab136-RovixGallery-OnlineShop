@@ -28,6 +28,7 @@ export default function Login() {
 		const resData = await response.json();
 
 		if (response.ok) {
+			toast.success("ورود موفقیت آمیز بود . خوش آمدید");
 			router.back();
 		} else {
 			toast.error(resData.message);

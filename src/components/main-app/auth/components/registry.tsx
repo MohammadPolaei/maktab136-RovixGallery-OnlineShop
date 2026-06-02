@@ -1,13 +1,11 @@
 "use client";
 
-import Modal from "@/components/base/modal";
 import AuthForm from "@/components/shared/auth-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { RegisterInput, registerSchema } from "../utils/registry-schemas";
 import { toast } from "sonner";
+import { RegisterInput, registerSchema } from "../utils/registry-schemas";
 
 export default function Registry() {
 	const {
@@ -27,9 +25,8 @@ export default function Registry() {
 			body: JSON.stringify(data),
 		});
 
-		const result = await response.json();
-
 		if (response.ok) {
+			toast.success("حساب کاربری با موفقیت ایجاد شد");
 			router.push("/auth/login");
 		} else {
 			toast.error(response.statusText);
