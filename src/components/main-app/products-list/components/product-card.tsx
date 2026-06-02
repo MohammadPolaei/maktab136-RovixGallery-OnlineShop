@@ -11,7 +11,7 @@ import {
 import AddToCartSingleProduct from "@/components/shared/add-to-cart-single-product";
 import ShowColorOnCard from "@/components/shared/show-color-on-card";
 import { Product } from "@/types/product-data-type";
-import { faNumber } from "@/utils/convert-number-into-persian";
+import { faNumber, faNumberSimple } from "@/utils/convert-number-into-persian";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -220,6 +220,10 @@ export default function ProductCard({ product }: { product: Product }) {
 							variants={childVariants}
 							className="w-full flex flex-col justify-center items-center absolute bottom-25 bg-radial from-white via-transparent to-transparent z-40 pointer-events-auto"
 						>
+							<div className="w-full text-center py-2 text-[12px]">
+								<span>{"موجودی فعلی : "}</span>
+								<span>{faNumberSimple(product.stock)}</span>
+							</div>
 							<AddToCartSingleProduct
 								product={product}
 								setSingleProdQuantityValue={setQuantity}
