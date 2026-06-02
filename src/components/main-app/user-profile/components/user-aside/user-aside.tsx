@@ -30,14 +30,14 @@ export default function UserAside() {
 	const pathname = usePathname();
 	const { user, error, isLoading } = useGetUser();
 	return (
-		<div className="min-w-30 max-w-full md:max-w-[30vw] h-full flex flex-col justify-start items-start gap-5 bg-(--color-darkest) text-white/70 md:rounded-sm border border-(--color-dark-green) py-5 px-2">
+		<div className="min-w-30 max-w-full md:w-[20vw] h-full flex flex-col justify-start items-start gap-2 bg-(--color-darkest) text-white/70  py-5 px-2">
 			<div className="w-full flex flex-col justify-center items-center">
 				<Image
 					alt="user-profile-picture"
 					src={userAvatar}
 					width={200}
 					height={200}
-					className="w-50"
+					className="w-30"
 				/>
 			</div>
 			<div className="w-full flex justify-center items-center gap-5 border-b border-b-white/20 py-5">

@@ -16,10 +16,11 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<OrdersProvider>
-			<div className="w-screen h-full grid grid-cols-1 md:grid-cols-[1fr_5fr] justify-items-center gap-3">
-				<div className="w-full">
+			<div className="w-screen h-full grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-3 relative">
+				<div className="md:h-screen relative md:absolute -top-5">
 					<UserAside />
 				</div>
+				<div className="hidden md:flex"></div>
 				<div className="w-full overflow-auto">{children}</div>
 			</div>
 		</OrdersProvider>
