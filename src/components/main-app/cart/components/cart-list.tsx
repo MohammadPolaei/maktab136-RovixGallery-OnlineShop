@@ -55,6 +55,7 @@ export default function CartList({
 				) : (
 					products.map((cartItem) => (
 						<CartItemCard
+							cartItem={cartItem}
 							key={cartItem._id}
 							updateQueue={updateQueue}
 							handleQuantityChange={handleQuantityChange}
@@ -65,17 +66,6 @@ export default function CartList({
 							openDelete={openDelete && itemIdToDelete === cartItem._id}
 							confirmQuestion={confirmQuestion}
 							setConfirmQuestion={setConfirmQuestionForItem}
-							quantity={cartItem.quantity}
-							prodID={cartItem.product._id}
-							cartID={cartItem._id}
-							stock={cartItem.product.stock}
-							cartItemInfo={cart}
-							dialColor={cartItem.product.dialColor}
-							color={cartItem.product.dialColor}
-							images={cartItem.product.images}
-							name={cartItem.product.name}
-							price={cartItem.price}
-							brand={cartItem.product.brand}
 						/>
 					))
 				)

@@ -1,6 +1,5 @@
 "use client";
 import PaymentPage from "@/components/main-app/payment/components/payment-page";
-import QueryProvider from "@/providers/query-provider";
 import { addOrder } from "@/services/orders";
 import { OrdersProvider } from "@/utils/orders-context";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -18,7 +17,6 @@ export default function FakePayment() {
 
 		try {
 			const res = await addOrder(payload);
-			console.log(res);
 			if (res.success) {
 				toast.success("پرداخت موفقیت‌آمیز بود و سفارش ثبت شد");
 				router.replace("/user-profile/orders");
@@ -32,11 +30,9 @@ export default function FakePayment() {
 
 	return (
 		<div className="w-full">
-			<QueryProvider>
-				<OrdersProvider>
-					<PaymentPage confirmPay={confirmPayment} />
-				</OrdersProvider>
-			</QueryProvider>
+			<OrdersProvider>
+				<PaymentPage confirmPay={confirmPayment} />
+			</OrdersProvider>
 		</div>
 	);
 }

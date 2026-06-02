@@ -43,19 +43,22 @@ export default function ProductInfo({ product }: InfoProps) {
 				</li>
 			</ul>
 			<div className="mt-4 text-[14px] text-gray-900 leading-relaxed flex flex-col lg:flex-row justify-between items-center gap-5">
-				<div className="flex justify-center items-center gap-10">
-					{"وضعیت :"}
-					{product.stock > 1 ? (
-						<div className="flex items-center gap-2">
-							<div className="bg-green-500 w-3 h-3 rounded-full" />
-							{`موجود`}
-						</div>
-					) : (
-						<div className="flex items-center gap-2">
-							<div className="bg-red-500 w-3 h-3 rounded-full" />
-							{`ناموجود`}
-						</div>
-					)}
+				<div className="w-fit flex flex-col md:flex-row items-center justify-start gap-8">
+					<div className="flex justify-center items-center gap-10">
+						{"وضعیت :"}
+						{product.stock > 1 ? (
+							<div className="flex items-center gap-2">
+								<div className="bg-green-500 w-3 h-3 rounded-full" />
+								{`موجود`}
+							</div>
+						) : (
+							<div className="flex items-center gap-2">
+								<div className="bg-red-500 w-3 h-3 rounded-full" />
+								{`ناموجود`}
+							</div>
+						)}
+					</div>
+					<div>{`${faNumber(product.stock)} عدد`}</div>
 				</div>
 				<div>
 					<p className="text-[20px] text-(--color-gold-dark) font-bold">

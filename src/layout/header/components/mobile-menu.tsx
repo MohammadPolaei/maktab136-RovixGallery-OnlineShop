@@ -6,12 +6,22 @@ import HomePageIconMobile from "@/assets/SVG/mobile-menu/home-page-icon-mobile";
 import ProductsIconMobile from "@/assets/SVG/mobile-menu/products-icon-mobile";
 import UserProfileMobile from "@/assets/SVG/mobile-menu/user-profile-mobile";
 import LogoutButton from "@/components/base/logut-button";
+import { sessionCheck } from "@/services/session-check";
 import { LinkItemsType } from "@/types/header-type";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import MobileMenuSingleItem from "./mobile-menu-single-item";
 
 export default function MobileMenu() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const pathname = usePathname();
+	const router = useRouter();
+
+	useEffect(() => {
+		sessionCheck().then((r) => setIsLoggedIn(r.isLoggedIn));
+	}, [pathname]);
+
 	const mobileMenuLinkItems: LinkItemsType[] = [
 		{
 			id: 1,
@@ -41,7 +51,7 @@ export default function MobileMenu() {
 			icon: <CategoriesIconMobile />,
 			modal: true,
 			childData: (
-				<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] px-3 text-white/80">
+				<div className="w-full flex flex-col justify-start items-start gap-3 text-[12px] p-3 text-white/80">
 					<Link
 						className="p-1 bg-white/5 hover:bg-white/10 w-full origin-center hover:scale-110 transition-all duration-500 ease-in-out"
 						href={"/products?gender=مردانه"}
@@ -90,14 +100,24 @@ export default function MobileMenu() {
 						سفارش‌ها
 					</Link>
 					<div className="my-1 h-px bg-white" />
-					<div className="w-full flex flex-col justify-center items-center">
-						<LogoutButton />
-					</div>
+					{isLoggedIn ? (
+						<div className="w-full flex flex-col justify-center items-center">
+							<LogoutButton setIsLogged={setIsLoggedIn} />
+						</div>
+					) : (
+						<div className="w-full flex flex-col justify-center items-center">
+							<button
+								onClick={() => router.push("/auth/login")}
+								className="w-full px-3 py-2 rounded-sm flex items-center justify-center gap-2 text-[10px] text-center cursor-pointer m-2 bg-[#213b0f]  hover:bg-green-600/40 active:text-white origin-center transition-all ease-in-out duration-500"
+							>
+								ورود به حساب
+							</button>
+						</div>
+					)}
 				</div>
 			),
 		},
 	];
-	const pathname = usePathname();
 
 	return (
 		<div className="w-full h-15 flex flex-row justify-between items-center px-6 backdrop-blur-[5px] bg-(--color-super-dark-green) rovix-text-gold rounded-t-sm z-500">

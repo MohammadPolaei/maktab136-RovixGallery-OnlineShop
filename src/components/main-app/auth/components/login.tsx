@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useCartStore } from "../../cart/hooks/use-cart-CRUD";
 import { LoginInput, loginSchema } from "../utils/login-schemas";
 
 export default function Login() {
@@ -18,7 +17,6 @@ export default function Login() {
 	});
 
 	const router = useRouter();
-	const { refetch } = useCartStore();
 
 	const onSubmit = async (data: LoginInput) => {
 		const response = await fetch("/api/auth/login", {

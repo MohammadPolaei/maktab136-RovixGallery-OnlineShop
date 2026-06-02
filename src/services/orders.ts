@@ -1,25 +1,36 @@
 import { Order } from "@/types/orders-type";
 
-// get all orders /admin
-export async function getOrdersAdmin() {
-	const res = await fetch("/api/orders/admin", {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+type GetOrdersParams = {
+	page?: number;
+	limit?: number;
+	status?: any;
+};
+
+export async function getOrdersAdmin(params: GetOrdersParams) {
+	const page = params.page;
+	const limit = params.limit;
+	const status = params.status;
+
+	const res = await fetch(
+		`/api/orders/admin?page=${page}&limit=${limit}&status=${status}`,
+		{
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
 
 	if (!res.ok) {
 		throw new Error("Error showing Orders");
 	}
 
 	const data = await res.json();
-
-	return await data;
+	return data;
 }
-// get all orders /user
+
 export async function getOrders() {
-	const res = await fetch("/api/orders", {
+	const res = await fetch(`/api/orders`, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -31,18 +42,16 @@ export async function getOrders() {
 	}
 
 	const data = await res.json();
-
-	return await data;
+	return data;
 }
 
-// add order from cart
-
-export async function addOrder(payload: any) {
+export async function addOrder(payload: unknown) {
 	const res = await fetch("/api/orders", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
+		cache: "no-cache",
 		body: JSON.stringify(payload),
 	});
 
@@ -51,11 +60,9 @@ export async function addOrder(payload: any) {
 	}
 
 	const data = await res.json();
-
 	return data;
 }
 
-// single order
 export async function getSingleOrder({
 	id,
 }: {

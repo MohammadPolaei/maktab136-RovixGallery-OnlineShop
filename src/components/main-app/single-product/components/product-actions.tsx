@@ -14,28 +14,75 @@ interface ActionsProps {
 }
 
 export default function ProductActions({ product }: ActionsProps) {
-	const { addItem, isLoading, error } = useCartStore();
+	const { addItem, isLoading, error, cart } = useCartStore();
 	const [singleProdQuantityValue, setSingleProdQuantityValue] = useState(1);
-	// handle add product
+
+	const thisProductInCart = cart?.data.items.find(
+		(item) => item.product._id === product._id
+	);
+
 	const handleAddToCart = async (id: string, quantity: number) => {
-		await addItem({ productId: id, quantity: quantity });
-		if (isLoading) {
-			toast.loading("در حال افزودن محصول به سبد خرید");
+		const diff =
+			quantity - (thisProductInCart ? thisProductInCart.quantity : 0);
+
+		if (quantity == 1 && !thisProductInCart) {
+			await addItem({ productId: product._id, quantity: quantity });
+			return;
 		}
-		if (error) {
-			toast.error(`خطا در افزودن محصول به سبد خرید ${error.message}`);
+		if (
+			thisProductInCart
+				? thisProductInCart?.quantity > 5 || quantity > 5
+				: false
+		) {
+			toast.error("بیشتر از 5 عدد مجاز نیست");
+			return;
+		}
+
+		if (thisProductInCart) {
+			if (diff <= 0) {
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
+				return;
+			}
+
+			if (diff > 5) {
+				toast.error("بیشتر از 5 عدد مجاز نیست");
+				return;
+			}
+
+			await addItem({
+				productId: product._id,
+				quantity: diff,
+			});
+		} else {
+			if (quantity <= 0) {
+				toast.error("حداقل 1 عدد بیشتر به سبد اضافه شود");
+				return;
+			}
+
+			if (quantity > 5) {
+				toast.error("بیشتر از 5 عدد مجاز نیست");
+				return;
+			}
+
+			await addItem({
+				productId: product._id,
+				quantity: quantity,
+			});
 		}
 	};
+
 	return (
 		<div className="w-full mt-4 flex flex-col justify-start items-center gap-3">
 			<div className="w-full flex flex-col lg:flex-row justify-between items-center">
 				<AddToCartSingleProduct
+					product={product}
 					setSingleProdQuantityValue={setSingleProdQuantityValue}
 					usageType="single-product"
-					productStock={product.stock}
 				/>
+
 				<div className="flex items-center gap-1">
-					<p>{"نظرات کاربران"}</p>
+					<p>نظرات کاربران</p>
+
 					<div className="flex items-center">
 						{[...Array(5)].map((_, i) => (
 							<svg
@@ -51,31 +98,34 @@ export default function ProductActions({ product }: ActionsProps) {
 							</svg>
 						))}
 					</div>
+
 					<span className="text-[12px] text-white/50">
 						{faNumber((product.popularity / 20).toFixed(1))}
 					</span>
 				</div>
 			</div>
+
 			<div className="w-full">
-				{product.stock == 0 ? (
+				{product.stock === 0 ? (
 					<button className="w-full py-3 mx-auto bg-white/20 hover:bg-(--color-gold)/20 text-[10px] text-white font-bold hover:text-(--color-gold) cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
 						<span>به من اطلاع بده !</span>
 					</button>
 				) : (
 					<button
-						disabled={singleProdQuantityValue == 0}
+						disabled={singleProdQuantityValue === 0 || isLoading}
 						onClick={() =>
 							handleAddToCart(product._id, singleProdQuantityValue)
 						}
-						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out"
+						className="w-full py-3 mx-auto bg-radial from-[#e7d494] to-(--color-gold-dark) text-[16px] text-black hover:text-(--color-accent-green) hover:shadow shadow-[#d8c27a] font-bold cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
 					>
 						<CartIconButton size={25} />
-						<span>افزودن به سبد خرید</span>
+						<span>{isLoading ? "در حال افزودن..." : "افزودن به سبد خرید"}</span>
 					</button>
 				)}
 			</div>
+
 			<div className="w-full">
-				<button className="w-full py-1 mx-auto border border-(--color-gold-dark) text-[12px] text-(--color-gold-dark) hover:shadow-2xl shadow-[#d8c27a] font-bold  cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
+				<button className="w-full py-1 mx-auto border border-(--color-gold-dark) text-[12px] text-(--color-gold-dark) hover:shadow shadow-[#d8c27a] font-bold cursor-pointer rounded-sm flex justify-center items-center gap-1 transition-all duration-500 ease-in-out">
 					<FavoriteFilled size={25} />
 					<span>افزودن به علاقه مندی ها</span>
 				</button>

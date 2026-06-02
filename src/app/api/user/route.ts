@@ -1,5 +1,4 @@
-// app/api/user/route.ts
-import { UserData } from "@/components/main-app/checkout/components/checkout-layout";
+import { User } from "@/components/main-app/checkout/components/checkout-layout";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,7 +10,7 @@ export async function GET(req: NextRequest) {
 		redirect("/auth/login?callback=/checkout");
 	}
 
-	let userData: UserData | null = null;
+	let userData: User | null = null;
 
 	try {
 		const res = await fetch(`${backendUrl}/api/auth/me`, {
