@@ -15,11 +15,11 @@ export default function LogoutButton({
 	const handleLogout = async () => {
 		try {
 			await axios.post("/api/auth/logout");
-			router.refresh();
 			if (setIsLogged) {
 				setIsLogged!(false);
 			}
 			toast.message("خروج از حساب موفقیت‌آمیز بود");
+			router.refresh();
 		} catch (err) {
 			console.error("LOGOUT FAILED:", err);
 		}

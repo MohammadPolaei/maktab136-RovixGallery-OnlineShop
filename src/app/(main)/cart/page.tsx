@@ -1,7 +1,5 @@
 "use client";
-import RovixLuxuryLoader from "@/assets/SVG/loading-icon";
 import AskModal from "@/components/base/ask-modal";
-import Modal from "@/components/base/modal";
 import SectionTitle from "@/components/base/section-title";
 import CartList from "@/components/main-app/cart/components/cart-list";
 import CartPriceInfo from "@/components/main-app/cart/components/cart-price-info";
@@ -135,15 +133,6 @@ export default function Page() {
 					openDelete={openClear}
 					setOpenDelete={setOpenClear}
 				/>
-				<Modal
-					modalUsecaseType="message"
-					open={isLoading}
-					setOpen={() => {}}
-					modalTitle="بروزرسانی سبد خرید"
-					extraClasses=""
-				>
-					<RovixLuxuryLoader />
-				</Modal>
 			</div>
 			<div className="w-full">
 				<SectionTitle title="پیشنهادات ویژه" />

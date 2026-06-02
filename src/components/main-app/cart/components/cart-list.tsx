@@ -1,11 +1,10 @@
 import { CartItem, GetCartResponse } from "../types";
 import CartItemCard from "./cart-item-card";
-import CartItemSkeletonCard from "./cart-item-skeleton-card";
+import CartItemCardSkeleton from "./cart-item-skeleton-card";
 
 export default function CartList({
 	cart,
 	error,
-	isError,
 	isLoading,
 	setOpenDelete,
 	confirmQuestion,
@@ -70,8 +69,10 @@ export default function CartList({
 					))
 				)
 			) : (
-				<div className="w-full h-full flex flex-col justify-center items-center">
-					<CartItemSkeletonCard />
+				<div className="w-full h-full flex flex-col justify-start items-center">
+					{Array.from({ length: 2 }).map((_, index) => (
+						<CartItemCardSkeleton key={index} />
+					))}
 				</div>
 			)}
 		</div>
