@@ -54,11 +54,7 @@ export function useCartStore() {
 		mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) =>
 			cartApi.updateItem(itemId, { quantity }),
 		onSuccess: async () => {
-<<<<<<< HEAD
-			await cartQuery.refetch();
-=======
 			await qc.invalidateQueries({ queryKey: queryKeys.cart });
->>>>>>> develop
 		},
 		onError: (err) => onError(err, "به‌روزرسانی سبد خرید"),
 	});
