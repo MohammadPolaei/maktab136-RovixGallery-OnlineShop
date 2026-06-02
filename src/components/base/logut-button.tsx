@@ -28,7 +28,7 @@ export default function LogoutButton({
 	return (
 		<button
 			onClick={handleLogout}
-			className="w-full px-3 py-2 rounded-sm flex items-center justify-center gap-2 text-[10px] text-center cursor-pointer m-2 bg-[#3b0f0f]  hover:bg-red-600/40 active:text-white origin-center transition-all ease-in-out duration-500"
+			className="w-full px-3 py-2 rounded-sm flex items-center justify-center gap-2 text-[10px] text-center cursor-pointer my-2 bg-[#3b0f0f] hover:bg-red-600/40 active:text-white origin-center transition-all ease-in-out duration-500"
 		>
 			<LogoutIcon />
 			خروج از حساب

@@ -100,42 +100,42 @@ export default function SingleOrderDetails({
 	const statusBgColor = statusToPersian(newStatus).color;
 
 	return (
-		<div className="p-6 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-5">
-			<div className="w-full rounded-sm bg-white mt-5 shadow shadow-black/5 p-5">
+		<div className="flex flex-col justify-start items-center gap-5 h-[70vh]">
+			<div className="w-full rounded-sm bg-white shadow shadow-black/5 p-0">
 				<DashboardHeadingContainer flexClass="flex-col md:flex-row">
 					جزئیات سفارش
 				</DashboardHeadingContainer>
 
 				<div className="w-full grid grid-cols-1 gap-2 text-[10px] md:text-[12px] rounded-sm py-3 lg:px-10">
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 border-b border-b-black/10 px-2">
 						<span className="font-semibold">شناسه کاربری</span>
 						<span className="text-(--color-accent-green)">
 							{singleOrder.data._id}
 						</span>
 					</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 border-b border-b-black/10 px-2">
 						<span className="font-semibold">تاریخ ثبت سفارش</span>
 						<span className="text-(--color-accent-green)">
 							{formatCartDate(singleOrder.data.createdAt)}
 						</span>
 					</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 border-b border-b-black/10 px-2">
 						<span className="font-semibold">آخرین وضعیت ویرایش</span>
 						<span className="text-(--color-accent-green)">
 							{formatCartDate(singleOrder.data.updatedAt)}
 						</span>
 					</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 border-b border-b-black/10 px-2">
 						<span className="font-semibold">روش ارسال</span>
 						<span className="text-(--color-accent-green)">
 							{deliverToPersian(singleOrder.data.paymentMethod)}
 						</span>
 					</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 border-b border-b-black/10 px-2">
 						<span className="font-semibold">وضعیت سفارش</span>
 						{usageType === "admin" ? (
 							<select
@@ -157,7 +157,7 @@ export default function SingleOrderDetails({
 						)}
 					</div>
 
-					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 border-y border-y-black/10 px-2">
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5 py-3 min-h-15 px-2">
 						<span className="font-semibold">مجموع قیمت</span>
 						<span className="text-(--color-accent-green)">{`${faNumber(
 							singleOrder.data.totalPrice
@@ -170,33 +170,45 @@ export default function SingleOrderDetails({
 						onClick={() => {
 							updateOrderFn!({ id, data: newStatus });
 						}}
-						className="w-full bg-(--color-dark-green) hover:bg-(--color-accent-green) disabled:bg-gray-200 disabled:cursor-not-allowed text-white p-3 rounded-sm cursor-pointer transition-all duration-500 ease-in-out"
+						className="w-full bg-(--color-dark-green) hover:bg-(--color-accent-green) disabled:bg-gray-200 disabled:cursor-not-allowed text-white p-3 cursor-pointer transition-all duration-500 ease-in-out"
 					>
 						{updateOrderPending ? "در حال بروزرسانی ..." : "بروزرسانی وضعیت"}
 					</button>
 				)}
 			</div>
 
-			<div className="rounded-sm bg-white mt-5 shadow shadow-black/5 p-5">
+			<div className="w-full rounded-sm bg-white shadow shadow-black/5">
 				<DashboardHeadingContainer flexClass="flex-col md:flex-row">
 					محصولات
 				</DashboardHeadingContainer>
 
-				<div className="w-full flex flex-col justify-start items-start gap-5 overflow-auto">
-					<div className="w-full min-w-80 grid grid-cols-[3fr_2fr_1fr] gap-3 lg:px-10 text-[10px] md:text-[12px] bg-black/10 p-3">
-						<div>نام محصول</div>
-						<div>قیمت</div>
-						<div>تعداد</div>
+				<div className="w-full flex flex-col justify-start items-start gap-5 overflow-auto p-1">
+					<div className="w-full min-w-100 grid grid-cols-[3fr_2fr_1fr] gap-3 lg:px-10 text-[10px] md:text-[12px] bg-black/10 p-3">
+						<div className="flex flex-col justify-center items-center">
+							نام محصول
+						</div>
+						<div className="flex flex-col justify-center items-center">
+							قیمت
+						</div>
+						<div className="flex flex-col justify-center items-center">
+							تعداد
+						</div>
 					</div>
 
 					{singleOrder.data.orderItems?.map((item: any) => (
 						<div
 							key={item._id}
-							className="w-full min-w-80 grid grid-cols-[3fr_2fr_1fr] gap-3 lg:px-10 text-[10px] md:text-[12px] text-(--color-accent-green)"
+							className="w-full min-w-100 min-h-20 grid grid-cols-[3fr_2fr_1fr] gap-3 lg:px-10 text-[10px] md:text-[12px] text-(--color-accent-green)"
 						>
-							<div>{item.name}</div>
-							<div>{`${faNumber(item.price)} ریال`}</div>
-							<div>{faNumberSimple(item.quantity)}</div>
+							<div className="flex flex-col justify-center text-center">
+								{item.name}
+							</div>
+							<div className="flex flex-col justify-center items-center">{`${faNumber(
+								item.price
+							)} ریال`}</div>
+							<div className="flex flex-col justify-center items-center">
+								{faNumberSimple(item.quantity)}
+							</div>
 						</div>
 					))}
 				</div>

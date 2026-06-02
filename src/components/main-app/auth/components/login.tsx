@@ -29,6 +29,7 @@ export default function Login() {
 
 		if (response.ok) {
 			toast.success("ورود موفقیت آمیز بود . خوش آمدید");
+			router.refresh();
 			router.back();
 		} else {
 			toast.error(resData.message);

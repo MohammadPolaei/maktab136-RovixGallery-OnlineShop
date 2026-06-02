@@ -7,7 +7,7 @@ export default function page() {
 	const { orders } = useOrders();
 
 	return (
-		<div className="w-full flex flex-col justify-start items-center overflow-auto">
+		<div className="w-full flex flex-col justify-start items-center h-[75vh] overflow-auto">
 			{orders ? (
 				orders.count == 0 ? (
 					<div className="w-full h-[60vh] flex flex-col justify-center items-center">

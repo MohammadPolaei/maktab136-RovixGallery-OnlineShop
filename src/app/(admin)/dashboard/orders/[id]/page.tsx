@@ -2,7 +2,6 @@
 
 import { useOrderStatusChange } from "@/components/dashboard/hooks/use-order-status-change";
 import SingleOrderDetails from "@/components/shared/single-order-details";
-import { OrderStatus } from "@/types/orders-type";
 import { useParams } from "next/navigation";
 
 export default function OrderDetailPage() {

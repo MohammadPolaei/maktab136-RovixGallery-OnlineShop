@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<OrdersProvider>
 			<div className="w-screen h-full grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-3 relative">
-				<div className="md:h-screen relative md:absolute -top-5">
+				<div className="md:h-screen relative md:absolute -top-5 ">
 					<UserAside />
 				</div>
 				<div className="hidden md:flex"></div>

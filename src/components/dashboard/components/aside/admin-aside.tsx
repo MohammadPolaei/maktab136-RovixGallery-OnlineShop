@@ -56,7 +56,9 @@ export function AdminAside() {
 							openSidebar={openSidebar}
 							setOpenSidebar={setOpenSidebar}
 						/>
-						<LogoutButton />
+						<div className="w-full">
+							<LogoutButton />
+						</div>
 					</div>
 					<Image
 						className="w-full absolute bottom-0"
