@@ -87,6 +87,7 @@ Modern **Watch Store E‑commerce** built with **Next.js** with a complete **Adm
 
 ### Desktop
 <p align="center">
+<img width="1920" height="870" alt="image" src="https://github.com/user-attachments/assets/e2ff0a82-03d2-4e43-82e0-55b943bcf0d2" />
 
 <img width="1920" height="875" alt="image" src="https://github.com/user-attachments/assets/b180a25b-0974-4e80-8ecb-1e5b0f7d7530" />
 
