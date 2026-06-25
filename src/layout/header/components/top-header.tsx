@@ -7,6 +7,7 @@ import SearchInput from "@/components/base/search-input";
 import { useCartStore } from "@/components/main-app/cart/hooks/use-cart-CRUD";
 import ShowDate from "@/components/shared/show-date";
 import { useGetProducts } from "@/hooks/use-get-data";
+import { useGetUser } from "@/hooks/use-get-user";
 import { sessionCheck } from "@/services/session-check";
 import { Product } from "@/types/product-data-type";
 import { faNumberSimple } from "@/utils/convert-number-into-persian";
@@ -31,6 +32,8 @@ export default function HeaderTop() {
 	const [openSearchMenu, setOpenSearchMenu] = useState<boolean>(false);
 	const { products, totalProductsCount, searchData, search, setSearchData } =
 		useGetProducts();
+
+	const userInfo = useGetUser();
 
 	return (
 		<div className="w-full rovix-bg-darkest rovix-text-gold">
@@ -124,9 +127,25 @@ export default function HeaderTop() {
 							showArrow={false}
 							closeOnInteract
 							trigger={
-								<button className="rovix-link flex items-center gap-2 text-center transition-all duration-500 ease-in-out cursor-pointer">
+								<button
+									disabled={userInfo.isLoading}
+									className="rovix-link flex items-center gap-2 text-center transition-all duration-500 ease-in-out cursor-pointer disabled:cursor-not-allowed"
+								>
 									<UserProfile />
-									حساب کاربری
+									{userInfo.isLoading ? (
+										<div className="h-4 w-14 animate-pulse rounded bg-gray-200/10">
+											. . .
+										</div>
+									) : userInfo.user == undefined ? (
+										<span>حساب کاربری</span>
+									) : (
+										<span>
+											{userInfo.user !== undefined &&
+											userInfo.user.name.length > 15
+												? userInfo.user?.name.split(" ")[0]
+												: userInfo.user?.name}
+										</span>
+									)}
 								</button>
 							}
 							contentClassName="w-64 p-3 rovix-bg-darkest rounded-sm border border-[rgba(255,215,0,0.25)] text-(--color-gold) z-600"
