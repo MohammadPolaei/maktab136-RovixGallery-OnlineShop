@@ -1,0 +1,29 @@
+"use client";
+import OrdersTable from "@/components/shared/orders-table";
+import { useGetOrders } from "@/hooks/use-get-orders";
+import { OrdersListResponse } from "@/types/orders-type";
+
+export default function UserOrdersSummary() {
+	const ordersSummary = useGetOrders();
+
+	const lastFiveOrders: OrdersListResponse = ordersSummary.orders
+		? {
+				success: ordersSummary.orders.data.success,
+				count: ordersSummary.orders.data.count,
+				data: ordersSummary.orders.data.filter(
+					(order: any, index: number) =>
+						order.status !== "delivered" && index < 5
+				),
+		  }
+		: {
+				success: false,
+				count: 0,
+				data: [],
+		  };
+
+	return (
+		<div>
+			<OrdersTable showType="user" orders={lastFiveOrders} />
+		</div>
+	);
+}
