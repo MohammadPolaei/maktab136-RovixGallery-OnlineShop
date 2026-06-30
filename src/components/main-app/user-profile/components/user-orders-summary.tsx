@@ -12,7 +12,7 @@ export default function UserOrdersSummary() {
 				count: ordersSummary.orders.data.count,
 				data: ordersSummary.orders.data.filter(
 					(order: any, index: number) =>
-						order.status !== "delivered" && index < 5
+						order.status !== "delivered" && index < 3
 				),
 		  }
 		: {
@@ -22,7 +22,8 @@ export default function UserOrdersSummary() {
 		  };
 
 	return (
-		<div>
+		<div className="bg-white rounded-sm p-3">
+			<div className="font-semibold pb-3">{"آخرین سفارشات"}</div>
 			<OrdersTable showType="user" orders={lastFiveOrders} />
 		</div>
 	);

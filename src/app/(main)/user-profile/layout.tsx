@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 					<UserAside />
 				</div>
 				<div className="hidden md:flex"></div>
-				<div className="w-full overflow-auto">{children}</div>
+				<div className="w-full overflow-y-auto">{children}</div>
 			</div>
 		</OrdersProvider>
 	);
